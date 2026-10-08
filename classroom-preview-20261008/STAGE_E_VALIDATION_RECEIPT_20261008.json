@@ -1,0 +1,70 @@
+{
+  "schema": "mb.classroom.stage_e_live_acceptance.v1",
+  "status": "PASS_STAGING_BROWSER_AND_SOURCE_INTEGRITY",
+  "verified_at_utc": "2026-10-08T17:25:11.6527730Z",
+  "source": {
+    "repository": "blobertplunk-hue/metablooms-classroom-activities",
+    "merged_head": "f637324c4ad114d473cf103b395986148b8f0421",
+    "ci_run": "https://github.com/blobertplunk-hue/metablooms-classroom-activities/actions/runs/37816141666",
+    "ci_conclusion": "success",
+    "prior_baseline": "529e5bf4eebafcdd34e512f6d0ad6611c509a42a"
+  },
+  "deployment": {
+    "repository": "blobertplunk-hue/metablooms-pages-test",
+    "deployed_head": "58e59607d0243fd67c3a35dc5972cd28b6c8f74d",
+    "pages_run": "https://github.com/blobertplunk-hue/metablooms-pages-test/actions/runs/37816167874",
+    "pages_conclusion": "success",
+    "url": "https://blobertplunk-hue.github.io/metablooms-pages-test/classroom-preview-20261008/",
+    "prior_baseline": "2d9d0ea0aa3d80142dc48a774b579fefc49f720a"
+  },
+  "inventory": {
+    "existing_science": 4,
+    "imported_new": 22,
+    "total": 26,
+    "fraction_face_off": 12,
+    "fraction_practices": 6,
+    "math_remediations": 2,
+    "fraction_battle": 1,
+    "input_output_diagnostic": 1
+  },
+  "validation": {
+    "test_runner": "PC Chrome headless and HTTP source hash comparison",
+    "device": "DESKTOP-OO02IE5",
+    "http": {
+      "passed": 26,
+      "total": 26
+    },
+    "source_sha256_matches": {
+      "passed": 26,
+      "total": 26
+    },
+    "hub_views": {
+      "passed": 5,
+      "total": 5,
+      "counts": {
+        "all": 26,
+        "math": 22,
+        "science": 4,
+        "games": 13,
+        "review": 0
+      }
+    },
+    "card_links_correct": {
+      "passed": 26,
+      "total": 26
+    },
+    "failures": []
+  },
+  "preservation": {
+    "science_source_unchanged": true,
+    "google_apps_script_unchanged": true,
+    "existing_network_test_homepage_unchanged": true
+  },
+  "remaining": [
+    "LISD-connected MacBook must open and interact with the expanded site, not merely prior connectivity test",
+    "Student device test pending",
+    "Gameplay/scoring/save flows not exhaustively tested",
+    "Review category contains no independently eligible activity"
+  ],
+  "note": "This receipt supplements the earlier STAGE_E_IMPORT_MANIFEST.json, which was authored before live acceptance completed."
+}
