@@ -1,0 +1,86 @@
+{
+  "catalogSchemaVersion": 1,
+  "generatedAt": "2026-10-07T16:53:16.818975Z",
+  "activities": [
+    {
+      "id": "science-unit-1-remediation",
+      "version": "1.0.0",
+      "title": "Science Unit 1 Remediation",
+      "subject": "science",
+      "grade": 4,
+      "unit": "Unit 1",
+      "skills": [
+        "Science Unit 1 assessment remediation"
+      ],
+      "type": "remediation",
+      "status": "published",
+      "route": "/science/unit-1-remediation/",
+      "tags": [
+        "science",
+        "remediation",
+        "unit-1"
+      ],
+      "visibility": "student"
+    },
+    {
+      "id": "science-unit-2-remediation",
+      "version": "1.0.0",
+      "title": "Science Unit 2 Remediation",
+      "subject": "science",
+      "grade": 4,
+      "unit": "Unit 2",
+      "skills": [
+        "Science Unit 2 assessment remediation"
+      ],
+      "type": "remediation",
+      "status": "published",
+      "route": "/science/unit-2-remediation/",
+      "tags": [
+        "science",
+        "remediation",
+        "unit-2"
+      ],
+      "visibility": "student"
+    },
+    {
+      "id": "science-unit-3-remediation",
+      "version": "1.0.0",
+      "title": "Science Unit 3 Remediation",
+      "subject": "science",
+      "grade": 4,
+      "unit": "Unit 3",
+      "skills": [
+        "Science Unit 3 assessment remediation"
+      ],
+      "type": "remediation",
+      "status": "published",
+      "route": "/science/unit-3-remediation/",
+      "tags": [
+        "science",
+        "remediation",
+        "unit-3"
+      ],
+      "visibility": "student"
+    },
+    {
+      "id": "science-unit-4-remediation",
+      "version": "1.0.0",
+      "title": "Science Unit 4 Remediation",
+      "subject": "science",
+      "grade": 4,
+      "unit": "Unit 4",
+      "skills": [
+        "Science Unit 4 assessment remediation"
+      ],
+      "type": "remediation",
+      "status": "published",
+      "route": "/science/unit-4-remediation/",
+      "tags": [
+        "science",
+        "remediation",
+        "unit-4"
+      ],
+      "visibility": "student"
+    }
+  ]
+}

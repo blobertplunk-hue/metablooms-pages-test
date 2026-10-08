@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Science Unit 3 Remediation</title>
+<style>
+:root{
+  --bg:#0b1119;--panel:#121c29;--panel2:#192638;--text:#f5f7fb;--muted:#b8c3d2;
+  --line:#31445d;--accent:#78c9ff;--good:#72e2aa;--warn:#ffd27a;--bad:#ff9caa;
+  --focus:#f5d76e;color-scheme:dark;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#091019,#0b1119 30%,#0a0f16);color:var(--text);font-size:18px;line-height:1.5}
+button,input,textarea{font:inherit}
+button{min-height:46px;border-radius:10px;border:1px solid var(--line);padding:.7rem 1rem;background:#17263a;color:var(--text);cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button.primary{background:var(--accent);color:#07111c;border-color:transparent;font-weight:850}
+button.good{background:#1c5b46;border-color:#388c6e;font-weight:800}
+button.ghost{background:transparent}
+button:disabled{opacity:.45;cursor:not-allowed}
+header{position:sticky;top:0;z-index:5;background:#09111beF;border-bottom:1px solid var(--line);backdrop-filter:blur(9px)}
+.header-inner{max-width:1080px;margin:auto;padding:14px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between}
+.brand h1{font-size:clamp(1.2rem,3vw,1.8rem);margin:0}
+.brand .sub{color:var(--muted);font-size:.9rem}
+.progress-pill{border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:.85rem;white-space:nowrap}
+main{max-width:1080px;margin:auto;padding:20px 18px 80px;display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 14px 36px #0005}
+.card+.card{margin-top:16px}
+.side{position:sticky;top:88px;align-self:start}
+.side .card{padding:15px}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:800}
+h2{font-size:clamp(1.35rem,3vw,1.9rem);margin:.25rem 0 .6rem}
+h3{margin:.25rem 0 .5rem}
+p{margin:.5rem 0 1rem}
+.muted{color:var(--muted)}
+.notice{border-left:5px solid var(--warn);background:#332a16;padding:12px 14px;border-radius:8px}
+.goodbox{border-left:5px solid var(--good);background:#123226;padding:12px 14px;border-radius:8px}
+.badbox{border-left:5px solid var(--bad);background:#361b24;padding:12px 14px;border-radius:8px}
+.lesson{border-left:5px solid var(--accent);background:#0f1824;padding:14px 16px;border-radius:10px}
+.lesson li{margin:.45rem 0}
+.options{display:grid;gap:10px;margin:16px 0}
+.option{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:#101b29;border-radius:12px;padding:12px;cursor:pointer}
+.option:hover{border-color:#4d7399}
+.option.selected{border-color:var(--accent);background:#102d43}
+.option input{margin-top:5px;transform:scale(1.2)}
+.explain-label{display:block;font-weight:750;margin:14px 0 6px}
+textarea{width:100%;min-height:100px;border:1px solid var(--line);background:#09131f;color:var(--text);border-radius:10px;padding:12px;resize:vertical}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.objective-grid{display:grid;gap:8px}
+.objrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px solid #24364a;padding:7px 0;font-size:.86rem}
+.objrow .state{font-weight:800}
+.pass{color:var(--good)}.active{color:var(--warn)}.pending{color:var(--muted)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+.tag{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:#cfe5fb;background:#0d1a29}
+.entry-grid{display:grid;gap:12px;margin:16px 0}
+.entry-choice{border:1px solid var(--line);border-radius:12px;padding:12px;background:#101b29}
+.entry-choice label{display:flex;gap:10px;align-items:flex-start}
+input[type=text],input[type=number]{width:100%;border:1px solid var(--line);background:#09131f;color:var(--text);border-radius:10px;padding:11px 12px}
+.receipt{background:#fff;color:#111;border-radius:14px;padding:20px}
+.receipt h2,.receipt h3{color:#111}.receipt table{width:100%;border-collapse:collapse;margin:14px 0}.receipt th,.receipt td{border:1px solid #bbb;padding:7px;text-align:left}.receipt .big{font-size:2rem;font-weight:900}.receipt .check{margin:10px 0}
+details{margin-top:12px}summary{cursor:pointer;font-weight:750}
+.small{font-size:.84rem}
+.hidden{display:none!important}
+@media(max-width:800px){main{grid-template-columns:1fr}.side{position:static;order:-1}.header-inner{align-items:flex-start}.progress-pill{font-size:.75rem}}
+@media print{header,.side,.controls,.no-print{display:none!important}body{background:#fff;color:#000}main{display:block;max-width:none;padding:0}.card{box-shadow:none;border:0;padding:0}.receipt{padding:0}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div class="brand"><h1>Science Unit 3 Remediation</h1><div class="sub">Matter conservation, mixtures, properties, separation, measurement, and safety</div></div><div class="progress-pill" id="progressPill">Eligibility · Not started</div></div></header>
+<main><div id="app"></div><aside class="side" id="side"></aside></main>
+<script id="remediation-config" type="application/json">{"schemaVersion":"2026-10-07.1","assessment":{"id":"science-unit3","title":"Science Unit 3 Remediation","subtitle":"Matter conservation, mixtures, properties, separation, measurement, and safety"},"policy":{"eligibleRoute":"Student took the original assessment and scored below 70.","missingRoute":"Student who never took the original assessment must take the original assessment; remediation cannot issue credit.","replacementGrade":70,"diagnosticCanSkipReteach":true,"freshRetrievalRequired":true,"laterTransferRequired":true,"completionMessage":"All required objectives were demonstrated on fresh retrieval and final transfer. Show or print this receipt for your teacher."},"sourceAlignment":{"packet":"Science Unit 3 packet, pages 26-32","drive":["Mixture_Lab_15_Substances_EXACT_PAIR_IMAGES_ONLY.html"],"notes":["Mixture Lab informs mixture/solution/property/separation objectives.","Adds missing conservation-of-mass and measurement/hot-plate-safety objectives from the packet.","Avoids ambiguous reactive-pair classifications as mixture/solution answer keys."]},"objectives":[{"id":"SCI-U3-O1","title":"Conservation of matter and mass","construct":"Use before/after mass evidence to reason that matter is conserved in a closed system.","teach":["Matter does not disappear during an ordinary physical change.","In a closed system, total mass before and after a physical change should remain the same.","If measured mass changes in an open setup, first consider whether matter entered or left the measured system.","Compare the same complete system before and after."],"misconception":"Do not confuse matter leaving an open system with matter being destroyed.","banks":{"diagnostic":[{"id":"s3o1d1","prompt":"A sealed bag has a total mass of 145 g before and after ice melts inside it. What is supported?","options":[{"text":"The total mass was conserved in the closed system","correct":true,"fb":""},{"text":"Melting destroyed matter","correct":false,"fb":""},{"text":"The mass became zero","correct":false,"fb":""},{"text":"The bag has no mass","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o1d2","prompt":"An open dish has less mass after water evaporates. Which explanation fits conservation of matter?","options":[{"text":"Water vapor left the measured dish system","correct":true,"fb":""},{"text":"The water stopped existing","correct":false,"fb":""},{"text":"Mass changes randomly","correct":false,"fb":""},{"text":"Evaporation creates a vacuum","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s3o1g1","prompt":"A sealed container reads 220 g before mixing and 220 g after mixing. What conclusion is best?","options":[{"text":"Total mass stayed the same","correct":true,"fb":""},{"text":"Matter disappeared","correct":false,"fb":""},{"text":"Mass doubled","correct":false,"fb":""},{"text":"The balance measured volume","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o1g2","prompt":"Why is a closed container useful when testing conservation of mass?","options":[{"text":"It keeps matter from entering or leaving the measured system","correct":true,"fb":""},{"text":"It makes every substance magnetic","correct":false,"fb":""},{"text":"It removes all mass","correct":false,"fb":""},{"text":"It changes grams into milliliters","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s3o1r1","prompt":"A closed bottle and contents have a mass of 306 g before shaking and 306 g after. What does the evidence support?","options":[{"text":"Mass was conserved","correct":true,"fb":""},{"text":"Matter was destroyed","correct":false,"fb":""},{"text":"The bottle lost volume","correct":false,"fb":""},{"text":"Shaking creates mass","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o1r2","prompt":"A wet sample loses measured mass while uncovered. What should be checked before claiming matter disappeared?","options":[{"text":"Whether water or another substance left the measured system","correct":true,"fb":""},{"text":"The notebook color","correct":false,"fb":""},{"text":"Whether the sample is magnetic","correct":false,"fb":""},{"text":"The desk length","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o1r3","prompt":"Which comparison best tests conservation of mass?","options":[{"text":"Same closed system before and after a physical change","correct":true,"fb":""},{"text":"Different samples on different balances","correct":false,"fb":""},{"text":"Part of the system before and the whole system after","correct":false,"fb":""},{"text":"A mass measurement and a temperature measurement","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s3o1t1","prompt":"A student combines two materials inside a sealed 400 g setup. After mixing, the setup is still 400 g. What claim is supported?","options":[{"text":"The total measured mass of the closed system was conserved","correct":true,"fb":""},{"text":"No change occurred","correct":false,"fb":""},{"text":"The materials vanished","correct":false,"fb":""},{"text":"Every mixture always weighs 400 g","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o1t2","prompt":"A covered system is 275 g before a physical change and 275 g afterward. Which statement is too strong?","options":[{"text":"The data prove every property stayed the same","correct":true,"fb":""},{"text":"The measured total mass stayed the same","correct":false,"fb":""},{"text":"The before/after mass evidence is consistent with conservation","correct":false,"fb":""},{"text":"The system boundary matters","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o1t3","prompt":"An open container loses 4 g while drying. Which change to the investigation best distinguishes 'matter left' from 'matter was destroyed'?","options":[{"text":"Repeat with a closed or capture system and compare total mass","correct":true,"fb":""},{"text":"Change the substance and balance together","correct":false,"fb":""},{"text":"Measure length instead","correct":false,"fb":""},{"text":"Use no measurements","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U3-O2","title":"Mixtures and solutions","construct":"Classify combinations by whether components remain visibly separate or are evenly distributed/dissolved.","teach":["A mixture combines substances physically; the components keep their identities.","A solution is a mixture that appears uniform because one substance dissolves or disperses evenly in another.","Visible layers, settling, or separate particles are evidence of a nonuniform mixture.","Use observable evidence rather than memorizing one pair."],"misconception":"Do not call every combination a solution; look for uniformity versus visible separate components.","banks":{"diagnostic":[{"id":"s3o2d1","prompt":"Salt is stirred into water until it is no longer visible and the liquid looks uniform. How should it be classified?","options":[{"text":"Solution","correct":true,"fb":""},{"text":"Visible-layer mixture","correct":false,"fb":""},{"text":"Solid only","correct":false,"fb":""},{"text":"Gas only","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o2d2","prompt":"Sand is stirred into water and later settles to the bottom. What is the best classification?","options":[{"text":"Mixture with visible separate components","correct":true,"fb":""},{"text":"Uniform solution","correct":false,"fb":""},{"text":"Pure substance","correct":false,"fb":""},{"text":"Gas","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s3o2g1","prompt":"Oil and water form separate layers. Which evidence supports calling the combination a mixture rather than a uniform solution?","options":[{"text":"The substances remain visibly separated into layers","correct":true,"fb":""},{"text":"Both are liquids","correct":false,"fb":""},{"text":"The cup has mass","correct":false,"fb":""},{"text":"The room is warm","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o2g2","prompt":"Sugar dissolves evenly in water. Which observation best supports 'solution'?","options":[{"text":"The mixture looks uniform throughout","correct":true,"fb":""},{"text":"Large sugar crystals remain at the bottom","correct":false,"fb":""},{"text":"Two liquid layers form","correct":false,"fb":""},{"text":"The water becomes magnetic","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s3o2r1","prompt":"Pepper flakes remain visible throughout water after stirring. What is the strongest classification?","options":[{"text":"Mixture","correct":true,"fb":""},{"text":"Uniform solution","correct":false,"fb":""},{"text":"Pure liquid","correct":false,"fb":""},{"text":"Gas","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o2r2","prompt":"A colored substance spreads evenly through water with no visible separate layer. Which classification fits the observation?","options":[{"text":"Solution or uniform mixture","correct":true,"fb":""},{"text":"Separated mixture","correct":false,"fb":""},{"text":"Pure solid","correct":false,"fb":""},{"text":"No matter present","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o2r3","prompt":"Which observation most strongly indicates a nonuniform mixture?","options":[{"text":"Particles settle out over time","correct":true,"fb":""},{"text":"The sample appears uniform","correct":false,"fb":""},{"text":"No separate parts can be seen","correct":false,"fb":""},{"text":"The substance is measured in grams","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s3o2t1","prompt":"A clear liquid is made by stirring a soluble solid into water until no particles are visible. Which evidence supports a solution classification?","options":[{"text":"The result is uniform and the solid is no longer visibly separate","correct":true,"fb":""},{"text":"The beaker is glass","correct":false,"fb":""},{"text":"The mixture has mass","correct":false,"fb":""},{"text":"A magnet is nearby","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o2t2","prompt":"A combination looks uniform at first but later forms a layer at the bottom. Which new evidence changes the classification?","options":[{"text":"Settling shows components are not uniformly distributed","correct":true,"fb":""},{"text":"The cup stayed the same color","correct":false,"fb":""},{"text":"The room light changed","correct":false,"fb":""},{"text":"The sample was weighed","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o2t3","prompt":"Which comparison best distinguishes a solution from a visibly heterogeneous mixture?","options":[{"text":"Uniform distribution versus visible separate parts/layers","correct":true,"fb":""},{"text":"Whether the container has a lid","correct":false,"fb":""},{"text":"Whether the substances are expensive","correct":false,"fb":""},{"text":"Whether a balance is available","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U3-O3","title":"Compare physical properties of mixtures and components","construct":"Use observable/measurable physical properties to describe components and distinguish them within mixtures.","teach":["Useful physical properties include color, particle size, texture, state, solubility, magnetism, mass, and relative density.","Choose properties that help distinguish components.","A mixture can contain components with different properties.","Observations should be specific and measurable when possible."],"misconception":"Do not use irrelevant traits or assume one observed property proves every other property.","banks":{"diagnostic":[{"id":"s3o3d1","prompt":"A mixture contains iron filings and sand. Which property can distinguish the components most directly?","options":[{"text":"Magnetism","correct":true,"fb":""},{"text":"Day of the week","correct":false,"fb":""},{"text":"Container label","correct":false,"fb":""},{"text":"Student height","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o3d2","prompt":"Which is an observable physical property useful for comparing two solids?","options":[{"text":"Particle size","correct":true,"fb":""},{"text":"How much a student likes them","correct":false,"fb":""},{"text":"Their classroom location only","correct":false,"fb":""},{"text":"Their names only","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s3o3g1","prompt":"One component dissolves in water and another does not. Which physical property differs?","options":[{"text":"Solubility","correct":true,"fb":""},{"text":"Time","correct":false,"fb":""},{"text":"Notebook color","correct":false,"fb":""},{"text":"Sound level","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o3g2","prompt":"A mixture contains large white crystals and tiny dark grains. Which observations help distinguish the parts?","options":[{"text":"Color and particle size","correct":true,"fb":""},{"text":"Student opinion","correct":false,"fb":""},{"text":"Desk number","correct":false,"fb":""},{"text":"Month of the year","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s3o3r1","prompt":"Which property would help distinguish a magnetic component from a nonmagnetic one?","options":[{"text":"Response to a magnet","correct":true,"fb":""},{"text":"Mass unit","correct":false,"fb":""},{"text":"Temperature unit","correct":false,"fb":""},{"text":"Container shape","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o3r2","prompt":"Two mixture components have different settling behavior in water. Which property may help explain that?","options":[{"text":"Relative density","correct":true,"fb":""},{"text":"Spelling","correct":false,"fb":""},{"text":"Class period","correct":false,"fb":""},{"text":"Notebook page","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o3r3","prompt":"Which data set best compares physical properties of two components?","options":[{"text":"Color, particle size, solubility, and magnet response","correct":true,"fb":""},{"text":"Names only","correct":false,"fb":""},{"text":"Student preferences","correct":false,"fb":""},{"text":"Dates only","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s3o3t1","prompt":"A mixture has shiny magnetic pieces and dull nonmagnetic grains. Which two properties provide the strongest distinguishing evidence?","options":[{"text":"Luster/appearance and magnetism","correct":true,"fb":""},{"text":"Time and date","correct":false,"fb":""},{"text":"Container volume and room number","correct":false,"fb":""},{"text":"Student age and color preference","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o3t2","prompt":"A white solid dissolves in water; another white solid does not. Which property is most useful even though their color is the same?","options":[{"text":"Solubility","correct":true,"fb":""},{"text":"Color","correct":false,"fb":""},{"text":"Name length","correct":false,"fb":""},{"text":"Container shape","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o3t3","prompt":"Why should a property table include units for measured quantities such as mass?","options":[{"text":"Units make values interpretable and comparable","correct":true,"fb":""},{"text":"Units change the substance","correct":false,"fb":""},{"text":"Units make all values equal","correct":false,"fb":""},{"text":"Units show magnetism","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U3-O4","title":"Dissolving and separating mixtures","construct":"Choose separation methods based on component properties such as magnetism, particle size, solubility, and evaporation.","teach":["Choose a separation method that uses a property difference between components.","A magnet can separate a magnetic material from a nonmagnetic one.","A filter or sieve can separate particles based on size or insolubility.","If a solid is dissolved, evaporating the solvent can recover the solid; do not classify reactive combinations as simple solution examples."],"misconception":"Separation is property-driven: match the method to the components rather than using the same method for every mixture.","banks":{"diagnostic":[{"id":"s3o4d1","prompt":"What is the best first method to separate iron filings from sand?","options":[{"text":"Use a magnet","correct":true,"fb":""},{"text":"Use a thermometer","correct":false,"fb":""},{"text":"Measure length","correct":false,"fb":""},{"text":"Add more sand","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o4d2","prompt":"What method can recover salt from salt water after the salt is dissolved?","options":[{"text":"Evaporate the water and collect the salt","correct":true,"fb":""},{"text":"Use a magnet","correct":false,"fb":""},{"text":"Use a ruler","correct":false,"fb":""},{"text":"Add oil","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s3o4g1","prompt":"Which method best separates gravel from fine sand?","options":[{"text":"Use a sieve with appropriate openings","correct":true,"fb":""},{"text":"Use a thermometer","correct":false,"fb":""},{"text":"Use a magnet regardless of material","correct":false,"fb":""},{"text":"Melt both substances","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o4g2","prompt":"Sand is mixed with water and does not dissolve. Which method can separate much of the sand?","options":[{"text":"Filtration","correct":true,"fb":""},{"text":"Magnetism","correct":false,"fb":""},{"text":"Measuring temperature","correct":false,"fb":""},{"text":"Adding more water only","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s3o4r1","prompt":"A mixture contains magnetic steel pieces and plastic beads. Which property makes magnetic separation useful?","options":[{"text":"Only the steel responds strongly to the magnet","correct":true,"fb":""},{"text":"Both are the same color","correct":false,"fb":""},{"text":"Both have mass","correct":false,"fb":""},{"text":"Both are solids","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o4r2","prompt":"Why can evaporation separate a dissolved solid from water?","options":[{"text":"The water can leave as vapor while the solid remains","correct":true,"fb":""},{"text":"The solid becomes magnetic","correct":false,"fb":""},{"text":"The water loses all matter","correct":false,"fb":""},{"text":"The balance removes the liquid","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o4r3","prompt":"Which method best separates large beans from much smaller rice grains?","options":[{"text":"Screening/sieving by particle size","correct":true,"fb":""},{"text":"Thermometer","correct":false,"fb":""},{"text":"Magnet if neither is magnetic","correct":false,"fb":""},{"text":"Graduated cylinder only","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s3o4t1","prompt":"A mixture contains iron filings, sand, and salt. Which sequence is most sensible?","options":[{"text":"Use a magnet for iron; dissolve/filter to separate sand; evaporate water to recover salt","correct":true,"fb":""},{"text":"Evaporate first and use no other methods","correct":false,"fb":""},{"text":"Use a thermometer for all parts","correct":false,"fb":""},{"text":"Measure the mixture and declare it separated","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o4t2","prompt":"A student proposes filtering salt water to recover dissolved salt. What is the problem?","options":[{"text":"Dissolved salt particles pass with the water; evaporation is needed to recover the salt","correct":true,"fb":""},{"text":"Filters remove all liquids from matter","correct":false,"fb":""},{"text":"Salt is magnetic","correct":false,"fb":""},{"text":"Water has no mass","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o4t3","prompt":"Which evidence should guide a separation plan?","options":[{"text":"Measured or observed property differences among the components","correct":true,"fb":""},{"text":"The prettiest method","correct":false,"fb":""},{"text":"The fastest guess","correct":false,"fb":""},{"text":"A method unrelated to the materials","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U3-O5","title":"Measurement tools, data recording, and hot-plate safety","construct":"Select tools/units, record usable data, and apply safe procedures when heating materials.","teach":["Use a balance and grams for mass; use appropriate volume and temperature tools when those properties are needed.","Record data with clear labels and units.","A hot plate can cause burns and should be handled with teacher-directed safety procedures.","Use heat-safe equipment; do not touch hot surfaces or containers with bare hands."],"misconception":"A correct tool choice includes the property, unit, and safe procedure—not simply naming laboratory equipment.","banks":{"diagnostic":[{"id":"s3o5d1","prompt":"Which tool and unit should measure the mass of a mixture?","options":[{"text":"Balance and grams","correct":true,"fb":""},{"text":"Thermometer and milliliters","correct":false,"fb":""},{"text":"Ruler and degrees Celsius","correct":false,"fb":""},{"text":"Hand lens and centimeters","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o5d2","prompt":"Which action is unsafe around a hot plate?","options":[{"text":"Touching the heating surface with a bare hand","correct":true,"fb":""},{"text":"Following teacher directions","correct":false,"fb":""},{"text":"Using heat-safe equipment","correct":false,"fb":""},{"text":"Keeping the workspace clear","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s3o5g1","prompt":"A table records sample masses as 24, 31, and 28 with no unit. What should be added?","options":[{"text":"The mass unit, such as g","correct":true,"fb":""},{"text":"A favorite color","correct":false,"fb":""},{"text":"A magnet drawing","correct":false,"fb":""},{"text":"The student's shoe size","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o5g2","prompt":"Which procedure is safest when a container has been heated?","options":[{"text":"Treat it as hot and use teacher-approved heat-safe handling","correct":true,"fb":""},{"text":"Grab it immediately with bare hands","correct":false,"fb":""},{"text":"Move it by spilling the contents","correct":false,"fb":""},{"text":"Touch the hot plate to test it","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s3o5r1","prompt":"Which instrument measures temperature during a heating investigation?","options":[{"text":"Thermometer or approved temperature probe","correct":true,"fb":""},{"text":"Balance","correct":false,"fb":""},{"text":"Meter stick","correct":false,"fb":""},{"text":"Magnet","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o5r2","prompt":"Why should a data table include both a heading and units?","options":[{"text":"So another reader can interpret what each number represents","correct":true,"fb":""},{"text":"To change the measurements","correct":false,"fb":""},{"text":"To make every value larger","correct":false,"fb":""},{"text":"To prove a substance is a solution","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s3o5r3","prompt":"Which practice reduces hot-plate burn risk?","options":[{"text":"Keep hands away from hot surfaces and use approved handling tools/procedures","correct":true,"fb":""},{"text":"Touch the plate to see if it is hot","correct":false,"fb":""},{"text":"Place paper on the active heating surface","correct":false,"fb":""},{"text":"Leave heating equipment unattended","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s3o5t1","prompt":"A team must measure mass before and after safely heating a sample. Which plan is best?","options":[{"text":"Use a balance in grams, follow hot-plate safety, cool/handle as directed, and record labeled before/after masses","correct":true,"fb":""},{"text":"Estimate mass by sight and touch the hot container","correct":false,"fb":""},{"text":"Use a ruler for mass","correct":false,"fb":""},{"text":"Record numbers without units","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o5t2","prompt":"A student writes '42' in a mass column. What makes the entry incomplete?","options":[{"text":"The unit is missing","correct":true,"fb":""},{"text":"The number is even","correct":false,"fb":""},{"text":"The sample has mass","correct":false,"fb":""},{"text":"The table has rows","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s3o5t3","prompt":"Which statement best combines safe practice and valid data collection?","options":[{"text":"Follow teacher-directed heat safety and use the correct calibrated tool with units","correct":true,"fb":""},{"text":"Safety is unnecessary if data are recorded","correct":false,"fb":""},{"text":"Any tool can measure any property","correct":false,"fb":""},{"text":"Units are optional in science","correct":false,"fb":""}],"explain":true,"type":"single"}]}}]}</script>
+<script id="engine">
+(function(){
+"use strict";
+var configEl=document.getElementById("remediation-config");
+var CFG=JSON.parse(configEl.textContent);
+var app=document.getElementById("app");
+var side=document.getElementById("side");
+var prog=document.getElementById("progressPill");
+var key="metablooms-remediation:"+CFG.assessment.id+":"+CFG.schemaVersion;
+var volatileRaw=null;
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+function now(){return new Date().toISOString();}
+function emptyObjState(){return {diagnosticPassed:false,guidedPassed:false,retrievalPassed:false,transferPassed:false,loops:0,used:{diagnostic:[],guided:[],retrieval:[],transfer:[]},lastWrong:null};}
+function freshState(){
+ return {student:"",eligibility:"",startedAt:null,completedAt:null,phase:"entry",objectiveIndex:0,transferIndex:0,step:"diagnostic",returnToTransfer:false,currentItemId:null,selection:[],explanation:"",feedback:null,nextAction:null,receipt:null,objectives:CFG.objectives.map(emptyObjState)};
+}
+function load(){
+ var raw=null;
+ try{raw=localStorage.getItem(key);}catch(e){}
+ if(!raw) raw=volatileRaw;
+ if(!raw) return freshState();
+ try{
+   var s=JSON.parse(raw);
+   if(!s.objectives||s.objectives.length!==CFG.objectives.length) return freshState();
+   return s;
+ }catch(e){return freshState();}
+}
+var state=load();
+function save(){var raw=JSON.stringify(state);volatileRaw=raw;try{localStorage.setItem(key,raw);}catch(e){}}
+function reset(){try{localStorage.removeItem(key);}catch(e){} state=freshState();save();render();}
+function obj(i){return CFG.objectives[i];}
+function os(i){return state.objectives[i];}
+function bankName(){
+ if(state.phase==="transfer") return "transfer";
+ if(state.step==="guided") return "guided";
+ if(state.step==="retrieval") return "retrieval";
+ return "diagnostic";
+}
+function currentObjectiveIndex(){return state.phase==="transfer"?state.transferIndex:state.objectiveIndex;}
+function findItem(o,id){
+ var names=["diagnostic","guided","retrieval","transfer"];
+ for(var n=0;n<names.length;n++){
+  var b=o.banks[names[n]]||[];
+  for(var i=0;i<b.length;i++) if(b[i].id===id) return b[i];
+ }
+ return null;
+}
+function pick(bank,o,s){
+ var list=o.banks[bank]||[];
+ var used=s.used[bank]||[];
+ var avail=list.filter(function(x){return used.indexOf(x.id)<0;});
+ if(!avail.length){
+   var last=used.length?used[used.length-1]:null;
+   s.used[bank]=[];
+   avail=list.filter(function(x){return x.id!==last;});
+   if(!avail.length) avail=list.slice();
+ }
+ var choice=avail[Math.floor(Math.random()*avail.length)];
+ s.used[bank].push(choice.id);
+ state.currentItemId=choice.id;
+ state.selection=[];
+ state.explanation="";
+ save();
+ return choice;
+}
+function ensureItem(){
+ var oi=currentObjectiveIndex(),o=obj(oi),s=os(oi),b=bankName();
+ var found=state.currentItemId?findItem(o,state.currentItemId):null;
+ return found||pick(b,o,s);
+}
+function setNext(action,message,good){
+ state.feedback={message:message,good:!!good};
+ state.nextAction=action;
+ save();
+ render();
+}
+function clearQuestion(){
+ state.currentItemId=null;state.selection=[];state.explanation="";state.feedback=null;state.nextAction=null;save();
+}
+function applyNext(){
+ var action=state.nextAction;
+ state.feedback=null;state.nextAction=null;state.currentItemId=null;state.selection=[];state.explanation="";
+ if(action==="lesson"){state.step="lesson";}
+ else if(action==="guided"){state.step="guided";}
+ else if(action==="retrieval"){state.step="retrieval";}
+ else if(action==="next-objective"){
+   state.objectiveIndex++;
+   state.step="diagnostic";
+   if(state.objectiveIndex>=CFG.objectives.length){state.phase="transfer";state.transferIndex=0;state.step="transfer";}
+ }
+ else if(action==="next-transfer"){
+   state.transferIndex++;
+   state.step="transfer";
+   state.returnToTransfer=false;
+   if(state.transferIndex>=CFG.objectives.length) complete();
+ }
+ save();render();
+}
+function complete(){
+ state.phase="complete";
+ state.completedAt=now();
+ state.receipt={
+   assessment:CFG.assessment.title,
+   student:state.student,
+   completedAt:state.completedAt,
+   replacementGrade:CFG.policy.replacementGrade,
+   objectives:CFG.objectives.map(function(o,i){
+     var s=os(i);return {id:o.id,title:o.title,diagnosticPassed:s.diagnosticPassed,retrievalPassed:s.retrievalPassed,transferPassed:s.transferPassed,loops:s.loops};
+   })
+ };
+}
+function correctSelection(item){
+ var want=[],got=(state.selection||[]).slice().sort(function(a,b){return a-b;});
+ item.options.forEach(function(x,i){if(x.correct)want.push(i);});
+ want.sort(function(a,b){return a-b;});
+ if(want.length!==got.length)return false;
+ for(var i=0;i<want.length;i++)if(want[i]!==got[i])return false;
+ return true;
+}
+function wrongFeedback(item,o){
+ var got=state.selection||[];
+ for(var i=0;i<got.length;i++){
+   var x=item.options[got[i]];
+   if(x&&!x.correct&&x.fb)return x.fb;
+ }
+ return o.misconception||"Recheck the evidence and the meaning of each choice.";
+}
+function check(){
+ if(state.feedback)return;
+ var oi=currentObjectiveIndex(),o=obj(oi),s=os(oi),item=ensureItem();
+ if(!state.selection||!state.selection.length){state.feedback={message:"Choose an answer before checking.",good:false};save();render();return;}
+ var ok=correctSelection(item);
+ if(ok&&item.explain){
+   var words=String(state.explanation||"").trim().split(/\s+/).filter(Boolean);
+   if(words.length<5){state.feedback={message:"Your answer is correct. Add an explanation of at least five words that shows your reasoning.",good:false};save();render();return;}
+ }
+ var b=bankName();
+ if(ok){
+   if(b==="diagnostic"){s.diagnosticPassed=true;setNext("retrieval","Correct. You may skip reteaching, but you still must prove the objective on a fresh retrieval problem.",true);return;}
+   if(b==="guided"){s.guidedPassed=true;setNext(state.returnToTransfer?"transfer-retry":"retrieval","Correct. Now prove it independently on a fresh problem.",true);return;}
+   if(b==="retrieval"){s.retrievalPassed=true;setNext("next-objective","Fresh retrieval passed for this objective.",true);return;}
+   if(b==="transfer"){s.transferPassed=true;setNext("next-transfer","Final transfer passed for this objective.",true);return;}
+ }else{
+   s.lastWrong=item.id;s.loops++;
+   var msg=wrongFeedback(item,o)+" You will review the idea and then answer a different fresh problem.";
+   if(b==="transfer")state.returnToTransfer=true;
+   setNext("lesson",msg,false);return;
+ }
+}
+function applySpecialNext(){
+ if(state.nextAction==="transfer-retry"){
+   state.feedback=null;state.nextAction=null;state.currentItemId=null;state.selection=[];state.explanation="";
+   state.phase="transfer";state.step="transfer";save();render();return true;
+ }
+ return false;
+}
+function continueClick(){if(!applySpecialNext())applyNext();}
+function stageLabel(){
+ if(state.phase==="entry")return "Eligibility";
+ if(state.phase==="complete")return "Complete";
+ if(state.phase==="transfer")return "Final transfer";
+ if(state.step==="lesson")return "Targeted reteach";
+ if(state.step==="guided")return "Guided check";
+ if(state.step==="retrieval")return "Fresh retrieval";
+ return "Diagnostic";
+}
+function progress(){
+ if(state.phase==="entry")return "Not started";
+ var r=state.objectives.filter(function(x){return x.retrievalPassed;}).length;
+ var t=state.objectives.filter(function(x){return x.transferPassed;}).length;
+ return r+"/"+CFG.objectives.length+" retrieval · "+t+"/"+CFG.objectives.length+" transfer";
+}
+function renderSide(){
+ var rows=CFG.objectives.map(function(o,i){
+  var s=os(i),st=s.transferPassed?"PASS":s.retrievalPassed?"retrieval ✓":i===currentObjectiveIndex()?"ACTIVE":"pending";
+  var cls=s.transferPassed?"pass":(i===currentObjectiveIndex()?"active":"pending");
+  return '<div class="objrow"><span>'+esc((i+1)+". "+o.title)+'</span><span class="state '+cls+'">'+esc(st)+'</span></div>';
+ }).join("");
+ side.innerHTML='<div class="card"><div class="eyebrow">Mastery map</div><div class="objective-grid">'+rows+'</div><div class="small muted" style="margin-top:10px">A diagnostic pass may skip reteach, but fresh retrieval and later transfer are always required.</div></div><div class="card"><div class="eyebrow">Credit rule</div><p class="small">Replacement grade: <strong>70</strong>, only after all required gates pass and the teacher verifies the original assessment was taken and scored below 70.</p><button class="ghost" id="resetBtn">Reset this activity</button></div>';
+ var rb=document.getElementById("resetBtn");if(rb)rb.onclick=function(){if(confirm("Reset all saved progress for this activity?"))reset();};
+}
+function renderEntry(){
+ app.innerHTML='<section class="card"><div class="eyebrow">Makeup eligibility</div><h2>'+esc(CFG.assessment.title)+'</h2><p class="muted">'+esc(CFG.assessment.subtitle)+'</p><div class="notice"><strong>This activity does not replace an assessment that was never taken.</strong> Students who never took the original assessment must take the original assessment first.</div><label style="display:block;font-weight:800;margin-top:16px">Student name</label><input id="studentName" type="text" autocomplete="name" value="'+esc(state.student)+'"><div class="entry-grid"><div class="entry-choice"><label><input type="radio" name="elig" value="failed" '+(state.eligibility==="failed"?"checked":"")+'> <span><strong>I took the original assessment and scored below 70.</strong><br><span class="muted small">I am eligible to complete remediation for replacement credit.</span></span></label></div><div class="entry-choice"><label><input type="radio" name="elig" value="missing" '+(state.eligibility==="missing"?"checked":"")+'> <span><strong>I did not take the original assessment.</strong><br><span class="muted small">I must take the original assessment; this remediation cannot issue credit.</span></span></label></div></div><div id="entryMsg"></div><div class="controls"><button class="primary" id="startBtn">Start remediation</button></div></section>';
+ document.getElementById("studentName").oninput=function(e){state.student=e.target.value;save();};
+ Array.prototype.forEach.call(document.querySelectorAll('input[name="elig"]'),function(x){x.onchange=function(e){state.eligibility=e.target.value;save();};});
+ document.getElementById("startBtn").onclick=function(){
+  state.student=String(document.getElementById("studentName").value||"").trim();
+  var checked=document.querySelector('input[name="elig"]:checked');state.eligibility=checked?checked.value:"";save();
+  var msg=document.getElementById("entryMsg");
+  if(!state.student){msg.innerHTML='<div class="badbox">Enter the student name.</div>';return;}
+  if(state.eligibility==="missing"){msg.innerHTML='<div class="badbox"><strong>Stop.</strong> Take the original assessment. This remediation cannot issue replacement credit for an assessment that was never taken.</div>';return;}
+  if(state.eligibility!=="failed"){msg.innerHTML='<div class="badbox">Choose the correct eligibility route before starting.</div>';return;}
+  state.phase="objectives";state.startedAt=state.startedAt||now();state.objectiveIndex=0;state.step="diagnostic";clearQuestion();save();render();
+ };
+}
+function renderLesson(){
+ var oi=currentObjectiveIndex(),o=obj(oi);
+ var items=o.teach.map(function(x){return "<li>"+esc(x)+"</li>";}).join("");
+ app.innerHTML='<section class="card"><div class="eyebrow">'+esc(stageLabel())+' · Objective '+(oi+1)+'</div><h2>'+esc(o.title)+'</h2><p>'+esc(o.construct)+'</p><div class="lesson"><h3>Review the idea</h3><ul>'+items+'</ul><div class="notice"><strong>Watch for this misconception:</strong> '+esc(o.misconception)+'</div></div><div class="controls"><button class="primary" id="guidedBtn">Start guided check</button></div></section>';
+ document.getElementById("guidedBtn").onclick=function(){state.step="guided";state.currentItemId=null;state.selection=[];state.explanation="";state.feedback=null;state.nextAction=null;save();render();};
+}
+function renderQuestion(){
+ var oi=currentObjectiveIndex(),o=obj(oi),item=ensureItem(),typ=item.type==="multi"?"checkbox":"radio";
+ var selected=state.selection||[];
+ var opts=item.options.map(function(x,i){
+  var ck=selected.indexOf(i)>=0?" checked":"";
+  return '<label class="option '+(ck?"selected":"")+'"><input type="'+typ+'" name="answer" value="'+i+'"'+ck+'><span><strong>'+String.fromCharCode(65+i)+'.</strong> '+esc(x.text)+'</span></label>';
+ }).join("");
+ var explanation=item.explain?'<label class="explain-label" for="explain">Explain your reasoning in your own words.</label><textarea id="explain" placeholder="Use the evidence or mathematics that proves your answer.">'+esc(state.explanation||"")+'</textarea>':"";
+ var fb="";
+ if(state.feedback){
+  fb='<div class="'+(state.feedback.good?"goodbox":"badbox")+'">'+esc(state.feedback.message)+'</div>';
+ }
+ var continueButton=state.nextAction?'<button class="primary" id="continueBtn">Continue</button>':'<button class="primary" id="checkBtn">Check my work</button>';
+ app.innerHTML='<section class="card"><div class="eyebrow">'+esc(stageLabel())+' · Objective '+(oi+1)+'</div><h2>'+esc(o.title)+'</h2><div class="meta"><span class="tag">'+esc(o.id)+'</span><span class="tag">Fresh item '+esc(item.id)+'</span></div><p><strong>'+esc(item.prompt)+'</strong></p><div class="options">'+opts+'</div>'+explanation+fb+'<div class="controls">'+continueButton+'</div></section>';
+ Array.prototype.forEach.call(document.querySelectorAll('input[name="answer"]'),function(x){
+  x.onchange=function(e){
+   var idx=Number(e.target.value);
+   if(item.type==="multi"){
+    var arr=state.selection||[];var pos=arr.indexOf(idx);
+    if(e.target.checked&&pos<0)arr.push(idx);if(!e.target.checked&&pos>=0)arr.splice(pos,1);state.selection=arr;
+   }else state.selection=[idx];
+   save();render();
+  };
+ });
+ var ex=document.getElementById("explain");if(ex)ex.oninput=function(e){state.explanation=e.target.value;save();};
+ var cb=document.getElementById("checkBtn");if(cb)cb.onclick=check;
+ var nb=document.getElementById("continueBtn");if(nb)nb.onclick=continueClick;
+}
+function renderComplete(){
+ var receipt=state.receipt||{};
+ var rows=(receipt.objectives||[]).map(function(x){return "<tr><td>"+esc(x.title)+"</td><td>"+(x.retrievalPassed?"PASS":"—")+"</td><td>"+(x.transferPassed?"PASS":"—")+"</td><td>"+esc(x.loops)+"</td></tr>";}).join("");
+ app.innerHTML='<section class="card"><div class="eyebrow">Mastery complete</div><div class="receipt" id="receipt"><h2>'+esc(receipt.assessment||CFG.assessment.title)+'</h2><p><strong>Student:</strong> '+esc(receipt.student||state.student)+'</p><p><strong>Completed:</strong> '+esc(receipt.completedAt||state.completedAt)+'</p><div class="big">Replacement grade: 70</div><p>This receipt means every objective passed fresh retrieval and later final transfer inside this remediation. The teacher must still verify eligibility.</p><table><thead><tr><th>Objective</th><th>Fresh retrieval</th><th>Final transfer</th><th>Reteach loops</th></tr></thead><tbody>'+rows+'</tbody></table><h3>Teacher verification</h3><div class="check">☐ Original assessment was taken.</div><div class="check">☐ Original assessment score was below 70.</div><div class="check">☐ Student identity and completion receipt were verified.</div><p><strong>Eligible replacement grade after teacher verification: 70</strong></p></div><div class="controls no-print"><button class="primary" id="printBtn">Print receipt</button><button class="ghost" id="restartBtn">Start over</button></div></section>';
+ document.getElementById("printBtn").onclick=function(){window.print();};
+ document.getElementById("restartBtn").onclick=function(){if(confirm("Clear this completed attempt and start over?"))reset();};
+}
+function render(){
+ prog.textContent=stageLabel()+" · "+progress();
+ renderSide();
+ if(state.phase==="entry")renderEntry();
+ else if(state.phase==="complete")renderComplete();
+ else if(state.step==="lesson")renderLesson();
+ else renderQuestion();
+}
+render();
+})();
+</script>
+</body>
+</html>

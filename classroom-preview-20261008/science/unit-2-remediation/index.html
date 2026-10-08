@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Science Unit 2 Remediation</title>
+<style>
+:root{
+  --bg:#0b1119;--panel:#121c29;--panel2:#192638;--text:#f5f7fb;--muted:#b8c3d2;
+  --line:#31445d;--accent:#78c9ff;--good:#72e2aa;--warn:#ffd27a;--bad:#ff9caa;
+  --focus:#f5d76e;color-scheme:dark;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#091019,#0b1119 30%,#0a0f16);color:var(--text);font-size:18px;line-height:1.5}
+button,input,textarea{font:inherit}
+button{min-height:46px;border-radius:10px;border:1px solid var(--line);padding:.7rem 1rem;background:#17263a;color:var(--text);cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+button.primary{background:var(--accent);color:#07111c;border-color:transparent;font-weight:850}
+button.good{background:#1c5b46;border-color:#388c6e;font-weight:800}
+button.ghost{background:transparent}
+button:disabled{opacity:.45;cursor:not-allowed}
+header{position:sticky;top:0;z-index:5;background:#09111beF;border-bottom:1px solid var(--line);backdrop-filter:blur(9px)}
+.header-inner{max-width:1080px;margin:auto;padding:14px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between}
+.brand h1{font-size:clamp(1.2rem,3vw,1.8rem);margin:0}
+.brand .sub{color:var(--muted);font-size:.9rem}
+.progress-pill{border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:.85rem;white-space:nowrap}
+main{max-width:1080px;margin:auto;padding:20px 18px 80px;display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 14px 36px #0005}
+.card+.card{margin-top:16px}
+.side{position:sticky;top:88px;align-self:start}
+.side .card{padding:15px}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:800}
+h2{font-size:clamp(1.35rem,3vw,1.9rem);margin:.25rem 0 .6rem}
+h3{margin:.25rem 0 .5rem}
+p{margin:.5rem 0 1rem}
+.muted{color:var(--muted)}
+.notice{border-left:5px solid var(--warn);background:#332a16;padding:12px 14px;border-radius:8px}
+.goodbox{border-left:5px solid var(--good);background:#123226;padding:12px 14px;border-radius:8px}
+.badbox{border-left:5px solid var(--bad);background:#361b24;padding:12px 14px;border-radius:8px}
+.lesson{border-left:5px solid var(--accent);background:#0f1824;padding:14px 16px;border-radius:10px}
+.lesson li{margin:.45rem 0}
+.options{display:grid;gap:10px;margin:16px 0}
+.option{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:#101b29;border-radius:12px;padding:12px;cursor:pointer}
+.option:hover{border-color:#4d7399}
+.option.selected{border-color:var(--accent);background:#102d43}
+.option input{margin-top:5px;transform:scale(1.2)}
+.explain-label{display:block;font-weight:750;margin:14px 0 6px}
+textarea{width:100%;min-height:100px;border:1px solid var(--line);background:#09131f;color:var(--text);border-radius:10px;padding:12px;resize:vertical}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.objective-grid{display:grid;gap:8px}
+.objrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px solid #24364a;padding:7px 0;font-size:.86rem}
+.objrow .state{font-weight:800}
+.pass{color:var(--good)}.active{color:var(--warn)}.pending{color:var(--muted)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+.tag{font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:#cfe5fb;background:#0d1a29}
+.entry-grid{display:grid;gap:12px;margin:16px 0}
+.entry-choice{border:1px solid var(--line);border-radius:12px;padding:12px;background:#101b29}
+.entry-choice label{display:flex;gap:10px;align-items:flex-start}
+input[type=text],input[type=number]{width:100%;border:1px solid var(--line);background:#09131f;color:var(--text);border-radius:10px;padding:11px 12px}
+.receipt{background:#fff;color:#111;border-radius:14px;padding:20px}
+.receipt h2,.receipt h3{color:#111}.receipt table{width:100%;border-collapse:collapse;margin:14px 0}.receipt th,.receipt td{border:1px solid #bbb;padding:7px;text-align:left}.receipt .big{font-size:2rem;font-weight:900}.receipt .check{margin:10px 0}
+details{margin-top:12px}summary{cursor:pointer;font-weight:750}
+.small{font-size:.84rem}
+.hidden{display:none!important}
+@media(max-width:800px){main{grid-template-columns:1fr}.side{position:static;order:-1}.header-inner{align-items:flex-start}.progress-pill{font-size:.75rem}}
+@media print{header,.side,.controls,.no-print{display:none!important}body{background:#fff;color:#000}main{display:block;max-width:none;padding:0}.card{box-shadow:none;border:0;padding:0}.receipt{padding:0}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><div class="brand"><h1>Science Unit 2 Remediation</h1><div class="sub">Physical properties, force, measurement, investigations, and evidence</div></div><div class="progress-pill" id="progressPill">Eligibility · Not started</div></div></header>
+<main><div id="app"></div><aside class="side" id="side"></aside></main>
+<script id="remediation-config" type="application/json">{"schemaVersion":"2026-10-07.1","assessment":{"id":"science-unit2","title":"Science Unit 2 Remediation","subtitle":"Physical properties, force, measurement, investigations, and evidence"},"policy":{"eligibleRoute":"Student took the original assessment and scored below 70.","missingRoute":"Student who never took the original assessment must take the original assessment; remediation cannot issue credit.","replacementGrade":70,"diagnosticCanSkipReteach":true,"freshRetrievalRequired":true,"laterTransferRequired":true,"completionMessage":"All required objectives were demonstrated on fresh retrieval and final transfer. Show or print this receipt for your teacher."},"sourceAlignment":{"packet":"Science Unit 2 packet, pages 11-18","drive":["unit2_teks_staar_review_hub.html","01_relative_density.html"],"notes":["Preserves all six packet objectives.","Restores fair-test/force-at-a-distance depth from the review hub.","Restores evidence-boundary reasoning from the review hub.","Uses fresh contexts rather than copying original assessment wording."]},"objectives":[{"id":"SCI-U2-O1","title":"Relative density from evidence","construct":"Use sink, float, suspend, and layering evidence to compare relative density.","teach":["An object that floats in water is less dense than water; an object that sinks is more dense.","A suspended object has about the same density as the liquid around it.","For layers, the less-dense liquid rests above the more-dense liquid.","Use the observed position as evidence; do not decide from size alone."],"misconception":"Density is about how tightly matter is packed, not simply how heavy or large an object looks.","banks":{"diagnostic":[{"id":"s2o1d1","prompt":"A wax cube floats in water. Which conclusion is supported?","options":[{"text":"The cube is less dense than water","correct":true,"fb":""},{"text":"The cube is more dense than water","correct":false,"fb":"Floating supports lower relative density."},{"text":"The cube has no mass","correct":false,"fb":"Floating does not mean mass is zero."},{"text":"Water has no density","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o1d2","prompt":"A bead stays suspended halfway through a liquid without rising or sinking. What is the best inference?","options":[{"text":"Its density is about the same as the liquid","correct":true,"fb":""},{"text":"It is much denser than the liquid","correct":false,"fb":""},{"text":"It has no volume","correct":false,"fb":""},{"text":"It must be magnetic","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s2o1g1","prompt":"Oil forms a layer above water. Which statement matches the observation?","options":[{"text":"Oil is less dense than water","correct":true,"fb":""},{"text":"Oil is more dense than water","correct":false,"fb":""},{"text":"Both liquids have zero density","correct":false,"fb":""},{"text":"Layering proves magnetism","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o1g2","prompt":"A plastic token floats and a steel washer sinks in the same cup of water. Which order is supported?","options":[{"text":"token < water < washer","correct":true,"fb":""},{"text":"washer < water < token","correct":false,"fb":""},{"text":"water < token < washer","correct":false,"fb":""},{"text":"token = washer = water","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s2o1r1","prompt":"A cork rises to the surface while a glass marble rests on the bottom. Which comparison is supported?","options":[{"text":"cork is less dense than water; marble is more dense","correct":true,"fb":""},{"text":"both are less dense than water","correct":false,"fb":""},{"text":"both are more dense than water","correct":false,"fb":""},{"text":"density cannot be compared at all","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o1r2","prompt":"Liquid P settles below Liquid Q. What evidence-based statement is strongest?","options":[{"text":"P is denser than Q","correct":true,"fb":""},{"text":"Q is denser than P","correct":false,"fb":""},{"text":"P has less mass in every sample","correct":false,"fb":""},{"text":"Q is magnetic","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o1r3","prompt":"Three objects are placed in water: A floats, B suspends, C sinks. Order them from least to greatest density.","options":[{"text":"A, B, C","correct":true,"fb":""},{"text":"C, B, A","correct":false,"fb":""},{"text":"B, A, C","correct":false,"fb":""},{"text":"A, C, B","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s2o1t1","prompt":"A mystery liquid floats on water. A small object sinks through the mystery liquid but floats on water. Which ordering is supported?","options":[{"text":"mystery liquid < object < water","correct":true,"fb":""},{"text":"water < object < mystery liquid","correct":false,"fb":""},{"text":"object < mystery liquid < water","correct":false,"fb":""},{"text":"mystery liquid < water < object","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o1t2","prompt":"Material X sinks in water but floats in a denser salt solution. Which claim is supported?","options":[{"text":"X is denser than water but less dense than the salt solution","correct":true,"fb":""},{"text":"X is less dense than both liquids","correct":false,"fb":""},{"text":"X is denser than both liquids","correct":false,"fb":""},{"text":"No density comparison is possible","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o1t3","prompt":"A liquid layer rests between a top layer and a bottom layer. Which statement must be true about relative density?","options":[{"text":"Its density is between the densities of the top and bottom layers","correct":true,"fb":""},{"text":"It is least dense","correct":false,"fb":""},{"text":"It is most dense","correct":false,"fb":""},{"text":"All three layers have equal density","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U2-O2","title":"Magnetism, strength, and force at a distance","construct":"Classify magnetic interactions and compare magnetic-force strength using fair evidence.","teach":["Magnets can attract some materials without touching them.","A stronger magnetic interaction can be shown by attraction across a greater distance or by lifting more identical objects under the same conditions.","A fair comparison changes one factor at a time.","Not every metal is automatically magnetic; use evidence from the test."],"misconception":"Do not confuse 'metal' with 'magnetic,' and do not compare magnet strength when multiple test conditions change.","banks":{"diagnostic":[{"id":"s2o2d1","prompt":"A magnet pulls a paper clip from 3 cm away without touching it. What does this show?","options":[{"text":"Magnetic force can act at a distance","correct":true,"fb":""},{"text":"Magnets only work when touching","correct":false,"fb":""},{"text":"The clip has no mass","correct":false,"fb":""},{"text":"Gravity stopped working","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o2d2","prompt":"Which test best compares the strength of Magnet A and Magnet B?","options":[{"text":"See how many identical paper clips each lifts using the same setup","correct":true,"fb":""},{"text":"Use different objects for each magnet","correct":false,"fb":""},{"text":"Test one magnet in water and one in air","correct":false,"fb":""},{"text":"Use a large magnet and a tiny magnet with different materials","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s2o2g1","prompt":"Magnet A attracts an identical washer from 4 cm away; Magnet B attracts it from 1 cm away. Under the same conditions, which is stronger?","options":[{"text":"Magnet A","correct":true,"fb":""},{"text":"Magnet B","correct":false,"fb":""},{"text":"They must be equal","correct":false,"fb":""},{"text":"Distance gives no evidence","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o2g2","prompt":"A coin is not attracted to a magnet in a careful test. Which claim is supported?","options":[{"text":"This coin did not show magnetic attraction in this test","correct":true,"fb":""},{"text":"No coin can ever be magnetic","correct":false,"fb":""},{"text":"All metals are nonmagnetic","correct":false,"fb":""},{"text":"The magnet has no force","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s2o2r1","prompt":"Two magnets are tested with identical steel washers. One lifts 8 washers; the other lifts 5. What is the supported comparison?","options":[{"text":"The first magnet shows stronger attraction in this test","correct":true,"fb":""},{"text":"The second magnet is stronger","correct":false,"fb":""},{"text":"Washer count cannot be evidence","correct":false,"fb":""},{"text":"Both magnets have no force","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o2r2","prompt":"Which setup is a fair test of magnetic force at a distance?","options":[{"text":"Same paper clip, same surface, vary only magnet distance","correct":true,"fb":""},{"text":"Change magnet, object, and distance together","correct":false,"fb":""},{"text":"Use paper clips for one magnet and plastic beads for another","correct":false,"fb":""},{"text":"Move one magnet through water and the other through air","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o2r3","prompt":"A magnet attracts an iron nail but not a wooden craft stick. Which property is being tested?","options":[{"text":"Magnetism","correct":true,"fb":""},{"text":"Volume","correct":false,"fb":""},{"text":"Temperature","correct":false,"fb":""},{"text":"Transparency","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s2o2t1","prompt":"A student claims Magnet R is stronger because it attracts a clip from farther away. Which additional condition is essential?","options":[{"text":"The same kind of clip and the same testing method were used","correct":true,"fb":""},{"text":"Magnet R was a different color","correct":false,"fb":""},{"text":"The clips had different masses","correct":false,"fb":""},{"text":"The tests were done on different days","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o2t2","prompt":"Magnet P lifts 7 identical washers from a stack; Magnet Q lifts 7 using the same procedure. What can the data support?","options":[{"text":"They showed equal lifting performance in this test","correct":true,"fb":""},{"text":"P is definitely stronger in every situation","correct":false,"fb":""},{"text":"Q has no magnetic force","correct":false,"fb":""},{"text":"The washers are nonmagnetic","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o2t3","prompt":"Which investigation best tests whether magnetic force decreases with distance?","options":[{"text":"Keep the magnet and object the same and test several measured distances","correct":true,"fb":""},{"text":"Change the magnet and object at each distance","correct":false,"fb":""},{"text":"Use one distance only","correct":false,"fb":""},{"text":"Ask which magnet looks strongest","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U2-O3","title":"Scientific tools and measured properties","construct":"Select appropriate tools and units for mass, volume, length, temperature, and close observation.","teach":["Use a balance for mass, a graduated cylinder for liquid volume, a thermometer for temperature, a ruler or meter stick for length, and a hand lens for closer observation.","Match the unit to the property being measured.","A tool choice should be justified by the data needed."],"misconception":"Choose tools by the property being measured, not by which tool looks most familiar.","banks":{"diagnostic":[{"id":"s2o3d1","prompt":"Which tool should measure the mass of a rock sample?","options":[{"text":"Balance","correct":true,"fb":""},{"text":"Thermometer","correct":false,"fb":""},{"text":"Graduated cylinder","correct":false,"fb":""},{"text":"Hand lens","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o3d2","prompt":"Which tool should measure the temperature of water?","options":[{"text":"Thermometer","correct":true,"fb":""},{"text":"Balance","correct":false,"fb":""},{"text":"Meter stick","correct":false,"fb":""},{"text":"Hand lens","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s2o3g1","prompt":"A student needs the volume of 42 mL of water. Which tool is best?","options":[{"text":"Graduated cylinder","correct":true,"fb":""},{"text":"Balance","correct":false,"fb":""},{"text":"Ruler","correct":false,"fb":""},{"text":"Magnet","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o3g2","prompt":"Which unit best reports the mass of a small classroom object?","options":[{"text":"grams","correct":true,"fb":""},{"text":"degrees Celsius","correct":false,"fb":""},{"text":"milliliters","correct":false,"fb":""},{"text":"centimeters","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s2o3r1","prompt":"Which tool-and-unit pair is appropriate for measuring a pencil's length?","options":[{"text":"ruler and centimeters","correct":true,"fb":""},{"text":"balance and grams","correct":false,"fb":""},{"text":"thermometer and degrees Celsius","correct":false,"fb":""},{"text":"graduated cylinder and milliliters","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o3r2","prompt":"A student wants to examine tiny crystals on a sample. Which tool best supports that observation?","options":[{"text":"Hand lens","correct":true,"fb":""},{"text":"Balance","correct":false,"fb":""},{"text":"Meter stick","correct":false,"fb":""},{"text":"Thermometer","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o3r3","prompt":"Which tool-and-unit pair best measures liquid volume?","options":[{"text":"graduated cylinder and milliliters","correct":true,"fb":""},{"text":"balance and grams","correct":false,"fb":""},{"text":"thermometer and centimeters","correct":false,"fb":""},{"text":"hand lens and degrees Celsius","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s2o3t1","prompt":"A team must compare both mass and temperature of two samples. Which tool pair is required?","options":[{"text":"balance and thermometer","correct":true,"fb":""},{"text":"ruler and hand lens","correct":false,"fb":""},{"text":"graduated cylinder and ruler","correct":false,"fb":""},{"text":"magnet and hand lens","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o3t2","prompt":"A student records 25 for a liquid volume. Which missing information is necessary for usable scientific data?","options":[{"text":"A unit such as milliliters","correct":true,"fb":""},{"text":"The color of the notebook","correct":false,"fb":""},{"text":"The student's favorite tool","correct":false,"fb":""},{"text":"The day of the week only","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o3t3","prompt":"Which plan best measures a block's length and mass?","options":[{"text":"Use a ruler for length and a balance for mass","correct":true,"fb":""},{"text":"Use a thermometer for both","correct":false,"fb":""},{"text":"Use a balance for length and ruler for mass","correct":false,"fb":""},{"text":"Use a hand lens for both","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U2-O4","title":"Read instruments and reason about mass","construct":"Interpret measurement data and distinguish actual mass change from matter leaving a measured system.","teach":["Read the scale, number, and unit on an instrument carefully.","If matter leaves the measured system, the measured mass can decrease even though matter still exists.","If all matter stays in a closed system, rearranging or mixing it does not make matter disappear.","Compare before-and-after measurements using the same system boundary."],"misconception":"A lower measured mass does not prove matter vanished; first ask whether matter left the system being measured.","banks":{"diagnostic":[{"id":"s2o4d1","prompt":"A sealed container has a mass of 180 g before and after its contents are mixed. What does the measurement support?","options":[{"text":"The total mass in the closed system stayed the same","correct":true,"fb":""},{"text":"Matter disappeared","correct":false,"fb":""},{"text":"The container has no mass","correct":false,"fb":""},{"text":"Mixing always lowers mass","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o4d2","prompt":"An open cup is weighed before and after water evaporates. Its measured mass is lower later. What best explains the result?","options":[{"text":"Some water vapor left the measured cup system","correct":true,"fb":""},{"text":"Matter was destroyed","correct":false,"fb":""},{"text":"The balance created mass","correct":false,"fb":""},{"text":"Temperature has no role","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s2o4g1","prompt":"A balance reads 64 g for a sample and container. What property is being measured?","options":[{"text":"Mass","correct":true,"fb":""},{"text":"Temperature","correct":false,"fb":""},{"text":"Length","correct":false,"fb":""},{"text":"Magnetism","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o4g2","prompt":"A closed bag contains two substances that are combined without opening the bag. Which prediction is best for total mass?","options":[{"text":"It should remain the same","correct":true,"fb":""},{"text":"It must become zero","correct":false,"fb":""},{"text":"It must double","correct":false,"fb":""},{"text":"It must always decrease","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s2o4r1","prompt":"A wet towel is left uncovered, then weighed later and has less mass. Which evidence-based explanation is strongest?","options":[{"text":"Water left the towel-and-scale system as vapor","correct":true,"fb":""},{"text":"Matter stopped existing","correct":false,"fb":""},{"text":"The towel became magnetic","correct":false,"fb":""},{"text":"The scale measures temperature","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o4r2","prompt":"A sealed bottle contains 250 g total before shaking and 250 g after shaking. What can the data support?","options":[{"text":"Shaking did not change the total measured mass of the closed system","correct":true,"fb":""},{"text":"The contents disappeared","correct":false,"fb":""},{"text":"The bottle gained volume because mass stayed equal","correct":false,"fb":""},{"text":"The bottle became denser than every material","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o4r3","prompt":"Which comparison is valid when checking a possible mass change?","options":[{"text":"Measure the same complete system before and after","correct":true,"fb":""},{"text":"Measure only part before and the whole system after","correct":false,"fb":""},{"text":"Switch balances and units without recording them","correct":false,"fb":""},{"text":"Estimate by sight","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s2o4t1","prompt":"A student weighs a beaker plus liquid, then later weighs only the beaker and claims mass was destroyed. What is wrong with the claim?","options":[{"text":"The measured system changed, so the two masses are not directly comparable","correct":true,"fb":""},{"text":"Balances cannot measure mass","correct":false,"fb":""},{"text":"Liquids never have mass","correct":false,"fb":""},{"text":"Beakers always gain mass","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o4t2","prompt":"A sealed setup reads 312 g before a physical change and 312 g afterward. Which claim is best supported?","options":[{"text":"The total mass of the closed setup was conserved","correct":true,"fb":""},{"text":"All matter turned into energy","correct":false,"fb":""},{"text":"No physical change occurred","correct":false,"fb":""},{"text":"The volume had to remain identical","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o4t3","prompt":"An open dish loses 6 g while drying. Which extra measurement would best test whether water leaving explains the loss?","options":[{"text":"Track the dish under conditions that reduce or capture water loss","correct":true,"fb":""},{"text":"Change the sample and dish at the same time","correct":false,"fb":""},{"text":"Use an uncalibrated ruler","correct":false,"fb":""},{"text":"Count colors in the room","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U2-O5","title":"Testable investigations and relevant evidence","construct":"Design fair investigations, identify variables, and decide which evidence answers a question.","teach":["A testable question identifies what will be changed and what will be measured.","For a fair comparison, change one tested variable while holding other important conditions constant.","Use measurements or observations that directly answer the question.","Repeat measurements when useful to check consistency."],"misconception":"More data are not automatically better; the evidence must be relevant to the investigation question.","banks":{"diagnostic":[{"id":"s2o5d1","prompt":"Which question is directly testable?","options":[{"text":"How does magnet distance affect the number of paper clips attracted?","correct":true,"fb":""},{"text":"Why are magnets interesting?","correct":false,"fb":""},{"text":"Which magnet is prettiest?","correct":false,"fb":""},{"text":"Are magnets good?","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o5d2","prompt":"To test how water temperature affects dissolving time, what should be changed?","options":[{"text":"Water temperature only","correct":true,"fb":""},{"text":"Temperature, amount of solute, and cup size together","correct":false,"fb":""},{"text":"The type of solute every trial","correct":false,"fb":""},{"text":"Nothing","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s2o5g1","prompt":"A student tests two magnets using the same clips and distances but different surfaces. What should be improved?","options":[{"text":"Keep the surface the same","correct":true,"fb":""},{"text":"Change more variables","correct":false,"fb":""},{"text":"Use different clips too","correct":false,"fb":""},{"text":"Stop measuring","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o5g2","prompt":"Which evidence directly answers 'Does a larger magnet attract clips from farther away?'?","options":[{"text":"Measured maximum attraction distance for each magnet under the same conditions","correct":true,"fb":""},{"text":"The magnets' colors","correct":false,"fb":""},{"text":"How much students like each magnet","correct":false,"fb":""},{"text":"The classroom temperature only","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s2o5r1","prompt":"Which is the dependent variable in a test of how distance affects magnetic attraction?","options":[{"text":"The measured attraction result","correct":true,"fb":""},{"text":"The deliberately changed distance","correct":false,"fb":""},{"text":"The magnet color","correct":false,"fb":""},{"text":"The student's name","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o5r2","prompt":"Why repeat a fair investigation several times?","options":[{"text":"To check whether the pattern is consistent","correct":true,"fb":""},{"text":"To change many variables","correct":false,"fb":""},{"text":"To guarantee the desired result","correct":false,"fb":""},{"text":"To avoid collecting data","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o5r3","prompt":"A question asks how particle size affects dissolving time. Which evidence is relevant?","options":[{"text":"Dissolving times for different particle sizes with other conditions held constant","correct":true,"fb":""},{"text":"Cup colors","correct":false,"fb":""},{"text":"Students' opinions","correct":false,"fb":""},{"text":"Magnet strength","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s2o5t1","prompt":"A student changes water temperature and amount of sugar at the same time, then concludes temperature caused the difference. What is the main flaw?","options":[{"text":"More than one important variable changed","correct":true,"fb":""},{"text":"The question used measurements","correct":false,"fb":""},{"text":"Sugar can dissolve","correct":false,"fb":""},{"text":"The student used a timer","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o5t2","prompt":"Which procedure best tests whether magnet distance affects attraction?","options":[{"text":"Use the same magnet and clip, vary measured distance, record attraction each time","correct":true,"fb":""},{"text":"Use a different magnet and clip at each distance","correct":false,"fb":""},{"text":"Ask classmates which distance looks strongest","correct":false,"fb":""},{"text":"Test one distance once","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o5t3","prompt":"A team measured mass when its question was about which material is attracted to a magnet. Why is the evidence insufficient?","options":[{"text":"Mass does not directly answer the magnetic-attraction question","correct":true,"fb":""},{"text":"Mass can never be measured","correct":false,"fb":""},{"text":"Magnets have no mass","correct":false,"fb":""},{"text":"Balances are unsafe","correct":false,"fb":""}],"explain":true,"type":"single"}]}},{"id":"SCI-U2-O6","title":"Organize data and make evidence-bounded claims","construct":"Read tables, compare measured values, identify patterns, and limit claims to what the data actually support.","teach":["Organize values with clear labels and units.","Compare only the properties actually measured.","A supported claim must match the data; do not generalize beyond tested materials or conditions.","Distinguish 'possible' from 'shown by these data.'"],"misconception":"A plausible statement is not evidence-based unless the collected data actually support it.","banks":{"diagnostic":[{"id":"s2o6d1","prompt":"A table shows Material A mass 20 g and Material B mass 35 g. Which claim is directly supported?","options":[{"text":"Material B had greater measured mass in this table","correct":true,"fb":""},{"text":"B is always denser than A","correct":false,"fb":""},{"text":"B is magnetic","correct":false,"fb":""},{"text":"A will always float","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o6d2","prompt":"Which table heading is most useful for temperature data?","options":[{"text":"Temperature (°C)","correct":true,"fb":""},{"text":"Thing","correct":false,"fb":""},{"text":"Result maybe","correct":false,"fb":""},{"text":"Favorite color","correct":false,"fb":""}],"explain":false,"type":"single"}],"guided":[{"id":"s2o6g1","prompt":"Only three materials were tested for magnetism. Which claim stays within the evidence?","options":[{"text":"Of the three tested materials, the iron nail was attracted","correct":true,"fb":""},{"text":"All metals everywhere are magnetic","correct":false,"fb":""},{"text":"Every untested material is nonmagnetic","correct":false,"fb":""},{"text":"Magnetism determines temperature","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o6g2","prompt":"A data table shows an object floated in all three trials. What is supported?","options":[{"text":"The object floated consistently under the tested conditions","correct":true,"fb":""},{"text":"It will float in every liquid","correct":false,"fb":""},{"text":"It has zero mass","correct":false,"fb":""},{"text":"It is magnetic","correct":false,"fb":""}],"explain":false,"type":"single"}],"retrieval":[{"id":"s2o6r1","prompt":"A table records attraction distances of 2 cm, 2 cm, and 3 cm for one magnet. Which summary is appropriate?","options":[{"text":"The measured attraction distance was 2-3 cm in these trials","correct":true,"fb":""},{"text":"The magnet always attracts from 10 cm","correct":false,"fb":""},{"text":"The magnet cannot attract anything","correct":false,"fb":""},{"text":"The distance data prove density","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o6r2","prompt":"Which conclusion goes beyond the evidence if only salt and sugar were tested for dissolving in water?","options":[{"text":"Every solid dissolves in water","correct":true,"fb":""},{"text":"Salt dissolved in the tested water","correct":false,"fb":""},{"text":"Sugar dissolved in the tested water","correct":false,"fb":""},{"text":"The tested substances both dissolved","correct":false,"fb":""}],"explain":false,"type":"single"},{"id":"s2o6r3","prompt":"A graph compares mass of four samples. What information is needed to interpret the values correctly?","options":[{"text":"Clear labels and mass units","correct":true,"fb":""},{"text":"Student birthdays","correct":false,"fb":""},{"text":"Magnet colors","correct":false,"fb":""},{"text":"A drawing of the classroom","correct":false,"fb":""}],"explain":false,"type":"single"}],"transfer":[{"id":"s2o6t1","prompt":"A student tested one plastic object and found it floated, then wrote 'all plastic floats.' What is the evidence problem?","options":[{"text":"The claim generalizes beyond the one tested object and conditions","correct":true,"fb":""},{"text":"Floating cannot be observed","correct":false,"fb":""},{"text":"Plastic has no density","correct":false,"fb":""},{"text":"Water has no mass","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o6t2","prompt":"A table shows Magnet A: 6 clips, Magnet B: 9 clips, same method. Which claim is best supported?","options":[{"text":"Magnet B lifted more clips in this test","correct":true,"fb":""},{"text":"B is stronger under every possible condition","correct":false,"fb":""},{"text":"A is nonmagnetic","correct":false,"fb":""},{"text":"Clip count measures temperature","correct":false,"fb":""}],"explain":true,"type":"single"},{"id":"s2o6t3","prompt":"A claim says Material X is denser because it sank. Which missing detail matters most for judging the claim?","options":[{"text":"What liquid and test conditions were used","correct":true,"fb":""},{"text":"The student's shoe size","correct":false,"fb":""},{"text":"The table border color","correct":false,"fb":""},{"text":"The day of the week","correct":false,"fb":""}],"explain":true,"type":"single"}]}}]}</script>
+<script id="engine">
+(function(){
+"use strict";
+var configEl=document.getElementById("remediation-config");
+var CFG=JSON.parse(configEl.textContent);
+var app=document.getElementById("app");
+var side=document.getElementById("side");
+var prog=document.getElementById("progressPill");
+var key="metablooms-remediation:"+CFG.assessment.id+":"+CFG.schemaVersion;
+var volatileRaw=null;
+
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+function now(){return new Date().toISOString();}
+function emptyObjState(){return {diagnosticPassed:false,guidedPassed:false,retrievalPassed:false,transferPassed:false,loops:0,used:{diagnostic:[],guided:[],retrieval:[],transfer:[]},lastWrong:null};}
+function freshState(){
+ return {student:"",eligibility:"",startedAt:null,completedAt:null,phase:"entry",objectiveIndex:0,transferIndex:0,step:"diagnostic",returnToTransfer:false,currentItemId:null,selection:[],explanation:"",feedback:null,nextAction:null,receipt:null,objectives:CFG.objectives.map(emptyObjState)};
+}
+function load(){
+ var raw=null;
+ try{raw=localStorage.getItem(key);}catch(e){}
+ if(!raw) raw=volatileRaw;
+ if(!raw) return freshState();
+ try{
+   var s=JSON.parse(raw);
+   if(!s.objectives||s.objectives.length!==CFG.objectives.length) return freshState();
+   return s;
+ }catch(e){return freshState();}
+}
+var state=load();
+function save(){var raw=JSON.stringify(state);volatileRaw=raw;try{localStorage.setItem(key,raw);}catch(e){}}
+function reset(){try{localStorage.removeItem(key);}catch(e){} state=freshState();save();render();}
+function obj(i){return CFG.objectives[i];}
+function os(i){return state.objectives[i];}
+function bankName(){
+ if(state.phase==="transfer") return "transfer";
+ if(state.step==="guided") return "guided";
+ if(state.step==="retrieval") return "retrieval";
+ return "diagnostic";
+}
+function currentObjectiveIndex(){return state.phase==="transfer"?state.transferIndex:state.objectiveIndex;}
+function findItem(o,id){
+ var names=["diagnostic","guided","retrieval","transfer"];
+ for(var n=0;n<names.length;n++){
+  var b=o.banks[names[n]]||[];
+  for(var i=0;i<b.length;i++) if(b[i].id===id) return b[i];
+ }
+ return null;
+}
+function pick(bank,o,s){
+ var list=o.banks[bank]||[];
+ var used=s.used[bank]||[];
+ var avail=list.filter(function(x){return used.indexOf(x.id)<0;});
+ if(!avail.length){
+   var last=used.length?used[used.length-1]:null;
+   s.used[bank]=[];
+   avail=list.filter(function(x){return x.id!==last;});
+   if(!avail.length) avail=list.slice();
+ }
+ var choice=avail[Math.floor(Math.random()*avail.length)];
+ s.used[bank].push(choice.id);
+ state.currentItemId=choice.id;
+ state.selection=[];
+ state.explanation="";
+ save();
+ return choice;
+}
+function ensureItem(){
+ var oi=currentObjectiveIndex(),o=obj(oi),s=os(oi),b=bankName();
+ var found=state.currentItemId?findItem(o,state.currentItemId):null;
+ return found||pick(b,o,s);
+}
+function setNext(action,message,good){
+ state.feedback={message:message,good:!!good};
+ state.nextAction=action;
+ save();
+ render();
+}
+function clearQuestion(){
+ state.currentItemId=null;state.selection=[];state.explanation="";state.feedback=null;state.nextAction=null;save();
+}
+function applyNext(){
+ var action=state.nextAction;
+ state.feedback=null;state.nextAction=null;state.currentItemId=null;state.selection=[];state.explanation="";
+ if(action==="lesson"){state.step="lesson";}
+ else if(action==="guided"){state.step="guided";}
+ else if(action==="retrieval"){state.step="retrieval";}
+ else if(action==="next-objective"){
+   state.objectiveIndex++;
+   state.step="diagnostic";
+   if(state.objectiveIndex>=CFG.objectives.length){state.phase="transfer";state.transferIndex=0;state.step="transfer";}
+ }
+ else if(action==="next-transfer"){
+   state.transferIndex++;
+   state.step="transfer";
+   state.returnToTransfer=false;
+   if(state.transferIndex>=CFG.objectives.length) complete();
+ }
+ save();render();
+}
+function complete(){
+ state.phase="complete";
+ state.completedAt=now();
+ state.receipt={
+   assessment:CFG.assessment.title,
+   student:state.student,
+   completedAt:state.completedAt,
+   replacementGrade:CFG.policy.replacementGrade,
+   objectives:CFG.objectives.map(function(o,i){
+     var s=os(i);return {id:o.id,title:o.title,diagnosticPassed:s.diagnosticPassed,retrievalPassed:s.retrievalPassed,transferPassed:s.transferPassed,loops:s.loops};
+   })
+ };
+}
+function correctSelection(item){
+ var want=[],got=(state.selection||[]).slice().sort(function(a,b){return a-b;});
+ item.options.forEach(function(x,i){if(x.correct)want.push(i);});
+ want.sort(function(a,b){return a-b;});
+ if(want.length!==got.length)return false;
+ for(var i=0;i<want.length;i++)if(want[i]!==got[i])return false;
+ return true;
+}
+function wrongFeedback(item,o){
+ var got=state.selection||[];
+ for(var i=0;i<got.length;i++){
+   var x=item.options[got[i]];
+   if(x&&!x.correct&&x.fb)return x.fb;
+ }
+ return o.misconception||"Recheck the evidence and the meaning of each choice.";
+}
+function check(){
+ if(state.feedback)return;
+ var oi=currentObjectiveIndex(),o=obj(oi),s=os(oi),item=ensureItem();
+ if(!state.selection||!state.selection.length){state.feedback={message:"Choose an answer before checking.",good:false};save();render();return;}
+ var ok=correctSelection(item);
+ if(ok&&item.explain){
+   var words=String(state.explanation||"").trim().split(/\s+/).filter(Boolean);
+   if(words.length<5){state.feedback={message:"Your answer is correct. Add an explanation of at least five words that shows your reasoning.",good:false};save();render();return;}
+ }
+ var b=bankName();
+ if(ok){
+   if(b==="diagnostic"){s.diagnosticPassed=true;setNext("retrieval","Correct. You may skip reteaching, but you still must prove the objective on a fresh retrieval problem.",true);return;}
+   if(b==="guided"){s.guidedPassed=true;setNext(state.returnToTransfer?"transfer-retry":"retrieval","Correct. Now prove it independently on a fresh problem.",true);return;}
+   if(b==="retrieval"){s.retrievalPassed=true;setNext("next-objective","Fresh retrieval passed for this objective.",true);return;}
+   if(b==="transfer"){s.transferPassed=true;setNext("next-transfer","Final transfer passed for this objective.",true);return;}
+ }else{
+   s.lastWrong=item.id;s.loops++;
+   var msg=wrongFeedback(item,o)+" You will review the idea and then answer a different fresh problem.";
+   if(b==="transfer")state.returnToTransfer=true;
+   setNext("lesson",msg,false);return;
+ }
+}
+function applySpecialNext(){
+ if(state.nextAction==="transfer-retry"){
+   state.feedback=null;state.nextAction=null;state.currentItemId=null;state.selection=[];state.explanation="";
+   state.phase="transfer";state.step="transfer";save();render();return true;
+ }
+ return false;
+}
+function continueClick(){if(!applySpecialNext())applyNext();}
+function stageLabel(){
+ if(state.phase==="entry")return "Eligibility";
+ if(state.phase==="complete")return "Complete";
+ if(state.phase==="transfer")return "Final transfer";
+ if(state.step==="lesson")return "Targeted reteach";
+ if(state.step==="guided")return "Guided check";
+ if(state.step==="retrieval")return "Fresh retrieval";
+ return "Diagnostic";
+}
+function progress(){
+ if(state.phase==="entry")return "Not started";
+ var r=state.objectives.filter(function(x){return x.retrievalPassed;}).length;
+ var t=state.objectives.filter(function(x){return x.transferPassed;}).length;
+ return r+"/"+CFG.objectives.length+" retrieval · "+t+"/"+CFG.objectives.length+" transfer";
+}
+function renderSide(){
+ var rows=CFG.objectives.map(function(o,i){
+  var s=os(i),st=s.transferPassed?"PASS":s.retrievalPassed?"retrieval ✓":i===currentObjectiveIndex()?"ACTIVE":"pending";
+  var cls=s.transferPassed?"pass":(i===currentObjectiveIndex()?"active":"pending");
+  return '<div class="objrow"><span>'+esc((i+1)+". "+o.title)+'</span><span class="state '+cls+'">'+esc(st)+'</span></div>';
+ }).join("");
+ side.innerHTML='<div class="card"><div class="eyebrow">Mastery map</div><div class="objective-grid">'+rows+'</div><div class="small muted" style="margin-top:10px">A diagnostic pass may skip reteach, but fresh retrieval and later transfer are always required.</div></div><div class="card"><div class="eyebrow">Credit rule</div><p class="small">Replacement grade: <strong>70</strong>, only after all required gates pass and the teacher verifies the original assessment was taken and scored below 70.</p><button class="ghost" id="resetBtn">Reset this activity</button></div>';
+ var rb=document.getElementById("resetBtn");if(rb)rb.onclick=function(){if(confirm("Reset all saved progress for this activity?"))reset();};
+}
+function renderEntry(){
+ app.innerHTML='<section class="card"><div class="eyebrow">Makeup eligibility</div><h2>'+esc(CFG.assessment.title)+'</h2><p class="muted">'+esc(CFG.assessment.subtitle)+'</p><div class="notice"><strong>This activity does not replace an assessment that was never taken.</strong> Students who never took the original assessment must take the original assessment first.</div><label style="display:block;font-weight:800;margin-top:16px">Student name</label><input id="studentName" type="text" autocomplete="name" value="'+esc(state.student)+'"><div class="entry-grid"><div class="entry-choice"><label><input type="radio" name="elig" value="failed" '+(state.eligibility==="failed"?"checked":"")+'> <span><strong>I took the original assessment and scored below 70.</strong><br><span class="muted small">I am eligible to complete remediation for replacement credit.</span></span></label></div><div class="entry-choice"><label><input type="radio" name="elig" value="missing" '+(state.eligibility==="missing"?"checked":"")+'> <span><strong>I did not take the original assessment.</strong><br><span class="muted small">I must take the original assessment; this remediation cannot issue credit.</span></span></label></div></div><div id="entryMsg"></div><div class="controls"><button class="primary" id="startBtn">Start remediation</button></div></section>';
+ document.getElementById("studentName").oninput=function(e){state.student=e.target.value;save();};
+ Array.prototype.forEach.call(document.querySelectorAll('input[name="elig"]'),function(x){x.onchange=function(e){state.eligibility=e.target.value;save();};});
+ document.getElementById("startBtn").onclick=function(){
+  state.student=String(document.getElementById("studentName").value||"").trim();
+  var checked=document.querySelector('input[name="elig"]:checked');state.eligibility=checked?checked.value:"";save();
+  var msg=document.getElementById("entryMsg");
+  if(!state.student){msg.innerHTML='<div class="badbox">Enter the student name.</div>';return;}
+  if(state.eligibility==="missing"){msg.innerHTML='<div class="badbox"><strong>Stop.</strong> Take the original assessment. This remediation cannot issue replacement credit for an assessment that was never taken.</div>';return;}
+  if(state.eligibility!=="failed"){msg.innerHTML='<div class="badbox">Choose the correct eligibility route before starting.</div>';return;}
+  state.phase="objectives";state.startedAt=state.startedAt||now();state.objectiveIndex=0;state.step="diagnostic";clearQuestion();save();render();
+ };
+}
+function renderLesson(){
+ var oi=currentObjectiveIndex(),o=obj(oi);
+ var items=o.teach.map(function(x){return "<li>"+esc(x)+"</li>";}).join("");
+ app.innerHTML='<section class="card"><div class="eyebrow">'+esc(stageLabel())+' · Objective '+(oi+1)+'</div><h2>'+esc(o.title)+'</h2><p>'+esc(o.construct)+'</p><div class="lesson"><h3>Review the idea</h3><ul>'+items+'</ul><div class="notice"><strong>Watch for this misconception:</strong> '+esc(o.misconception)+'</div></div><div class="controls"><button class="primary" id="guidedBtn">Start guided check</button></div></section>';
+ document.getElementById("guidedBtn").onclick=function(){state.step="guided";state.currentItemId=null;state.selection=[];state.explanation="";state.feedback=null;state.nextAction=null;save();render();};
+}
+function renderQuestion(){
+ var oi=currentObjectiveIndex(),o=obj(oi),item=ensureItem(),typ=item.type==="multi"?"checkbox":"radio";
+ var selected=state.selection||[];
+ var opts=item.options.map(function(x,i){
+  var ck=selected.indexOf(i)>=0?" checked":"";
+  return '<label class="option '+(ck?"selected":"")+'"><input type="'+typ+'" name="answer" value="'+i+'"'+ck+'><span><strong>'+String.fromCharCode(65+i)+'.</strong> '+esc(x.text)+'</span></label>';
+ }).join("");
+ var explanation=item.explain?'<label class="explain-label" for="explain">Explain your reasoning in your own words.</label><textarea id="explain" placeholder="Use the evidence or mathematics that proves your answer.">'+esc(state.explanation||"")+'</textarea>':"";
+ var fb="";
+ if(state.feedback){
+  fb='<div class="'+(state.feedback.good?"goodbox":"badbox")+'">'+esc(state.feedback.message)+'</div>';
+ }
+ var continueButton=state.nextAction?'<button class="primary" id="continueBtn">Continue</button>':'<button class="primary" id="checkBtn">Check my work</button>';
+ app.innerHTML='<section class="card"><div class="eyebrow">'+esc(stageLabel())+' · Objective '+(oi+1)+'</div><h2>'+esc(o.title)+'</h2><div class="meta"><span class="tag">'+esc(o.id)+'</span><span class="tag">Fresh item '+esc(item.id)+'</span></div><p><strong>'+esc(item.prompt)+'</strong></p><div class="options">'+opts+'</div>'+explanation+fb+'<div class="controls">'+continueButton+'</div></section>';
+ Array.prototype.forEach.call(document.querySelectorAll('input[name="answer"]'),function(x){
+  x.onchange=function(e){
+   var idx=Number(e.target.value);
+   if(item.type==="multi"){
+    var arr=state.selection||[];var pos=arr.indexOf(idx);
+    if(e.target.checked&&pos<0)arr.push(idx);if(!e.target.checked&&pos>=0)arr.splice(pos,1);state.selection=arr;
+   }else state.selection=[idx];
+   save();render();
+  };
+ });
+ var ex=document.getElementById("explain");if(ex)ex.oninput=function(e){state.explanation=e.target.value;save();};
+ var cb=document.getElementById("checkBtn");if(cb)cb.onclick=check;
+ var nb=document.getElementById("continueBtn");if(nb)nb.onclick=continueClick;
+}
+function renderComplete(){
+ var receipt=state.receipt||{};
+ var rows=(receipt.objectives||[]).map(function(x){return "<tr><td>"+esc(x.title)+"</td><td>"+(x.retrievalPassed?"PASS":"—")+"</td><td>"+(x.transferPassed?"PASS":"—")+"</td><td>"+esc(x.loops)+"</td></tr>";}).join("");
+ app.innerHTML='<section class="card"><div class="eyebrow">Mastery complete</div><div class="receipt" id="receipt"><h2>'+esc(receipt.assessment||CFG.assessment.title)+'</h2><p><strong>Student:</strong> '+esc(receipt.student||state.student)+'</p><p><strong>Completed:</strong> '+esc(receipt.completedAt||state.completedAt)+'</p><div class="big">Replacement grade: 70</div><p>This receipt means every objective passed fresh retrieval and later final transfer inside this remediation. The teacher must still verify eligibility.</p><table><thead><tr><th>Objective</th><th>Fresh retrieval</th><th>Final transfer</th><th>Reteach loops</th></tr></thead><tbody>'+rows+'</tbody></table><h3>Teacher verification</h3><div class="check">☐ Original assessment was taken.</div><div class="check">☐ Original assessment score was below 70.</div><div class="check">☐ Student identity and completion receipt were verified.</div><p><strong>Eligible replacement grade after teacher verification: 70</strong></p></div><div class="controls no-print"><button class="primary" id="printBtn">Print receipt</button><button class="ghost" id="restartBtn">Start over</button></div></section>';
+ document.getElementById("printBtn").onclick=function(){window.print();};
+ document.getElementById("restartBtn").onclick=function(){if(confirm("Clear this completed attempt and start over?"))reset();};
+}
+function render(){
+ prog.textContent=stageLabel()+" · "+progress();
+ renderSide();
+ if(state.phase==="entry")renderEntry();
+ else if(state.phase==="complete")renderComplete();
+ else if(state.step==="lesson")renderLesson();
+ else renderQuestion();
+}
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Review</title>
+  <link rel="stylesheet" href="../hub.css">
+</head>
+<body data-view-kind="type" data-view-value="review">
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">Lakeland Classroom Activities</p>
+      <h1>Review</h1>
+      <p class="subtitle">Choose an activity. Your work stays on this device unless you deliberately save or share it.</p>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="toolbar" aria-label="Activity filters">
+      <label class="search-label" for="activity-search">Search activities</label>
+      <input id="activity-search" type="search" autocomplete="off" placeholder="Search by skill, unit, or activity name">
+      <div id="subject-filters" class="filter-row" aria-label="Subjects"></div>
+      <div id="type-filters" class="filter-row compact" aria-label="Activity types"></div>
+    </section>
+    <section class="summary" aria-live="polite"><strong id="result-count">0</strong> activities</section>
+    <section id="activity-grid" class="grid" aria-label="Available activities"></section>
+    <section id="empty-state" class="empty" hidden>
+      <h2>No activities match.</h2>
+      <p>Try another search or filter.</p>
+    </section>
+  </main>
+  <footer class="wrap footer"><p>Static classroom activity library · no student roster or cloud grade database.</p></footer>
+  <script src="../catalog.js"></script>
+  <script src="../hub.js"></script>
+</body>
+</html>

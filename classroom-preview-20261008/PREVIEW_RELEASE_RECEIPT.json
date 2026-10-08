@@ -1,0 +1,59 @@
+{
+  "schema": "mb.github_pages.classroom.preview.v1",
+  "status": "PREFLIGHT_PASS_BROWSER_SCHOOL_VERIFICATION_PENDING",
+  "source_repository": "blobertplunk-hue/metablooms-classroom-activities",
+  "source_commit": "529e5bf4eebafcdd34e512f6d0ad6611c509a42a",
+  "public_repository": "blobertplunk-hue/metablooms-pages-test",
+  "prior_commit": "c83b9d2a624c0a2fcf3373ade4cda3861570b643",
+  "preview_url": "https://blobertplunk-hue.github.io/metablooms-pages-test/classroom-preview-20261008/",
+  "activities": [
+    {
+      "id": "science-unit-1-remediation",
+      "route": "/science/unit-1-remediation/",
+      "sourceGitBlob": "2e979e3771072c6b5eaa6c2fe41e7a967c8452b9",
+      "unmodified": true
+    },
+    {
+      "id": "science-unit-2-remediation",
+      "route": "/science/unit-2-remediation/",
+      "sourceGitBlob": "f690c88c8ecea43b0176047fccd1e9194891f003",
+      "unmodified": true
+    },
+    {
+      "id": "science-unit-3-remediation",
+      "route": "/science/unit-3-remediation/",
+      "sourceGitBlob": "f448b197cd81be1c6cac2c045107cc378b4d73e5",
+      "unmodified": true
+    },
+    {
+      "id": "science-unit-4-remediation",
+      "route": "/science/unit-4-remediation/",
+      "sourceGitBlob": "38cfc05c3608bb34a3a044100b3e7d9fe05c5ecd",
+      "unmodified": true
+    }
+  ],
+  "views": [
+    "/",
+    "/math/",
+    "/science/",
+    "/games/",
+    "/review/"
+  ],
+  "checks": [
+    "Four published Science pages",
+    "Five metadata-driven views",
+    "Source HTML preserved",
+    "Metadata local-only/static-only",
+    "No external referenced assets/forms/network APIs",
+    "Project-base-aware hub links",
+    "All route targets present"
+  ],
+  "excluded": [
+    "Roster",
+    "Grades",
+    "Student answers",
+    "Source metadata",
+    "Tests"
+  ],
+  "rollback": "Revert staging commit or remove only new preview folder; preserve original test homepage."
+}
