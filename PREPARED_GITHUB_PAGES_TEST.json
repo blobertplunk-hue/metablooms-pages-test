@@ -1,0 +1,10 @@
+{
+  "schema": "mb.github_pages_network_test.intent.v1",
+  "status": "PREPARED",
+  "user_authorization": "make a quick git hub pages test for me",
+  "authority_class": "U3_USER_CRITICAL",
+  "repo": "blobertplunk-hue/metablooms-pages-test",
+  "visibility": "public",
+  "purpose": "Test whether LISD permits github.io before considering migration of the classroom hub.",
+  "rollback": "Delete or disable the test repository/site."
+}
