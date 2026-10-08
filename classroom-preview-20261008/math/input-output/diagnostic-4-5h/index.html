@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Offline TEKS 4.5H input-output table diagnostic with teacher-facing root-cause analysis and targeted remediation.">
+<title>TEKS 4.5H Input-Output Diagnostic</title>
+<style>
+:root{
+  --mb-color-bg:#eef4fb;--mb-color-surface:#ffffff;--mb-color-text:#172033;
+  --mb-color-muted:#5b6578;--mb-color-primary:#1f5fbf;--mb-color-primary-dark:#17488f;
+  --mb-color-accent:#0f8a74;--mb-color-warning:#9a5b00;--mb-color-danger:#a92d38;
+  --mb-color-border:#cad5e5;--mb-color-focus:#0b62d6;--mb-color-soft:#f4f7fb;
+  --mb-space-1:.5rem;--mb-space-2:.75rem;--mb-space-3:1rem;--mb-space-4:1.5rem;
+  --mb-radius-card:1rem;--mb-radius-control:.7rem;--mb-font-base:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mb-touch-target-min:44px;--mb-shadow:0 10px 30px rgba(31,64,112,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(180deg,#e9f2ff 0,#f7f9fc 18rem);color:var(--mb-color-text);font-family:var(--mb-font-base);line-height:1.55}
+button,input,select{font:inherit}
+button{min-height:var(--mb-touch-target-min)}
+a{color:var(--mb-color-primary)}
+.skip-link{position:absolute;left:-9999px;top:auto}.skip-link:focus{left:1rem;top:1rem;z-index:1000;background:#fff;padding:.7rem 1rem;border:3px solid var(--mb-color-focus);border-radius:.5rem}
+.app-shell{width:min(1180px,calc(100% - 2rem));margin:1rem auto 3rem}
+.hero{background:linear-gradient(135deg,#173f78,#1f67c6 60%,#148b78);color:#fff;border-radius:1.25rem;padding:clamp(1.2rem,3vw,2.2rem);box-shadow:var(--mb-shadow)}
+.hero-top{display:flex;gap:1.2rem;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.hero h1{margin:.1rem 0 .45rem;font-size:clamp(1.7rem,4vw,2.75rem);line-height:1.12}.hero p{margin:0;max-width:760px;color:#e8f2ff}
+.badges{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}.badge{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .65rem;border:1px solid rgba(255,255,255,.34);border-radius:999px;background:rgba(255,255,255,.12);font-size:.86rem;font-weight:700}
+.build-meta{font-size:.78rem;color:#d8eaff;text-align:right;max-width:280px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:1rem 0}.tabs{display:flex;gap:.5rem;flex-wrap:wrap}.tab-btn,.secondary-btn,.primary-btn,.danger-btn{border:1px solid var(--mb-color-border);border-radius:var(--mb-radius-control);padding:.65rem .9rem;cursor:pointer;font-weight:750;background:#fff;color:var(--mb-color-text)}
+.tab-btn[aria-selected="true"],.primary-btn{background:var(--mb-color-primary);color:#fff;border-color:var(--mb-color-primary)}.primary-btn:hover{background:var(--mb-color-primary-dark)}.secondary-btn:hover,.tab-btn:hover{border-color:var(--mb-color-primary);background:#edf5ff}.danger-btn{color:var(--mb-color-danger)}
+button:focus-visible,input:focus-visible,select:focus-visible,.choice:focus-visible{outline:3px solid var(--mb-color-focus);outline-offset:2px}
+.status-cluster{display:flex;gap:.55rem;align-items:center;flex-wrap:wrap}.autosave{font-size:.82rem;color:var(--mb-color-muted)}
+.panel{display:none}.panel.active{display:block}.card{background:var(--mb-color-surface);border:1px solid var(--mb-color-border);border-radius:var(--mb-radius-card);padding:clamp(1rem,2.6vw,1.55rem);box-shadow:var(--mb-shadow);margin-bottom:1rem}
+.setup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;align-items:end}.field label{display:block;font-weight:750;margin-bottom:.35rem}.field input,.field select{width:100%;min-height:var(--mb-touch-target-min);border:1px solid var(--mb-color-border);border-radius:.6rem;padding:.65rem;background:#fff;color:var(--mb-color-text)}.privacy-note{font-size:.86rem;color:var(--mb-color-muted);margin:.45rem 0 0}
+.progress-wrap{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.8rem;margin:1rem 0}.progress-track{height:.75rem;background:#dce6f3;border-radius:999px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--mb-color-primary),var(--mb-color-accent));transition:width .2s ease}.progress-label{font-weight:750;color:var(--mb-color-muted)}
+.question-card{scroll-margin-top:1rem}.question-head{display:flex;justify-content:space-between;gap:.8rem;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid var(--mb-color-border);padding-bottom:.8rem;margin-bottom:1rem}.question-kicker{font-size:.82rem;color:var(--mb-color-primary);font-weight:850;text-transform:uppercase;letter-spacing:.055em}.question-head h2{font-size:1.22rem;margin:.15rem 0 0}.domain-tag{background:#e8f1ff;color:#174d91;border:1px solid #bdd1ee;border-radius:999px;padding:.28rem .6rem;font-size:.8rem;font-weight:800}
+.stem{font-size:1.08rem;margin:.25rem 0 1rem}.stimulus{overflow-x:auto;background:var(--mb-color-soft);border:1px solid var(--mb-color-border);border-radius:.75rem;padding:.75rem;margin:.8rem 0 1rem}.stimulus table{width:100%;border-collapse:collapse;min-width:420px}.stimulus th,.stimulus td{border:1px solid #afbdd0;padding:.55rem;text-align:center}.stimulus th{background:#e7eef8}
+.machine{display:grid;grid-template-columns:1fr auto 1fr;gap:.7rem;align-items:center;max-width:620px;margin:.6rem auto}.machine-box{border:2px solid #6d87a9;border-radius:.75rem;padding:.75rem;text-align:center;background:#fff;font-weight:800}.machine-arrow{font-size:1.5rem;color:var(--mb-color-primary)}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}.choice{display:flex;gap:.7rem;align-items:flex-start;text-align:left;width:100%;padding:.8rem;border:2px solid var(--mb-color-border);border-radius:.75rem;background:#fff;color:var(--mb-color-text);cursor:pointer;min-height:56px}.choice:hover{border-color:#7ea6d9;background:#f4f9ff}.choice.selected{border-color:var(--mb-color-primary);background:#eaf3ff;box-shadow:0 0 0 1px var(--mb-color-primary)}.choice-letter{display:grid;place-items:center;flex:0 0 1.8rem;height:1.8rem;border-radius:50%;background:#e2e8f1;font-weight:850}.choice.selected .choice-letter{background:var(--mb-color-primary);color:#fff}
+.entry-row{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap}.entry-row input{width:min(260px,100%);min-height:var(--mb-touch-target-min);border:2px solid var(--mb-color-border);border-radius:.7rem;padding:.65rem}.entry-row .unit{color:var(--mb-color-muted);font-weight:700}
+.question-tools{display:flex;justify-content:flex-end;gap:.5rem;margin-top:.9rem}.mini-btn{border:1px solid var(--mb-color-border);background:#fff;border-radius:.55rem;padding:.42rem .65rem;cursor:pointer;font-weight:700;color:#34405a}
+.action-bar{position:sticky;bottom:.5rem;z-index:20;display:flex;justify-content:space-between;gap:.8rem;align-items:center;flex-wrap:wrap;background:rgba(255,255,255,.96);border:1px solid var(--mb-color-border);border-radius:1rem;padding:.8rem;box-shadow:var(--mb-shadow);backdrop-filter:blur(8px)}
+.notice{border-left:5px solid var(--mb-color-primary);background:#edf5ff;border-radius:.65rem;padding:.8rem 1rem}.notice.warning{border-left-color:var(--mb-color-warning);background:#fff7e8}.notice.danger{border-left-color:var(--mb-color-danger);background:#fff0f2}.notice.success{border-left-color:var(--mb-color-accent);background:#eaf8f5}
+.results-hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem}.metric{background:var(--mb-color-soft);border:1px solid var(--mb-color-border);border-radius:.8rem;padding:1rem;text-align:center}.metric-value{font-size:2rem;font-weight:900;color:var(--mb-color-primary)}.metric-label{font-size:.8rem;color:var(--mb-color-muted);font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.section-title{margin:1.6rem 0 .7rem}.analysis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:.8rem}.analysis-card{border:1px solid var(--mb-color-border);border-radius:.8rem;padding:1rem;background:#fff}.analysis-card h3{margin:0 0 .45rem;font-size:1rem}.bar{height:.55rem;background:#dfe7f1;border-radius:999px;overflow:hidden;margin:.5rem 0}.bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--mb-color-primary),var(--mb-color-accent))}.status{display:inline-block;border-radius:999px;padding:.22rem .55rem;font-size:.76rem;font-weight:850}.status.strong{background:#dff5ed;color:#066650}.status.developing{background:#fff1d7;color:#814a00}.status.priority{background:#ffe2e6;color:#90202d}.status.probe{background:#e8eef8;color:#384d70}
+.evidence-list{padding-left:1.15rem;margin:.5rem 0}.evidence-list li{margin:.28rem 0}.prescription{margin-top:.7rem;padding:.75rem;border-left:4px solid var(--mb-color-accent);background:#edf9f6;border-radius:.2rem .65rem .65rem .2rem}.prescription strong{color:#086e5d}.retest{margin-top:.55rem;padding:.7rem;background:#f8f4ff;border-left:4px solid #7855b7;border-radius:.2rem .65rem .65rem .2rem}
+.item-review{border-top:1px solid var(--mb-color-border);padding:1rem 0}.item-review:first-child{border-top:0}.correct-text{color:#08705d;font-weight:750}.incorrect-text{color:var(--mb-color-danger);font-weight:750}
+.teacher-controls{display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0}.matrix{width:100%;border-collapse:collapse}.matrix th,.matrix td{border:1px solid var(--mb-color-border);padding:.65rem;text-align:left;vertical-align:top}.matrix th{background:#e9f1fb}.matrix-wrap{overflow-x:auto}
+.footer{color:var(--mb-color-muted);font-size:.82rem;text-align:center;margin-top:1.5rem}.hidden{display:none!important}
+@media(max-width:720px){.choices{grid-template-columns:1fr}.build-meta{text-align:left}.app-shell{width:min(100% - 1rem,1180px)}.action-bar{position:static}.machine{grid-template-columns:1fr}.machine-arrow{transform:rotate(90deg)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{body{background:#fff}.hero,.toolbar,#studentPanel,.teacher-controls,.action-bar,.footer{display:none!important}.panel{display:none!important}#reportPanel{display:block!important}.card{box-shadow:none;break-inside:avoid;border-color:#999}.app-shell{width:100%;margin:0}.analysis-grid{grid-template-columns:1fr 1fr}.status{border:1px solid #777}.metric-value{color:#000}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to diagnostic</a>
+<div class="app-shell">
+<header class="hero">
+  <div class="hero-top">
+    <div>
+      <h1>TEKS 4.5H Input–Output Diagnostic</h1>
+      <p>Find how a student reads tables, identifies position-to-value rules, writes numerical expressions, evaluates rules, and distinguishes an explicit rule from a row-to-row pattern.</p>
+      <div class="badges">
+        <span class="badge">15 original probes</span><span class="badge">4 misconception families</span><span class="badge">Offline / zero dependency</span><span class="badge">Teacher prescriptions</span>
+      </div>
+    </div>
+    <div class="build-meta">Build ID: MB-45H-20260729<br>Version 1.0.0<br>Data stays in this browser.</div>
+  </div>
+</header>
+
+<div class="toolbar" aria-label="Application controls">
+  <div class="tabs" role="tablist" aria-label="Diagnostic sections">
+    <button class="tab-btn" id="studentTab" role="tab" aria-selected="true" aria-controls="studentPanel">Student Diagnostic</button>
+    <button class="tab-btn" id="reportTab" role="tab" aria-selected="false" aria-controls="reportPanel">Teacher Report</button>
+    <button class="tab-btn" id="guideTab" role="tab" aria-selected="false" aria-controls="guidePanel">TEKS & Guide</button>
+  </div>
+  <div class="status-cluster"><span class="autosave" id="saveStatus">Not started</span><button class="danger-btn" id="resetBtn" type="button">Reset</button></div>
+</div>
+
+<main id="mainContent">
+<section id="studentPanel" class="panel active" role="tabpanel" aria-labelledby="studentTab">
+  <div class="card">
+    <div class="setup-grid">
+      <div class="field"><label for="studentLabel">Classroom nickname or code <span aria-hidden="true">(optional)</span></label><input id="studentLabel" maxlength="30" autocomplete="off" placeholder="Example: Blue Phoenix 7"><p class="privacy-note">Use a classroom-only code. Do not enter a full student name or ID.</p></div>
+      <div class="field"><label for="sessionMode">Administration mode</label><select id="sessionMode"><option value="diagnostic">Independent diagnostic</option><option value="conference">Teacher conference</option><option value="practice">Practice / think-aloud</option></select></div>
+      <div><button class="secondary-btn" id="speakDirections" type="button">🔊 Read directions</button></div>
+    </div>
+    <div class="notice warning" style="margin-top:1rem"><strong>Teacher note:</strong> A single answer is evidence, not a diagnosis. The report requires repeated evidence before labeling a misconception as likely.</div>
+  </div>
+  <div class="progress-wrap"><div class="progress-track" aria-label="Assessment progress"><div class="progress-fill" id="progressFill"></div></div><div class="progress-label" id="progressLabel">0 of 15 answered</div></div>
+  <div id="questions"></div>
+  <div class="action-bar"><div id="completionMessage" aria-live="polite">Answer the probes in any order.</div><button class="primary-btn" id="submitBtn" type="button">Finish and Build Teacher Report</button></div>
+</section>
+
+<section id="reportPanel" class="panel" role="tabpanel" aria-labelledby="reportTab">
+  <div id="reportEmpty" class="card notice">Complete at least one probe to generate a teacher report.</div>
+  <div id="reportContent" class="hidden"></div>
+</section>
+
+<section id="guidePanel" class="panel" role="tabpanel" aria-labelledby="guideTab">
+  <div class="card">
+    <h2>What this diagnostic measures</h2>
+    <p><strong>TEKS 4.5H focus:</strong> represent problems using input-output tables and numerical expressions to generate a number pattern that follows a rule relating each value to its position.</p>
+    <div class="matrix-wrap"><table class="matrix"><thead><tr><th>Construct</th><th>Student evidence</th><th>Common confusion</th></tr></thead><tbody>
+      <tr><td>Read across a table</td><td>Coordinates position/input with its output</td><td>Looks only down the output column</td></tr>
+      <tr><td>Identify an explicit rule</td><td>Finds the same input-to-output operation for every row</td><td>Names the change from one output to the next</td></tr>
+      <tr><td>Represent with an expression</td><td>Uses position n in a numerical expression</td><td>Uses a rule that works only for the first row</td></tr>
+      <tr><td>Generate and evaluate</td><td>Substitutes a position and computes accurately</td><td>Fraction/decimal calculation error</td></tr>
+      <tr><td>Direction and inverse</td><td>Applies the operation from input to output</td><td>Uses the inverse operation or reverses columns</td></tr>
+    </tbody></table></div>
+    <h2 class="section-title">Claim limits</h2>
+    <ul><li>Items are original diagnostic practice, not released or secure STAAR questions.</li><li>Results describe evidence from this session; they do not establish a disability, placement, or permanent trait.</li><li>Use follow-up interviews, student work, and matched retests before making instructional decisions.</li></ul>
+  </div>
+</section>
+</main>
+<footer class="footer">MetaBlooms educational HTML · Self-contained HTML/CSS/JavaScript · No network requests</footer>
+</div>
+
+<div id="liveFeedback" class="hidden" aria-live="polite"></div>
+<script>
+'use strict';
+const BUILD = {id:'MB-45H-20260729',version:'1.0.0',standard:'TEKS 4.5H'};
+const MISCONCEPTIONS = {
+  M1:{code:'M-4.5H-1',name:'Recursive fallacy',short:'Uses the change between outputs instead of a position-to-value rule.',threshold:2,
+      prompt:'Ask: “What happens across each row from the position to the value?” Then test the proposed rule on at least three rows.',
+      action:'Use an input → rule box → output organizer. Write Value = Position × factor or Value = Position + amount. Contrast that with “add ___ to the previous output.”',
+      retest:'Show 1→0.6, 2→1.2, 3→1.8. Ask for the position-to-value rule and why “add 0.6” is not the requested rule.'},
+  M2:{code:'M-4.5H-2',name:'First-row overgeneralization',short:'Chooses a rule that works for one row but not all rows.',threshold:2,
+      prompt:'Require the student to verify a candidate rule on rows 1, 2, and 4 before accepting it.',
+      action:'Use a “test every row” checklist. Circle the input, apply the exact operation, and compare the result with the output.',
+      retest:'For 1→8, 2→9, 3→10, 6→13, choose between n+7, n×8, previous+1, and 7−n; verify three rows.'},
+  M3:{code:'M-4.5H-3',name:'Fraction/decimal operational error',short:'Identifies the rule structure but computes the fractional or decimal value incorrectly.',threshold:2,
+      prompt:'Separate rule selection from calculation. Ask the student to model the factor, then compute.',
+      action:'Use fraction strips, hundredths grids, or repeated addition before symbolic multiplication. Require an estimate and equivalent form check.',
+      retest:'Evaluate 6 × 0.25 and 5 × 3/4; ask the student to show a model or repeated-addition check.'},
+  M4:{code:'M-4.5H-4',name:'Inverse relationship confusion',short:'Reverses input and output or uses the inverse operation.',threshold:2,
+      prompt:'Trace an arrow from input to output and say the operation aloud before calculating.',
+      action:'Color-code input and output columns. Use forward and reverse machine examples, explicitly labeling which direction the table asks for.',
+      retest:'For 2→1, 4→2, 6→3, ask whether the forward rule is ÷2 or ×2 and verify each row.'}
+};
+const DOMAINS = {
+  table:{name:'Read input-output tables'}, rule:{name:'Identify the explicit rule'}, expression:{name:'Represent with an expression'},
+  evaluate:{name:'Evaluate/generate values'}, distinguish:{name:'Distinguish explicit vs. recursive'}, numeric:{name:'Fraction/decimal fluency'}, transfer:{name:'Apply the rule in context'}, inverse:{name:'Direction and inverse reasoning'}
+};
+const items = [
+ {id:'Q1',domain:['table','rule','distinguish'],type:'mc',title:'Ribbon-cut table',stem:'Which statement describes the relationship between the cut position and the ribbon length?',
+  stimulus:`<table aria-label="Ribbon cut input-output table"><thead><tr><th>Position n</th><th>Expression</th><th>Length</th></tr></thead><tbody><tr><td>1</td><td>1 × 0.75</td><td>0.75 m</td></tr><tr><td>2</td><td>2 × 0.75</td><td>1.50 m</td></tr><tr><td>3</td><td>3 × 0.75</td><td>2.25 m</td></tr><tr><td>4</td><td>4 × 0.75</td><td>3.00 m</td></tr></tbody></table>`,
+  choices:[['A','Length = position + 0.75','M2'],['B','Length = position × 0.75',null],['C','Add 0.75 to the previous length','M1'],['D','Length = position ÷ 0.75','M4']],correct:'B',why:'The output is found by multiplying each position by 0.75.'},
+ {id:'Q2',domain:['expression','evaluate','numeric'],type:'mc',title:'Bread batches',stem:'A bakery uses 2/3 cup of flour for each batch. Which expression gives the flour needed for Batch 6?',
+  stimulus:`<div class="machine"><div class="machine-box">Input: batch 6</div><div class="machine-arrow">→</div><div class="machine-box">Rule: multiply by 2/3</div></div>`,
+  choices:[['A','6 + 2/3','M2'],['B','6 × 2/3',null],['C','3 + 2/3','M1'],['D','6 × 1/3','M3']],correct:'B',why:'The batch number is the position; multiply that position by 2/3.'},
+ {id:'Q3',domain:['rule','distinguish'],type:'mc',title:'Explicit rule or row-to-row pattern?',stem:'The outputs are 3, 6, 9, and 12 for positions 1, 2, 3, and 4. Which rule relates each position directly to its output?',
+  stimulus:`<table aria-label="Positions and outputs"><tr><th>Position</th><td>1</td><td>2</td><td>3</td><td>4</td></tr><tr><th>Output</th><td>3</td><td>6</td><td>9</td><td>12</td></tr></table>`,
+  choices:[['A','Add 3 to the previous output','M1'],['B','Output = position × 3',null],['C','Output = position + 3','M2'],['D','Output = position ÷ 3','M4']],correct:'B',why:'Multiplying every position by 3 produces its matching output.'},
+ {id:'Q4',domain:['rule','expression','distinguish'],type:'mc',title:'Additive position rule',stem:'Which rule matches every row in the table?',
+  stimulus:`<table aria-label="Additive input-output table"><thead><tr><th>Position n</th><th>Output</th></tr></thead><tbody><tr><td>1</td><td>8</td></tr><tr><td>2</td><td>9</td></tr><tr><td>3</td><td>10</td></tr><tr><td>6</td><td>13</td></tr></tbody></table>`,
+  choices:[['A','Output = n + 7',null],['B','Output = n × 8','M2'],['C','Add 1 to the previous output','M1'],['D','Output = 7 − n','M4']],correct:'A',why:'Adding 7 to each position gives every listed output.'},
+ {id:'Q5',domain:['evaluate','numeric'],type:'entry',title:'Quarter-unit pattern',stem:'The rule is Output = position × 0.25. What is the output at position 8?',answer:'2',accept:['2','2.0','2.00'],errorMap:{'0.200':'M3','0.2':'M3','32':'M4'},why:'8 × 0.25 = 2.'},
+ {id:'Q6',domain:['table','rule','expression'],type:'mc',title:'Choose the matching table',stem:'Which input-output table follows the rule Output = position + 3?',
+  choices:[['A','1→4, 2→5, 4→7',null],['B','1→3, 2→6, 4→12','M2'],['C','1→4, 2→7, 4→10','M1'],['D','1→−2, 2→−1, 4→1','M4']],correct:'A',why:'Each output is exactly 3 more than its position.'},
+ {id:'Q7',domain:['transfer','expression','inverse'],type:'mc',title:'Tricycle context',stem:'A shop builds tricycles. Each tricycle needs 3 wheels. Which expression gives the number of wheels for n tricycles?',
+  choices:[['A','n + 3','M2'],['B','3 ÷ n','M4'],['C','n × 3',null],['D','Previous total + 3','M1']],correct:'C',why:'Multiply the number of tricycles by 3 wheels per tricycle.'},
+ {id:'Q8',domain:['distinguish','rule'],type:'mc',title:'Name the recursive statement',stem:'Which statement is a row-to-row recursive pattern rather than a rule that directly connects position n to output?',
+  choices:[['A','Output = n × 5',null],['B','Output = n + 4',null],['C','Start at 5 and add 5 to get each next output','M1'],['D','Output = n ÷ 2',null]],correct:'C',why:'It tells how to get the next output from the previous output, not from position n.'},
+ {id:'Q9',domain:['distinguish','table'],type:'mc',title:'Analyze a student explanation',stem:'A student sees 1→0.5, 2→1.0, 3→1.5 and says, “The rule is add 0.5.” What is the best feedback?',
+  choices:[['A','Correct; any row-to-row pattern is the requested rule','M1'],['B','Look across each row: the position-to-output rule is multiply the position by 0.5',null],['C','The rule is add 1 because positions increase by 1','M2'],['D','The rule is divide the output by 0.5','M4']],correct:'B',why:'“Add 0.5” describes adjacent outputs; n × 0.5 connects each position directly to its output.'},
+ {id:'Q10',domain:['evaluate','numeric'],type:'mc',title:'Fraction evaluation',stem:'The rule is Output = position × 3/4. What is the output at position 5?',
+  choices:[['A','15/4, or 3 3/4',null],['B','8/4, or 2','M2'],['C','15/20, or 3/4','M3'],['D','5 ÷ 3/4','M4']],correct:'A',why:'5 × 3/4 = 15/4 = 3 3/4.'},
+ {id:'Q11',domain:['inverse','rule','table'],type:'mc',title:'Division rule',stem:'Which rule matches the table?',
+  stimulus:`<table aria-label="Division input-output table"><thead><tr><th>Input n</th><th>Output</th></tr></thead><tbody><tr><td>2</td><td>1</td></tr><tr><td>4</td><td>2</td></tr><tr><td>6</td><td>3</td></tr><tr><td>10</td><td>5</td></tr></tbody></table>`,
+  choices:[['A','Output = n × 2','M4'],['B','Output = n ÷ 2',null],['C','Output = n + 2','M2'],['D','Add 1 to the previous output','M1']],correct:'B',why:'Each input is divided by 2 to produce its output.'},
+ {id:'Q12',domain:['evaluate','transfer','inverse'],type:'entry',title:'Apply a multiplication rule',stem:'A point system uses the rule Points = round number × 6. How many points are earned in Round 7?',answer:'42',accept:['42'],errorMap:{'13':'M2','1.1667':'M4','1.17':'M4','36':'M1'},why:'7 × 6 = 42.'},
+ {id:'Q13',domain:['evaluate','expression'],type:'entry',title:'Evaluate an additive expression',stem:'The expression for the output is n + 4. What is the output when n = 9?',answer:'13',accept:['13','13.0'],errorMap:{'36':'M3','5':'M4','10':'M1'},why:'Substitute 9 for n: 9 + 4 = 13.'},
+ {id:'Q14',domain:['table','evaluate','numeric'],type:'multi',title:'Select every true row',stem:'Select every input-output pair that follows Output = position × 0.4.',
+  choices:[['A','1 → 0.4',null],['B','3 → 1.2',null],['C','5 → 2.0',null],['D','4 → 4.4','M2']],correct:['A','B','C'],why:'1×0.4=0.4, 3×0.4=1.2, and 5×0.4=2.0.'},
+ {id:'Q15',domain:['rule','expression','transfer'],type:'mc',title:'Transfer to a new context',stem:'The total number of tiles in Design n is shown. Which expression represents the relationship?',
+  stimulus:`<table aria-label="Design number and tile count"><thead><tr><th>Design n</th><th>Tiles</th></tr></thead><tbody><tr><td>1</td><td>6</td></tr><tr><td>2</td><td>12</td></tr><tr><td>3</td><td>18</td></tr><tr><td>5</td><td>30</td></tr></tbody></table>`,
+  choices:[['A','n + 6','M2'],['B','n × 6',null],['C','Add 6 to the previous design total','M1'],['D','n ÷ 6','M4']],correct:'B',why:'Every tile count equals the design number multiplied by 6.'}
+];
+
+let state = {answers:{},studentLabel:'',sessionMode:'diagnostic',submitted:false,submittedAt:null};
+const $ = (s,root=document)=>root.querySelector(s);
+const $$ = (s,root=document)=>[...root.querySelectorAll(s)];
+function escapeHTML(value){return String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function normalizeEntry(v){return String(v??'').trim().replace(/,/g,'');}
+function saveState(){
+  state.studentLabel=$('#studentLabel').value.trim();state.sessionMode=$('#sessionMode').value;
+  try{localStorage.setItem('mb_teks45h_state_v1',JSON.stringify(state));$('#saveStatus').textContent='Saved locally';}
+  catch(e){$('#saveStatus').textContent='Local save unavailable';}
+}
+function loadState(){
+  try{const raw=localStorage.getItem('mb_teks45h_state_v1');if(raw){const x=JSON.parse(raw);state={...state,...x,answers:x.answers||{}};}}
+  catch(e){}
+  $('#studentLabel').value=state.studentLabel||'';$('#sessionMode').value=state.sessionMode||'diagnostic';
+}
+function renderQuestions(){
+  const host=$('#questions');host.innerHTML=items.map((item,index)=>{
+    let response='';
+    if(item.type==='entry'){
+      response=`<div class="entry-row"><label class="hidden" for="entry-${item.id}">Answer for ${item.id}</label><input id="entry-${item.id}" inputmode="decimal" autocomplete="off" data-entry="${item.id}" value="${escapeHTML(state.answers[item.id]||'')}" placeholder="Enter a number"><span class="unit">numeric response</span></div>`;
+    }else{
+      const multi=item.type==='multi';
+      response=`<div class="choices" role="${multi?'group':'radiogroup'}" aria-label="Answer choices for ${item.id}">${item.choices.map(([key,text])=>{
+        const selected=multi?(state.answers[item.id]||[]).includes(key):state.answers[item.id]===key;
+        return `<button type="button" class="choice${selected?' selected':''}" data-item="${item.id}" data-key="${key}" aria-pressed="${selected}" ${multi?'':'role="radio" aria-checked="'+selected+'"'}><span class="choice-letter">${key}</span><span>${text}</span></button>`;
+      }).join('')}</div>`;
+    }
+    return `<article class="card question-card" id="card-${item.id}"><div class="question-head"><div><div class="question-kicker">Probe ${index+1} of ${items.length}</div><h2>${item.title}</h2></div><span class="domain-tag">${DOMAINS[item.domain[0]].name}</span></div><p class="stem">${item.stem}</p>${item.stimulus?`<div class="stimulus">${item.stimulus}</div>`:''}${response}<div class="question-tools"><button type="button" class="mini-btn" data-speak="${item.id}">🔊 Read</button></div></article>`;
+  }).join('');
+  bindQuestionEvents();updateProgress();
+}
+function bindQuestionEvents(){
+  $$('[data-item]').forEach(btn=>btn.addEventListener('click',()=>{
+    const id=btn.dataset.item,key=btn.dataset.key,item=items.find(x=>x.id===id);
+    if(item.type==='multi'){
+      const current=new Set(state.answers[id]||[]);current.has(key)?current.delete(key):current.add(key);state.answers[id]=[...current].sort();
+    }else state.answers[id]=key;
+    renderQuestions();saveState();$('#liveFeedback').textContent=`${id} response recorded.`;
+  }));
+  $$('[data-entry]').forEach(inp=>inp.addEventListener('input',()=>{state.answers[inp.dataset.entry]=inp.value;saveState();updateProgress();}));
+  $$('[data-speak]').forEach(btn=>btn.addEventListener('click',()=>{const item=items.find(x=>x.id===btn.dataset.speak);speak(`${item.title}. ${item.stem}`);}));
+}
+function isAnswered(item){
+  const v=state.answers[item.id];if(item.type==='multi')return Array.isArray(v)&&v.length>0;return v!==undefined&&String(v).trim()!=='';
+}
+function updateProgress(){const n=items.filter(isAnswered).length,pct=Math.round(n/items.length*100);$('#progressFill').style.width=pct+'%';$('#progressLabel').textContent=`${n} of ${items.length} answered`;$('#completionMessage').textContent=n===items.length?'All probes answered. Build the teacher report.':'Answer the probes in any order.';}
+function scoreItem(item){
+  const response=state.answers[item.id];let correct=false,selectedMis=[];
+  if(item.type==='entry'){
+    const v=normalizeEntry(response);correct=item.accept.includes(v);if(!correct&&v&&item.errorMap&&item.errorMap[v])selectedMis.push(item.errorMap[v]);
+  }else if(item.type==='multi'){
+    const got=[...(response||[])].sort(),want=[...item.correct].sort();correct=JSON.stringify(got)===JSON.stringify(want);
+    if(!correct){(item.choices||[]).forEach(([key,,mis])=>{if(mis&&got.includes(key))selectedMis.push(mis);});if(!selectedMis.length)selectedMis.push('M3');}
+  }else{
+    correct=response===item.correct;const chosen=item.choices.find(c=>c[0]===response);if(!correct&&chosen&&chosen[2])selectedMis.push(chosen[2]);
+  }
+  return {correct,response,selectedMis};
+}
+function statusFor(pct,attempted){if(attempted<2)return ['probe','More evidence needed'];if(pct>=80)return ['strong','Strength'];if(pct>=50)return ['developing','Developing'];return ['priority','Priority'];}
+function generateReport(){
+  const scored=items.map(item=>({...item,result:scoreItem(item)}));
+  const attempted=scored.filter(x=>isAnswered(x)).length,correct=scored.filter(x=>x.result.correct).length;
+  const overall=attempted?Math.round(correct/attempted*100):0;
+  const domainRows=Object.entries(DOMAINS).map(([id,meta])=>{
+    const rows=scored.filter(x=>x.domain.includes(id)&&isAnswered(x));const c=rows.filter(x=>x.result.correct).length;const pct=rows.length?Math.round(c/rows.length*100):0;const [cls,label]=statusFor(pct,rows.length);return {id,...meta,attempted:rows.length,correct:c,pct,cls,label};
+  });
+  const misCounts={M1:0,M2:0,M3:0,M4:0};scored.forEach(x=>x.result.selectedMis.forEach(m=>{if(misCounts[m]!==undefined)misCounts[m]++;}));
+  const likely=Object.values(misCounts).filter(n=>n>=2).length;
+  const topDomains=[...domainRows].filter(x=>x.attempted).sort((a,b)=>a.pct-b.pct||b.attempted-a.attempted).slice(0,3);
+  const label=escapeHTML(state.studentLabel||'Classroom code not entered');
+  const now=new Date(state.submittedAt||Date.now()).toLocaleString();
+  const report=`<div class="card"><h2>Teacher Diagnostic Profile</h2><p><strong>Student code:</strong> ${label} &nbsp;·&nbsp; <strong>Mode:</strong> ${escapeHTML(state.sessionMode)} &nbsp;·&nbsp; <strong>Generated:</strong> ${escapeHTML(now)}</p><div class="notice warning"><strong>Interpretation limit:</strong> Repeated evidence supports an instructional hypothesis. One response triggers a follow-up probe, not a categorical label.</div><div class="results-hero" style="margin-top:1rem"><div class="metric"><div class="metric-value">${overall}%</div><div class="metric-label">Accuracy on attempted</div></div><div class="metric"><div class="metric-value">${correct}/${attempted}</div><div class="metric-label">Correct / attempted</div></div><div class="metric"><div class="metric-value">${domainRows.filter(x=>x.cls==='strong').length}</div><div class="metric-label">Strength domains</div></div><div class="metric"><div class="metric-value">${likely}</div><div class="metric-label">Likely misconception families</div></div></div></div>
+  <div class="card"><div class="teacher-controls"><button class="primary-btn" type="button" onclick="window.print()">Print / Save PDF</button><button class="secondary-btn" type="button" onclick="exportJSON()">Export JSON</button><button class="secondary-btn" type="button" onclick="exportCSV()">Export CSV</button><button class="secondary-btn" type="button" onclick="switchPanel('student')">Return to Student View</button></div><h2>Strengths and needs by construct</h2><div class="analysis-grid">${domainRows.map(d=>`<div class="analysis-card"><h3>${d.name}</h3><span class="status ${d.cls}">${d.label}</span><div class="bar" aria-label="${d.pct} percent"><span style="width:${d.pct}%"></span></div><p><strong>${d.correct}/${d.attempted||0}</strong> correct on attempted probes${d.attempted<2?' · collect another evidence point':''}.</p></div>`).join('')}</div></div>
+  <div class="card"><h2>Root-cause evidence</h2><div class="analysis-grid">${Object.entries(MISCONCEPTIONS).map(([id,m])=>{const n=misCounts[id],cls=n>=m.threshold?'priority':n===1?'probe':'strong',label=n>=m.threshold?'Likely — confirm with retest':n===1?'One signal — probe further':'Not observed';return `<div class="analysis-card"><h3>${m.code}: ${m.name}</h3><span class="status ${cls}">${label}</span><p>${m.short}</p><p><strong>Evidence signals:</strong> ${n}</p><div class="prescription"><strong>Teacher prompt:</strong> ${m.prompt}<br><br><strong>Instruction:</strong> ${m.action}</div><div class="retest"><strong>Matched retest:</strong> ${m.retest}</div></div>`;}).join('')}</div></div>
+  <div class="card"><h2>Instructional priority sequence</h2>${topDomains.length?`<ol>${topDomains.map(d=>`<li><strong>${d.name}</strong> — ${d.pct}% across ${d.attempted} attempted probe${d.attempted===1?'':'s'}.</li>`).join('')}</ol>`:'<p>No responses yet.</p>'}<p>Begin with the lowest-scoring construct that has at least two evidence points. Teach, conduct a brief think-aloud, then use the matched retest before moving on.</p></div>
+  <div class="card"><h2>Item-level evidence</h2>${scored.map((x,i)=>{const attemptedItem=isAnswered(x);const response=displayResponse(x,x.result.response);return `<div class="item-review"><strong>${i+1}. ${x.title}</strong><br><span class="${x.result.correct?'correct-text':attemptedItem?'incorrect-text':''}">${x.result.correct?'Correct':attemptedItem?'Incorrect':'Unanswered'}</span> · Student response: ${escapeHTML(response)}<br><span>Expected: ${escapeHTML(displayCorrect(x))}</span><br><small>${x.why}</small></div>`;}).join('')}</div>`;
+  $('#reportContent').innerHTML=report;$('#reportContent').classList.remove('hidden');$('#reportEmpty').classList.add('hidden');window.__MB_LAST_REPORT={build:BUILD,state:JSON.parse(JSON.stringify(state)),overall,correct,attempted,domainRows,misCounts,scored:scored.map(x=>({id:x.id,title:x.title,correct:x.result.correct,response:x.result.response,misconceptions:x.result.selectedMis}))};
+}
+function displayResponse(item,response){if(item.type==='multi')return Array.isArray(response)&&response.length?response.join(', '):'—';return response===undefined||String(response).trim()===''?'—':String(response);}
+function displayCorrect(item){if(item.type==='entry')return item.answer;if(item.type==='multi')return item.correct.join(', ');return item.correct;}
+function switchPanel(name){
+  const map={student:['studentPanel','studentTab'],report:['reportPanel','reportTab'],guide:['guidePanel','guideTab']};
+  Object.values(map).forEach(([p,t])=>{$('#'+p).classList.remove('active');$('#'+t).setAttribute('aria-selected','false');});
+  const [panel,tab]=map[name];$('#'+panel).classList.add('active');$('#'+tab).setAttribute('aria-selected','true');if(name==='report'&&items.some(isAnswered))generateReport();window.scrollTo({top:0,behavior:'smooth'});
+}
+function submitAssessment(){
+  const n=items.filter(isAnswered).length;if(n===0){alert('Answer at least one probe before building the report.');return;}
+  if(n<items.length&&!confirm(`Only ${n} of ${items.length} probes are answered. Build a partial report?`))return;
+  state.submitted=true;state.submittedAt=new Date().toISOString();saveState();generateReport();switchPanel('report');
+}
+function speak(text){if(!('speechSynthesis' in window)){alert('Text-to-speech is not available in this browser.');return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=.9;speechSynthesis.speak(u);}
+function download(name,text,type){const blob=new Blob([text],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function exportJSON(){if(!window.__MB_LAST_REPORT)generateReport();download('TEKS_4_5H_Diagnostic_Report.json',JSON.stringify(window.__MB_LAST_REPORT,null,2),'application/json');}
+function csvEscape(v){const s=String(v??'');return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function exportCSV(){if(!window.__MB_LAST_REPORT)generateReport();const r=window.__MB_LAST_REPORT;const rows=[['item_id','title','response','correct','misconception_signals'],...r.scored.map(x=>[x.id,x.title,Array.isArray(x.response)?x.response.join('|'):x.response??'',x.correct,x.misconceptions.join('|')])];download('TEKS_4_5H_Diagnostic_Responses.csv',rows.map(row=>row.map(csvEscape).join(',')).join('\n'),'text/csv');}
+function resetAll(){if(!confirm('Clear all locally saved responses and reports?'))return;try{localStorage.removeItem('mb_teks45h_state_v1');}catch(e){}state={answers:{},studentLabel:'',sessionMode:'diagnostic',submitted:false,submittedAt:null};loadState();renderQuestions();$('#reportContent').classList.add('hidden');$('#reportEmpty').classList.remove('hidden');switchPanel('student');$('#saveStatus').textContent='Reset complete';}
+function init(){
+  loadState();renderQuestions();
+  $('#studentLabel').addEventListener('input',saveState);$('#sessionMode').addEventListener('change',saveState);
+  $('#studentTab').addEventListener('click',()=>switchPanel('student'));$('#reportTab').addEventListener('click',()=>switchPanel('report'));$('#guideTab').addEventListener('click',()=>switchPanel('guide'));
+  $('#submitBtn').addEventListener('click',submitAssessment);$('#resetBtn').addEventListener('click',resetAll);$('#speakDirections').addEventListener('click',()=>speak('Complete each input-output table probe. Read across from the position or input to the output. You may answer the probes in any order.'));
+  if(state.submitted&&items.some(isAnswered))generateReport();
+  window.__MB_DIAG={items,state,scoreItem,generateReport,selectAnswer:(id,value)=>{state.answers[id]=value;renderQuestions();saveState();}};
+}
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>

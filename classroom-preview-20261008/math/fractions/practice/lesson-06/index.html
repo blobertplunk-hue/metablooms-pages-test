@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<title>ML 1.06 · Generating Equivalent Fractions</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#172033;background:#f4f7fb}
+*{box-sizing:border-box} body{margin:0} button,input{font:inherit}
+.wrap{max-width:980px;margin:auto;padding:16px}.card{background:#fff;border:1px solid #d9e1ec;border-radius:18px;padding:18px;box-shadow:0 2px 10px #14203312}
+h1{font-size:clamp(24px,4vw,34px);margin:0 0 6px}.sub{font-size:18px;color:#4d5c71;margin:0 0 16px}.topbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}.progress{font-weight:700;font-size:18px}
+.problem{font-size:clamp(22px,3vw,30px);line-height:1.3;margin:18px 0 12px}.directions{font-size:18px;line-height:1.45;margin:0 0 14px;color:#35445a}
+.model{border:1px solid #c8d5e6;border-radius:14px;padding:14px;margin:12px 0;background:#fbfdff}.strip-row{margin:14px 0}.strip-caption{font-weight:700;margin-bottom:6px;font-size:18px}.strip{display:grid;height:54px;border:2px solid #23344f;border-radius:8px;overflow:hidden;background:#fff}.piece{border-right:1px solid #6a7890;min-width:0}.piece:last-child{border-right:none}.piece.shaded{background:#b9d6ff}.strip-label{font-size:16px;margin-top:5px;line-height:1.2;overflow-wrap:anywhere}
+.modebar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.modebar button,.choice,.action{min-height:46px;border-radius:12px;border:2px solid #91a6c2;background:white;padding:9px 14px;cursor:pointer}.modebar button[aria-pressed="true"]{border-color:#244f88;background:#e8f1ff;font-weight:700}.modebar button:disabled{opacity:.45;cursor:not-allowed}
+.choices{display:grid;gap:10px;margin:14px 0}.choice{text-align:left;font-size:20px}.choice[aria-pressed="true"]{background:#e8f1ff;border-color:#244f88}.action{background:#244f88;color:white;border-color:#244f88;font-weight:700}.action.secondary{background:white;color:#244f88}.action:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.feedback{min-height:52px;border-radius:12px;padding:12px 14px;margin-top:14px;font-size:18px;line-height:1.4;background:#f3f6fa}.feedback.good{background:#e7f7ed}.feedback.bad{background:#fff0ee}.feedback.info{background:#fff8e1}
+.tip{font-size:16px;color:#526277;margin-top:8px}.hidden{display:none!important}
+@media(max-width:420px){.wrap{padding:8px}.card{padding:12px;border-radius:12px}.strip{height:48px}.choice{font-size:18px}.modebar button{width:100%}.actions .action{flex:1 1 46%}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="card">
+  <div class="topbar"><div><h1>ML 1.06 · Generating Equivalent Fractions</h1><p class="sub">Partition or combine equal parts without changing the shaded length.</p></div><div class="progress"><span data-test="problem-number">1</span> / 20 · Score <span data-test="score">0 / 20</span></div></div>
+  <div class="problem" data-test="prompt"></div>
+  <p class="directions" data-test="directions"></p>
+  <div class="model" data-test="model"></div>
+  <div class="modebar" aria-label="Representation strategy">
+    <button data-test="mode-partition" aria-pressed="true">Partition into smaller parts</button>
+    <button data-test="mode-combine" aria-pressed="false">Combine into larger parts</button>
+  </div>
+  <div class="choices" data-test="choices"></div>
+  <div class="feedback info" data-test="feedback" aria-live="polite">Choose an answer, then check your work.</div>
+  <div class="actions">
+    <button class="action" data-test="check">Check</button>
+    <button class="action secondary" data-test="next" disabled>Next</button>
+    <button class="action secondary hidden" data-test="new-set">Practice Another Set</button>
+  </div>
+</section>
+</main>
+<script>
+(()=>{
+'use strict';
+const dens=[2,3,4,5,6,8,10,12];
+let generationCounter=0;
+let problems=[]; let index=0; let score=0; let attempted=new Set(); let selected=new Set(); let mode='partition';
+const $=s=>document.querySelector(s);
+function gcd(a,b){while(b){[a,b]=[b,a%b]}return a}
+function fracEq(a,b,c,d){return a*d===c*b}
+function forms(n,d){const out=[];for(const D of dens){for(let N=1;N<D;N++){if(fracEq(n,d,N,D) && !(N===n&&D===d))out.push([N,D])}}return out}
+function validPartitionFactors(d){return [2,3,4].filter(k=>d*k<=12)}
+function validCombineFactors(n,d){return [2,3,4,5,6].filter(k=>n%k===0&&d%k===0&&d/k>=2)}
+function buildPool(){
+ const pool=[];
+ for(const d of dens){for(let n=1;n<d;n++){
+   for(const k of validPartitionFactors(d)) pool.push({num:n,den:d,baseMode:'partition',factor:k,type:'single'});
+   for(const k of validCombineFactors(n,d)) pool.push({num:n,den:d,baseMode:'combine',factor:k,type:'single'});
+   if(forms(n,d).length>=2) pool.push({num:n,den:d,baseMode:'partition',factor:validPartitionFactors(d)[0]||2,type:'multi'});
+ }}
+ return pool;
+}
+const pool=buildPool();
+const phases=['guided','guided','guided','guided','guided_to_independent','guided_to_independent','guided_to_independent','guided_to_independent','guided_to_independent','independent','independent','independent','independent','independent','discrimination_mixed','discrimination_mixed','discrimination_mixed','discrimination_mixed','transfer','transfer'];
+function descriptor(slot,gen){
+ let p=pool[(slot*11 + gen*17 + 7)%pool.length];
+ // Force multi-select practice in source-faithful slots.
+ if([2,3,8,11,12,17,18,19].includes(slot)){
+   let j=(slot*13+gen*19)%pool.length; let guard=0;
+   while(pool[j].type!=='multi'&&guard++<pool.length) j=(j+1)%pool.length;
+   p=pool[j];
+ }
+ const id=`g${gen}-s${slot+1}`;
+ const signature=`${p.num}/${p.den}:${p.baseMode}:${p.factor}:${p.type}:v${(gen+slot)%7}`;
+ return {...p,id,signature,slot:slot+1,phase:phases[slot]};
+}
+function generateSet(){generationCounter++; return Array.from({length:20},(_,i)=>descriptor(i,generationCounter));}
+function baselineSet(){return Array.from({length:20},(_,i)=>descriptor(i,0));}
+function transformed(p,m){
+ if(m==='combine'){
+   const fs=validCombineFactors(p.num,p.den); const k=fs.includes(p.factor)?p.factor:(fs[0]||null); if(!k)return null;
+   return [p.num/k,p.den/k,k];
+ }
+ const fs=validPartitionFactors(p.den); const k=fs.includes(p.factor)?p.factor:(fs[0]||null); if(!k)return null;
+ return [p.num*k,p.den*k,k];
+}
+function choiceData(p,m){
+ if(p.type==='multi'){
+   const correct=forms(p.num,p.den).slice(0,2).map(([n,d])=>`${n}/${d}`);
+   let wrong=[];
+   for(const d of dens){for(let n=1;n<d;n++){const s=`${n}/${d}`; if(!correct.includes(s)&&!fracEq(p.num,p.den,n,d))wrong.push(s)}}
+   return {correct:new Set(correct), choices:[correct[0],wrong[(p.slot*3)%wrong.length],correct[1],wrong[(p.slot*5+1)%wrong.length]], multi:true};
+ }
+ const t=transformed(p,m)||transformed(p,'partition')||transformed(p,'combine'); const [n,d]=t;
+ const correct=`${n}/${d}`;
+ const candidates=[correct,`${Math.max(1,n-1)}/${d}`,`${Math.min(d-1,n+1)}/${d}`,`${p.num}/${d}`];
+ return {correct:new Set([correct]),choices:[...new Set(candidates)].slice(0,4),multi:false};
+}
+function stripHTML(n,d,label){
+ const pieces=Array.from({length:d},(_,i)=>`<span class="piece ${i<n?'shaded':''}"></span>`).join('');
+ return `<div class="strip-row"><div class="strip-caption">${label}</div><div class="strip" style="grid-template-columns:repeat(${d},minmax(0,1fr))" aria-label="${n} of ${d} equal parts shaded">${pieces}</div><div class="strip-label">${n}/${d}: ${d} equal parts in one whole; ${n} shaded.</div></div>`
+}
+function render(){
+ const p=problems[index]; selected.clear();
+ if(mode==='combine'&&!transformed(p,'combine')) mode='partition';
+ if(mode==='partition'&&!transformed(p,'partition')&&transformed(p,'combine')) mode='combine';
+ $('[data-test="problem-number"]').textContent=String(index+1);
+ $('[data-test="score"]').textContent=`${score} / 20`;
+ $('[data-test="mode-partition"]').setAttribute('aria-pressed',mode==='partition');
+ $('[data-test="mode-combine"]').setAttribute('aria-pressed',mode==='combine');
+ $('[data-test="mode-combine"]').disabled=!transformed(p,'combine');
+ const multi=p.type==='multi';
+ const mf=multi?forms(p.num,p.den)[0]:null;
+ const t=multi?[mf[0],mf[1],1]:(transformed(p,mode)||transformed(p,'partition')||transformed(p,'combine'));
+ const verb=mode==='partition'?`Partition each ${p.den===1?'whole':`1/${p.den} part`} into ${t[2]} equal smaller parts.`:`Combine every ${t[2]} equal parts into one larger part.`;
+ $('[data-test="prompt"]').textContent=multi?`The strip shows ${p.num}/${p.den}. Find two other fraction names for the same shaded length.`:`The strip shows ${p.num}/${p.den}. ${verb}`;
+ $('[data-test="directions"]').textContent=multi?'Use the strip lengths as evidence. Select exactly two equivalent fractions.':`The shaded endpoint must stay in the same place. Choose the new fraction name.`;
+ $('[data-test="model"]').innerHTML=stripHTML(p.num,p.den,'Starting strip')+stripHTML(t[0],t[1],multi?'Another equivalent strip':(mode==='partition'?'After equal partitioning':'After equal combining'));
+ const cd=choiceData(p,mode); p._active=cd;
+ $('[data-test="choices"]').innerHTML=cd.choices.map((c,i)=>`<button class="choice" data-test="choice-${i}" data-value="${c}" aria-pressed="false">${c}</button>`).join('');
+ document.querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>{
+   const v=b.dataset.value;
+   if(cd.multi){ if(selected.has(v))selected.delete(v); else selected.add(v); }
+   else {selected.clear(); selected.add(v)}
+   document.querySelectorAll('.choice').forEach(x=>x.setAttribute('aria-pressed',selected.has(x.dataset.value)?'true':'false'));
+ }));
+ $('[data-test="feedback"]').className='feedback info'; $('[data-test="feedback"]').textContent='Choose an answer, then check your work.';
+ $('[data-test="next"]').disabled=true;
+ $('[data-test="next"]').classList.toggle('hidden',index===19);
+ $('[data-test="new-set"]').classList.toggle('hidden',index!==19);
+}
+function resetForMode(newMode){mode=newMode; selected.clear(); render()}
+$('[data-test="mode-partition"]').addEventListener('click',()=>resetForMode('partition'));
+$('[data-test="mode-combine"]').addEventListener('click',()=>{if(!$('[data-test="mode-combine"]').disabled)resetForMode('combine')});
+$('[data-test="check"]').addEventListener('click',()=>{
+ const p=problems[index], cd=p._active;
+ if(selected.size===0){$('[data-test="feedback"]').className='feedback info';$('[data-test="feedback"]').textContent='Choose an answer first. This does not count as a math mistake.';return}
+ let ok=selected.size===cd.correct.size && [...selected].every(x=>cd.correct.has(x));
+ if(ok){if(!attempted.has(index)){score++; attempted.add(index)} $('[data-test="score"]').textContent=`${score} / 20`; $('[data-test="feedback"]').className='feedback good'; $('[data-test="feedback"]').textContent='Correct. The shaded endpoint stayed fixed while the equal parts changed.'; $('[data-test="next"]').disabled=false;}
+ else {attempted.add(index); $('[data-test="feedback"]').className='feedback bad'; $('[data-test="feedback"]').textContent='Not yet. Keep the same whole and the same shaded endpoint. Change the equal-part name, not the amount shaded.';}
+});
+$('[data-test="next"]').addEventListener('click',()=>{if(index<19){index++; mode='partition'; render()}});
+$('[data-test="new-set"]').addEventListener('click',()=>{problems=generateSet();index=0;score=0;attempted=new Set();mode='partition';render()});
+function solveVisibleCurrentForTest(){const p=problems[index],cd=p._active; selected=new Set(cd.correct);document.querySelectorAll('.choice').forEach(x=>x.setAttribute('aria-pressed',selected.has(x.dataset.value)?'true':'false'))}
+function forceAdversarialItemForTest(){problems[0]={num:2,den:4,baseMode:'combine',factor:2,type:'single',id:'adv',signature:'adv',slot:1,phase:'guided'};index=0;mode='partition';render()}
+function forceDenseItemForTest(){problems[0]={num:6,den:12,baseMode:'combine',factor:1,type:'multi',id:'dense',signature:'dense',slot:1,phase:'guided'};index=0;mode='partition';render()}
+problems=baselineSet(); render();
+window.__ml106={get problems(){return problems},generateSet,solveVisibleCurrentForTest,forceAdversarialItemForTest,forceDenseItemForTest,get state(){return {index,score,selected:[...selected],mode}}};
+})();
+</script>
+</body></html>

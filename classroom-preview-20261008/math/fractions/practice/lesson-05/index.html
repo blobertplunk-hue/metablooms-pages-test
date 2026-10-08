@@ -1,0 +1,191 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ML 1.05 Interactive Practice — Equivalent Fractions with Fraction Strips</title>
+<style>
+:root{--bg:#07111f;--panel:#0d1b2d;--panel2:#10233b;--text:#f7fbff;--muted:#c7d5e8;--line:#587597;--accent:#6dd9ff;--focus:#ffe27a;--good:#83e3af;--bad:#ff9f9f;--soft:#173452}*{box-sizing:border-box}html{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}body{margin:0;font-size:18px;line-height:1.45}main{max-width:1080px;margin:auto;padding:18px}h1{font-size:30px;margin:.2em 0}h2{font-size:24px;margin:.25em 0 .6em}.sub,.muted{color:var(--muted)}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}.model-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.example{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px}.btn,.choice{min-height:48px;min-width:48px;border-radius:12px;border:2px solid #718faf;background:#122944;color:var(--text);font:inherit;font-weight:800;padding:10px 15px;cursor:pointer}.btn.primary{background:#dff6ff;color:#06111d;border-color:#dff6ff}.btn[aria-pressed=true],.choice[aria-pressed=true]{outline:3px solid var(--focus);background:#264b72}.btn:focus-visible,.choice:focus-visible,input:focus-visible{outline:4px solid var(--focus);outline-offset:2px}.btn:disabled{opacity:.5;cursor:not-allowed}.progress{height:10px;background:#1d3553;border-radius:999px;overflow:hidden;margin:12px 0 20px}.progress>div{height:100%;background:var(--accent);width:5%}.phase{font-size:15px;font-weight:900;letter-spacing:.04em;text-transform:uppercase;color:#bfe9ff}.prompt{font-size:24px;font-weight:900;margin:8px 0 12px}.work{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:16px}.feedback{min-height:68px;border:1px solid var(--line);border-radius:14px;background:#0b1728;padding:14px;margin-top:14px}.feedback.good{border-color:var(--good)}.feedback.bad{border-color:var(--bad)}.hint{border:1px dashed #8299b7;border-radius:14px;padding:14px;margin-top:12px;color:var(--muted)}.actions,.choice-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}.hidden{display:none!important}.strip-stack{display:grid;gap:12px;margin:14px 0}.strip-row{display:grid;grid-template-columns:minmax(86px,120px) minmax(0,1fr);gap:10px;align-items:center}.strip-label{font-weight:900;text-align:right;white-space:nowrap}.strip-button{display:block;width:100%;border:2px solid var(--line);border-radius:12px;padding:10px;background:#09182a;color:inherit;cursor:pointer;text-align:left}.strip-button[aria-pressed=true]{outline:4px solid var(--focus);outline-offset:2px}.strip-button:disabled{cursor:default}.strip-track{position:relative;display:grid;height:54px;width:100%;max-width:720px;border:2px solid #b8cae0;border-radius:8px;overflow:hidden;background:#071525}.piece{border-right:1px solid #9cb4d0;background:#122944;min-width:0}.piece.shaded{background:#2f698f}.piece:last-child{border-right:0}.endpoint{position:absolute;top:0;bottom:0;width:0;pointer-events:none}.endpoint:after{content:"";position:absolute;left:-2px;top:-2px;width:5px;height:58px;background:var(--focus);border-radius:2px}.alignment-band{position:absolute;pointer-events:none;border-left:3px dashed var(--focus);height:100%;top:0}.model-wrap{position:relative}.repair-note{padding:10px;border:1px solid var(--line);border-radius:10px;background:#0a1828}.infer-grid{display:grid;grid-template-columns:auto auto auto;gap:8px;align-items:center;margin-top:8px}.infer-grid input{width:72px;height:48px;border:2px solid #7895b6;border-radius:10px;background:#071525;color:#fff;font:inherit;font-weight:800;text-align:center}.slash{font-size:24px;font-weight:900}.reason-grid{display:grid;gap:10px}.summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.metric{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px}.metric strong{display:block;font-size:30px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:520px){main{padding:10px}.card,.work{padding:12px}.prompt{font-size:22px}.btn,.choice{flex:1 1 auto}.strip-row{grid-template-columns:74px minmax(0,1fr);gap:6px}.strip-label{font-size:16px}.strip-track{height:48px}.endpoint:after{top:-2px;height:52px}.strip-button{padding:8px}.infer-grid input{width:58px}}@media print{#restart,.actions,#new-set,#retry-missed,#start-practice{display:none!important}}
+</style></head><body><main>
+<div class="top"><div><h1>Equivalent Fractions with Fraction Strips</h1><div class="sub">ML 1.05 • Same whole + same endpoint = same value.</div></div><button id="restart" class="btn" type="button">Restart</button></div>
+<section id="models" class="card"><h2>Two Worked Examples</h2><p class="muted">Look at where each shaded length ends. The strips must represent the same whole.</p><div class="model-grid"><div class="example"><strong>Example 1</strong><p>1/2 and 3/6 have the same endpoint.</p><div id="model1"></div><p class="muted">Different names, same length.</p></div><div class="example"><strong>Example 2</strong><p>1/4, 2/8, and 3/12 all end at the same place.</p><div id="model2"></div><p class="muted">One fraction can have more than one equivalent name.</p></div></div><button id="start-practice" class="btn primary" type="button">Start Practice</button></section>
+<section id="practice-wrap" class="card hidden"><div class="phase" id="phase"></div><div id="progress-label" class="muted"></div><div class="progress" aria-hidden="true"><div id="progress-fill"></div></div><div id="prompt" class="prompt"></div><div id="work" class="work"></div><div id="feedback" class="feedback" role="status" aria-live="polite"></div><div id="hint" class="hint hidden"></div><div class="actions"><button id="check" class="btn primary" type="button">Check</button><button id="hint-btn" class="btn" type="button">Show a Hint</button><button id="next" class="btn primary hidden" type="button">Next</button></div></section>
+<section id="summary" class="card hidden"><h2>Practice Complete</h2><div id="summary-content"></div><div class="actions"><button id="retry-missed" class="btn" type="button">Retry Missed</button><button id="new-set" class="btn primary" type="button">Practice Another Set</button><button id="print-summary" class="btn" type="button">Print Summary</button></div></section>
+<script>(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;if(root)root.MetaBloomsML105Generator=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
+'use strict';
+const DENOMS=[2,3,4,6,8,12];
+const VALUES=[
+ {key:'1/2', reps:[[1,2],[2,4],[3,6],[4,8],[6,12]]},
+ {key:'1/3', reps:[[1,3],[2,6],[4,12]]},
+ {key:'2/3', reps:[[2,3],[4,6],[8,12]]},
+ {key:'1/4', reps:[[1,4],[2,8],[3,12]]},
+ {key:'3/4', reps:[[3,4],[6,8],[9,12]]},
+ {key:'1/6', reps:[[1,6],[2,12]]},
+ {key:'5/6', reps:[[5,6],[10,12]]}
+];
+function rng(seed){let x=(seed>>>0)||1;return()=>((x=(1664525*x+1013904223)>>>0)/4294967296)}
+function pick(r,a){return a[Math.floor(r()*a.length)]}
+function eq(n,d,a,b){return n*b===a*d}
+function freezeRows(rows){return Object.freeze(rows.map(r=>Object.freeze({...r})));}
+function nearestDistractor(n,d,targetN,targetD){
+  const cands=[];for(let k=1;k<d;k++){if(!eq(k,d,targetN,targetD))cands.push(k)}
+  cands.sort((a,b)=>Math.abs(a/d-targetN/targetD)-Math.abs(b/d-targetN/targetD));
+  return cands[0]||Math.max(1,Math.min(d-1,n+1));
+}
+function chooseValue(r,variant,slot){return VALUES[(slot*3+variant*5+Math.floor(r()*VALUES.length))%VALUES.length];}
+function makeSelectRows(value,sourceRep,r,{multi=false,nearMiss=true,includeSource=false}={}){
+  const reps=value.reps.filter(x=>!(x[0]===sourceRep[0]&&x[1]===sourceRep[1]));
+  let good=reps.slice();
+  if(!multi)good=[pick(r,good)]; else good=good.slice(0,Math.min(3,good.length));
+  const rows=[];
+  if(includeSource) rows.push({n:sourceRep[0],d:sourceRep[1],source:true,selectable:false,equivalent:true});
+  for(const [n,d] of good)rows.push({n,d,selectable:true,equivalent:true});
+  const usedD=new Set(rows.map(x=>x.d));
+  const distractorDs=DENOMS.filter(d=>!usedD.has(d));
+  let guard=0;
+  while(rows.length<(multi?5:4) && guard++<60){
+    const d=distractorDs.length?distractorDs.shift():pick(r,DENOMS);
+    const candidates=Array.from({length:Math.max(0,d-1)},(_,i)=>i+1).filter(k=>!eq(k,d,sourceRep[0],sourceRep[1]));
+    if(!candidates.length) continue;
+    candidates.sort((a,b)=>Math.abs(a/d-sourceRep[0]/sourceRep[1])-Math.abs(b/d-sourceRep[0]/sourceRep[1]));
+    const n=nearMiss?candidates[0]:pick(r,candidates);
+    rows.push({n,d,selectable:true,equivalent:false,nearMiss:true});
+  }
+  if(rows.length<(multi?5:4)) throw new Error('Unable to construct non-equivalent distractor rows');
+  return rows;
+}
+function base(slot,phase,mode,sourceN,sourceD,rows,extra={}){
+  const prompt=extra.prompt||`Use the fraction strips. Find the fraction with the same length as ${sourceN}/${sourceD}.`;
+  return Object.freeze({id:`ml105-${slot}`,slot,phase,mode,sourceN,sourceD,rows:freezeRows(rows),prompt,
+    hint:extra.hint||'Compare where each fraction ends. Equivalent fractions reach exactly the same endpoint on strips that represent the same whole.',
+    success:extra.success||'Correct. The equivalent fractions end at the same location on strips representing the same whole.',
+    ...extra});
+}
+const PHASES=['guided','guided','guided','guided','guided_to_independent','guided_to_independent','guided_to_independent','guided_to_independent','guided_to_independent','independent_blocked','independent_blocked','independent_blocked','independent_blocked','independent_blocked','discrimination_mixed','discrimination_mixed','discrimination_mixed','discrimination_mixed','transfer','transfer'];
+function buildFixed(slot){
+ const phase=PHASES[slot-1];
+ const specs={
+ 1:['select_one',1,2,[[1,2,false,true],[2,4,true,true],[1,4,true,false],[3,4,true,false]]],
+ 2:['select_one',3,6,[[3,6,false,true],[1,3,true,false],[1,2,true,true],[2,3,true,false]]],
+ 3:['select_all',1,4,[[1,4,false,true],[2,8,true,true],[3,12,true,true],[3,8,true,false],[4,12,true,false]]],
+ 4:['select_all',2,3,[[2,3,false,true],[4,6,true,true],[8,12,true,true],[5,8,true,false],[9,12,true,false]]],
+ 5:['select_one',3,4,[[3,4,false,true],[6,8,true,true],[5,8,true,false],[7,8,true,false]]],
+ 6:['select_one',4,6,[[4,6,false,true],[8,12,true,true],[7,12,true,false],[9,12,true,false]]],
+ 7:['claim',2,4,[[2,4,false,true],[3,6,false,true]]],
+ 8:['same_whole',1,2,[[1,2,false,true,0.78],[2,4,false,true,1]]],
+ 9:['select_all',1,3,[[1,3,false,true],[2,6,true,true],[3,8,true,false],[4,12,true,true],[5,12,true,false]]],
+ 10:['select_one',1,4,[[1,4,false,true],[3,12,true,true],[2,12,true,false],[4,12,true,false]]],
+ 11:['select_one',3,6,[[3,6,false,true],[6,12,true,true],[5,12,true,false],[7,12,true,false]]],
+ 12:['select_all',4,8,[[4,8,false,true],[1,2,true,true],[2,4,true,true],[3,4,true,false],[5,8,true,false]]],
+ 13:['select_all',9,12,[[9,12,false,true],[3,4,true,true],[4,6,true,false],[6,8,true,true],[8,12,true,false]]],
+ 14:['infer',1,2,[[2,4,true,true],[3,6,true,true]]],
+ 15:['pair_discriminate',1,2,[[1,2,true,true],[2,4,true,true],[3,6,true,true],[5,12,true,false]]],
+ 16:['claim',2,3,[[2,3,false,true],[5,8,false,false]]],
+ 17:['same_whole',1,2,[[2,4,false,true,0.72],[3,6,false,true,1]]],
+ 18:['select_all',1,4,[[1,4,false,true],[2,8,true,true],[3,12,true,true],[1,3,true,false],[4,12,true,false]]],
+ 19:['transfer_select_all',3,4,[[3,4,false,true],[6,8,true,true],[9,12,true,true],[4,6,true,false],[8,12,true,false]]],
+ 20:['infer',1,3,[[2,6,true,true],[4,12,true,true],[3,8,true,false]]]
+ };
+ let [mode,n,d,raw]=specs[slot];let rows=raw.map(x=>({n:x[0],d:x[1],selectable:x[2],equivalent:x[3],wholeScale:x[4]||1,source:!x[2]&&x[3]}));
+ const extras={};
+ if(mode==='claim'){extras.claimTrue=rows.every(r=>r.equivalent);extras.prompt=slot===7?'A student says 2/4 and 3/6 are not equivalent because the numbers look different. Use the strips to decide.':'A student says 2/3 and 5/8 are equivalent because both shade most of a strip. Use endpoints to decide.';}
+ if(mode==='same_whole'){extras.prompt='These strips do not use the same whole length. Repair the model first, then decide whether the fractions are equivalent.';extras.requiresRepair=true;}
+ if(mode==='infer'){rows=rows.map(r=>({...r,hideLabel:true}));extras.prompt='Use the highlighted endpoints to infer the fraction labels, then decide which rows are equivalent.';extras.inferRows=rows.map((r,i)=>({rowIndex:i,answerN:r.n,answerD:r.d}));}
+ if(mode==='pair_discriminate'){extras.prompt='Select every displayed fraction that is equivalent to the source. Watch for the one-part near miss.';}
+ return base(slot,phase,mode,n,d,rows,extras);
+}
+function varied(slot,variant,r){
+ const phase=PHASES[slot-1];
+ const value=chooseValue(r,variant,slot);const source=pick(r,value.reps);
+ let mode;
+ if([3,4,9,12,13,18,19].includes(slot))mode=slot===19?'transfer_select_all':'select_all';
+ else if([7,16].includes(slot))mode='claim';
+ else if([8,17].includes(slot))mode='same_whole';
+ else if([14,20].includes(slot))mode='infer';
+ else if(slot===15)mode='pair_discriminate';
+ else mode='select_one';
+ let rows;
+ if(mode==='select_one')rows=makeSelectRows(value,source,r,{multi:false,includeSource:true});
+ else if(mode==='select_all'||mode==='transfer_select_all'||mode==='pair_discriminate')rows=makeSelectRows(value,source,r,{multi:true,includeSource:true});
+ else if(mode==='claim'){
+   const good=pick(r,value.reps.filter(x=>x[0]!==source[0]||x[1]!==source[1]));
+   const shouldEq=((slot+variant)%2===0); let second=good;
+   if(!shouldEq){
+     const viable=[];for(const dd of DENOMS){for(let nn=1;nn<dd;nn++){if(!eq(nn,dd,source[0],source[1])) viable.push([nn,dd]);}}
+     viable.sort((a,b)=>Math.abs(a[0]/a[1]-source[0]/source[1])-Math.abs(b[0]/b[1]-source[0]/source[1]));
+     second=viable[0];
+   }
+   rows=[{n:source[0],d:source[1],selectable:false,equivalent:true,source:true},{n:second[0],d:second[1],selectable:false,equivalent:shouldEq}];
+ }
+ else if(mode==='same_whole'){
+   const good=pick(r,value.reps.filter(x=>x[0]!==source[0]||x[1]!==source[1]));rows=[{n:source[0],d:source[1],selectable:false,equivalent:true,source:true,wholeScale:.72},{n:good[0],d:good[1],selectable:false,equivalent:true,wholeScale:1}];
+ }
+ else if(mode==='infer'){
+   const reps=value.reps.slice(0,Math.min(3,value.reps.length));rows=reps.map((x,i)=>({n:x[0],d:x[1],selectable:true,equivalent:true,hideLabel:true,source:i===0}));
+ }
+ const extra={};
+ if(mode==='claim'){extra.claimTrue=rows.every(x=>x.equivalent);extra.prompt='Use the same-whole strip endpoints to decide whether the student claim is correct.';}
+ if(mode==='same_whole'){extra.requiresRepair=true;extra.prompt='The wholes are different lengths. Repair the model, then judge equivalence.';}
+ if(mode==='infer'){extra.inferRows=rows.map((x,i)=>({rowIndex:i,answerN:x.n,answerD:x.d}));extra.prompt='Infer each highlighted fraction from the strip partitions, then identify the equivalent rows.';}
+ return base(slot,phase,mode,source[0],source[1],rows,extra);
+}
+function buildSession(variant=0){const v=Number(variant)||0;if(v===0)return Object.freeze(Array.from({length:20},(_,i)=>buildFixed(i+1)));const r=rng(0x105000+v*7919);return Object.freeze(Array.from({length:20},(_,i)=>varied(i+1,v,r)));}
+return {DENOMS,VALUES,buildSession,eq};
+});
+</script>
+<script>
+(function(){'use strict';
+const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
+let variant=0,items=[],order=[],index=0,firstTry=0,missed=[],retryMode=false,attempts=0,wrong=false;
+let selected=new Set(),claimChoice=null,repaired=false,inferValues={};
+function phaseName(p){return({guided:'Guided',guided_to_independent:'Guided → Independent',independent_blocked:'Independent',discrimination_mixed:'Mixed Reasoning',transfer:'Transfer'})[p]||p}
+function setFeedback(kind,text){const f=$('#feedback');f.className='feedback'+(kind==='good'?' good':kind==='bad'?' bad':'');f.textContent=text}
+function frac(n,d){return `${n}/${d}`}
+function renderStripRows(container,item,{modelOnly=false}={}){container.innerHTML='';container.className='strip-stack';item.rows.forEach((r,ri)=>{
+ const row=document.createElement('div');row.className='strip-row';
+ const lab=document.createElement('div');lab.className='strip-label';lab.textContent=r.hideLabel?'?/?':frac(r.n,r.d);row.appendChild(lab);
+ const btn=document.createElement('button');btn.type='button';btn.className='strip-button';btn.dataset.row=ri;btn.setAttribute('aria-pressed',String(selected.has(ri)));btn.disabled=modelOnly||!r.selectable||['claim','same_whole'].includes(item.mode);
+ const track=document.createElement('div');track.className='strip-track';track.style.gridTemplateColumns=`repeat(${r.d},1fr)`;track.style.width=`${Math.round((repaired?1:(r.wholeScale||1))*100)}%`;track.setAttribute('aria-label',`${r.n} of ${r.d} equal parts shaded${r.wholeScale&&r.wholeScale!==1&&!repaired?', whole length differs':''}`);
+ for(let i=0;i<r.d;i++){const p=document.createElement('span');p.className='piece'+(i<r.n?' shaded':'');track.appendChild(p)}
+ const ep=document.createElement('span');ep.className='endpoint';ep.style.left=`${(r.n/r.d)*100}%`;track.appendChild(ep);btn.appendChild(track);row.appendChild(btn);container.appendChild(row);
+ });
+ if(!modelOnly)$$('#work .strip-button:not(:disabled)').forEach(b=>b.addEventListener('click',()=>{const ri=Number(b.dataset.row);if(selected.has(ri))selected.delete(ri);else selected.add(ri);b.setAttribute('aria-pressed',String(selected.has(ri)))}));
+}
+function modelItem(rows){return {rows:rows.map(x=>({n:x[0],d:x[1],selectable:false,equivalent:true,wholeScale:1})),mode:'model'} }
+renderStripRows($('#model1'),modelItem([[1,2],[3,6]]),{modelOnly:true});renderStripRows($('#model2'),modelItem([[1,4],[2,8],[3,12]]),{modelOnly:true});
+function current(){return order[index]}
+function renderWork(){const item=current(),w=$('#work');w.innerHTML='';selected=new Set();claimChoice=null;repaired=false;inferValues={};
+ if(item.mode==='claim'){
+   const stack=document.createElement('div');w.appendChild(stack);renderStripRows(stack,item);
+   const q=document.createElement('div');q.className='reason-grid';q.innerHTML='<button class="choice" data-claim="yes" aria-pressed="false">Equivalent</button><button class="choice" data-claim="no" aria-pressed="false">Not equivalent</button>';w.appendChild(q);
+   $$('[data-claim]').forEach(b=>b.addEventListener('click',()=>{claimChoice=b.dataset.claim;$$('[data-claim]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))}));
+ } else if(item.mode==='same_whole'){
+   const note=document.createElement('div');note.className='repair-note';note.innerHTML='<strong>First repair the representation.</strong> The two whole strips must be the same total length.';w.appendChild(note);
+   const stack=document.createElement('div');stack.id='strip-stack-main';w.appendChild(stack);renderStripRows(stack,item);
+   const repair=document.createElement('button');repair.type='button';repair.id='repair-wholes';repair.className='btn';repair.textContent='Make the whole lengths equal';w.appendChild(repair);
+   const q=document.createElement('div');q.className='reason-grid';q.innerHTML='<button class="choice" data-claim="yes" aria-pressed="false">Equivalent after repair</button><button class="choice" data-claim="no" aria-pressed="false">Not equivalent after repair</button>';w.appendChild(q);
+   repair.addEventListener('click',()=>{repaired=true;renderStripRows(stack,item);repair.disabled=true;setFeedback('info','Good repair. Now compare the endpoints on equal whole lengths.')});
+   $$('[data-claim]').forEach(b=>b.addEventListener('click',()=>{claimChoice=b.dataset.claim;$$('[data-claim]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))}));
+ } else if(item.mode==='infer'){
+   item.rows.forEach((r,ri)=>{const wrap=document.createElement('div');wrap.className='card';const view=document.createElement('div');renderStripRows(view,{...item,rows:[r]});wrap.appendChild(view);const g=document.createElement('div');g.className='infer-grid';g.innerHTML=`<label for="infer-n-${ri}">Numerator</label><input id="infer-n-${ri}" inputmode="numeric" aria-label="Row ${ri+1} numerator"><span class="slash">/</span><label for="infer-d-${ri}">Denominator</label><input id="infer-d-${ri}" inputmode="numeric" aria-label="Row ${ri+1} denominator"><span></span>`;wrap.appendChild(g);w.appendChild(wrap)});
+   const q=document.createElement('div');q.innerHTML='<strong>After labeling, select every row that represents the same value as the first row.</strong>';w.appendChild(q);
+   item.rows.forEach((r,ri)=>{if(ri===0)return;const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.inferSelect=ri;b.textContent=`Row ${ri+1}`;b.setAttribute('aria-pressed','false');w.appendChild(b);b.addEventListener('click',()=>{if(selected.has(ri))selected.delete(ri);else selected.add(ri);b.setAttribute('aria-pressed',String(selected.has(ri)))})});
+ } else {
+   const stack=document.createElement('div');w.appendChild(stack);renderStripRows(stack,item);
+   const d=document.createElement('p');d.className='muted';d.textContent=item.mode==='select_one'?'Choose one matching fraction.':'Select every fraction that has exactly the same endpoint as the source.';w.appendChild(d);
+ }
+}
+function render(){const item=current();attempts=0;wrong=false;$('#models').classList.add('hidden');$('#summary').classList.add('hidden');$('#practice-wrap').classList.remove('hidden');$('#phase').textContent=phaseName(item.phase);$('#prompt').textContent=item.prompt;$('#progress-label').textContent=retryMode?`Retry ${index+1} of ${order.length}`:`Problem ${item.slot} of 20`;$('#progress-fill').style.width=`${((index+1)/order.length)*100}%`;$('#next').classList.add('hidden');$('#check').disabled=false;$('#hint').classList.add('hidden');$('#hint-btn').textContent='Show a Hint';setFeedback('info','Use the strip evidence, then check your work.');renderWork()}
+function expectedSelection(item){return new Set(item.rows.map((r,i)=>r.selectable&&r.equivalent?i:null).filter(x=>x!==null))}
+function sameSet(a,b){return a.size===b.size&&[...a].every(x=>b.has(x))}
+function diagnose(){const item=current();
+ if(item.mode==='claim'){if(!claimChoice)return['INCOMPLETE','Choose Equivalent or Not equivalent.'];const ans=item.claimTrue?'yes':'no';if(claimChoice!==ans)return['CLAIM','Compare the exact endpoints on strips that represent the same whole.'];return[null,null]}
+ if(item.mode==='same_whole'){if(!repaired)return['INCOMPLETE','Repair the whole lengths before judging equivalence.'];if(!claimChoice)return['INCOMPLETE','Now choose whether the fractions are equivalent.'];const eq=item.rows[0].n*item.rows[1].d===item.rows[1].n*item.rows[0].d;if(claimChoice!==(eq?'yes':'no'))return['CLAIM','After the wholes match, compare the exact fraction endpoints.'];return[null,null]}
+ if(item.mode==='infer'){
+   for(let ri=0;ri<item.rows.length;ri++){const n=Number($(`#infer-n-${ri}`).value),d=Number($(`#infer-d-${ri}`).value);if(!n||!d)return['INCOMPLETE','Finish every fraction label before checking.'];if(n!==item.rows[ri].n||d!==item.rows[ri].d)return['LABEL',`Row ${ri+1}: count shaded parts for the numerator and all equal parts for the denominator.`]}
+   const expected=new Set(item.rows.map((r,i)=>i>0&&r.equivalent?i:null).filter(x=>x!==null));if(!sameSet(selected,expected))return['SELECT','Keep the correct labels. Now select exactly the rows whose endpoints align with the first row.'];return[null,null]
+ }
+ if(selected.size===0)return['INCOMPLETE','Select at least one fraction before checking.'];const expected=expectedSelection(item);if(!sameSet(selected,expected))return['SELECT','Compare the right endpoints, not just the number of pieces. Keep correct selections and repair only the mismatches.'];return[null,null]
+}
+function check(){const [code,msg]=diagnose();if(code==='INCOMPLETE'){setFeedback('info',msg);return}attempts++;if(code){wrong=true;setFeedback('bad',msg);return}const item=current();if(!wrong&&!retryMode)firstTry++;if(wrong&&!retryMode&&!missed.includes(item.id))missed.push(item.id);setFeedback('good',item.success);$('#check').disabled=true;$('#next').classList.remove('hidden')}
+function showHint(){if(attempts===0&&current().phase==='transfer'){setFeedback('info','Try the problem once before opening the hint.');return}$('#hint').textContent=current().hint;$('#hint').classList.toggle('hidden');$('#hint-btn').textContent=$('#hint').classList.contains('hidden')?'Show a Hint':'Hide the Hint'}
+function next(){if(index<order.length-1){index++;render()}else finish()}
+function finish(){if(retryMode){retryMode=false;order=items.slice();index=0;missed=[];$('#practice-wrap').classList.add('hidden');$('#summary').classList.remove('hidden');$('#summary-content').innerHTML='<p>Retry complete. You can start another full set when ready.</p>';$('#retry-missed').classList.add('hidden');return}$('#practice-wrap').classList.add('hidden');$('#summary').classList.remove('hidden');const pct=Math.round(firstTry/20*100);$('#summary-content').innerHTML=`<div class="summary-grid"><div class="metric"><strong>${firstTry}/20</strong>first-try correct</div><div class="metric"><strong>${pct}%</strong>first-try accuracy</div><div class="metric"><strong>${missed.length}</strong>problems to retry</div></div><p>${pct>=80?'Strong work using same-whole strip endpoints as evidence.':'Keep practicing: same whole, same endpoint, same value.'}</p>`;$('#retry-missed').classList.toggle('hidden',missed.length===0)}
+function startNew(v){variant=v;items=MetaBloomsML105Generator.buildSession(variant);order=items.slice();index=0;firstTry=0;missed=[];retryMode=false;render()}
+$('#start-practice').addEventListener('click',()=>startNew(0));$('#check').addEventListener('click',check);$('#hint-btn').addEventListener('click',showHint);$('#next').addEventListener('click',next);$('#new-set').addEventListener('click',()=>startNew(variant+1));$('#retry-missed').addEventListener('click',()=>{const wanted=new Set(missed);order=items.filter(x=>wanted.has(x.id));if(!order.length)return;retryMode=true;index=0;$('#summary').classList.add('hidden');render()});$('#restart').addEventListener('click',()=>{if($('#models').classList.contains('hidden')&&!confirm('Restart from the worked examples? Your current progress will be cleared.'))return;$('#practice-wrap').classList.add('hidden');$('#summary').classList.add('hidden');$('#models').classList.remove('hidden')});$('#print-summary').addEventListener('click',()=>window.print());
+})();</script></main></body></html>

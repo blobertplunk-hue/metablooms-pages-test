@@ -1,0 +1,1065 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math Unit 1 End-of-Unit Remediation</title>
+<style>
+:root{
+ --bg:#10141c; --panel:#18202b; --panel2:#202a38; --text:#f5f7fb; --muted:#b8c1cf;
+ --accent:#71c4ff; --accent2:#8ee3b5; --warn:#ffd27a; --danger:#ff9a9a;
+ --line:#3b485b; --model-fill:#a8d9ff; --model-empty:#f2f4f8;
+ font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+ color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-size:18px;line-height:1.5}
+button,input{font:inherit}
+button{min-height:48px;padding:.75rem 1rem;border-radius:10px;border:1px solid transparent;cursor:pointer}
+.primary{background:var(--accent);color:#07111c;font-weight:800}
+.ghost{background:transparent;color:var(--muted);border-color:var(--line)}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.4rem;border-bottom:1px solid var(--line);background:#0c1118;position:sticky;top:0;z-index:3}
+h1{font-size:clamp(1.3rem,3vw,2rem);margin:.1rem 0}.eyebrow,.stage{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.progress-pill{border:1px solid var(--line);padding:.5rem .8rem;border-radius:999px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:minmax(230px,300px) 1fr;min-height:calc(100vh - 86px)}
+aside{padding:1rem;border-right:1px solid var(--line);background:#111823}
+aside h2{font-size:1rem;color:var(--muted)}
+.rail-item{display:flex;gap:.7rem;padding:.8rem;border:1px solid var(--line);border-radius:12px;margin:.7rem 0;background:var(--panel)}
+.rail-item>span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#2b3748;font-weight:800}
+.rail-item.done>span{background:var(--accent2);color:#062014}.rail-item small{display:block;color:var(--muted);margin-top:.15rem}
+main{padding:clamp(1rem,3vw,2rem);max-width:1000px;width:100%;margin:0 auto}
+.card,.entry-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(1rem,3vw,2rem);box-shadow:0 18px 60px rgba(0,0,0,.22)}
+.entry-card{max-width:820px;margin:2rem auto}
+.construct{color:var(--muted)}
+label{display:block;margin:1rem 0;font-weight:650}
+input[type=text],input[type=number],input:not([type]){width:100%;min-height:48px;margin-top:.4rem;padding:.7rem;border:2px solid var(--line);border-radius:9px;background:#0d141d;color:var(--text)}
+fieldset{border:1px solid var(--line);border-radius:12px;margin:1rem 0;padding:1rem}.choice{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem;border:1px solid var(--line);border-radius:10px;background:var(--panel2);font-weight:600}.choice input{width:22px;height:22px;flex:none}
+.question{margin:1rem 0;padding:1rem;border-radius:14px;background:#111823;border:1px solid var(--line)}.prompt{font-size:1.15rem;font-weight:800}
+.math-svg{display:block;width:100%;max-width:760px;margin:1rem auto;background:#f7f9fc;border-radius:12px}
+.math-svg .axis,.math-svg .tick{stroke:#111;stroke-width:4}.math-svg .point{fill:#111}.math-svg text{fill:#111;font-size:24px;font-weight:700}.math-svg .pointlabel{font-size:20px}.model-cell{stroke:#111;stroke-width:4}
+.response-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.answer-preview{color:var(--muted)}
+.target-fraction{font-size:2rem;font-weight:900;text-align:center;padding:1rem}
+.feedback,.hint{padding:1rem;border-radius:12px;margin:1rem 0}.warn{background:#3a2e16;border:1px solid #8a6a25}.good{background:#133526;border:1px solid #2f8f63}.hint{background:#13293b;border:1px solid #285f88}.hidden{display:none}
+.lesson{background:#111823;border-left:5px solid var(--accent);padding:.5rem 1rem;border-radius:8px}
+.controls{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;margin-top:1.2rem}.controls .ghost{margin-left:auto}
+.blocked .icon{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--warn);color:#241600;font-size:2rem;font-weight:900}
+.grade-box{display:flex;justify-content:space-between;align-items:center;background:#102b20;border:1px solid #2f8f63;border-radius:14px;padding:1rem 1.2rem;margin:1rem 0}.grade-box strong{font-size:2.5rem;color:var(--accent2)}
+table{width:100%;border-collapse:collapse;margin:1rem 0}th,td{border-bottom:1px solid var(--line);text-align:left;padding:.7rem}dl{display:grid;grid-template-columns:max-content 1fr;gap:.4rem 1rem}dd{margin:0}code{font-size:1rem}.pass{font-size:2rem;color:var(--accent2);font-weight:900}.fail{font-size:2rem;color:var(--danger);font-weight:900}
+@media(max-width:760px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line)}.response-grid{grid-template-columns:1fr}.progress-pill{font-size:.8rem}body{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{body{background:#fff;color:#000}.layout{display:block}aside,header,.controls,.primary:not(#printBtn){display:none!important}.card{box-shadow:none;border:0;background:#fff}.receipt{padding:0}.grade-box{border:2px solid #000;background:#fff} }
+\n.science-part{margin:1rem 0;padding:1rem;border:1px solid var(--line);border-radius:12px;background:#0f1721}.science-part h3{margin-top:0}.inline-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}.science-svg{display:block;width:100%;max-width:440px;margin:.7rem auto;background:#f7f9fc;border-radius:12px}.bench{fill:#555}.solid-shape{fill:#5c9dd5;stroke:#18334d;stroke-width:5}.container{fill:none;stroke:#27384a;stroke-width:7}.liquid-fill{fill:#6ec7ff;stroke:#246b91;stroke-width:3}.gas-dot{fill:#7f8fa6}.state-path{display:flex;justify-content:center;gap:.7rem;align-items:center;flex-wrap:wrap;padding:.8rem;border-radius:12px;background:#0d141d}.heat-chip,.cool-chip{padding:.35rem .65rem;border-radius:999px;font-weight:800}.heat-chip{background:#6b2f20}.cool-chip{background:#173c5c}details{margin-top:.75rem;color:var(--muted)}@media(max-width:760px){.inline-choices{grid-template-columns:1fr}}
+.science-table{width:100%;border-collapse:collapse;margin:1rem 0;background:#0f1721;border-radius:10px;overflow:hidden}.science-table th,.science-table td{padding:.7rem;border:1px solid var(--line);text-align:left}.science-table th{background:#253247}.density-svg text{fill:#10151d;font-size:20px;font-weight:800}.layer{stroke:#111;stroke-width:2}.layer-top{fill:#dfefff}.layer-mid{fill:#a8d9ff}.layer-bottom{fill:#d9b589}.instrument-svg text,.thermometer-svg text{fill:#111;font-size:18px;font-weight:700}.instrument-line,.temp-mark{stroke:#111;stroke-width:4}.instrument-marker{fill:#e53935}.thermometer-tube{fill:#fff;stroke:#111;stroke-width:4}.thermometer-fill{fill:#d32f2f}.science-part input[type=number]{max-width:240px}
+
+textarea{width:100%;margin-top:.5rem;padding:.8rem;border:2px solid var(--line);border-radius:10px;background:#0d141d;color:var(--text);font:inherit;resize:vertical}
+.fraction-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}.fraction-label{text-align:center;font-size:1.35rem;font-weight:900;margin-top:.4rem}.compact-svg{max-height:120px}.comparison-line{display:flex;align-items:center;justify-content:center;gap:.8rem;font-size:1.7rem;font-weight:900;flex-wrap:wrap}.symbol-choice{margin:0}.symbol-choice input{position:absolute;opacity:0}.symbol-choice span{display:grid;place-items:center;min-width:52px;min-height:52px;border:2px solid var(--line);border-radius:10px;background:var(--panel2)}.symbol-choice input:checked+span{border-color:var(--accent);box-shadow:0 0 0 3px rgba(113,196,255,.2)}
+@media(max-width:760px){.fraction-pair{grid-template-columns:1fr}.comparison-line{gap:.45rem;font-size:1.4rem}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>window.REMEDIATION_CONFIG = {"schemaVersion":"1.0","engineMinVersion":"1.3.0","assessment":{"id":"MATH-U1-EOU","title":"Math Unit 1 End-of-Unit Remediation","subject":"Math","grade":4,"source":{"title":"End-of-Unit Assessment, Unit 4.1, Form A","driveId":"1hQ3cUk3kHUfcB24hTLFWSjmAe333UGy_","sourceItems":"1-8","excludedOriginalConstructs":["Do not reuse the original 3/12 equivalence target or its answer options.","Do not reuse 3/5 vs 7/12 or 2/6 vs 1/4.","Do not reuse decomposition targets 3/5, 5/8, or 7/4.","Do not reuse the original rainfall/month table.","Do not reuse the Kaylee/Mel wording or original explanation prompts."]}},"policy":{"eligibleRoute":"Student took the original assessment and scored below 70.","missingRoute":"Student who never took the original assessment must take the original assessment; remediation cannot issue credit.","replacementGrade":70,"mastery":{"diagnosticCanSkipReteach":true,"freshRetrievalRequired":true,"laterTransferRequired":true,"universalPercentThreshold":null}},"ui":{"studentDirections":"You will work only on fraction skills you still need. A correct first check can skip the lesson, but every skill must be shown again on fresh problems and in a later mixed check.","completionMessage":"All required fraction objectives were demonstrated on fresh problems. Show or print this receipt for your teacher."},"objectives":[{"id":"MEOU-O1","title":"Equivalent fractions - same amount","construct":"Recognize and explain equivalent fractions as different names for the same amount.","sourceItems":[1,7],"generator":{"kind":"fractionEquivalenceBundle","params":{"excludeTargets":["1/4","3/5","5/8","7/4","2/6"]}},"lesson":{"teach":["Equivalent fractions name the same amount even when the numerator and denominator are different.","If you multiply or divide the numerator and denominator by the same nonzero number, the fraction keeps the same value.","Do not create equivalent fractions by subtracting the same number from the numerator and denominator or by dividing one by the other."],"guidedPrompt":"Use a model or multiply numerator and denominator by the same factor. Check that the amount stays the same."},"misconceptions":{"subtract-same":{"label":"Subtracted numerator and denominator","feedback":"Subtracting the same number from the numerator and denominator usually changes the fraction. Use the same multiplication or division factor on both instead."},"divide-parts":{"label":"Divided denominator by numerator","feedback":"The quotient of denominator ÷ numerator does not create an equivalent fraction. Equivalent fractions preserve the same amount."},"add-same":{"label":"Added the same number to numerator and denominator","feedback":"Adding the same number to numerator and denominator changes the relationship. Scale both by the same factor instead."},"equivalence-concept":{"label":"Equivalent-fraction concept","feedback":"Check whether each option represents the same amount, not whether its numbers merely look related."}}},{"id":"MEOU-O2","title":"Compare fractions with unlike denominators","construct":"Compare fractions with unlike denominators using valid magnitude reasoning, equivalent fractions, or a common denominator.","sourceItems":[2,6,8],"generator":{"kind":"fractionComparisonBundle","params":{"excludeCases":[]}},"lesson":{"teach":["Numerators and denominators are not whole numbers to compare separately. Compare the fractions as amounts.","A common denominator lets both fractions use the same-size parts.","After you determine which amount is larger, check that your < or > symbol points the correct way."],"guidedPrompt":"Find a common denominator or another valid magnitude strategy first. Choose the symbol only after you know which fraction is larger."},"misconceptions":{"symbol-reversal":{"label":"Comparison symbol reversed","feedback":"Your magnitude reasoning was correct, but the symbol was reversed. The wide/open side faces the greater amount."},"whole-number-comparison":{"label":"Compared numerator/denominator as whole numbers","feedback":"A larger numerator or denominator alone does not decide fraction size. Rewrite with same-size parts or use a benchmark."},"common-denominator":{"label":"Common-denominator reasoning","feedback":"Create equivalent fractions with a common denominator, then compare the numerators because the parts are now the same size."}}},{"id":"MEOU-O3","title":"Decompose fractions into equivalent sums","construct":"Decompose proper and improper fractions into sums while preserving the fractional unit and total amount.","sourceItems":[3,4,5],"generator":{"kind":"fractionDecompositionEOU","params":{"excludeTargets":["3/5","5/8","7/4"]}},"lesson":{"teach":["Before combining addends, make sure they name compatible fractional units.","With the same denominator, add the numerators and keep the denominator.","The same target fraction can have more than one correct decomposition, including fractions greater than one."],"guidedPrompt":"Check two things for every expression: are the parts compatible, and do the numerators total the target amount?"},"misconceptions":{"different-denominators":{"label":"Ignored unlike denominators","feedback":"The addends are not using the same-size parts. Do not combine them as if the denominators matched."},"added-across":{"label":"Added across numerator and denominator","feedback":"Adding numerators and denominators separately does not preserve the fraction amount. Keep the fractional unit consistent."},"wrong-total":{"label":"Miscalculated the total number of parts","feedback":"The denominators match, so add only the numerators and check that the total equals the target numerator."},"decomposition-concept":{"label":"Decomposition concept","feedback":"Build the target from same-size parts, then translate that model into a sum."}}},{"id":"MEOU-O4","title":"Use fraction comparison in real contexts","construct":"Translate contextual fraction data into comparisons and select entries above a benchmark fraction.","sourceItems":[6,8],"generator":{"kind":"fractionContextBundle","params":{"excludeCases":[]}},"lesson":{"teach":["Translate each situation into the fraction shown; do not compare raw numerators or denominators alone.","A fraction equal to the benchmark is not greater than the benchmark.","Use an equivalent fraction, common denominator, or benchmark strategy for each row."],"guidedPrompt":"Compare each row to the benchmark one at a time. Mark it greater, equal, or less before selecting your final two."},"misconceptions":{"equivalence-not-recognized":{"label":"Treated an equivalent fraction as greater","feedback":"One selected value is exactly equal to the benchmark. Equivalent is not the same as greater than."},"context-comparison":{"label":"Context comparison error","feedback":"Ignore the labels and compare the fraction amounts. Use a common denominator or benchmark for each row."}}},{"id":"MEOU-O5","title":"Justify equivalence and comparison","construct":"Write a mathematical explanation that supports an equivalence or comparison claim with a valid relationship.","sourceItems":[7,8],"generator":{"kind":"fractionReasoningBundle","params":{"excludeCases":[]}},"lesson":{"teach":["A correct yes/no or true/false answer is not a complete justification.","A strong explanation has a claim, mathematical evidence, and a statement connecting the evidence to the conclusion.","Use fraction language: same amount, equivalent, greater/less, numerator, denominator, common denominator, or part size."],"guidedPrompt":"Choose the correct claim and evidence first. Then write one complete sentence explaining why that evidence proves the claim."},"misconceptions":{"explanation-incomplete":{"label":"Answer without complete reasoning","feedback":"Your claim and evidence are correct, but you still need a complete sentence explaining the mathematical relationship."},"part-count":{"label":"More parts means larger amount","feedback":"More pieces do not automatically mean more amount. When the whole is split into more equal parts, each part is smaller."},"whole-number-comparison":{"label":"Whole-number comparison used in explanation","feedback":"Do not compare numerators or denominators by themselves. Explain the fraction amounts using same-size parts, equivalence, or a common denominator."},"equivalence-reasoning":{"label":"Equivalence explanation needs repair","feedback":"Show how both numerator and denominator changed by the same factor or how a model proves the same amount."},"comparison-reasoning":{"label":"Comparison explanation needs repair","feedback":"Use a valid comparison strategy and connect it to which fraction is greater or less."}}}]};
+</script>
+<script>(() => {
+  'use strict';
+  const ENGINE_VERSION = '1.3.0';
+  const CONFIG = window.REMEDIATION_CONFIG;
+  if (!CONFIG) throw new Error('REMEDIATION_CONFIG is missing.');
+
+  const storageKey = `metablooms-remediation:${CONFIG.assessment.id}:${CONFIG.schemaVersion}`;
+  const $ = (sel) => document.querySelector(sel);
+  const app = $('#app');
+
+  function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function gcd(a,b){ while(b){ [a,b]=[b,a%b]; } return Math.abs(a); }
+  function fracText(n,d){ return `${n}/${d}`; }
+  function sample(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function shuffled(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+  function intVal(id){ const v=parseInt($(id)?.value,10); return Number.isFinite(v)?v:null; }
+
+  function newState(){
+    const objectives={};
+    CONFIG.objectives.forEach(o => objectives[o.id]={
+      diagnosticDone:false, diagnosticCorrect:false, retrievalPassed:false, transferPassed:false,
+      loops:0, lastMisconception:null, seenItems:[]
+    });
+    return {
+      engineVersion:ENGINE_VERSION, schemaVersion:CONFIG.schemaVersion,
+      student:'', eligibility:'', startedAt:null, completedAt:null,
+      phase:'entry', objectiveIndex:0, step:'diagnostic', returnToTransfer:false,
+      transferOrder:[], transferIndex:0, currentItem:null, objectives, receipt:null
+    };
+  }
+  let volatileStore=null;
+  let state = load() || newState();
+
+  function save(){
+    const raw=JSON.stringify(state); volatileStore=raw;
+    try { localStorage.setItem(storageKey, raw); } catch { /* volatile fallback remains active */ }
+  }
+  function load(){
+    let raw=null;
+    try { raw=localStorage.getItem(storageKey); } catch { /* storage unavailable */ }
+    raw=raw||volatileStore;
+    try { return raw?JSON.parse(raw):null; } catch { return null; }
+  }
+  function reset(){
+    if(!confirm('Erase saved progress for this assessment on this browser?')) return;
+    try { localStorage.removeItem(storageKey); } catch { /* storage unavailable */ }
+    volatileStore=null; state=newState(); render();
+  }
+
+  function objective(){ return CONFIG.objectives[state.objectiveIndex]; }
+  function ostate(id=objective().id){ return state.objectives[id]; }
+
+  function freshKey(item){ return item.uid || `${item.kind}:${item.n||''}/${item.d||''}:${item.targetN||''}/${item.targetD||''}`; }
+
+  function makeNumberLine(params){
+    let d,n,key,tries=0;
+    do {
+      d=sample(params.denominators); n=2+Math.floor(Math.random()*(d-2)); key=fracText(n,d); tries++;
+    } while((params.exclude||[]).includes(key) && tries<100);
+    return {kind:'numberLineUnitFraction', n,d, prompt:`The marked point is ${n}/${d}. Complete the unit-fraction representation.`};
+  }
+  function makeModel(params){
+    let d,n,key,tries=0;
+    do {
+      d=sample(params.denominators); n=d+1+Math.floor(Math.random()*(d-1)); key=fracText(n,d); tries++;
+    } while((params.exclude||[]).includes(key) && tries<100);
+    return {kind:'multiWholeModel',n,d,wholes:2,prompt:'Write the fraction represented by the shaded model.'};
+  }
+  function expr(parts,d){ return parts.map(x=>`${x}/${d}`).join(' + '); }
+  function makeDecomp(params){
+    let d,n,key,tries=0;
+    do {
+      d=sample(params.denominators);
+      const lo=Math.max(d+1,params.numeratorMin||d+1), hi=Math.min((params.numeratorMax||10),2*d-1);
+      n=lo+Math.floor(Math.random()*Math.max(1,hi-lo+1)); key=fracText(n,d); tries++;
+    } while((params.exclude||[]).includes(key) && tries<100);
+    let a=Math.max(1,Math.floor(n/2)), b=n-a;
+    if(b===0){b=1;a=n-1;}
+    const valid1={text:Array(n).fill(`1/${d}`).join(' + '),valid:true,tag:'unit'};
+    const valid2={text:expr([a,b],d),valid:true,tag:'split'};
+    const bad1={text:expr([a,Math.max(1,b-1)],d),valid:false,tag:'wrong-total'};
+    const bad2={text:`${a}/${d} + ${b}/${d+1}`,valid:false,tag:'changed-unit'};
+    const bad3={text:`${n}/${d*2}`,valid:false,tag:'wrong-total'};
+    const options=shuffled([valid1,valid2,bad1,bad2,bad3]);
+    return {kind:'fractionDecomposition',targetN:n,targetD:d,options,prompt:`Select exactly TWO expressions equal to ${n}/${d}.`};
+  }
+  const MATTER_EXAMPLES = [
+    {id:'pebble',text:'a smooth pebble',state:'solid'},
+    {id:'rubber-band',text:'a stretched rubber band',state:'solid'},
+    {id:'wood-block',text:'a wooden block',state:'solid'},
+    {id:'cooking-oil',text:'cooking oil poured into a cup',state:'liquid'},
+    {id:'juice',text:'apple juice in a bottle',state:'liquid'},
+    {id:'dish-soap',text:'liquid dish soap',state:'liquid'},
+    {id:'oxygen-tank',text:'oxygen inside a scuba tank',state:'gas'},
+    {id:'helium-balloon',text:'helium inside a party balloon',state:'gas'},
+    {id:'carbon-dioxide',text:'carbon dioxide inside a sealed container',state:'gas'}
+  ];
+  const STATE_PROPERTIES={
+    solid:'has a definite shape and a definite volume',
+    liquid:'has a definite volume but takes the shape of its container',
+    gas:'does not have a definite shape or a definite volume'
+  };
+  function matterModelSvg(state){
+    if(state==='solid') return `<svg class="science-svg" viewBox="0 0 360 180" role="img" aria-label="A solid object that keeps its own shape"><rect x="20" y="130" width="320" height="20" class="bench"/><rect x="125" y="55" width="110" height="75" rx="8" class="solid-shape"/></svg>`;
+    if(state==='liquid') return `<svg class="science-svg" viewBox="0 0 360 180" role="img" aria-label="A liquid taking the shape of a container"><path d="M105 35 L255 35 L235 150 L125 150 Z" class="container"/><path d="M120 95 L240 95 L232 142 L128 142 Z" class="liquid-fill"/></svg>`;
+    return `<svg class="science-svg" viewBox="0 0 360 180" role="img" aria-label="A gas spread throughout a closed container"><rect x="95" y="25" width="170" height="130" rx="18" class="container"/>${[[120,55],[170,45],[225,65],[140,100],[205,115],[235,135],[165,135]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="8" class="gas-dot"/>`).join('')}</svg>`;
+  }
+  function makeStateMatterBundle(params){
+    const ex=sample(MATTER_EXAMPLES.filter(x=>!(params.excludeExamples||[]).includes(x.id)));
+    const states=shuffled(['solid','liquid','gas']);
+    const modelState=sample(states.filter(s=>s!==ex.state));
+    return {kind:'stateMatterBundle',uid:`matter:${ex.id}:${modelState}`,prompt:'Complete both parts about states of matter.',example:ex,
+      propertyOptions:states.map(s=>({value:s,text:STATE_PROPERTIES[s]})), modelState,
+      stateOptions:shuffled(['solid','liquid','gas']), answerState:ex.state, answerModel:modelState};
+  }
+  const HEAT_CASES=[
+    {id:'ice-warms',a:'A solid is heated until it changes state.',answerA:'liquid',b:'A liquid continues to gain heat until it changes state again.',answerB:'gas'},
+    {id:'vapor-cools',a:'A gas is cooled until it changes state.',answerA:'liquid',b:'That liquid continues to lose heat until it changes state again.',answerB:'solid'},
+    {id:'wax-water',a:'A solid sample gains enough heat to melt.',answerA:'liquid',b:'A different liquid loses enough heat to freeze.',answerB:'solid'},
+    {id:'two-directions',a:'A liquid gains heat and changes state.',answerA:'gas',b:'A gas loses heat and changes state.',answerB:'liquid'},
+    {id:'freeze-boil',a:'A liquid loses heat until it freezes.',answerA:'solid',b:'A liquid gains heat until it becomes a gas.',answerB:'gas'}
+  ];
+  function makeStateChangeBundle(params){
+    const c=sample(HEAT_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    return {kind:'stateChangeBundle',uid:`change:${c.id}`,prompt:'Use heating and cooling to predict each state change.',case:c,
+      stateOptions:['solid','liquid','gas'],answerA:c.answerA,answerB:c.answerB};
+  }
+  const SAFETY_CASES=[
+    {id:'chalk-water',scenario:'Students mix powdered chalk with water and stir it near eye level.',hazard:'particles or splashes could reach the eyes'},
+    {id:'gravel-sand',scenario:'Students pour dry gravel and sand between containers to compare the materials.',hazard:'small particles could reach the eyes'},
+    {id:'colored-water',scenario:'Students pour colored water between graduated containers.',hazard:'liquid could splash toward the eyes'},
+    {id:'soil-sieve',scenario:'Students shake dry soil through a sieve to separate particle sizes.',hazard:'dust or small particles could reach the eyes'},
+    {id:'salt-water',scenario:'Students stir salt into water and compare the mixture before and after stirring.',hazard:'liquid could splash toward the eyes'}
+  ];
+  function makeSafetyBundle(params){
+    const c=sample(SAFETY_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    const equipment=[
+      {value:'goggles',text:'safety goggles'}, {value:'helmet',text:'a helmet'},
+      {value:'first-aid',text:'a first-aid kit'}, {value:'apron',text:'an apron only'}
+    ];
+    const reasons=[
+      {value:'protect-eyes',text:`to protect the eyes because ${c.hazard}`},
+      {value:'improve-vision',text:'to make objects look larger and clearer'},
+      {value:'hair',text:'to keep hair out of the eyes'},
+      {value:'distortion',text:'to stop objects from looking distorted'}
+    ];
+    return {kind:'safetyBundle',uid:`safety:${c.id}`,prompt:'Choose the best safety equipment and the reason it is needed.',case:c,
+      equipment:shuffled(equipment),reasons:shuffled(reasons),answerEquipment:'goggles',answerReason:'protect-eyes'};
+  }
+
+  const DENSITY_CASES=[
+    {id:'cork-key',float:'cork',sink:'key'},
+    {id:'foam-marble',float:'foam block',sink:'glass marble'},
+    {id:'wood-washer',float:'small wood cube',sink:'metal washer'},
+    {id:'plastic-stone',float:'hollow plastic ball',sink:'stone'},
+    {id:'wax-bolt',float:'wax cube',sink:'steel bolt'},
+    {id:'eraser-coin',float:'foam eraser',sink:'coin'}
+  ];
+  const LAYER_CASES=[
+    {id:'oil-water-syrup',top:'oil',middle:'water',bottom:'corn syrup'},
+    {id:'foam-water-sand',top:'foam beads',middle:'water',bottom:'sand'},
+    {id:'cork-water-clay',top:'cork pieces',middle:'water',bottom:'clay'},
+    {id:'plastic-water-glass',top:'hollow plastic beads',middle:'water',bottom:'glass beads'}
+  ];
+  function densityLayersSvg(c){
+    return `<svg class="science-svg density-svg" viewBox="0 0 440 255" role="img" aria-label="Three layers arranged from top to bottom: ${esc(c.top)}, ${esc(c.middle)}, and ${esc(c.bottom)}.">
+      <rect x="105" y="25" width="230" height="190" rx="18" class="container"/>
+      <rect x="112" y="42" width="216" height="52" class="layer layer-top"/><rect x="112" y="94" width="216" height="52" class="layer layer-mid"/><rect x="112" y="146" width="216" height="62" class="layer layer-bottom"/>
+      <text x="220" y="75" text-anchor="middle">${esc(c.top)}</text><text x="220" y="127" text-anchor="middle">${esc(c.middle)}</text><text x="220" y="184" text-anchor="middle">${esc(c.bottom)}</text></svg>`;
+  }
+  function makeDensityBundle(params){
+    const c=sample(DENSITY_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    const l=sample(LAYER_CASES.filter(x=>!(params.excludeLayers||[]).includes(x.id)));
+    const claims=shuffled([
+      {value:'float-less',text:`The ${c.float} is less dense than water.`,correct:true,tag:'float'},
+      {value:'sink-less',text:`The ${c.sink} is less dense than water.`,correct:false,tag:'sink-reversal'},
+      {value:'size',text:`The ${c.sink} must be larger than the ${c.float}.`,correct:false,tag:'mass-size'},
+      {value:'same',text:`The two objects must have the same density.`,correct:false,tag:'same-density'}
+    ]);
+    return {kind:'densityBundle',uid:`density:${c.id}:${l.id}`,prompt:'Use the observations as evidence about density.',case:c,layers:l,claims,answerClaim:'float-less',answerLayer:l.bottom};
+  }
+
+  const MAGNET_OBJECT_SETS=[
+    {id:'set-a',objects:[['steel paper clip',true],['wooden craft stick',false],['plastic button',false],['iron nail',true]]},
+    {id:'set-b',objects:[['steel washer',true],['rubber band',false],['copper penny',false],['iron screw',true]]},
+    {id:'set-c',objects:[['iron tack',true],['aluminum foil',false],['wood bead',false],['steel staple',true]]},
+    {id:'set-d',objects:[['steel binder clip',true],['plastic cap',false],['brass fastener',false],['iron bolt',true]]}
+  ];
+  const MAGNET_STRENGTH_SETS=[
+    {id:'m1',rows:[['Magnet A',4],['Magnet B',11],['Magnet C',7]]},
+    {id:'m2',rows:[['Magnet J',9],['Magnet K',3],['Magnet L',14]]},
+    {id:'m3',rows:[['Magnet X',6],['Magnet Y',12],['Magnet Z',2]]},
+    {id:'m4',rows:[['Magnet P',15],['Magnet Q',8],['Magnet R',5]]}
+  ];
+  function makeMagnetismBundle(params){
+    const s=sample(MAGNET_OBJECT_SETS.filter(x=>!(params.excludeObjectSets||[]).includes(x.id)));
+    const m=sample(MAGNET_STRENGTH_SETS.filter(x=>!(params.excludeStrengthSets||[]).includes(x.id)));
+    const objects=shuffled(s.objects.map(([text,magnetic],i)=>({id:`o${i}`,text,magnetic})));
+    const strongest=m.rows.reduce((a,b)=>b[1]>a[1]?b:a,m.rows[0])[0];
+    return {kind:'magnetismBundle',uid:`magnet:${s.id}:${m.id}`,prompt:'Use magnetic-test evidence, not appearance.',objects,strengthRows:m.rows,answerStrongest:strongest};
+  }
+
+  const TOOL_BANK=[
+    {id:'meter-stick',text:'meter stick',property:'length',unit:'centimeters or meters'},
+    {id:'balance',text:'triple beam balance',property:'mass',unit:'grams'},
+    {id:'thermometer',text:'thermometer',property:'temperature',unit:'degrees Celsius'},
+    {id:'cylinder',text:'graduated cylinder',property:'volume',unit:'milliliters'},
+    {id:'hand-lens',text:'hand lens',property:'magnifies objects',unit:'no measurement unit'}
+  ];
+  const TOOL_SCENARIOS=[
+    {id:'length-leaf',property:'length',scenario:'measure the length of a large leaf'},
+    {id:'mass-rock',property:'mass',scenario:'measure the mass of a rock'},
+    {id:'temp-water',property:'temperature',scenario:'measure the temperature of water'},
+    {id:'volume-water',property:'volume',scenario:'measure the volume of water'},
+    {id:'view-crystal',property:'magnifies objects',scenario:'look closely at tiny crystals'}
+  ];
+  function makeToolUseBundle(params){
+    const sc=sample(TOOL_SCENARIOS.filter(x=>!(params.excludeScenarios||[]).includes(x.id)));
+    const answerTool=TOOL_BANK.find(t=>t.property===sc.property);
+    let second=sample(TOOL_BANK.filter(t=>t.id!==answerTool.id));
+    const toolOptions=shuffled(TOOL_BANK.map(t=>({value:t.id,text:t.text})));
+    const propertyOptions=shuffled(TOOL_BANK.map(t=>({value:t.property,text:t.property})));
+    return {kind:'toolUseBundle',uid:`tool:${sc.id}:${second.id}`,prompt:'Match scientific tools to what they are used to observe or measure.',scenario:sc,toolOptions,answerTool:answerTool.id,secondTool:second,propertyOptions,answerProperty:second.property};
+  }
+
+  const BALANCE_CASES=[
+    {id:'b1',hundreds:0,tens:40,ones:4.5,total:44.5},
+    {id:'b2',hundreds:100,tens:20,ones:3.4,total:123.4},
+    {id:'b3',hundreds:0,tens:70,ones:6.2,total:76.2},
+    {id:'b4',hundreds:200,tens:30,ones:1.7,total:231.7},
+    {id:'b5',hundreds:100,tens:50,ones:8.6,total:158.6}
+  ];
+  const TEMP_CASES=[
+    {id:'t1',value:72},{id:'t2',value:76},{id:'t3',value:81},{id:'t4',value:64},{id:'t5',value:88}
+  ];
+  function balanceSvg(c){
+    const beam=(label,val,max,y)=>{ const x0=65,x1=640,x=x0+(val/max)*(x1-x0); return `<text x="30" y="${y+6}">${label}</text><line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" class="instrument-line"/><circle cx="${x}" cy="${y}" r="10" class="instrument-marker"/><text x="${x}" y="${y-14}" text-anchor="middle">${val}</text>`; };
+    return `<svg class="science-svg instrument-svg" viewBox="0 0 700 250" role="img" aria-label="Triple beam balance with beam readings ${c.hundreds}, ${c.tens}, and ${c.ones} grams.">${beam('100 g beam',c.hundreds,500,60)}${beam('10 g beam',c.tens,100,125)}${beam('1 g beam',c.ones,10,190)}</svg>`;
+  }
+  function thermometerSvg(value){
+    const min=50,max=100, top=30,bottom=260, y=bottom-(value-min)/(max-min)*(bottom-top);
+    let marks=''; for(let v=min;v<=max;v+=5){ const yy=bottom-(v-min)/(max-min)*(bottom-top); marks+=`<line x1="185" y1="${yy}" x2="215" y2="${yy}" class="temp-mark"/><text x="225" y="${yy+5}">${v}</text>`; }
+    return `<svg class="science-svg thermometer-svg" viewBox="0 0 360 310" role="img" aria-label="Thermometer showing ${value} degrees Celsius."><rect x="142" y="25" width="38" height="245" rx="19" class="thermometer-tube"/><rect x="151" y="${y}" width="20" height="${260-y}" class="thermometer-fill"/><circle cx="161" cy="268" r="34" class="thermometer-fill"/>${marks}<text x="250" y="35">°C</text></svg>`;
+  }
+  function makeMeasurementBundle(params){
+    const b=sample(BALANCE_CASES.filter(x=>!(params.excludeBalances||[]).includes(x.id)));
+    const t=sample(TEMP_CASES.filter(x=>!(params.excludeTemps||[]).includes(x.id)));
+    const spill=sample([
+      {id:'spill-water',text:'Some water spills out of a beaker that is still on the balance.',answer:'decrease'},
+      {id:'remove-rock',text:'A rock is removed from a container that is still on the balance.',answer:'decrease'},
+      {id:'add-sand',text:'More sand is added to a cup that is still on the balance.',answer:'increase'},
+      {id:'nothing',text:'Nothing is added or removed from a closed container on the balance.',answer:'same'}
+    ]);
+    return {kind:'measurementBundle',uid:`measure:${b.id}:${t.id}:${spill.id}`,prompt:'Read the instruments and reason about a change in mass.',balance:b,temperature:t,change:spill,answerMass:b.total,answerTemp:t.value,answerChange:spill.answer};
+  }
+
+  const INVESTIGATION_CASES=[
+    {id:'mass-float',setup:'Three objects with different measured masses are placed, one at a time, into equal amounts of water.',question:'Does the mass of an object affect whether it sinks or floats?',changed:'mass',outcome:'sink or float'},
+    {id:'material-float',setup:'Equal-size objects made from different materials are placed, one at a time, into equal amounts of water.',question:'Does the type of material affect whether an object sinks or floats?',changed:'type of material',outcome:'sink or float'},
+    {id:'magnet-clips',setup:'Three magnets are each tested with the same kind of paper clip.',question:'Does the magnet used affect how many paper clips it can pick up?',changed:'magnet used',outcome:'number of paper clips picked up'},
+    {id:'water-temp-float',setup:'The same object is placed into equal amounts of water at three different temperatures.',question:'Does water temperature affect whether this object sinks or floats?',changed:'water temperature',outcome:'sink or float'}
+  ];
+  function makeInvestigationBundle(params){
+    const c=sample(INVESTIGATION_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    const qopts=shuffled([
+      {value:'correct',text:c.question,correct:true},
+      {value:'why',text:`Why does ${c.outcome} happen?`,correct:false,tag:'untestable-why'},
+      {value:'unrelated',text:'Does the color of the equipment change the temperature of the room?',correct:false,tag:'unrelated-variable'},
+      {value:'magnetism',text:'Does every object have the same magnetism?',correct:false,tag:'unrelated-variable'}
+    ]);
+    const evopts=shuffled([
+      {value:'changed',text:`Record the ${c.changed} for each trial.`,correct:true},
+      {value:'outcome',text:`Record the ${c.outcome} for each trial.`,correct:true},
+      {value:'color',text:'Record the color of every object or container.',correct:false,tag:'irrelevant-data'},
+      {value:'room',text:'Record the room number.',correct:false,tag:'irrelevant-data'},
+      {value:'name',text:'Record the name of the student who set up each trial.',correct:false,tag:'irrelevant-data'}
+    ]);
+    return {kind:'investigationBundle',uid:`investigation:${c.id}`,prompt:'Use the setup to identify a testable question and the evidence needed to answer it.',case:c,qopts,evopts};
+  }
+
+  const DATA_CASES=[
+    {id:'d1',rows:[
+      {name:'Object A',mass:2,attracted:false,floats:true},
+      {name:'Object B',mass:7,attracted:true,floats:false},
+      {name:'Object C',mass:4,attracted:false,floats:false}]},
+    {id:'d2',rows:[
+      {name:'Object J',mass:9,attracted:false,floats:false},
+      {name:'Object K',mass:3,attracted:true,floats:true},
+      {name:'Object L',mass:6,attracted:false,floats:true}]},
+    {id:'d3',rows:[
+      {name:'Object X',mass:5,attracted:true,floats:false},
+      {name:'Object Y',mass:8,attracted:false,floats:false},
+      {name:'Object Z',mass:1,attracted:false,floats:true}]},
+    {id:'d4',rows:[
+      {name:'Object P',mass:4,attracted:false,floats:true},
+      {name:'Object Q',mass:10,attracted:true,floats:false},
+      {name:'Object R',mass:6,attracted:false,floats:true}]}
+  ];
+  function makePropertyDataBundle(params){
+    const c=sample(DATA_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    const target=sample(c.rows);
+    const greatest=c.rows.reduce((a,b)=>b.mass>a.mass?b:a,c.rows[0]);
+    return {kind:'propertyDataBundle',uid:`data:${c.id}:${target.name}`,prompt:'Organize the observations in the correct property columns, then interpret the completed data.',rows:c.rows,targetName:target.name,answerMagnetism:target.attracted?'magnetic':'non-magnetic',answerFloat:target.floats?'float':'sink',answerGreatest:greatest.name};
+  }
+
+
+  function lcm(a,b){ return Math.abs(a*b)/gcd(a,b); }
+  function fracEq(a,b,c,d){ return a*d===c*b; }
+  function fractionBarSvg(n,d,label=''){
+    const w=680,h=92,x=20,y=24,bw=640,bh=42,cell=bw/d;
+    let rects='';
+    for(let i=0;i<d;i++) rects+=`<rect x="${x+i*cell}" y="${y}" width="${cell}" height="${bh}" fill="${i<n?'var(--model-fill)':'var(--model-empty)'}" class="model-cell"/>`;
+    return `<div class="fraction-visual"><div class="fraction-label">${esc(label||`${n}/${d}`)}</div><svg class="math-svg compact-svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="Fraction bar showing ${n} of ${d} equal parts shaded.">${rects}</svg></div>`;
+  }
+
+  const EQUIV_TARGETS=[
+    {n:1,d:3},{n:2,d:5},{n:3,d:4},{n:2,d:7},{n:3,d:8},{n:5,d:6},{n:4,d:9},{n:5,d:8},{n:7,d:10},{n:5,d:12}
+  ];
+  function makeFractionEquivalenceBundle(params){
+    const pool=EQUIV_TARGETS.filter(t=>!(params.excludeTargets||[]).includes(`${t.n}/${t.d}`));
+    const t=sample(pool), m1=2, m2=3;
+    const correct=[
+      {text:`${t.n*m1}/${t.d*m1}`,valid:true,tag:'equivalent'},
+      {text:`${t.n*m2}/${t.d*m2}`,valid:true,tag:'equivalent'}
+    ];
+    let badA={text:`${t.n+1}/${t.d+1}`,valid:false,tag:'add-same'};
+    let badB={text:`${Math.max(1,t.n-1)}/${Math.max(2,t.d-1)}`,valid:false,tag:'subtract-same'};
+    let q=Math.max(2,Math.round(t.d/t.n));
+    let badC={text:`${q}/1`,valid:false,tag:'divide-parts'};
+    const all=[]; const seen=new Set();
+    for(const o of [...correct,badA,badB,badC]){ if(!seen.has(o.text)&&!fracEq(...o.text.split('/').map(Number),t.n,t.d)){ seen.add(o.text); all.push(o); } else if(o.valid){ seen.add(o.text); all.push(o); } }
+    while(all.length<5){ const nn=t.n+all.length, dd=t.d+1; const text=`${nn}/${dd}`; if(!seen.has(text)&&!fracEq(nn,dd,t.n,t.d)){seen.add(text);all.push({text,valid:false,tag:'whole-number-parts'});} }
+    return {kind:'fractionEquivalenceBundle',uid:`eq:${t.n}/${t.d}`,prompt:`Select exactly TWO fractions equivalent to ${t.n}/${t.d}.`,targetN:t.n,targetD:t.d,options:shuffled(all.slice(0,5))};
+  }
+
+  const COMPARE_CASES=[
+    {id:'c1',a:[2,3],b:[5,8]},{id:'c2',a:[3,4],b:[5,6]},{id:'c3',a:[4,5],b:[7,10]},
+    {id:'c4',a:[3,8],b:[2,5]},{id:'c5',a:[5,12],b:[3,8]},{id:'c6',a:[7,8],b:[5,6]},
+    {id:'c7',a:[2,7],b:[3,10]},{id:'c8',a:[5,9],b:[4,7]}
+  ];
+  function makeFractionComparisonBundle(params){
+    const c=sample(COMPARE_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    const [an,ad]=c.a,[bn,bd]=c.b, left=an*bd, right=bn*ad;
+    const symbol=left===right?'=':(left>right?'>':'<');
+    const L=lcm(ad,bd), ae=an*(L/ad), be=bn*(L/bd);
+    const correctText=`${an}/${ad} = ${ae}/${L} and ${bn}/${bd} = ${be}/${L}; compare ${ae} and ${be}.`;
+    const reasons=shuffled([
+      {value:'common',text:correctText,correct:true},
+      {value:'denom',text:`Compare ${ad} and ${bd} as whole numbers; the fraction with the ${ad>bd?'larger':'smaller'} denominator must be greater.`,correct:false,tag:'whole-number-denominator'},
+      {value:'numer',text:`Compare only the numerators ${an} and ${bn}; the larger numerator must make the larger fraction.`,correct:false,tag:'whole-number-numerator'},
+      {value:'parts',text:'The fraction with more total parts must always be greater.',correct:false,tag:'part-count'}
+    ]);
+    return {kind:'fractionComparisonBundle',uid:`cmp:${c.id}`,prompt:'Choose the correct comparison symbol and the reasoning that proves it.',aN:an,aD:ad,bN:bn,bD:bd,answerSymbol:symbol,reasons,answerReason:'common'};
+  }
+
+  const DECOMP_TARGETS=[{n:2,d:3},{n:3,d:4},{n:4,d:5},{n:5,d:6},{n:7,d:5},{n:9,d:6},{n:8,d:3},{n:11,d:8},{n:7,d:6},{n:9,d:8}];
+  function makeFractionDecompositionEOU(params){
+    const t=sample(DECOMP_TARGETS.filter(x=>!(params.excludeTargets||[]).includes(`${x.n}/${x.d}`)));
+    const n=t.n,d=t.d; let a=Math.max(1,Math.floor(n/2)),b=n-a;
+    if(b<1){a=1;b=n-1;}
+    const valid1={text:Array(n).fill(`1/${d}`).join(' + '),valid:true,tag:'unit'};
+    const valid2={text:`${a}/${d} + ${b}/${d}`,valid:true,tag:'split'};
+    const bad1={text:`${a}/${d} + ${Math.max(1,b-1)}/${d}`,valid:false,tag:'wrong-total'};
+    const bad2={text:`${a}/${d} + ${b}/${d+1}`,valid:false,tag:'different-denominators'};
+    const bad3={text:`${a+1}/${d+1} + ${Math.max(1,b-1)}/${d+1}`,valid:false,tag:'added-across'};
+    return {kind:'fractionDecompositionEOU',uid:`decomp-eou:${n}/${d}`,prompt:`Select exactly TWO expressions equivalent to ${n}/${d}.`,targetN:n,targetD:d,options:shuffled([valid1,valid2,bad1,bad2,bad3])};
+  }
+
+  const CONTEXT_CASES=[
+    {id:'ctx1',context:'Five teams are tracking the fraction of a mural they painted.',benchmark:[1,3],rows:[['Team A',1,6],['Team B',2,5],['Team C',3,8],['Team D',1,3],['Team E',2,9]],answers:['Team B','Team C']},
+    {id:'ctx2',context:'Five clubs are tracking the fraction of their reading goal completed.',benchmark:[1,2],rows:[['Club J',3,8],['Club K',5,8],['Club L',4,10],['Club M',7,12],['Club N',2,4]],answers:['Club K','Club M']},
+    {id:'ctx3',context:'Five groups are tracking the fraction of a garden plot planted.',benchmark:[1,4],rows:[['Group P',2,10],['Group Q',2,7],['Group R',3,16],['Group S',1,3],['Group T',2,8]],answers:['Group Q','Group S']},
+    {id:'ctx4',context:'Five classes are tracking the fraction of a service project completed.',benchmark:[2,5],rows:[['Class A',1,3],['Class B',3,5],['Class C',4,10],['Class D',5,12],['Class E',2,7]],answers:['Class B','Class D']}
+  ];
+  function makeFractionContextBundle(params){
+    const c=sample(CONTEXT_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    const [bn,bd]=c.benchmark;
+    const rows=c.rows.map(([name,n,d])=>({name,n,d,correct:c.answers.includes(name),equal:fracEq(n,d,bn,bd)}));
+    return {kind:'fractionContextBundle',uid:`context:${c.id}`,prompt:`${c.context} Select exactly TWO that are greater than ${bn}/${bd}.`,benchmarkN:bn,benchmarkD:bd,rows,answers:c.answers};
+  }
+
+  const REASON_CASES=[
+    {id:'r1',mode:'equivalence',claim:'Jordan says 2/3 and 6/9 are not equivalent because 6/9 has more parts. Do you agree?',answerClaim:'disagree',fractions:['2/3','6/9'],answerEvidence:'scale',evidence:[
+      {value:'scale',text:'6/9 is made by multiplying both the numerator and denominator of 2/3 by 3, so the amount stays the same.',correct:true},
+      {value:'parts',text:'6/9 is larger because 9 total parts is more than 3 total parts.',correct:false,tag:'part-count'},
+      {value:'subtract',text:'Subtract the same number from the numerator and denominator to test equivalence.',correct:false,tag:'subtract-same'}]},
+    {id:'r2',mode:'equivalence',claim:'Maya says 3/4 and 6/8 are equivalent. Do you agree?',answerClaim:'agree',fractions:['3/4','6/8'],answerEvidence:'scale',evidence:[
+      {value:'scale',text:'Both numerator and denominator of 3/4 were multiplied by 2, so 6/8 names the same amount.',correct:true},
+      {value:'parts',text:'6/8 is larger because it has more pieces.',correct:false,tag:'part-count'},
+      {value:'numerator',text:'They are equivalent only because 6 is twice 3.',correct:false,tag:'one-number-only'}]},
+    {id:'r3',mode:'comparison',claim:'Is the statement 3/8 > 1/3 true or false?',answerClaim:'true',fractions:['3/8','1/3'],answerEvidence:'common',evidence:[
+      {value:'common',text:'3/8 = 9/24 and 1/3 = 8/24, so 3/8 is greater.',correct:true},
+      {value:'denom',text:'1/3 is greater because 8 is greater than 3.',correct:false,tag:'whole-number-denominator'},
+      {value:'numerator',text:'3/8 is greater only because 3 is greater than 1.',correct:false,tag:'whole-number-numerator'}]},
+    {id:'r4',mode:'comparison',claim:'Is the statement 5/6 > 4/5 true or false?',answerClaim:'true',fractions:['5/6','4/5'],answerEvidence:'common',evidence:[
+      {value:'common',text:'5/6 = 25/30 and 4/5 = 24/30, so 5/6 is greater.',correct:true},
+      {value:'denom',text:'4/5 is greater because fifths are named with the smaller denominator.',correct:false,tag:'whole-number-denominator'},
+      {value:'numerator',text:'5/6 is greater only because 5 is greater than 4.',correct:false,tag:'whole-number-numerator'}]}
+  ];
+  function makeFractionReasoningBundle(params){
+    const c=sample(REASON_CASES.filter(x=>!(params.excludeCases||[]).includes(x.id)));
+    return {kind:'fractionReasoningBundle',uid:`reason:${c.id}`,prompt:c.claim,mode:c.mode,fractions:c.fractions,answerClaim:c.answerClaim,evidence:shuffled(c.evidence),answerEvidence:c.answerEvidence};
+  }
+
+  const generators={numberLineUnitFraction:makeNumberLine,multiWholeModel:makeModel,fractionDecomposition:makeDecomp,
+    stateMatterBundle:makeStateMatterBundle,stateChangeBundle:makeStateChangeBundle,safetyBundle:makeSafetyBundle,
+    densityBundle:makeDensityBundle,magnetismBundle:makeMagnetismBundle,toolUseBundle:makeToolUseBundle,measurementBundle:makeMeasurementBundle,investigationBundle:makeInvestigationBundle,propertyDataBundle:makePropertyDataBundle,
+    fractionEquivalenceBundle:makeFractionEquivalenceBundle,fractionComparisonBundle:makeFractionComparisonBundle,fractionDecompositionEOU:makeFractionDecompositionEOU,fractionContextBundle:makeFractionContextBundle,fractionReasoningBundle:makeFractionReasoningBundle};
+
+  function generateFor(obj){
+    const fn=generators[obj.generator.kind];
+    if(!fn) throw new Error(`Unknown generator: ${obj.generator.kind}`);
+    return fn(obj.generator.params||{});
+  }
+
+  function generateFreshFor(obj){
+    const os=state.objectives[obj.id];
+    os.seenItems=os.seenItems||[];
+    let item=null,key='',tries=0;
+    do {
+      item=generateFor(obj); key=freshKey(item); tries++;
+    } while(os.seenItems.includes(key) && tries<250);
+    if(os.seenItems.includes(key)) throw new Error(`Could not generate a fresh item for ${obj.id}`);
+    os.seenItems.push(key);
+    return item;
+  }
+  function ensureItem(){
+    if(!state.currentItem){ state.currentItem=generateFreshFor(objective()); save(); }
+    return state.currentItem;
+  }
+  function nextFresh(){ state.currentItem=generateFreshFor(objective()); save(); }
+
+  function numberLineSvg(item){
+    const w=720,h=155,x0=60,x1=660,y=75,step=(x1-x0)/item.d;
+    let ticks='';
+    for(let i=0;i<=item.d;i++){ const x=x0+i*step; ticks+=`<line x1="${x}" y1="${y-18}" x2="${x}" y2="${y+18}" class="tick"/>`; }
+    const px=x0+item.n*step;
+    return `<svg class="math-svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="Number line from zero to one split into ${item.d} equal parts with a point at ${item.n}/${item.d}.">
+      <line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" class="axis"/>${ticks}
+      <circle cx="${px}" cy="${y}" r="11" class="point"/><text x="${x0}" y="125">0</text><text x="${x1-5}" y="125">1</text>
+      <text x="${px-18}" y="38" class="pointlabel">${item.n}/${item.d}</text></svg>`;
+  }
+  function modelSvg(item){
+    const parts=item.d, shaded=item.n, x=35, y1=35, y2=125, bw=650, bh=58, cell=bw/parts;
+    let rects='';
+    for(let row=0;row<2;row++){
+      for(let i=0;i<parts;i++){
+        const idx=row*parts+i, fill=idx<shaded?'var(--model-fill)':'var(--model-empty)';
+        rects+=`<rect x="${x+i*cell}" y="${row?y2:y1}" width="${cell}" height="${bh}" fill="${fill}" class="model-cell"/>`;
+      }
+    }
+    return `<svg class="math-svg" viewBox="0 0 720 220" role="img" aria-label="Two equal bars, each split into ${parts} equal parts. ${shaded} parts are shaded.">${rects}</svg>`;
+  }
+  function renderResponse(item){
+    if(item.kind==='numberLineUnitFraction'){
+      return `${numberLineSvg(item)}
+      <div class="response-grid">
+        <label>Number of copies of the unit fraction<input id="copies" inputmode="numeric" type="number" min="1" autocomplete="off"></label>
+        <label>Denominator of one unit fraction<input id="unitDen" inputmode="numeric" type="number" min="2" autocomplete="off"></label>
+      </div>
+      <p class="answer-preview">You are building: <strong>[copies] × 1/[denominator]</strong></p>`;
+    }
+    if(item.kind==='multiWholeModel'){
+      return `${modelSvg(item)}
+      <div class="response-grid">
+        <label>Numerator: total shaded parts<input id="modelNum" inputmode="numeric" type="number" min="1" autocomplete="off"></label>
+        <label>Denominator: equal parts in ONE whole<input id="modelDen" inputmode="numeric" type="number" min="2" autocomplete="off"></label>
+      </div>`;
+    }
+    if(item.kind==='fractionDecomposition'){
+      return `<div class="target-fraction">${item.targetN}/${item.targetD}</div>
+      <div class="choices">${item.options.map((o,i)=>`<label class="choice"><input type="checkbox" name="decomp" value="${i}"><span>${esc(o.text)}</span></label>`).join('')}</div>`;
+    }
+    if(item.kind==='stateMatterBundle'){
+      const propList=item.propertyOptions.map(o=>`<li><strong>${esc(o.value)}:</strong> ${esc(o.text)}</li>`).join('');
+      return `<div class="science-part"><h3>Part A - Classify an example</h3><p><strong>${esc(item.example.text)}</strong></p>
+        <div class="choices inline-choices">${item.stateOptions.map(v=>`<label class="choice"><input type="radio" name="matterA" value="${v}"><span>${esc(v)}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B - Read a model</h3>${matterModelSvg(item.modelState)}
+        <p>Which state of matter does the model represent?</p><div class="choices inline-choices">${['solid','liquid','gas'].map(v=>`<label class="choice"><input type="radio" name="matterB" value="${v}"><span>${esc(v)}</span></label>`).join('')}</div>
+        <details><summary>Property reference</summary><ul>${propList}</ul></details></div>`;
+    }
+    if(item.kind==='stateChangeBundle'){
+      return `<div class="state-path"><span class="heat-chip">Heat added</span><span>solid → liquid → gas</span><span class="cool-chip">Heat removed</span></div>
+        <div class="science-part"><h3>Part A</h3><p>${esc(item.case.a)}</p><div class="choices inline-choices">${item.stateOptions.map(v=>`<label class="choice"><input type="radio" name="changeA" value="${v}"><span>${v}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B</h3><p>${esc(item.case.b)}</p><div class="choices inline-choices">${item.stateOptions.map(v=>`<label class="choice"><input type="radio" name="changeB" value="${v}"><span>${v}</span></label>`).join('')}</div></div>`;
+    }
+    if(item.kind==='safetyBundle'){
+      return `<div class="science-part"><h3>Investigation</h3><p>${esc(item.case.scenario)}</p></div>
+        <div class="science-part"><h3>Part A - Equipment</h3><div class="choices">${item.equipment.map(o=>`<label class="choice"><input type="radio" name="safeA" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B - Why?</h3><div class="choices">${item.reasons.map(o=>`<label class="choice"><input type="radio" name="safeB" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>`;
+    }
+
+    if(item.kind==='densityBundle'){
+      return `<div class="science-part"><h3>Part A - Sink/float evidence</h3><p>The <strong>${esc(item.case.float)}</strong> floats in water. The <strong>${esc(item.case.sink)}</strong> sinks in water.</p><p>Which conclusion is supported?</p><div class="choices">${item.claims.map(o=>`<label class="choice"><input type="radio" name="densityA" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B - Density layers</h3>${densityLayersSvg(item.layers)}<p>Which material is the most dense?</p><div class="choices inline-choices">${shuffled([item.layers.top,item.layers.middle,item.layers.bottom]).map(v=>`<label class="choice"><input type="radio" name="densityB" value="${esc(v)}"><span>${esc(v)}</span></label>`).join('')}</div></div>`;
+    }
+    if(item.kind==='magnetismBundle'){
+      return `<div class="science-part"><h3>Part A - Magnetic or non-magnetic?</h3><p>Select the TWO objects that were attracted to a magnet.</p><div class="choices">${item.objects.map(o=>`<label class="choice"><input type="checkbox" name="magneticObj" value="${o.id}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B - Magnet strength</h3><table class="science-table"><thead><tr><th>Magnet</th><th>Paper clips picked up</th></tr></thead><tbody>${item.strengthRows.map(r=>`<tr><td>${esc(r[0])}</td><td>${r[1]}</td></tr>`).join('')}</tbody></table><p>Which magnet is strongest based on the data?</p><div class="choices inline-choices">${item.strengthRows.map(r=>`<label class="choice"><input type="radio" name="magnetStrong" value="${esc(r[0])}"><span>${esc(r[0])}</span></label>`).join('')}</div></div>`;
+    }
+    if(item.kind==='toolUseBundle'){
+      return `<div class="science-part"><h3>Part A - Choose a tool</h3><p>You need to ${esc(item.scenario.scenario)}. Which tool should you use?</p><div class="choices">${item.toolOptions.map(o=>`<label class="choice"><input type="radio" name="toolA" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B - Name the property</h3><p>A <strong>${esc(item.secondTool.text)}</strong> is used. What does it measure or observe?</p><div class="choices">${item.propertyOptions.map(o=>`<label class="choice"><input type="radio" name="toolB" value="${esc(o.value)}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>`;
+    }
+    if(item.kind==='measurementBundle'){
+      return `<div class="science-part"><h3>Part A - Triple beam balance</h3>${balanceSvg(item.balance)}<label>What mass is shown, in grams?<input id="massReading" type="number" step="0.1" inputmode="decimal" autocomplete="off"></label></div>
+        <div class="science-part"><h3>Part B - Thermometer</h3>${thermometerSvg(item.temperature.value)}<label>What temperature is shown, in °C?<input id="tempReading" type="number" step="1" inputmode="numeric" autocomplete="off"></label></div>
+        <div class="science-part"><h3>Part C - Change in mass</h3><p>${esc(item.change.text)}</p><div class="choices inline-choices">${['increase','decrease','same'].map(v=>`<label class="choice"><input type="radio" name="massChange" value="${v}"><span>${v}</span></label>`).join('')}</div></div>`;
+    }
+    if(item.kind==='investigationBundle'){
+      return `<div class="science-part"><h3>Setup</h3><p>${esc(item.case.setup)}</p></div><div class="science-part"><h3>Part A - Testable question</h3><div class="choices">${item.qopts.map(o=>`<label class="choice"><input type="radio" name="investQ" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B - Evidence</h3><p>Select TWO pieces of information that are needed to answer the question.</p><div class="choices">${item.evopts.map(o=>`<label class="choice"><input type="checkbox" name="investE" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>`;
+    }
+    if(item.kind==='propertyDataBundle'){
+      const target=item.rows.find(r=>r.name===item.targetName);
+      return `<div class="science-part"><h3>Observation notes</h3>${item.rows.map(r=>`<p><strong>${esc(r.name)}:</strong> mass ${r.mass} g; ${r.attracted?'was':'was not'} attracted to a magnet; ${r.floats?'floated':'sank'} in water.</p>`).join('')}</div>
+        <div class="science-part"><h3>Part A - Complete the row for ${esc(item.targetName)}</h3><table class="science-table"><thead><tr><th>Object</th><th>Mass</th><th>Magnetism</th><th>Sink/Float</th></tr></thead><tbody>${item.rows.map(r=>{const t=r.name===item.targetName;return `<tr><td>${esc(r.name)}</td><td>${r.mass} g</td><td>${t?'?':(r.attracted?'magnetic':'non-magnetic')}</td><td>${t?'?':(r.floats?'float':'sink')}</td></tr>`}).join('')}</tbody></table>
+        <div class="response-grid"><div><p>Magnetism</p>${['magnetic','non-magnetic'].map(v=>`<label class="choice"><input type="radio" name="dataMag" value="${v}"><span>${v}</span></label>`).join('')}</div><div><p>Sink or float</p>${['sink','float'].map(v=>`<label class="choice"><input type="radio" name="dataFloat" value="${v}"><span>${v}</span></label>`).join('')}</div></div></div>
+        <div class="science-part"><h3>Part B - Interpret the data</h3><p>Which object has the greatest mass?</p><div class="choices inline-choices">${item.rows.map(r=>`<label class="choice"><input type="radio" name="dataGreat" value="${esc(r.name)}"><span>${esc(r.name)}</span></label>`).join('')}</div></div>`;
+    }
+
+    if(item.kind==='fractionEquivalenceBundle'){
+      return `${fractionBarSvg(item.targetN,item.targetD,`${item.targetN}/${item.targetD}`)}<p>Select exactly TWO fractions that name the same amount.</p><div class="choices">${item.options.map((o,i)=>`<label class="choice"><input type="checkbox" name="eqOpt" value="${i}"><span>${esc(o.text)}</span></label>`).join('')}</div>`;
+    }
+    if(item.kind==='fractionComparisonBundle'){
+      return `<div class="fraction-pair">${fractionBarSvg(item.aN,item.aD,`${item.aN}/${item.aD}`)}${fractionBarSvg(item.bN,item.bD,`${item.bN}/${item.bD}`)}</div>
+        <div class="science-part"><h3>Part A - Compare</h3><div class="comparison-line"><span>${item.aN}/${item.aD}</span>${['<','>','='].map(v=>`<label class="symbol-choice"><input type="radio" name="cmpSymbol" value="${v}"><span>${esc(v)}</span></label>`).join('')}<span>${item.bN}/${item.bD}</span></div></div>
+        <div class="science-part"><h3>Part B - Prove it</h3><div class="choices">${item.reasons.map(o=>`<label class="choice"><input type="radio" name="cmpReason" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>`;
+    }
+    if(item.kind==='fractionDecompositionEOU'){
+      return `<div class="target-fraction">${item.targetN}/${item.targetD}</div><p>Select exactly TWO expressions that name the same amount.</p><div class="choices">${item.options.map((o,i)=>`<label class="choice"><input type="checkbox" name="eouDecomp" value="${i}"><span>${esc(o.text)}</span></label>`).join('')}</div>`;
+    }
+    if(item.kind==='fractionContextBundle'){
+      return `<div class="science-part"><p>${esc(item.prompt)}</p><table class="science-table"><thead><tr><th>Group</th><th>Fraction completed</th></tr></thead><tbody>${item.rows.map(r=>`<tr><td>${esc(r.name)}</td><td>${r.n}/${r.d}</td></tr>`).join('')}</tbody></table></div>
+        <div class="choices">${item.rows.map(r=>`<label class="choice"><input type="checkbox" name="contextOpt" value="${esc(r.name)}"><span>${esc(r.name)} - ${r.n}/${r.d}</span></label>`).join('')}</div>`;
+    }
+    if(item.kind==='fractionReasoningBundle'){
+      const claimOpts=item.mode==='equivalence'?[['agree','Agree'],['disagree','Disagree']]:[['true','True'],['false','False']];
+      return `<div class="science-part"><h3>Part A - Make a claim</h3><p>${esc(item.prompt)}</p><div class="choices inline-choices">${claimOpts.map(([v,t])=>`<label class="choice"><input type="radio" name="reasonClaim" value="${v}"><span>${t}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part B - Choose mathematical evidence</h3><div class="choices">${item.evidence.map(o=>`<label class="choice"><input type="radio" name="reasonEvidence" value="${o.value}"><span>${esc(o.text)}</span></label>`).join('')}</div></div>
+        <div class="science-part"><h3>Part C - Explain in your own words</h3><label>Write at least one complete sentence that explains the relationship.<textarea id="reasonText" rows="4" minlength="20" placeholder="I know this because..."></textarea></label><p class="answer-preview">Your explanation should use fraction language such as equivalent, same amount, greater, less, numerator, denominator, or parts.</p></div>`;
+    }
+
+    return '<p>Unsupported item.</p>';
+  }
+
+  function evaluate(item){
+    if(item.kind==='numberLineUnitFraction'){
+      const copies=intVal('#copies'), den=intVal('#unitDen');
+      const correct=copies===item.n && den===item.d;
+      if(correct) return {correct:true};
+      let branch='wrong-count';
+      if(copies===item.d && den===item.n) branch='swapped';
+      else if(copies===item.n+1) branch='counted-ticks';
+      else if(den!==item.d) branch='wrong-unit';
+      return {correct:false,branch};
+    }
+    if(item.kind==='multiWholeModel'){
+      const n=intVal('#modelNum'), d=intVal('#modelDen');
+      const correct=n===item.n && d===item.d;
+      if(correct) return {correct:true};
+      let branch='wrong-model-count';
+      if(d===item.d*2) branch='all-boxes-denominator';
+      else if(n===item.d || n===item.n-item.d) branch='ignored-extra-whole';
+      else if(n===item.d && d===item.n) branch='swapped';
+      return {correct:false,branch};
+    }
+    if(item.kind==='fractionDecomposition'){
+      const selected=[...document.querySelectorAll('input[name="decomp"]:checked')].map(x=>Number(x.value));
+      const valids=item.options.map((o,i)=>o.valid?i:null).filter(i=>i!==null);
+      const correct=selected.length===valids.length && selected.every(i=>valids.includes(i));
+      if(correct) return {correct:true};
+      if(selected.length===1 && selected.every(i=>valids.includes(i))) return {correct:false,branch:'one-answer-only'};
+      if(selected.some(i=>item.options[i]?.tag==='changed-unit')) return {correct:false,branch:'changed-unit'};
+      if(selected.some(i=>item.options[i]?.tag==='wrong-total')) return {correct:false,branch:'wrong-total'};
+      return {correct:false,branch:'selection-error'};
+    }
+
+    if(item.kind==='fractionEquivalenceBundle'){
+      const selected=[...document.querySelectorAll('input[name="eqOpt"]:checked')].map(x=>Number(x.value));
+      const valid=item.options.map((o,i)=>o.valid?i:null).filter(i=>i!==null);
+      if(selected.length===valid.length && selected.every(i=>valid.includes(i))) return {correct:true};
+      const tags=selected.map(i=>item.options[i]?.tag);
+      if(tags.includes('subtract-same')) return {correct:false,branch:'subtract-same'};
+      if(tags.includes('divide-parts')) return {correct:false,branch:'divide-parts'};
+      if(tags.includes('add-same')) return {correct:false,branch:'add-same'};
+      return {correct:false,branch:'equivalence-concept'};
+    }
+    if(item.kind==='fractionComparisonBundle'){
+      const s=document.querySelector('input[name="cmpSymbol"]:checked')?.value;
+      const r=document.querySelector('input[name="cmpReason"]:checked')?.value;
+      if(s===item.answerSymbol && r===item.answerReason) return {correct:true};
+      if(r===item.answerReason && s && s!==item.answerSymbol) return {correct:false,branch:'symbol-reversal'};
+      const ro=item.reasons.find(x=>x.value===r);
+      if(ro?.tag==='whole-number-denominator'||ro?.tag==='whole-number-numerator') return {correct:false,branch:'whole-number-comparison'};
+      return {correct:false,branch:'common-denominator'};
+    }
+    if(item.kind==='fractionDecompositionEOU'){
+      const selected=[...document.querySelectorAll('input[name="eouDecomp"]:checked')].map(x=>Number(x.value));
+      const valid=item.options.map((o,i)=>o.valid?i:null).filter(i=>i!==null);
+      if(selected.length===valid.length && selected.every(i=>valid.includes(i))) return {correct:true};
+      const tags=selected.map(i=>item.options[i]?.tag);
+      if(tags.includes('different-denominators')) return {correct:false,branch:'different-denominators'};
+      if(tags.includes('added-across')) return {correct:false,branch:'added-across'};
+      if(tags.includes('wrong-total')) return {correct:false,branch:'wrong-total'};
+      return {correct:false,branch:'decomposition-concept'};
+    }
+    if(item.kind==='fractionContextBundle'){
+      const selected=[...document.querySelectorAll('input[name="contextOpt"]:checked')].map(x=>x.value).sort();
+      const valid=[...item.answers].sort();
+      if(selected.length===valid.length && selected.every((v,i)=>v===valid[i])) return {correct:true};
+      const selectedRows=item.rows.filter(r=>selected.includes(r.name));
+      if(selectedRows.some(r=>r.equal)) return {correct:false,branch:'equivalence-not-recognized'};
+      return {correct:false,branch:'context-comparison'};
+    }
+    if(item.kind==='fractionReasoningBundle'){
+      const c=document.querySelector('input[name="reasonClaim"]:checked')?.value;
+      const e=document.querySelector('input[name="reasonEvidence"]:checked')?.value;
+      const text=($('#reasonText')?.value||'').trim();
+      const mathLanguage=/(because|equivalent|same|greater|less|numerator|denominator|parts|common)/i.test(text);
+      if(c===item.answerClaim && e===item.answerEvidence && text.length>=20 && mathLanguage) return {correct:true};
+      if(c===item.answerClaim && e===item.answerEvidence) return {correct:false,branch:'explanation-incomplete'};
+      const eo=item.evidence.find(x=>x.value===e);
+      if(eo?.tag==='part-count') return {correct:false,branch:'part-count'};
+      if(eo?.tag==='whole-number-denominator'||eo?.tag==='whole-number-numerator') return {correct:false,branch:'whole-number-comparison'};
+      if(item.mode==='equivalence') return {correct:false,branch:'equivalence-reasoning'};
+      return {correct:false,branch:'comparison-reasoning'};
+    }
+
+    if(item.kind==='stateMatterBundle'){
+      const a=document.querySelector('input[name="matterA"]:checked')?.value;
+      const b=document.querySelector('input[name="matterB"]:checked')?.value;
+      if(a===item.answerState && b===item.answerModel) return {correct:true};
+      if(a && a!==item.answerState){
+        if((a==='liquid'&&item.answerState==='gas')||(a==='gas'&&item.answerState==='liquid')) return {correct:false,branch:'container-shape-confusion'};
+        if(a==='solid'||item.answerState==='solid') return {correct:false,branch:'solid-trait-confusion'};
+        return {correct:false,branch:'classification-error'};
+      }
+      if(b && b!==item.answerModel) return {correct:false,branch:'model-property-error'};
+      return {correct:false,branch:'classification-error'};
+    }
+    if(item.kind==='stateChangeBundle'){
+      const a=document.querySelector('input[name="changeA"]:checked')?.value;
+      const b=document.querySelector('input[name="changeB"]:checked')?.value;
+      if(a===item.answerA && b===item.answerB) return {correct:true};
+      const ta=item.case.a.toLowerCase(), tb=item.case.b.toLowerCase();
+      if(a && a!==item.answerA && (ta.includes('heated')||ta.includes('gains')||ta.includes('melt'))) return {correct:false,branch:'heating-direction'};
+      if(a && a!==item.answerA) return {correct:false,branch:'cooling-direction'};
+      if(b && b!==item.answerB && (tb.includes('gain')||tb.includes('heat')&& !tb.includes('lose'))) return {correct:false,branch:'heating-direction'};
+      if(b && b!==item.answerB) return {correct:false,branch:'cooling-direction'};
+      return {correct:false,branch:'sequence-error'};
+    }
+    if(item.kind==='safetyBundle'){
+      const a=document.querySelector('input[name="safeA"]:checked')?.value;
+      const b=document.querySelector('input[name="safeB"]:checked')?.value;
+      if(a===item.answerEquipment && b===item.answerReason) return {correct:true};
+      if(a && a!==item.answerEquipment) return {correct:false,branch:'ppe-mismatch'};
+      if(b==='improve-vision') return {correct:false,branch:'goggle-purpose-vision'};
+      if(b && b!==item.answerReason) return {correct:false,branch:'goggle-purpose'};
+      return {correct:false,branch:'ppe-mismatch'};
+    }
+
+    if(item.kind==='densityBundle'){
+      const a=document.querySelector('input[name="densityA"]:checked')?.value;
+      const b=document.querySelector('input[name="densityB"]:checked')?.value;
+      if(a===item.answerClaim && b===item.answerLayer) return {correct:true};
+      if(a && a!==item.answerClaim){ const op=item.claims.find(x=>x.value===a); return {correct:false,branch:op?.tag==='mass-size'?'mass-vs-density':'sink-float-reversal'}; }
+      if(b && b!==item.answerLayer) return {correct:false,branch:'layer-order'};
+      return {correct:false,branch:'density-evidence'};
+    }
+    if(item.kind==='magnetismBundle'){
+      const selected=[...document.querySelectorAll('input[name="magneticObj"]:checked')].map(x=>x.value).sort();
+      const valid=item.objects.filter(o=>o.magnetic).map(o=>o.id).sort();
+      const strongest=document.querySelector('input[name="magnetStrong"]:checked')?.value;
+      const partA=selected.length===valid.length && selected.every((v,i)=>v===valid[i]);
+      if(partA && strongest===item.answerStrongest) return {correct:true};
+      if(!partA) return {correct:false,branch:'magnetic-classification'};
+      if(strongest && strongest!==item.answerStrongest) return {correct:false,branch:'strength-not-evidence'};
+      return {correct:false,branch:'magnetic-classification'};
+    }
+    if(item.kind==='toolUseBundle'){
+      const a=document.querySelector('input[name="toolA"]:checked')?.value;
+      const b=document.querySelector('input[name="toolB"]:checked')?.value;
+      if(a===item.answerTool && b===item.answerProperty) return {correct:true};
+      if(a && a!==item.answerTool) return {correct:false,branch:'tool-property-mismatch'};
+      if(b && b!==item.answerProperty) return {correct:false,branch:'property-confusion'};
+      return {correct:false,branch:'tool-property-mismatch'};
+    }
+    if(item.kind==='measurementBundle'){
+      const mass=parseFloat($('#massReading')?.value), temp=parseFloat($('#tempReading')?.value);
+      const ch=document.querySelector('input[name="massChange"]:checked')?.value;
+      const massOK=Number.isFinite(mass)&&Math.abs(mass-item.answerMass)<0.001;
+      const tempOK=Number.isFinite(temp)&&temp===item.answerTemp;
+      if(massOK&&tempOK&&ch===item.answerChange) return {correct:true};
+      if(!massOK) return {correct:false,branch:'balance-reading'};
+      if(!tempOK) return {correct:false,branch:'scale-interval'};
+      if(ch && ch!==item.answerChange) return {correct:false,branch:'mass-change'};
+      return {correct:false,branch:'measurement-incomplete'};
+    }
+    if(item.kind==='investigationBundle'){
+      const q=document.querySelector('input[name="investQ"]:checked')?.value;
+      const ev=[...document.querySelectorAll('input[name="investE"]:checked')].map(x=>x.value).sort();
+      const valid=['changed','outcome'];
+      const evidenceOK=ev.length===2&&ev.every((v,i)=>v===valid[i]);
+      if(q==='correct'&&evidenceOK) return {correct:true};
+      if(q && q!=='correct'){ const op=item.qopts.find(x=>x.value===q); return {correct:false,branch:op?.tag==='untestable-why'?'untestable-question':'unrelated-variable'}; }
+      if(!evidenceOK) return {correct:false,branch:'irrelevant-evidence'};
+      return {correct:false,branch:'unrelated-variable'};
+    }
+    if(item.kind==='propertyDataBundle'){
+      const a=document.querySelector('input[name="dataMag"]:checked')?.value;
+      const b=document.querySelector('input[name="dataFloat"]:checked')?.value;
+      const c=document.querySelector('input[name="dataGreat"]:checked')?.value;
+      if(a===item.answerMagnetism&&b===item.answerFloat&&c===item.answerGreatest) return {correct:true};
+      if(a&&a!==item.answerMagnetism) return {correct:false,branch:'property-column-confusion'};
+      if(b&&b!==item.answerFloat) return {correct:false,branch:'property-column-confusion'};
+      if(c&&c!==item.answerGreatest) return {correct:false,branch:'table-interpretation'};
+      return {correct:false,branch:'data-integrity'};
+    }
+    return {correct:false,branch:'selection-error'};
+  }
+
+  function header(){
+    const mastered=CONFIG.objectives.filter(o=>state.objectives[o.id].transferPassed).length;
+    return `<header><div><div class="eyebrow">Remediation · Engine ${ENGINE_VERSION}</div><h1>${esc(CONFIG.assessment.title)}</h1></div>
+      <div class="progress-pill">${mastered}/${CONFIG.objectives.length} mastered</div></header>`;
+  }
+  function objectiveRail(){
+    return `<aside><h2>Skills</h2>${CONFIG.objectives.map((o,i)=>{
+      const s=state.objectives[o.id];
+      const label=s.transferPassed?'Mastered':s.retrievalPassed?'Transfer check pending':i===state.objectiveIndex&&state.phase!=='transfer'?'Working now':'Not yet mastered';
+      return `<div class="rail-item ${s.transferPassed?'done':''}"><span>${i+1}</span><div><strong>${esc(o.title)}</strong><small>${label}</small></div></div>`;
+    }).join('')}</aside>`;
+  }
+  function shell(body){ app.innerHTML=`${header()}<div class="layout">${objectiveRail()}<main>${body}</main></div>`; bindGlobal(); }
+
+  function bindGlobal(){
+    $('#resetBtn')?.addEventListener('click',reset);
+    $('#printBtn')?.addEventListener('click',()=>window.print());
+  }
+  function controls(inner=''){ return `<div class="controls">${inner}<button id="resetBtn" class="ghost">Reset saved progress</button></div>`; }
+
+  function renderEntry(){
+    app.innerHTML=`${header()}<main class="entry-card"><h2>Start remediation</h2>
+      <p>${esc(CONFIG.ui.studentDirections)}</p>
+      <label>Your name or class identifier<input id="student" autocomplete="name" value="${esc(state.student||'')}"></label>
+      <fieldset><legend>Why are you opening this?</legend>
+        <label class="choice"><input type="radio" name="elig" value="below70"> I took the assessment and scored below 70.</label>
+        <label class="choice"><input type="radio" name="elig" value="missing"> I never took the original assessment.</label>
+      </fieldset>
+      <div id="entryMsg" class="feedback hidden"></div>
+      <button id="startBtn" class="primary">Begin</button>
+      ${controls()}</main>`;
+    $('#startBtn').onclick=()=>{
+      const student=$('#student').value.trim();
+      const elig=document.querySelector('input[name="elig"]:checked')?.value;
+      if(!student || !elig){ const m=$('#entryMsg'); m.textContent='Enter your identifier and choose one routing option.'; m.classList.remove('hidden'); return; }
+      state.student=student; state.eligibility=elig;
+      if(elig==='missing'){ state.phase='blocked'; save(); render(); return; }
+      state.startedAt=state.startedAt||new Date().toISOString(); state.phase='work'; state.step='diagnostic'; save(); render();
+    };
+    bindGlobal();
+  }
+
+  function renderBlocked(){
+    shell(`<section class="card blocked"><div class="icon">!</div><h2>Original assessment required</h2>
+      <p>This remediation cannot replace an assessment you never took.</p>
+      <p><strong>Next action:</strong> take the original assessment with your teacher.</p>
+      <p>No remediation-credit receipt will be issued from this route.</p>${controls()}</section>`);
+  }
+
+  function phaseTitle(){
+    if(state.step==='diagnostic') return 'Fresh diagnostic';
+    if(state.step==='reteach') return 'Targeted reteach';
+    if(state.step==='guided') return 'Guided correction';
+    if(state.step==='retrieval') return 'Fresh retrieval';
+    return 'Practice';
+  }
+  function renderWork(){
+    const obj=objective(), os=ostate();
+    if(state.step==='reteach'){
+      const branch=os.lastMisconception;
+      const feedback=branch && obj.misconceptions[branch] ? obj.misconceptions[branch].feedback : '';
+      shell(`<section class="card"><div class="stage">${phaseTitle()}</div><h2>${esc(obj.title)}</h2>
+        ${feedback?`<div class="feedback warn"><strong>What to fix:</strong> ${esc(feedback)}</div>`:''}
+        <div class="lesson">${obj.lesson.teach.map(t=>`<p>${esc(t)}</p>`).join('')}</div>
+        <button id="guidedBtn" class="primary">Try guided practice</button>${controls()}</section>`);
+      $('#guidedBtn').onclick=()=>{ state.step='guided'; nextFresh(); render(); }; return;
+    }
+    const item=ensureItem();
+    const guided=state.step==='guided';
+    shell(`<section class="card"><div class="stage">${phaseTitle()}</div><h2>${esc(obj.title)}</h2>
+      <p class="construct">${esc(obj.construct)}</p>
+      ${guided?`<div class="hint">${esc(obj.lesson.guidedPrompt)}</div>`:''}
+      <div class="question"><p class="prompt">${esc(item.prompt)}</p>${renderResponse(item)}</div>
+      <div id="feedback" class="feedback hidden"></div>
+      <button id="checkBtn" class="primary">Check my work</button>${controls()}</section>`);
+    $('#checkBtn').onclick=()=>handleWorkAnswer(evaluate(item));
+  }
+
+  function feedbackBox(text,good=false){
+    const f=$('#feedback'); f.innerHTML=text; f.classList.remove('hidden','good','warn'); f.classList.add(good?'good':'warn');
+  }
+  function handleWorkAnswer(result){
+    const obj=objective(), os=ostate();
+    if(result.correct){
+      if(state.step==='diagnostic'){
+        os.diagnosticDone=true; os.diagnosticCorrect=true; state.step='retrieval'; state.currentItem=null; save();
+        feedbackBox('Correct. You can skip the reteach for this skill, but you still need a fresh retrieval problem.');
+        setTimeout(render,700); return;
+      }
+      if(state.step==='guided'){
+        state.step='retrieval'; state.currentItem=null; save();
+        feedbackBox('Corrected. Next is a fresh problem without the scaffold.');
+        setTimeout(render,700); return;
+      }
+      if(state.step==='retrieval'){
+        os.retrievalPassed=true; state.currentItem=null; save();
+        const next=CONFIG.objectives.findIndex((o,i)=>i>state.objectiveIndex && !state.objectives[o.id].retrievalPassed);
+        if(next>=0){ state.objectiveIndex=next; state.step='diagnostic'; save(); feedbackBox('Retrieval passed. Moving to the next skill.',true); setTimeout(render,700); return; }
+        if(state.returnToTransfer){ state.returnToTransfer=false; state.phase='transfer'; save(); feedbackBox('Repair passed. Returning to the later transfer check.',true); setTimeout(render,700); return; }
+        startTransfer(); return;
+      }
+    } else {
+      os.lastMisconception=result.branch; os.loops++;
+      if(state.step==='guided'){
+        const msg=obj.misconceptions[result.branch]?.feedback || 'Check the model and try again.';
+        feedbackBox(`<strong>Fix this:</strong> ${esc(msg)}<br>Correct this same problem before moving on.`);
+        return;
+      }
+      state.step='reteach'; state.currentItem=null; save(); render();
+    }
+  }
+
+  function startTransfer(){
+    state.phase='transfer';
+    state.transferOrder=shuffled(CONFIG.objectives.map(o=>o.id));
+    state.transferIndex=0; state.currentItem=null; save(); render();
+  }
+  function renderTransfer(){
+    const oid=state.transferOrder[state.transferIndex];
+    if(!oid){ complete(); return; }
+    const idx=CONFIG.objectives.findIndex(o=>o.id===oid);
+    state.objectiveIndex=idx;
+    const obj=objective(), item=ensureItem();
+    shell(`<section class="card"><div class="stage">Later mixed transfer check</div><h2>${esc(obj.title)}</h2>
+      <p>This skill has returned in the mixed round. Solve it without lesson hints.</p>
+      <div class="question"><p class="prompt">${esc(item.prompt)}</p>${renderResponse(item)}</div>
+      <div id="feedback" class="feedback hidden"></div>
+      <button id="checkBtn" class="primary">Check transfer problem</button>${controls()}</section>`);
+    $('#checkBtn').onclick=()=>{
+      const result=evaluate(item), os=ostate();
+      if(result.correct){
+        os.transferPassed=true; state.transferIndex++; state.currentItem=null; save();
+        feedbackBox('Transfer verified.',true); setTimeout(render,600);
+      } else {
+        os.lastMisconception=result.branch; os.loops++; state.phase='work'; state.step='reteach';
+        state.returnToTransfer=true; state.currentItem=null; save(); render();
+      }
+    };
+  }
+
+  async function makeReceiptCode(){
+    const payload=[state.student,CONFIG.assessment.id,state.completedAt,ENGINE_VERSION,
+      ...CONFIG.objectives.map(o=>`${o.id}:${state.objectives[o.id].loops}`)].join('|');
+    if(window.crypto?.subtle){
+      const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(payload));
+      return [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('').slice(0,16).toUpperCase();
+    }
+    let h=2166136261; for(let i=0;i<payload.length;i++){ h^=payload.charCodeAt(i); h=Math.imul(h,16777619); }
+    return (h>>>0).toString(16).toUpperCase().padStart(8,'0');
+  }
+  async function complete(){
+    state.phase='receipt'; state.completedAt=state.completedAt||new Date().toISOString();
+    const code=await makeReceiptCode();
+    state.receipt={code,replacementGrade:CONFIG.policy.replacementGrade}; save(); render();
+  }
+  function renderReceipt(){
+    const rows=CONFIG.objectives.map(o=>`<tr><td>${esc(o.title)}</td><td>Verified</td><td>${state.objectives[o.id].loops}</td></tr>`).join('');
+    shell(`<section class="card receipt"><div class="stage">Remediation complete</div><h2>${esc(state.student)}</h2>
+      <p>${esc(CONFIG.ui.completionMessage)}</p>
+      <div class="grade-box"><span>Replacement grade</span><strong>${CONFIG.policy.replacementGrade}</strong></div>
+      <table><thead><tr><th>Objective</th><th>Status</th><th>Corrective loops</th></tr></thead><tbody>${rows}</tbody></table>
+      <dl><dt>Assessment</dt><dd>${esc(CONFIG.assessment.title)}</dd><dt>Completed</dt><dd>${esc(new Date(state.completedAt).toLocaleString())}</dd>
+      <dt>Completion code</dt><dd><code>${esc(state.receipt?.code||'')}</code></dd><dt>Engine</dt><dd>${ENGINE_VERSION} / schema ${esc(CONFIG.schemaVersion)}</dd></dl>
+      <button id="printBtn" class="primary">Print receipt</button>${controls()}</section>`);
+  }
+
+  function runtimeValidate(){
+    const errors=[];
+    if(!CONFIG?.assessment?.id) errors.push('assessment.id missing');
+    if(!Array.isArray(CONFIG.objectives)||!CONFIG.objectives.length) errors.push('objectives missing');
+    const ids=CONFIG.objectives.map(o=>o.id);
+    if(new Set(ids).size!==ids.length) errors.push('objective ids not unique');
+    CONFIG.objectives.forEach(o=>{ if(!generators[o.generator.kind]) errors.push(`unknown generator ${o.generator.kind}`); });
+    return errors;
+  }
+  function selfTest(){
+    const errors=runtimeValidate();
+    let cases=0;
+    for(const o of CONFIG.objectives){
+      for(let i=0;i<100;i++){
+        const it=generateFor(o); cases++;
+        if(it.kind==='numberLineUnitFraction'){
+          if(it.n===7&&it.d===10) errors.push('generated excluded 7/10');
+          if(!(it.n>0&&it.n<it.d)) errors.push('bad number-line fraction');
+        }
+        if(it.kind==='multiWholeModel'){
+          if(it.n===8&&it.d===5) errors.push('generated excluded 8/5');
+          if(!(it.n>it.d&&it.n<2*it.d)) errors.push('bad multi-whole model');
+        }
+        if(it.kind==='fractionDecomposition'){
+          const valid=it.options.filter(x=>x.valid);
+          if(valid.length!==2) errors.push('decomposition does not have exactly two valid options');
+          if(it.targetN===8&&it.targetD===5) errors.push('generated excluded 8/5 decomposition target');
+        }
+        if(['stateMatterBundle','stateChangeBundle','safetyBundle'].includes(it.kind) && !it.uid) errors.push(`science item missing uid for ${o.id}`);
+        if(it.kind==='stateMatterBundle'){
+          if(!['solid','liquid','gas'].includes(it.answerState)||!['solid','liquid','gas'].includes(it.answerModel)) errors.push('bad state-matter answer');
+        }
+        if(it.kind==='stateChangeBundle'){
+          if(!['solid','liquid','gas'].includes(it.answerA)||!['solid','liquid','gas'].includes(it.answerB)) errors.push('bad state-change answer');
+        }
+        if(it.kind==='safetyBundle'){
+          if(it.answerEquipment!=='goggles'||it.answerReason!=='protect-eyes') errors.push('bad safety answer');
+        }
+      }
+    }
+
+    // Unit 2 reusable science adapters.
+    for(const o of CONFIG.objectives){
+      for(let i=0;i<25;i++){
+        const it=generateFor(o);
+        if(['densityBundle','magnetismBundle','toolUseBundle','measurementBundle','investigationBundle','propertyDataBundle'].includes(it.kind) && !it.uid) errors.push(`unit2 item missing uid for ${o.id}`);
+        if(it.kind==='densityBundle' && (!it.answerClaim || !it.answerLayer)) errors.push('bad density item');
+        if(it.kind==='magnetismBundle' && it.objects.filter(x=>x.magnetic).length!==2) errors.push('magnetism item must have two magnetic objects');
+        if(it.kind==='toolUseBundle' && (!it.answerTool || !it.answerProperty)) errors.push('bad tool-use item');
+        if(it.kind==='measurementBundle' && (!Number.isFinite(it.answerMass)||!Number.isFinite(it.answerTemp))) errors.push('bad measurement item');
+        if(it.kind==='investigationBundle' && it.evopts.filter(x=>x.correct).length!==2) errors.push('investigation item must have two evidence answers');
+        if(it.kind==='propertyDataBundle' && (!it.answerMagnetism||!it.answerFloat||!it.answerGreatest)) errors.push('bad property-data item');
+      }
+    }
+
+    // Math Unit 1 EOU reusable adapters.
+    for(const o of CONFIG.objectives){
+      for(let i=0;i<30;i++){
+        const it=generateFor(o);
+        if(['fractionEquivalenceBundle','fractionComparisonBundle','fractionDecompositionEOU','fractionContextBundle','fractionReasoningBundle'].includes(it.kind) && !it.uid) errors.push(`math EOU item missing uid for ${o.id}`);
+        if(it.kind==='fractionEquivalenceBundle'){
+          if(it.options.filter(x=>x.valid).length!==2) errors.push('equivalence item must have exactly two valid options');
+          if(`${it.targetN}/${it.targetD}`==='3/12'||fracEq(it.targetN,it.targetD,1,4)) errors.push('generated source-equivalent target 3/12');
+        }
+        if(it.kind==='fractionComparisonBundle'){
+          if(!['<','>','='].includes(it.answerSymbol)||it.reasons.filter(x=>x.correct).length!==1) errors.push('bad comparison item');
+          if(it.aN===3&&it.aD===5&&it.bN===7&&it.bD===12) errors.push('generated source comparison 3/5 vs 7/12');
+          if(it.aN===2&&it.aD===6&&it.bN===1&&it.bD===4) errors.push('generated source comparison 2/6 vs 1/4');
+        }
+        if(it.kind==='fractionDecompositionEOU'){
+          if(it.options.filter(x=>x.valid).length!==2) errors.push('EOU decomposition must have exactly two valid options');
+          if(['3/5','5/8','7/4'].includes(`${it.targetN}/${it.targetD}`)) errors.push('generated source decomposition target');
+        }
+        if(it.kind==='fractionContextBundle' && it.answers.length!==2) errors.push('context item must have exactly two answers');
+        if(it.kind==='fractionReasoningBundle' && (!it.answerClaim||!it.answerEvidence)) errors.push('bad reasoning item');
+      }
+    }
+
+    CONFIG.objectives.forEach(o=>{
+      const saved=state.objectives[o.id]?.seenItems;
+      state.objectives[o.id].seenItems=[];
+      const keys=new Set();
+      const desired=Math.min(3, o.generator.params?.denominators?.length || 3);
+      for(let i=0;i<desired;i++){
+        const it=generateFreshFor(o), k=freshKey(it);
+        if(keys.has(k)) errors.push(`fresh-item repeat for ${o.id}`);
+        keys.add(k);
+      }
+      state.objectives[o.id].seenItems=saved||[];
+    });
+    return {ok:errors.length===0,cases,errors:[...new Set(errors)]};
+  }
+
+  function render(){
+    const errors=runtimeValidate();
+    if(errors.length){ app.innerHTML=`<main class="entry-card"><h1>Configuration error</h1><pre>${esc(errors.join('\n'))}</pre></main>`; return; }
+    if(window.__REMEDIATION_SELFTEST__ || new URLSearchParams(location.search).has('selftest')){
+      const r=selfTest();
+      app.innerHTML=`<main class="entry-card"><h1>Engine self-test</h1><p class="${r.ok?'pass':'fail'}">${r.ok?'PASS':'FAIL'}</p><p>${r.cases} generated cases checked.</p><pre>${esc(r.errors.join('\n')||'No errors.')}</pre></main>`;
+      return;
+    }
+    if(state.phase==='entry') return renderEntry();
+    if(state.phase==='blocked') return renderBlocked();
+    if(state.phase==='work') return renderWork();
+    if(state.phase==='transfer') return renderTransfer();
+    if(state.phase==='receipt') return renderReceipt();
+    state=newState(); save(); renderEntry();
+  }
+
+  if(window.__REMEDIATION_TEST_MODE__){ window.__REM_TEST__={snapshot:()=>JSON.parse(JSON.stringify(state)),currentItem:()=>JSON.parse(JSON.stringify(state.currentItem)),config:CONFIG}; }
+  render();
+})();
+</script>
+</body>
+</html>

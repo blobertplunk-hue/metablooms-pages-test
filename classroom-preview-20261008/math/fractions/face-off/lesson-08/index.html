@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Fraction Face-Off — Unit 1 Lesson 8 — How Do You Know? (Part 1)</title>
+<meta name="lesson8-source-fixtures" content="3/4,6/8,18/12,6/4,11/5,55/10,5/4,15/12">
+<style>
+:root{
+  --bg:#09111f;--panel:#111c30;--panel2:#16243c;--text:#f7fbff;--muted:#a9bbd3;
+  --accent:#79d7ff;--gold:#ffd166;--good:#54e38e;--bad:#ff6b7a;--line:#2a3d5c;
+  --p1:#77a7ff;--p2:#ff9b70;--shadow:0 14px 40px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -10%,#18365d 0,#09111f 43%,#060b14 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{min-height:100svh;overflow-x:hidden}
+button,input,textarea,select{font:inherit}
+button{touch-action:manipulation;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.app{width:min(1100px,100%);margin:auto;padding:max(14px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
+.topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}.badge{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#1d8dff,#75e1ff);box-shadow:var(--shadow);font-weight:900;color:#061222;font-size:22px}
+.brand h1{font-size:clamp(20px,4vw,32px);margin:0;line-height:1.04}.brand p{margin:4px 0 0;color:var(--muted);font-size:14px}.topActions{display:flex;gap:8px}
+.ghost{border:1px solid var(--line);background:#0d1728;color:var(--text);border-radius:13px;padding:11px 14px;font-weight:800;min-height:46px}
+.panel{background:linear-gradient(180deg,rgba(23,38,63,.96),rgba(12,23,40,.96));border:1px solid #2b4267;border-radius:24px;box-shadow:var(--shadow);padding:clamp(16px,3vw,28px)}
+.hidden{display:none!important}.lessonTag{display:inline-flex;align-items:center;gap:8px;background:#0b3d5d;border:1px solid #2677a6;padding:8px 12px;border-radius:999px;font-weight:800;color:#c7f2ff}.tiny{font-size:12px;color:var(--muted)}
+.startGrid{display:grid;grid-template-columns:1.18fr .82fr;gap:18px}.intro h2{font-size:clamp(30px,7vw,56px);line-height:1;margin:10px 0 12px}.lead{font-size:clamp(17px,2.4vw,22px);line-height:1.45;color:#d8e8fb}.rules{display:grid;gap:9px;margin:18px 0}.rule{display:flex;gap:10px;align-items:flex-start;color:#d5e2f3}.num{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#243b60;font-weight:900}.setup{background:#0b1526;border:1px solid var(--line);border-radius:18px;padding:16px}.setup h3{margin:0 0 12px}.modeBtns{display:grid;gap:10px}.modeBtn{border:1px solid #34517a;background:#14243c;color:white;border-radius:16px;padding:15px;text-align:left;min-height:76px}.modeBtn strong{display:block;font-size:18px}.modeBtn span{display:block;color:var(--muted);margin-top:4px}.modeBtn.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(121,215,255,.18) inset;background:#173252}.primary{width:100%;border:0;background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322;border-radius:16px;min-height:58px;padding:14px 18px;font-size:19px;font-weight:950;margin-top:14px}.resume{background:linear-gradient(135deg,#ffd166,#ffad42)}
+.gameHead{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-bottom:14px}.scoreBox{border:1px solid var(--line);border-radius:16px;padding:10px 14px;background:#0a1425}.scoreBox.right{text-align:right}.label{color:var(--muted);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.score{font-size:24px;font-weight:950}.roundPill{background:#22395d;border:1px solid #3f5f8c;border-radius:999px;padding:10px 15px;font-weight:900;white-space:nowrap}.turnBanner{text-align:center;padding:10px 12px;border-radius:14px;background:#10213a;border:1px solid #2b466c;margin-bottom:14px;font-weight:850}
+.phase{display:grid;gap:14px}.phase h2{font-size:clamp(27px,5vw,42px);margin:0}.phase h3{margin:0}.prompt{font-size:18px;line-height:1.45;color:#dceafb}.card{background:#0b1628;border:1px solid #2b4568;border-radius:18px;padding:15px}.accentCard{background:linear-gradient(180deg,#112b49,#0b192d);border-color:#3d648e}.goodCard{border-color:#2e7051;background:#0c281d}.warningCard{border-color:#795d2e;background:#2a210d}.badCard{border-color:#7b3541;background:#2e1218}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.choiceGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{border:2px solid #3d587f;background:#11223a;color:white;border-radius:16px;padding:13px;min-height:56px;font-weight:900}.choice.selected{border-color:var(--accent);background:#173252}.choice.correct{border-color:var(--good);background:#103a2a}.choice.wrong{border-color:var(--bad);background:#451b25}.choice:disabled{opacity:.62;cursor:not-allowed}.nextBtn,.checkBtn{border:0;background:#edf7ff;color:#071321;border-radius:14px;padding:14px 18px;font-weight:950;min-height:52px}.checkBtn{background:linear-gradient(135deg,#3da8ff,#74e0ff)}.subtleBtn{border:1px solid #35527b;background:#10213a;color:#e7f4ff;border-radius:13px;padding:11px 13px;min-height:46px;font-weight:850}.feedback{min-height:58px;border-radius:15px;border:1px solid var(--line);background:#0a1424;padding:12px 14px;line-height:1.4}.feedback.good{border-color:#2d7653;color:#c9f7dc}.feedback.bad{border-color:#7a3241;color:#ffc6ce}.feedback.info{color:#c8d9ee}
+.expressionGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.expressionCard{text-align:center;background:#101f35;border:1px solid #355171;border-radius:16px;padding:14px}.expression{font-size:24px;font-weight:950}.mathInput{width:100%;min-height:48px;margin-top:10px;border-radius:12px;border:2px solid #47688f;background:#071321;color:white;font-size:20px;text-align:center;font-weight:900}.textInput{width:100%;min-height:92px;resize:vertical;border-radius:12px;border:2px solid #47688f;background:#071321;color:white;padding:12px;line-height:1.4}.selectInput{min-height:48px;border-radius:12px;border:2px solid #47688f;background:#071321;color:white;padding:8px 10px;font-weight:850}
+.frac{display:inline-grid;grid-template-rows:auto 3px auto;align-items:center;text-align:center;font-weight:950;font-size:clamp(42px,8vw,68px);line-height:.88;min-width:1.25em}.frac .bar{height:3px;border-radius:3px;background:currentColor;width:100%;margin:6px 0}.miniFrac{display:inline-grid;grid-template-rows:auto 2px auto;text-align:center;font-weight:900;font-size:19px;min-width:44px}.miniFrac .bar{height:2px;background:currentColor;margin:3px 0}.fractionPair{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}.fractionTile{min-height:180px;border:2px solid #3a5277;border-radius:20px;background:linear-gradient(165deg,#1b3152,#101b2e);display:grid;place-items:center;padding:14px}.fractionTile.left{border-color:rgba(119,167,255,.8)}.fractionTile.right{border-color:rgba(255,155,112,.8)}.equals{font-size:32px;color:var(--gold);font-weight:950}
+.evidenceTabs{display:flex;gap:8px;flex-wrap:wrap}.tabBtn{border:1px solid #35527b;background:#10213a;color:#e7f4ff;border-radius:999px;padding:10px 13px;min-height:44px;font-weight:850}.tabBtn.active{border-color:var(--accent);background:#173252}.badgeRow{display:flex;gap:8px;flex-wrap:wrap}.evidenceBadge{border:1px solid #3c577b;border-radius:999px;padding:7px 10px;color:#c4d6ec;font-size:12px;font-weight:900}.evidenceBadge.done{border-color:#347d5a;background:#123322;color:#c5f5d7}
+.visualBuilder{display:grid;gap:12px}.modelGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modelSide{border:1px solid #355171;border-radius:16px;background:#0c192c;padding:12px}.modelTitle{font-weight:900;margin-bottom:8px}.wholeRow{display:flex;gap:3px;margin:6px 0}.piece{flex:1;min-width:8px;height:34px;border:1px solid #6380a3;background:#0a1422;border-radius:4px;padding:0}.piece.shaded.left{background:var(--p1);border-color:#a5c7ff}.piece.shaded.right{background:var(--p2);border-color:#ffd0ba}.countLine{font-size:13px;color:#d7e6f8;margin-top:7px;font-weight:800}.lineWrap{padding:10px 0}.numberLine{position:relative;height:56px;margin:10px 8px 0}.axis{position:absolute;left:0;right:0;top:22px;height:4px;border-radius:3px;background:#7289a7}.tick{position:absolute;top:15px;width:2px;height:18px;background:#b9c9dc}.point{position:absolute;top:10px;width:16px;height:16px;border-radius:50%;background:var(--gold);transform:translateX(-50%);box-shadow:0 0 0 4px rgba(255,209,102,.18)}.range{width:100%;accent-color:#79d7ff;margin-top:2px}.lineLabels{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.currentPoint{text-align:center;font-weight:900;color:#dff4ff;margin-top:5px}
+.equationBuilder{display:grid;gap:10px}.equationLine{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:19px;font-weight:850}.smallMathInput{width:66px;min-height:46px;border-radius:10px;border:2px solid #47688f;background:#071321;color:#fff;text-align:center;font-size:20px;font-weight:950}
+.galleryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.poster{background:#f6f1de;color:#182133;border-radius:16px;padding:14px;min-height:230px;box-shadow:0 8px 18px rgba(0,0,0,.25)}.poster h4{margin:0 0 8px}.poster .posterMath{font-size:19px;font-weight:900}.poster .sketch{margin:10px 0;background:white;border:2px solid #8995a8;border-radius:10px;padding:9px}.poster p{font-size:14px;line-height:1.35}.galleryPrompt{border-top:1px dashed #526985;margin-top:10px;padding-top:12px}
+.swykPair{display:flex;gap:18px;justify-content:center;align-items:center;flex-wrap:wrap}.swykPair .frac{font-size:54px}.statusPill{display:inline-block;padding:7px 10px;border-radius:999px;background:#213a5d;border:1px solid #46698f;color:#dff5ff;font-size:12px;font-weight:900}.end{text-align:center}.end h2{font-size:clamp(32px,7vw,56px);margin:0 0 10px}.end .bigScore{font-size:clamp(42px,9vw,74px);font-weight:950;color:var(--gold);line-height:1}.end p{font-size:18px;color:#d6e6f8}.endActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:580px;margin:18px auto 0}.playAgain{border:0;background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322;border-radius:16px;min-height:56px;font-weight:950}.homeBtn{background:#172945;color:#fff;border:1px solid #375476;border-radius:16px;min-height:56px;font-weight:950}
+@media(max-width:780px){.startGrid,.grid2,.modelGrid,.galleryGrid{grid-template-columns:1fr}.expressionGrid{grid-template-columns:repeat(2,1fr)}.gameHead{grid-template-columns:1fr 1fr}.roundPill{grid-column:1/-1;grid-row:2;text-align:center}.fractionPair{grid-template-columns:1fr 44px 1fr}.fractionTile{min-height:150px}.choiceGrid{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
+@media(max-width:480px){.app{padding-left:9px;padding-right:9px}.panel{border-radius:18px;padding:12px}.expressionGrid{grid-template-columns:1fr 1fr;gap:7px}.fractionPair{gap:5px}.fractionTile{padding:8px;min-height:130px}.frac{font-size:44px}.topActions{width:100%}.topActions button{flex:1}.brand p{font-size:12px}.piece{height:38px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="badge">=</div><div><h1>Fraction Face-Off</h1><p>Grade 4 • Unit 1 • Lesson 8 • How Do You Know? (Part 1)</p></div></div>
+  <div class="topActions"><button class="ghost" id="resetBtn">Reset</button></div>
+</header>
+<main>
+<section class="panel" id="startScreen">
+  <div class="startGrid">
+    <div class="intro">
+      <span class="lessonTag">Lesson 8 • Justifying Fraction Equivalence</span>
+      <h2>Prove it more than one way.</h2>
+      <p class="lead">Your job is not just to say two fractions are equivalent. Build evidence that convinces another mathematician using <strong>visuals, words, and equations</strong>.</p>
+      <div class="rules">
+        <div class="rule"><span class="num">1</span><span>Warm up with the lesson’s <strong>Number Talk</strong> and look for the doubling structure.</span></div>
+        <div class="rule"><span class="num">2</span><span>Create digital “posters” that include <strong>Visual Evidence</strong>, <strong>Words Evidence</strong>, and <strong>Equation Evidence</strong>.</span></div>
+        <div class="rule"><span class="num">3</span><span>Take a <strong>Gallery Tour</strong>, compare methods, and finish the lesson’s independent check with a visual justification.</span></div>
+      </div>
+      <p class="tiny">No student names are collected. Progress is stored only on this device so an interrupted lesson can resume.</p>
+    </div>
+    <aside class="setup">
+      <h3>Choose a route</h3>
+      <div class="modeBtns">
+        <button class="modeBtn selected" data-mode="solo"><strong>Solo Proof Studio</strong><span>Work independently through the complete Lesson 8 sequence.</span></button>
+        <button class="modeBtn" data-mode="partner"><strong>Partner Poster Studio</strong><span>Pause for partner talk before submitting each proof.</span></button>
+      </div>
+      <button class="primary" id="startBtn">Start Lesson 8</button>
+      <button class="primary resume hidden" id="resumeBtn">Resume Saved Work</button>
+    </aside>
+  </div>
+</section>
+<section class="panel hidden" id="gameScreen">
+  <div class="gameHead">
+    <div class="scoreBox"><div class="label">Evidence badges</div><div class="score" id="badgeCount">0</div></div>
+    <div class="roundPill" id="phasePill">Phase 1 of 7</div>
+    <div class="scoreBox right"><div class="label">Route</div><div class="score" id="routeLabel">Solo</div></div>
+  </div>
+  <div class="turnBanner" id="turnBanner">Build evidence that another mathematician could understand.</div>
+  <div id="phaseHost"></div>
+</section>
+<section class="panel end hidden" id="endScreen">
+  <span class="lessonTag">Lesson 8 complete</span>
+  <h2>Proof portfolio complete.</h2>
+  <div class="bigScore" id="endScore">7 evidence badges</div>
+  <p>You used visual models or number lines, words, and equations to justify fraction equivalence—the central work of Lesson 8.</p>
+  <div class="endActions"><button class="playAgain" id="againBtn">Replay Lesson 8</button><button class="homeBtn" id="homeBtn">Change Route</button></div>
+</section>
+</main>
+</div>
+<script>
+(() => {
+'use strict';
+const SAVE_KEY='fractionFaceOff_u1l08_v1';
+const $=id=>document.getElementById(id);
+const startScreen=$('startScreen'),gameScreen=$('gameScreen'),endScreen=$('endScreen'),host=$('phaseHost');
+const phaseNames=['Number Talk','Poster Proof 1','Poster Proof 2','Gallery Tour','Lesson Synthesis','Show What You Know 1','Show What You Know 2'];
+const posterPairs={
+  one:{left:{n:3,d:4},right:{n:6,d:8},op:'×',factor:2,direction:'forward',title:'Poster Proof: 3/4 = 6/8'},
+  two:{left:{n:18,d:12},right:{n:6,d:4},op:'÷',factor:3,direction:'forward',title:'Poster Proof: 18/12 = 6/4'}
+};
+let mode='solo';
+let state=null;
+
+function freshState(m){return {version:1,mode:m,phase:0,badges:0,warmup:{a:'',b:'',c:'',d:'',relation:''},posters:{one:newPosterState(),two:newPosterState()},gallery:{same:'',clearest:''},synthesis:{mult:'',div:''},swyk:{one:{decision:'',pointA:0,pointB:0,visualOK:false},two:{decision:'',pointA:0,pointB:0,visualOK:false}},completed:Array(7).fill(false)}}
+function newPosterState(){return {visualType:'model',leftShade:0,rightShade:0,lineA:0,lineB:0,visualOK:false,words:'',wordsOK:false,op:'',factor:'',equationOK:false}}
+function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
+function load(){try{const x=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');return x&&x.version===1?x:null}catch(e){return null}}
+function clearSave(){try{localStorage.removeItem(SAVE_KEY)}catch(e){}}
+function show(el){[startScreen,gameScreen,endScreen].forEach(x=>x.classList.add('hidden'));el.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fracHTML(f,cls='frac'){return `<span class="${cls}"><span>${f.n}</span><span class="bar"></span><span>${f.d}</span></span>`}
+function fmt(f){return `${f.n}/${f.d}`}
+function equiv(a,b){return a.n*b.d===b.n*a.d}
+function maxWholeFor(a,b){return Math.max(1,Math.ceil(Math.max(a.n/a.d,b.n/b.d)))}
+function markComplete(index){if(!state.completed[index]){state.completed[index]=true;state.badges++;save()}updateHead()}
+function updateHead(){
+  $('badgeCount').textContent=state?.badges||0;
+  $('phasePill').textContent=`Phase ${(state?.phase||0)+1} of ${phaseNames.length} • ${phaseNames[state?.phase||0]}`;
+  $('routeLabel').textContent=state?.mode==='partner'?'Partner':'Solo';
+  $('turnBanner').textContent=state?.mode==='partner'?'Partner route: talk through the evidence before you submit it.':'Build evidence that another mathematician could understand.';
+}
+function start(m){mode=m;state=freshState(m);show(gameScreen);renderPhase()}
+function resume(){const s=load();if(!s)return;state=s;mode=s.mode;show(gameScreen);renderPhase()}
+function goNext(){if(state.phase<phaseNames.length-1){state.phase++;save();renderPhase()}else finish()}
+function finish(){clearSave();$('endScore').textContent=`${state.badges} evidence badges`;show(endScreen)}
+function nextButton(text='Continue'){return `<button class="nextBtn" id="phaseNext">${text}</button>`}
+function feedback(id='phaseFeedback'){return `<div class="feedback info" id="${id}" role="status" aria-live="polite" aria-atomic="true">Complete the evidence before moving on.</div>`}
+function setFeedback(msg,type='info',id='phaseFeedback'){const el=$(id);if(el){el.className=`feedback ${type}`;el.innerHTML=msg}}
+function partnerPrompt(){return state.mode==='partner'?`<div class="card accentCard"><strong>Partner Talk:</strong> Explain your reasoning aloud first. Your partner should be able to restate your idea before you submit.</div>`:''}
+
+function renderPhase(){updateHead();const p=state.phase;if(p===0)renderWarmup();else if(p===1)renderPoster('one');else if(p===2)renderPoster('two');else if(p===3)renderGallery();else if(p===4)renderSynthesis();else if(p===5)renderSWYK('one');else renderSWYK('two');save()}
+
+function renderWarmup(){
+ const w=state.warmup;
+ host.innerHTML=`<section class="phase">
+   <span class="lessonTag">Warm-Up • Number Talk Fluency</span>
+   <h2>Look for the doubling structure.</h2>
+   <p class="prompt">Find each product mentally. Then decide how the four expressions are related.</p>
+   ${partnerPrompt()}
+   <div class="expressionGrid">
+    ${exprCard('A','2 × 12','a',w.a)}${exprCard('B','4 × 12','b',w.b)}${exprCard('C','8 × 12','c',w.c)}${exprCard('D','16 × 12','d',w.d)}
+   </div>
+   <div class="card"><h3>How are the expressions related?</h3><div class="choiceGrid" id="warmRel">
+     <button class="choice ${w.relation==='double'?'selected':''}" data-warmrel="double">Each new first factor doubles, so each product doubles.</button>
+     <button class="choice ${w.relation==='add12'?'selected':''}" data-warmrel="add12">Each product increases by exactly 12.</button>
+     <button class="choice ${w.relation==='same'?'selected':''}" data-warmrel="same">All four products are the same.</button>
+     <button class="choice ${w.relation==='half'?'selected':''}" data-warmrel="half">Each new product is half the previous product.</button>
+   </div></div>
+   ${feedback()}
+   <div class="row"><button class="checkBtn" id="checkWarmup">Check Number Talk</button><span id="warmNext"></span></div>
+ </section>`;
+ document.querySelectorAll('[data-warm]').forEach(i=>i.addEventListener('input',()=>{state.warmup[i.dataset.warm]=i.value;save()}));
+ document.querySelectorAll('[data-warmrel]').forEach(b=>b.addEventListener('click',()=>{state.warmup.relation=b.dataset.warmrel;renderWarmup()}));
+ $('checkWarmup').addEventListener('click',checkWarmup);
+}
+function exprCard(label,expr,key,val){return `<div class="expressionCard"><div class="label">Expression ${label}</div><div class="expression">${expr}</div><input class="mathInput" inputmode="numeric" aria-label="${expr}" data-warm="${key}" value="${esc(val)}" placeholder="product"></div>`}
+function checkWarmup(){const w=state.warmup;const ok=Number(w.a)===24&&Number(w.b)===48&&Number(w.c)===96&&Number(w.d)===192&&w.relation==='double';if(ok){markComplete(0);setFeedback('<strong>Number Talk complete.</strong> Doubling the first factor doubles the product. That repeated reasoning prepares you to notice structure in fraction representations.','good');$('warmNext').innerHTML=nextButton('Begin Poster Proofs');$('phaseNext').onclick=goNext}else setFeedback('Recheck the products and the relationship. The first factors are 2, 4, 8, and 16.','bad')}
+
+function renderPoster(key){
+ const cfg=posterPairs[key],ps=state.posters[key];
+ host.innerHTML=`<section class="phase">
+  <span class="lessonTag">Activity 1 • How Do You Know?</span>
+  <h2>${cfg.title}</h2>
+  <p class="prompt">Create a digital poster that would convince another mathematician these fractions are equivalent. Your proof must include a visual representation, words, and an equation.</p>
+  ${partnerPrompt()}
+  <div class="fractionPair"><div class="fractionTile left">${fracHTML(cfg.left)}</div><div class="equals">=</div><div class="fractionTile right">${fracHTML(cfg.right)}</div></div>
+  <div class="badgeRow"><span class="evidenceBadge ${ps.visualOK?'done':''}">Visual Evidence ${ps.visualOK?'✓':''}</span><span class="evidenceBadge ${ps.wordsOK?'done':''}">Words Evidence ${ps.wordsOK?'✓':''}</span><span class="evidenceBadge ${ps.equationOK?'done':''}">Equation Evidence ${ps.equationOK?'✓':''}</span></div>
+  <div class="card accentCard">
+    <div class="evidenceTabs"><button class="tabBtn ${ps.visualType==='model'?'active':''}" data-vis="model">Fraction Model</button><button class="tabBtn ${ps.visualType==='line'?'active':''}" data-vis="line">Number Line</button></div>
+    <div id="visualHost" class="visualBuilder"></div>
+  </div>
+  <div class="card"><h3>Words Evidence</h3><p class="tiny">Explain what is the same and what is different in the two representations.</p><textarea class="textInput" id="wordsInput" placeholder="Example stem: Both fractions show the same amount because...">${esc(ps.words)}</textarea><div class="row"><button class="subtleBtn" id="checkWords">Check Words Evidence</button></div></div>
+  <div class="card"><h3>Equation Evidence</h3><p class="tiny">Show a numerical relationship that matches your visual proof.</p>${equationBuilderHTML(cfg,ps)}</div>
+  ${feedback('posterFeedback')}
+  <div class="row"><button class="checkBtn" id="checkPoster">Check Complete Poster</button><span id="posterNext"></span></div>
+ </section>`;
+ document.querySelectorAll('[data-vis]').forEach(b=>b.addEventListener('click',()=>{ps.visualType=b.dataset.vis;ps.visualOK=false;save();renderPoster(key)}));
+ renderPosterVisual(key);
+ $('wordsInput').addEventListener('input',()=>{ps.words=$('wordsInput').value;ps.wordsOK=false;save()});
+ $('checkWords').addEventListener('click',()=>checkWords(key));
+ $('equationOp').addEventListener('change',()=>{ps.op=$('equationOp').value;ps.equationOK=false;save()});
+ $('equationFactor').addEventListener('input',()=>{ps.factor=$('equationFactor').value;ps.equationOK=false;save()});
+ $('checkEquation').addEventListener('click',()=>checkEquation(key));
+ $('checkPoster').addEventListener('click',()=>checkPoster(key));
+}
+function equationBuilderHTML(cfg,ps){return `<div class="equationBuilder"><div class="equationLine">Start with <strong>${fmt(cfg.left)}</strong>. Choose <select class="selectInput" id="equationOp"><option value="">operation</option><option value="×" ${ps.op==='×'?'selected':''}>× multiply</option><option value="÷" ${ps.op==='÷'?'selected':''}>÷ divide</option></select> by <input class="smallMathInput" inputmode="numeric" id="equationFactor" value="${esc(ps.factor)}" placeholder="?"></div><div class="equationLine">to show <strong>${fmt(cfg.right)}</strong>.</div><button class="subtleBtn" id="checkEquation">Check Equation Evidence</button></div>`}
+function renderPosterVisual(key){const cfg=posterPairs[key],ps=state.posters[key],vh=$('visualHost');if(ps.visualType==='model')renderModelBuilder(vh,key,cfg,ps);else renderLineBuilder(vh,key,cfg,ps)}
+function renderModelBuilder(vh,key,cfg,ps){
+ const maxW=maxWholeFor(cfg.left,cfg.right);
+ vh.innerHTML=`<p class="tiny">Shade each model so the two equal-length representations show the fractions on the card.</p><div class="modelGrid"><div class="modelSide"><div class="modelTitle">${fmt(cfg.left)}</div><div id="modelLeft"></div><div class="countLine" id="leftCount">Shaded: ${ps.leftShade} pieces</div></div><div class="modelSide"><div class="modelTitle">${fmt(cfg.right)}</div><div id="modelRight"></div><div class="countLine" id="rightCount">Shaded: ${ps.rightShade} pieces</div></div></div><button class="subtleBtn" id="checkVisual">Check Visual Evidence</button>`;
+ buildPieces($('modelLeft'),cfg.left,maxW,'left',ps.leftShade,n=>{ps.leftShade=n;ps.visualOK=false;save();renderPoster(key)});
+ buildPieces($('modelRight'),cfg.right,maxW,'right',ps.rightShade,n=>{ps.rightShade=n;ps.visualOK=false;save();renderPoster(key)});
+ $('checkVisual').addEventListener('click',()=>checkVisual(key));
+}
+function buildPieces(container,f,maxW,side,shadeCount,onChange){
+ let index=0;
+ for(let w=0;w<maxW;w++){
+   const row=document.createElement('div');row.className='wholeRow';
+   for(let i=0;i<f.d;i++){
+     const pieceIndex=index;const b=document.createElement('button');b.type='button';b.className='piece'+(pieceIndex<shadeCount?` shaded ${side}`:'');b.setAttribute('aria-label',`piece ${pieceIndex+1} of ${maxW*f.d}`);b.addEventListener('click',()=>{const newCount=pieceIndex<shadeCount?pieceIndex:pieceIndex+1;onChange(newCount)});row.appendChild(b);index++;
+   }
+   container.appendChild(row);
+ }
+}
+function renderLineBuilder(vh,key,cfg,ps){
+ const maxW=maxWholeFor(cfg.left,cfg.right);
+ vh.innerHTML=`<p class="tiny">Move each point to the fraction shown. Equivalent fractions should land at the same distance from 0.</p>${lineControl('A',cfg.left,maxW,ps.lineA)}${lineControl('B',cfg.right,maxW,ps.lineB)}<button class="subtleBtn" id="checkVisual">Check Visual Evidence</button>`;
+ $('lineA').addEventListener('input',()=>{ps.lineA=Number($('lineA').value);ps.visualOK=false;$('lineARead').textContent=`${ps.lineA}/${cfg.left.d}`;save()});
+ $('lineB').addEventListener('input',()=>{ps.lineB=Number($('lineB').value);ps.visualOK=false;$('lineBRead').textContent=`${ps.lineB}/${cfg.right.d}`;save()});
+ $('checkVisual').addEventListener('click',()=>checkVisual(key));
+}
+function lineControl(label,f,maxW,val){return `<div class="modelSide"><div class="modelTitle">Number line ${label}: target ${fmt(f)}</div><input class="range" id="line${label}" type="range" min="0" max="${maxW*f.d}" step="1" value="${val}"><div class="lineLabels"><span>0</span><span>${maxW}</span></div><div class="currentPoint" id="line${label}Read">${val}/${f.d}</div></div>`}
+function checkVisual(key){const cfg=posterPairs[key],ps=state.posters[key];let ok=false;if(ps.visualType==='model')ok=ps.leftShade===cfg.left.n&&ps.rightShade===cfg.right.n;else ok=ps.lineA===cfg.left.n&&ps.lineB===cfg.right.n;if(ok){ps.visualOK=true;save();setFeedback(`Visual Evidence accepted. ${fmt(cfg.left)} and ${fmt(cfg.right)} show the same amount even though the number and size of the parts differ.`,'good','posterFeedback');renderPoster(key)}else setFeedback('Adjust the visual so each representation shows the exact fraction on the card.','bad','posterFeedback')}
+function checkWords(key){const ps=state.posters[key],t=ps.words.trim().toLowerCase();const hasMeaning=/same|equal|equivalent|amount|value|point|size|parts/.test(t);if(t.length>=20&&hasMeaning){ps.wordsOK=true;save();setFeedback('Words Evidence accepted. Your explanation names the mathematical relationship, not just the symbol.','good','posterFeedback');renderPoster(key)}else setFeedback('Add a fuller explanation. Name what stays the same and how the parts or points help prove equivalence.','bad','posterFeedback')}
+function checkEquation(key){const cfg=posterPairs[key],ps=state.posters[key];const ok=ps.op===cfg.op&&Number(ps.factor)===cfg.factor;if(ok){ps.equationOK=true;save();setFeedback(`Equation Evidence accepted: the same ${cfg.op==='×'?'factor':'divisor'} connects numerator and denominator to the equivalent fraction.`,'good','posterFeedback');renderPoster(key)}else setFeedback('The equation must use the same operation and number on the numerator and denominator to connect the two fractions shown.','bad','posterFeedback')}
+function posterEvidenceComplete(ps){return !!(ps.visualOK&&ps.wordsOK&&ps.equationOK)}
+function checkPoster(key){const ps=state.posters[key];if(posterEvidenceComplete(ps)){markComplete(state.phase);setFeedback('<strong>Poster complete.</strong> You justified equivalence with multiple representations, as Lesson 8 requires.','good','posterFeedback');$('posterNext').innerHTML=nextButton(state.phase===1?'Build a Second Proof':'Take the Gallery Tour');$('phaseNext').onclick=goNext}else setFeedback('Your poster still needs all three evidence types: Visual Evidence, Words Evidence, and Equation Evidence.','bad','posterFeedback')}
+
+function renderGallery(){const g=state.gallery;host.innerHTML=`<section class="phase"><span class="lessonTag">Activity 1 • Gallery Tour</span><h2>Compare & Connect</h2><p class="prompt">Study three proof posters. Look for what is similar and what is different about how each one justifies equivalence.</p>${partnerPrompt()}<div class="galleryGrid">
+  <article class="poster"><h4>Poster A • Fraction Model</h4><div class="posterMath">3/4 = 6/8</div><div class="sketch"><div style="display:flex;gap:3px">${'<span style="height:22px;flex:1;background:#77a7ff;border:1px solid #526b88"></span>'.repeat(3)}<span style="height:22px;flex:1;border:1px solid #526b88"></span></div><div style="display:flex;gap:2px;margin-top:6px">${'<span style="height:22px;flex:1;background:#ff9b70;border:1px solid #526b88"></span>'.repeat(6)}${'<span style="height:22px;flex:1;border:1px solid #526b88"></span>'.repeat(2)}</div></div><p>Same amount, but the second model partitions each fourth into 2 smaller parts.</p><strong>(3 × 2)/(4 × 2) = 6/8</strong></article>
+  <article class="poster"><h4>Poster B • Number Line</h4><div class="posterMath">3/4 = 6/8</div><div class="sketch"><div style="height:4px;background:#50627a;margin:24px 4px;position:relative"><span style="position:absolute;left:75%;top:-6px;width:16px;height:16px;border-radius:50%;background:#ffd166"></span></div><div style="text-align:center">Both points are 3/4 of the way from 0 to 1.</div></div><p>The denominators name different-sized parts, but both fractions land at the same point.</p></article>
+  <article class="poster"><h4>Poster C • Combine Pieces</h4><div class="posterMath">18/12 = 6/4</div><div class="sketch"><p style="margin:0"><strong>18 twelfths</strong> can be combined into 6 groups of 3 twelfths. Each group is one fourth.</p></div><strong>(18 ÷ 3)/(12 ÷ 3) = 6/4</strong><p>The value stays the same while the number of parts decreases and each part becomes larger.</p></article>
+ </div><div class="card galleryPrompt"><h3>What stays the same across all good proofs?</h3><div class="choiceGrid">${galleryChoices(g.same)}</div></div><div class="card"><h3>Which representation made the equivalence clearest to you?</h3><select class="selectInput" id="galleryClear"><option value="">Choose one</option><option value="model" ${g.clearest==='model'?'selected':''}>Fraction model</option><option value="line" ${g.clearest==='line'?'selected':''}>Number line</option><option value="equation" ${g.clearest==='equation'?'selected':''}>Equation + words</option></select></div>${feedback()}<div class="row"><button class="checkBtn" id="checkGallery">Complete Gallery Tour</button><span id="galleryNext"></span></div></section>`;
+ document.querySelectorAll('[data-gallerysame]').forEach(b=>b.addEventListener('click',()=>{g.same=b.dataset.gallerysame;renderGallery()}));$('galleryClear').addEventListener('change',()=>{g.clearest=$('galleryClear').value;save()});$('checkGallery').addEventListener('click',checkGallery)}
+function galleryChoices(sel){return `<button class="choice ${sel==='value'?'selected':''}" data-gallerysame="value">The fractions show the same amount or point even when the parts look different.</button><button class="choice ${sel==='denom'?'selected':''}" data-gallerysame="denom">Equivalent fractions must always have the same denominator.</button><button class="choice ${sel==='pieces'?'selected':''}" data-gallerysame="pieces">Equivalent fractions must always use the same number of pieces.</button><button class="choice ${sel==='whole'?'selected':''}" data-gallerysame="whole">The whole changes size to make the fractions match.</button>`}
+function checkGallery(){const g=state.gallery;if(g.same==='value'&&g.clearest){markComplete(3);setFeedback('Gallery Tour complete. Different representations can justify the same equivalence relationship.','good');$('galleryNext').innerHTML=nextButton('Go to Lesson Synthesis');$('phaseNext').onclick=goNext}else setFeedback('Choose what all valid proofs have in common and identify the representation that helped you most.','bad')}
+
+function renderSynthesis(){const s=state.synthesis;host.innerHTML=`<section class="phase"><span class="lessonTag">Lesson Synthesis</span><h2>Connect the visual change to the operation.</h2><p class="prompt">Lesson 8 ends by reflecting on how numerical operations can represent what happens to unit-fraction pieces.</p>${partnerPrompt()}<div class="grid2"><div class="card"><h3>Multiplication can represent…</h3><div class="choiceGrid">${synthChoices('mult',s.mult)}</div></div><div class="card"><h3>Division can represent…</h3><div class="choiceGrid">${synthChoices('div',s.div)}</div></div></div>${feedback()}<div class="row"><button class="checkBtn" id="checkSynth">Check Lesson Takeaway</button><span id="synthNext"></span></div></section>`;document.querySelectorAll('[data-synth]').forEach(b=>b.addEventListener('click',()=>{const [which,val]=b.dataset.synth.split(':');state.synthesis[which]=val;renderSynthesis()}));$('checkSynth').addEventListener('click',checkSynthesis)}
+function synthChoices(which,sel){const opts=which==='mult'?[['partition','partitioning unit fractions into smaller parts'],['combine','combining unit fractions into larger parts']]:[['combine','combining unit fractions into larger parts'],['partition','partitioning unit fractions into smaller parts']];return opts.map(([v,t])=>`<button class="choice ${sel===v?'selected':''}" data-synth="${which}:${v}">${t}</button>`).join('')}
+function checkSynthesis(){if(state.synthesis.mult==='partition'&&state.synthesis.div==='combine'){markComplete(4);setFeedback('Lesson takeaway confirmed: multiplication can represent partitioning unit fractions into smaller parts; division can represent combining unit fractions into larger parts.','good');$('synthNext').innerHTML=nextButton('Begin Show What You Know');$('phaseNext').onclick=goNext}else setFeedback('Think back to the posters: multiplying made more, smaller parts; dividing combined parts into fewer, larger parts.','bad')}
+
+function renderSWYK(key){const isOne=key==='one',sw=state.swyk[key],a=isOne?{n:11,d:5}:{n:5,d:4},b=isOne?{n:55,d:10}:{n:15,d:12},maxW=isOne?6:2;host.innerHTML=`<section class="phase"><span class="lessonTag">Show What You Know • Independent</span><h2>${isOne?'Problem 1':'Problem 2'}</h2><p class="prompt">Determine whether the fractions are equivalent using the word bank. <strong>Build a visual model to justify your decision.</strong></p><div class="swykPair">${fracHTML(a)}<span style="font-size:28px;color:#8fa5c2">and</span>${fracHTML(b)}</div><div class="card"><h3>Word Bank</h3><div class="choiceGrid"><button class="choice ${sw.decision==='equivalent'?'selected':''}" data-decision="equivalent">equivalent</button><button class="choice ${sw.decision==='not equivalent'?'selected':''}" data-decision="not equivalent">not equivalent</button></div></div><div class="card accentCard"><h3>Visual Model • Number Lines</h3><p class="tiny">Move each point to the fraction shown. If the fractions are equivalent, the points should represent the same distance from 0.</p>${swLine('swA',a,maxW,sw.pointA)}${swLine('swB',b,maxW,sw.pointB)}<button class="subtleBtn" id="checkSwVisual">Check Visual Model</button></div>${feedback()}<div class="row"><button class="checkBtn" id="checkSw">Submit Problem</button><span id="swNext"></span></div></section>`;
+ document.querySelectorAll('[data-decision]').forEach(btn=>btn.addEventListener('click',()=>{sw.decision=btn.dataset.decision;renderSWYK(key)}));
+ $('swA').addEventListener('input',()=>{sw.pointA=Number($('swA').value);sw.visualOK=false;$('swARead').textContent=`${sw.pointA}/${a.d}`;save()});$('swB').addEventListener('input',()=>{sw.pointB=Number($('swB').value);sw.visualOK=false;$('swBRead').textContent=`${sw.pointB}/${b.d}`;save()});$('checkSwVisual').addEventListener('click',()=>{if(sw.pointA===a.n&&sw.pointB===b.n){sw.visualOK=true;save();setFeedback('Visual model is placed correctly. Now use it to support your word-bank decision.','good')}else setFeedback('Move each point to the exact fraction shown before submitting.','bad')});$('checkSw').addEventListener('click',()=>checkSWYK(key,a,b));
+}
+function swLine(id,f,maxW,val){return `<div class="modelSide"><div class="modelTitle">${fmt(f)}</div><input class="range" id="${id}" type="range" min="0" max="${maxW*f.d}" step="1" value="${val}"><div class="lineLabels"><span>0</span><span>${maxW}</span></div><div class="currentPoint" id="${id}Read">${val}/${f.d}</div></div>`}
+function checkSWYK(key,a,b){const sw=state.swyk[key],correct=equiv(a,b)?'equivalent':'not equivalent';if(sw.visualOK&&sw.decision===correct){markComplete(state.phase);setFeedback(`<strong>Correct.</strong> ${fmt(a)} and ${fmt(b)} are ${correct}. Your visual model supports the decision.`,'good');$('swNext').innerHTML=nextButton(key==='one'?'Go to Problem 2':'Finish Lesson 8');$('phaseNext').onclick=goNext}else if(!sw.visualOK)setFeedback('Build and check the visual model before submitting your decision.','bad');else setFeedback('Use the locations on your number lines to reconsider whether the two fractions represent the same amount.','bad')}
+
+function resetAll(){clearSave();state=null;mode='solo';document.querySelectorAll('.modeBtn').forEach((b,i)=>b.classList.toggle('selected',i===0));$('resumeBtn').classList.add('hidden');show(startScreen)}
+$('resetBtn').addEventListener('click',()=>{if(confirm('Reset the saved Lesson 8 work and return to the start screen?'))resetAll()});document.querySelectorAll('.modeBtn').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.querySelectorAll('.modeBtn').forEach(x=>x.classList.toggle('selected',x===b))}));$('startBtn').addEventListener('click',()=>start(mode));$('resumeBtn').addEventListener('click',resume);$('againBtn').addEventListener('click',()=>start(state?.mode||mode));$('homeBtn').addEventListener('click',resetAll);if(load())$('resumeBtn').classList.remove('hidden');
+})();
+</script>
+</body>
+</html>

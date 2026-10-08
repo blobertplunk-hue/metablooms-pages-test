@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Fraction Face-Off — Unit 1 Lesson 12</title>
+<style>
+:root{
+  --bg:#09111f;--panel:#111c30;--panel2:#16243c;--text:#f7fbff;--muted:#a9bbd3;
+  --accent:#79d7ff;--gold:#ffd166;--good:#54e38e;--bad:#ff6b7a;--line:#2a3d5c;
+  --p1:#77a7ff;--p2:#ff9b70;--shadow:0 14px 40px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -10%,#18365d 0,#09111f 43%,#060b14 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{min-height:100svh;overflow-x:hidden}
+button,select{font:inherit}
+button{touch-action:manipulation;cursor:pointer}
+button:focus-visible,select:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.app{width:min(1100px,100%);margin:auto;padding:max(14px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
+.topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}
+.badge{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#1d8dff,#75e1ff);box-shadow:var(--shadow);font-weight:900;color:#061222;font-size:22px}
+.brand h1{font-size:clamp(20px,4vw,32px);margin:0;line-height:1.04}.brand p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.topActions{display:flex;gap:8px}.ghost{border:1px solid var(--line);background:#0d1728;color:var(--text);border-radius:13px;padding:11px 14px;font-weight:800;min-height:46px}
+.panel{background:linear-gradient(180deg,rgba(23,38,63,.96),rgba(12,23,40,.96));border:1px solid #2b4267;border-radius:24px;box-shadow:var(--shadow);padding:clamp(16px,3vw,28px)}
+.hidden{display:none!important}
+.startGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.intro h2{font-size:clamp(30px,7vw,56px);line-height:1;margin:2px 0 12px}.intro .lead{font-size:clamp(17px,2.4vw,22px);line-height:1.45;color:#d8e8fb;max-width:720px}.lessonTag{display:inline-flex;align-items:center;gap:8px;background:#0b3d5d;border:1px solid #2677a6;padding:8px 12px;border-radius:999px;font-weight:800;color:#c7f2ff}.rules{display:grid;gap:8px;margin:18px 0}.rule{display:flex;gap:10px;align-items:flex-start;color:#d5e2f3}.num{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#243b60;font-weight:900}.setup{background:#0b1526;border:1px solid var(--line);border-radius:18px;padding:16px}.setup h3{margin:0 0 12px}.modeBtns{display:grid;gap:10px}.modeBtn{border:1px solid #34517a;background:#14243c;color:white;border-radius:16px;padding:15px;text-align:left;min-height:76px}.modeBtn strong{display:block;font-size:18px}.modeBtn span{display:block;color:var(--muted);margin-top:4px}.modeBtn.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(121,215,255,.18) inset;background:#173252}.primary{width:100%;border:0;background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322;border-radius:16px;min-height:58px;padding:14px 18px;font-size:19px;font-weight:950;margin-top:14px}.resume{background:linear-gradient(135deg,#ffd166,#ffad42)}
+.gameHead{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-bottom:12px}.scoreBox{border:1px solid var(--line);border-radius:16px;padding:10px 14px;background:#0a1425;min-width:0}.scoreBox.right{text-align:right}.scoreBox .label{color:var(--muted);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.scoreBox .score{font-size:25px;font-weight:950}.roundPill{background:#22395d;border:1px solid #3f5f8c;border-radius:999px;padding:10px 15px;font-weight:900;white-space:nowrap}.turnBanner{text-align:center;padding:10px 12px;border-radius:14px;background:#10213a;border:1px solid #2b466c;margin-bottom:14px;font-weight:850}.arena{display:grid;grid-template-columns:1fr 92px 1fr;gap:12px;align-items:stretch}.fractionCard{min-height:265px;border-radius:24px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(165deg,#1b3152,#101b2e);border:2px solid #3a5277;box-shadow:0 10px 22px rgba(0,0,0,.25);position:relative;overflow:hidden}.fractionCard.p1{border-color:rgba(119,167,255,.8)}.fractionCard.p2{border-color:rgba(255,155,112,.8)}.cardLabel{position:absolute;top:13px;left:14px;color:var(--muted);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.07em}.frac{display:inline-grid;grid-template-rows:auto 4px auto;align-items:center;text-align:center;font-weight:950;font-size:clamp(56px,11vw,94px);line-height:.85;min-width:1.4em}.frac .bar{height:4px;border-radius:3px;background:currentColor;width:100%;margin:7px 0}.decimal{margin-top:10px;font-size:13px;color:transparent;transition:.18s}.decimal.revealed{color:var(--muted)}.vs{display:grid;place-items:center;font-size:22px;font-weight:950;color:#6f87a8}.relationBtns{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 10px}.relation{min-height:78px;border-radius:18px;border:2px solid #3d587f;background:#11223a;color:white;font-size:42px;font-weight:950}.relation:active{transform:scale(.98)}.relation.correct{border-color:var(--good);background:#103a2a}.relation.wrong{border-color:var(--bad);background:#451b25}.feedback{min-height:90px;border-radius:18px;border:1px solid var(--line);background:#0b1525;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.feedbackText{font-size:18px;line-height:1.35}.feedbackText strong.good{color:var(--good)}.feedbackText strong.bad{color:var(--bad)}.nextBtn{flex:0 0 auto;border:0;background:#edf7ff;color:#071321;border-radius:14px;padding:14px 17px;font-weight:950;min-height:52px}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.toolBtn{border:1px solid #35527b;background:#10213a;color:#e7f4ff;border-radius:13px;padding:11px 13px;min-height:46px;font-weight:850}.strategy{margin-top:12px;border:1px solid #365270;background:#0a1527;border-radius:18px;padding:14px}.strategy h3{margin:0 0 8px;color:var(--accent)}.strategyGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.strategyBlock{background:#111f35;border:1px solid #294364;border-radius:14px;padding:12px;min-height:88px}.strategyBlock .small{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase}.strategyBlock .big{font-size:18px;font-weight:900;margin-top:5px}.models{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.modelBox{background:#0f1d31;border:1px solid #29415f;border-radius:14px;padding:10px}.modelTitle{font-size:13px;color:var(--muted);font-weight:850;margin-bottom:8px}.wholeRow{display:flex;gap:4px;margin:5px 0}.piece{height:24px;flex:1;border:1px solid #59728f;background:#0b1422;border-radius:3px}.piece.fill1{background:var(--p1);border-color:#9bc0ff}.piece.fill2{background:var(--p2);border-color:#ffc0a2}.history{margin-top:14px}.history h3{margin:0 0 9px}.historyList{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.hist{background:#0c1728;border:1px solid #263c5d;border-radius:12px;padding:8px;text-align:center;font-weight:850;font-size:14px}.hist.ok{border-color:#276b4a}.hist.no{border-color:#7a3241}.end{text-align:center}.end h2{font-size:clamp(32px,7vw,56px);margin:0 0 10px}.end .bigScore{font-size:clamp(54px,12vw,96px);font-weight:950;color:var(--gold);line-height:1}.end p{font-size:18px;color:#d6e6f8}.endActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:580px;margin:18px auto 0}.endActions button{min-height:56px;border-radius:16px;font-weight:950;border:0}.playAgain{background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322}.homeBtn{background:#172945;color:#fff;border:1px solid #375476!important}.tiny{font-size:12px;color:var(--muted);margin-top:10px}.activeTurn{box-shadow:0 0 0 3px rgba(255,209,102,.8),0 10px 22px rgba(0,0,0,.25)}
+@media(max-width:760px){.startGrid{grid-template-columns:1fr}.setup{order:-1}.arena{grid-template-columns:1fr 56px 1fr}.fractionCard{min-height:225px;padding:13px}.gameHead{grid-template-columns:1fr 1fr}.roundPill{grid-column:1/-1;grid-row:2;text-align:center}.historyList{grid-template-columns:repeat(4,1fr)}.strategyGrid{grid-template-columns:1fr}.relation{min-height:70px}.feedback{align-items:stretch;flex-direction:column}.nextBtn{width:100%}}
+@media(max-width:480px){.app{padding-left:9px;padding-right:9px}.panel{border-radius:18px;padding:12px}.arena{grid-template-columns:1fr 42px 1fr;gap:6px}.fractionCard{min-height:195px;border-radius:18px}.frac{font-size:52px}.relationBtns{gap:7px}.relation{font-size:34px}.models{grid-template-columns:1fr}.historyList{grid-template-columns:repeat(3,1fr)}.topActions{width:100%}.topActions button{flex:1}.brand p{font-size:12px}}
+
+.requiredWork{margin:16px 0 12px;border:2px solid #42658f;background:linear-gradient(180deg,#10243f,#0b1729);border-radius:20px;padding:14px}
+.requiredWork.complete{border-color:var(--good);box-shadow:0 0 0 3px rgba(84,227,142,.10) inset}
+.workHead{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}.workHead h3{margin:0;font-size:20px}.taskTag{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:950;letter-spacing:.04em;text-transform:uppercase;background:#213a5d;border:1px solid #46698f;color:#dff5ff}.taskTag.done{background:#153b2a;border-color:#337d59;color:#bff5d4}.workPrompt{margin:5px 0 0;color:#d7e8fa;line-height:1.35}.gateNote{margin-top:10px;border-radius:12px;padding:9px 11px;background:#0b1423;border:1px solid #2a4365;color:#b9cae0;font-size:13px;font-weight:750}.gateNote.ready{border-color:#2d7653;color:#c8f6da;background:#0d2a1d}
+.modelBuilderGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modelSide{border:1px solid #355171;border-radius:16px;background:#0c192c;padding:12px}.modelSide h4{margin:0 0 5px;font-size:16px}.modelInstruction{font-size:13px;color:var(--muted);margin-bottom:9px}.buildWhole{display:flex;gap:3px;margin:6px 0}.buildPiece{flex:1;min-width:8px;height:34px;border:1px solid #6380a3;background:#0a1422;border-radius:4px;padding:0}.buildPiece.shaded.left{background:var(--p1);border-color:#a5c7ff}.buildPiece.shaded.right{background:var(--p2);border-color:#ffd0ba}.buildPiece:focus-visible{outline:3px solid #fff;outline-offset:1px}.countLine{font-size:13px;color:#d7e6f8;margin-top:7px;font-weight:800}.checkWorkBtn{width:100%;margin-top:12px;min-height:52px;border:0;border-radius:14px;background:#e7f5ff;color:#071421;font-weight:950;font-size:17px}.workFeedback{min-height:24px;margin-top:8px;font-weight:850;line-height:1.35}.workFeedback.good{color:var(--good)}.workFeedback.bad{color:#ff9aa5}
+.equivGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.equivCard{border:1px solid #355171;border-radius:16px;background:#0c192c;padding:12px}.equivCard h4{margin:0 0 9px}.equivTarget{font-size:13px;color:var(--muted);margin-bottom:9px}.equivEquation{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center}.miniFrac{display:grid;grid-template-rows:auto 2px auto;text-align:center;font-weight:900;font-size:18px;min-width:42px}.miniFrac .bar{height:2px;background:currentColor;margin:3px 0}.multiplyStack{display:grid;grid-template-rows:1fr 1fr;gap:5px;min-width:0}.multiplyRow{display:flex;align-items:center;gap:5px;font-weight:850}.mathInput{width:54px;min-height:42px;border-radius:10px;border:2px solid #47688f;background:#071321;color:white;font-size:20px;text-align:center;font-weight:900}.productInput{width:68px}.equalsMark{font-size:24px;font-weight:950}.targetFrac{display:grid;grid-template-rows:auto 2px auto;text-align:center;font-weight:950;font-size:21px;min-width:70px}.targetFrac .bar{height:2px;background:currentColor;margin:4px 0}.relation.locked{opacity:.38;filter:saturate(.45);cursor:not-allowed}.requirementReminder{text-align:center;color:#ffdca0;font-size:13px;font-weight:850;margin-top:-2px;margin-bottom:8px}
+@media(max-width:760px){.modelBuilderGrid,.equivGrid{grid-template-columns:1fr}.buildPiece{height:38px}.requiredWork{padding:12px}.equivEquation{grid-template-columns:auto 1fr auto}}
+
+
+.choiceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.choiceBtn{min-height:78px;border:2px solid #36577f;border-radius:15px;background:#10223c;color:#eef8ff;padding:12px;font-weight:900;text-align:left}.choiceBtn strong{display:block;font-size:17px}.choiceBtn span{display:block;color:var(--muted);font-size:13px;margin-top:4px;line-height:1.25}.choiceBtn.selected{border-color:var(--gold);background:#2b2b20;box-shadow:0 0 0 3px rgba(255,209,102,.12) inset}.benchmarkGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.benchmarkCard{background:#0f1d31;border:1px solid #29415f;border-radius:15px;padding:12px}.benchmarkCard h4{margin:0 0 9px}.benchmarkBtns{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.benchmarkBtn{min-height:48px;border:1px solid #3c5f89;border-radius:11px;background:#14263f;color:#fff;font-weight:900}.benchmarkBtn.selected{background:#254c75;border-color:var(--accent)}.renameGrid{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}.renameCard{background:#0f1d31;border:1px solid #29415f;border-radius:15px;padding:12px}.operationMark{font-size:24px;font-weight:950;color:var(--accent);text-align:center}.justificationBox{margin-top:12px;background:#0d1a2d;border:1px solid #37577d;border-radius:14px;padding:12px}.justificationBox label{display:block;font-weight:900;margin-bottom:7px}.justificationBox textarea{width:100%;min-height:72px;resize:vertical;border:1px solid #49698f;border-radius:11px;background:#071321;color:#fff;padding:10px;font:inherit;font-size:16px}.lessonFlow{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.flowChip{font-size:11px;border:1px solid #355373;border-radius:999px;padding:5px 8px;color:#c6d8ec;background:#0d1a2b}.flowChip.active{color:#061322;background:var(--gold);border-color:var(--gold);font-weight:950}.flowChip.done{border-color:#2d7350;color:#bff5d4}@media(max-width:760px){.choiceGrid{grid-template-columns:1fr}.benchmarkGrid{grid-template-columns:1fr}.renameGrid{grid-template-columns:1fr}.operationMark{transform:rotate(90deg)}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="badge">½</div><div><h1>Fraction Face-Off</h1><p>Grade 4 • Unit 1 • Lesson 12 • Pairs to Compare</p></div></div>
+    <div class="topActions"><button class="ghost" id="soundBtn" aria-pressed="true">Sound: On</button><button class="ghost" id="resetBtn">Reset</button></div>
+  </header>
+
+  <main>
+    <section class="panel" id="startScreen">
+      <div class="startGrid">
+        <div class="intro">
+          <span class="lessonTag">Lesson 12 • Related denominators</span>
+          <h2>Compare. Choose a strategy. Justify.</h2>
+          <p class="lead">Lesson 12 moves from visual and benchmark reasoning to equivalent fractions with a <strong>common denominator</strong>. Early rounds guide the strategy; later rounds let you choose how to prove the comparison.</p>
+          <div class="rules">
+            <div class="rule"><span class="num">1</span><span>Represent or reason first: build a model, compare to <strong>1/2 or 1</strong>, or make an equivalent fraction.</span></div>
+            <div class="rule"><span class="num">2</span><span>Then tap <strong>&lt;</strong>, <strong>=</strong>, or <strong>&gt;</strong>. The symbols unlock only after the required reasoning is correct.</span></div>
+            <div class="rule"><span class="num">3</span><span>On later rounds, <strong>choose your own Lesson 12 strategy</strong> and give a short justification before comparing.</span></div>
+          </div>
+          <p class="tiny">No student names are collected. Game state is saved only on this device so an interrupted round can resume.</p>
+        </div>
+        <aside class="setup">
+          <h3>Choose a game</h3>
+          <div class="modeBtns">
+            <button class="modeBtn selected" data-mode="solo"><strong>Solo Sprint</strong><span>10 rounds • score + streak</span></button>
+            <button class="modeBtn" data-mode="duo"><strong>2-Player Battle</strong><span>12 rounds • pass-and-play on one iPad</span></button>
+          </div>
+          <button class="primary" id="startBtn">Start Game</button>
+          <button class="primary resume hidden" id="resumeBtn">Resume Saved Game</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="gameScreen">
+      <div class="gameHead">
+        <div class="scoreBox"><div class="label" id="leftScoreLabel">Score</div><div class="score" id="score1">0</div></div>
+        <div class="roundPill" id="roundPill">Round 1 of 10</div>
+        <div class="scoreBox right"><div class="label" id="rightScoreLabel">Streak</div><div class="score" id="score2">0</div></div>
+      </div>
+      <div class="turnBanner" id="turnBanner">Compare the two fraction cards.</div>
+
+      <div class="arena">
+        <article class="fractionCard p1" id="leftCard"><div class="cardLabel">Left card</div><div class="frac" id="leftFraction" aria-label="left fraction"></div><div class="decimal" id="leftDecimal">0.00</div></article>
+        <div class="vs">VS</div>
+        <article class="fractionCard p2" id="rightCard"><div class="cardLabel">Right card</div><div class="frac" id="rightFraction" aria-label="right fraction"></div><div class="decimal" id="rightDecimal">0.00</div></article>
+      </div>
+
+      <section class="requiredWork" id="requiredWork" aria-live="polite">
+        <div class="workHead">
+          <div><h3 id="workTitle">Required Math Work</h3><p class="workPrompt" id="workPrompt"></p></div>
+          <span class="taskTag" id="taskTag">Build Models</span>
+        </div>
+        <div id="workBody"></div>
+        <div class="workFeedback" id="workFeedback"></div>
+        <div class="gateNote" id="gateNote">Complete the required math work to unlock &lt;, =, and &gt;.</div>
+      </section>
+      <div class="requirementReminder" id="requirementReminder">Comparison buttons unlock after the required work is correct.</div>
+
+      <div class="relationBtns" role="group" aria-label="Choose the comparison symbol">
+        <button class="relation" data-rel="<" aria-label="less than">&lt;</button>
+        <button class="relation" data-rel="=" aria-label="equal to">=</button>
+        <button class="relation" data-rel=">" aria-label="greater than">&gt;</button>
+      </div>
+
+      <div class="feedback" aria-live="polite">
+        <div class="feedbackText" id="feedbackText">Choose the symbol that makes the comparison true.</div>
+        <button class="nextBtn hidden" id="nextBtn">Draw Next Pair</button>
+      </div>
+
+      <div class="tools">
+        <button class="toolBtn" id="hintBtn">Hint</button>
+        <button class="toolBtn" id="commonBtn">Common Denominator</button>
+        <button class="toolBtn" id="modelBtn">Models</button>
+        
+      </div>
+
+      <section class="strategy hidden" id="strategyPanel">
+        <h3 id="strategyTitle">Strategy Helper</h3>
+        <div id="strategyBody"></div>
+      </section>
+
+      <section class="history">
+        <h3>Round history</h3>
+        <div class="historyList" id="historyList"></div>
+      </section>
+    </section>
+
+    <section class="panel end hidden" id="endScreen">
+      <div class="lessonTag">Lesson 12 complete</div>
+      <h2 id="endTitle">Strong finish.</h2>
+      <div class="bigScore" id="endScore">8/10</div>
+      <p id="endMessage">You compared fractions using symbols and related-denominator strategies.</p>
+      <div class="endActions"><button class="playAgain" id="againBtn">Play Again</button><button class="homeBtn" id="homeBtn">Change Mode</button></div>
+    </section>
+  </main>
+</div>
+<script>
+(() => {
+'use strict';
+const SAVE_KEY='fractionFaceOff_u1l12_tight_v3';
+const families=[[2,4,8],[3,6,12],[4,8,16],[5,10,20],[10,20,100]];
+const generalPairs=[
+  [{n:5,d:12},{n:3,d:4}], [{n:7,d:6},{n:11,d:12}], [{n:26,d:10},{n:11,d:5}],
+  [{n:11,d:100},{n:2,d:5}], [{n:15,d:8},{n:7,d:4}], [{n:45,d:100},{n:2,d:5}],
+  [{n:1,d:4},{n:25,d:100}], [{n:6,d:12},{n:1,d:2}], [{n:3,d:5},{n:12,d:20}]
+];
+const benchmarkPairs=[
+  [{n:5,d:12},{n:3,d:4}], [{n:7,d:6},{n:11,d:12}], [{n:1,d:4},{n:5,d:8}],
+  [{n:6,d:10},{n:2,d:5}], [{n:3,d:4},{n:3,d:8}], [{n:9,d:10},{n:6,d:5}],
+  [{n:3,d:8},{n:2,d:4}], [{n:11,d:12},{n:7,d:6}]
+];
+const divisionPairs=[
+  [{n:6,d:12},{n:2,d:6}], [{n:8,d:20},{n:3,d:10}], [{n:12,d:20},{n:5,d:10}],
+  [{n:6,d:8},{n:2,d:4}], [{n:4,d:8},{n:2,d:4}], [{n:18,d:20},{n:8,d:10}],
+  [{n:50,d:100},{n:9,d:20}], [{n:25,d:100},{n:1,d:4}]
+];
+let mode='solo', state=null, locked=false, soundOn=true;
+const $=id=>document.getElementById(id);
+const startScreen=$('startScreen'),gameScreen=$('gameScreen'),endScreen=$('endScreen');
+const relBtns=[...document.querySelectorAll('.relation')];
+
+function gcd(a,b){while(b){[a,b]=[b,a%b]}return Math.abs(a)}
+function lcm(a,b){return Math.abs(a*b)/gcd(a,b)}
+function relation(a,b){const x=a.n*b.d,y=b.n*a.d;return x===y?'=':(x<y?'<':'>')}
+function fracHTML(f){return `<span>${f.n}</span><span class="bar"></span><span>${f.d}</span>`}
+function formatFrac(f){return `${f.n}/${f.d}`}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function choose(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function samePair(a,b){return a.n===b.n&&a.d===b.d}
+function pairCopy(p){return [{...p[0]},{...p[1]}]}
+function maybeFlip(p){const q=pairCopy(p);return Math.random()<.5?q:[q[1],q[0]]}
+function denominatorRelated(a,b){return a.d!==b.d&&(a.d%b.d===0||b.d%a.d===0)}
+
+function sequenceForMode(which){
+  return which==='duo'
+    ? ['model','benchmark','model','multiply','divide','multiply','benchmark','choice','choice','choice','choice','choice']
+    : ['model','benchmark','model','multiply','divide','multiply','choice','choice','choice','choice'];
+}
+function taskForRound(round){const seq=sequenceForMode(state?state.mode:mode);return seq[Math.min(round-1,seq.length-1)]}
+function pickBenchmark(a,b){
+  const rel=(f,n,d)=>relation(f,{n,d});
+  const half=[rel(a,1,2),rel(b,1,2)];
+  if(half[0]!==half[1]||half.includes('='))return {n:1,d:2,label:'1/2'};
+  const one=[rel(a,1,1),rel(b,1,1)];
+  if(one[0]!==one[1]||one.includes('='))return {n:1,d:1,label:'1'};
+  return {n:1,d:2,label:'1/2'};
+}
+function randomRelatedPair(task){
+  const allowed=task==='model'?families.filter(f=>Math.max(...f)<=20):families;
+  const family=choose(allowed);let [d1,d2]=shuffle([...family]).slice(0,2),a,b;
+  for(let tries=0;tries<120;tries++){
+    const cap1=task==='model'?Math.min(12,Math.floor(d1*1.25)):Math.floor(d1*1.4);
+    const cap2=task==='model'?Math.min(12,Math.floor(d2*1.25)):Math.floor(d2*1.4);
+    a={n:1+Math.floor(Math.random()*Math.max(1,cap1)),d:d1};
+    b={n:1+Math.floor(Math.random()*Math.max(1,cap2)),d:d2};
+    if(task==='model'&&(a.n>12||b.n>12))continue;
+    if(!denominatorRelated(a,b))continue;
+    if(Math.abs(a.n/a.d-b.n/b.d)<.04)continue;
+    return Math.random()<.5?[a,b]:[b,a];
+  }
+  return [{n:3,d:4},{n:3,d:8}];
+}
+function makePair(task){
+  if(task==='benchmark')return maybeFlip(choose(benchmarkPairs));
+  if(task==='divide')return maybeFlip(choose(divisionPairs));
+  if(task==='choice'){
+    return maybeFlip(choose(benchmarkPairs));
+  }
+  if(Math.random()<.35){
+    const eligible=generalPairs.filter(([a,b])=>task!=='model'||(Math.max(a.d,b.d)<=20&&a.n<=12&&b.n<=12));
+    return maybeFlip(choose(eligible));
+  }
+  return randomRelatedPair(task);
+}
+function operationForEquivalent(a,b,preferDivide=false){
+  const larger=a.d>b.d?{f:a,side:'left',other:b}:{f:b,side:'right',other:a};
+  const smaller=larger.side==='left'?{f:b,side:'right',other:a}:{f:a,side:'left',other:b};
+  const factor=larger.f.d/smaller.f.d;
+  if(preferDivide&&Number.isInteger(factor)&&larger.f.n%factor===0){
+    return {op:'divide',side:larger.side,f:larger.f,targetD:smaller.f.d,factor,resultN:larger.f.n/factor,other:smaller.f};
+  }
+  return {op:'multiply',side:smaller.side,f:smaller.f,targetD:larger.f.d,factor,resultN:smaller.f.n*factor,other:larger.f};
+}
+function taskName(task){return ({model:'Build Models',benchmark:'Use a Benchmark',multiply:'Make an Equivalent Fraction',divide:'Simplify an Equivalent Fraction',choice:'Choose Your Strategy'})[task]||'Required Work'}
+function newState(selectedMode){
+  mode=selectedMode;const total=selectedMode==='duo'?12:10;const task=sequenceForMode(selectedMode)[0];
+  return {version:3,mode:selectedMode,total,round:1,score1:0,score2:0,streak:0,bestStreak:0,currentPlayer:1,pair:makePair(task),task,workComplete:false,modelSelections:{left:[],right:[]},benchmarkWork:{},equivWork:{},chosenStrategy:null,strategyNote:'',answered:false,lastChoice:null,history:[]};
+}
+function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
+function load(){try{const x=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(x&&x.version===3&&x.round<=x.total)return x}catch(e){}return null}
+function clearSave(){try{localStorage.removeItem(SAVE_KEY)}catch(e){}}
+let sharedAudioContext=null;function getSharedAudioContext(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;if(!sharedAudioContext||sharedAudioContext.state==='closed')sharedAudioContext=new C();if(sharedAudioContext.state==='suspended'&&sharedAudioContext.resume)sharedAudioContext.resume().catch(()=>{});return sharedAudioContext}catch(e){return null}}function beep(ok){if(!soundOn)return;try{const c=getSharedAudioContext();if(!c)return;const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?620:190;g.gain.setValueAtTime(.055,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.12);o.start();o.stop(c.currentTime+.13)}catch(e){}}
+function ensureRoundWorkState(){
+  if(!state.task)state.task=taskForRound(state.round);
+  if(typeof state.workComplete!=='boolean')state.workComplete=false;
+  state.modelSelections=state.modelSelections||{left:[],right:[]};state.benchmarkWork=state.benchmarkWork||{};state.equivWork=state.equivWork||{};
+  if(typeof state.strategyNote!=='string')state.strategyNote='';
+}
+function renderLessonFlow(){
+  const seq=sequenceForMode(state.mode);const labels={model:'Model',benchmark:'Benchmark',multiply:'Equivalent ×',divide:'Equivalent ÷',choice:'Choose'};
+  return `<div class="lessonFlow">${seq.map((t,i)=>`<span class="flowChip ${i+1===state.round?'active':i+1<state.round?'done':''}">${i+1}. ${labels[t]}</span>`).join('')}</div>`;
+}
+function renderRequiredWork(){
+  ensureRoundWorkState();const [a,b]=state.pair,box=$('requiredWork'),tag=$('taskTag');
+  box.classList.toggle('complete',state.workComplete);tag.classList.toggle('done',state.workComplete);$('workFeedback').className='workFeedback';
+  $('turnBanner').innerHTML=`${state.mode==='duo'?`Player ${state.currentPlayer}'s turn — `:''}${taskName(state.task)}${renderLessonFlow()}`;
+  if(state.workComplete){tag.textContent='Reasoning complete';$('gateNote').textContent='Reasoning complete. Now choose <, =, or >.';$('gateNote').className='gateNote ready';$('requirementReminder').textContent='Use the work above to choose the true comparison.'}
+  else{$('gateNote').textContent='Complete the Lesson 12 reasoning to unlock <, =, and >.';$('gateNote').className='gateNote';$('requirementReminder').textContent='Comparison symbols unlock after the reasoning is correct.'}
+  if(state.task==='model')renderModelTask(a,b);
+  else if(state.task==='benchmark')renderBenchmarkTask(a,b);
+  else if(state.task==='multiply')renderEquivalentTask(a,b,'multiply');
+  else if(state.task==='divide')renderEquivalentTask(a,b,'divide');
+  else renderChoiceTask(a,b);
+}
+function modelCells(f,side){
+  const wholes=Math.max(1,Math.ceil(f.n/f.d)),selected=new Set(state.modelSelections[side]||[]);let html='';
+  for(let w=0;w<wholes;w++){html+='<div class="buildWhole" role="group" aria-label="Whole '+(w+1)+'">';for(let p=0;p<f.d;p++){const idx=w*f.d+p,on=selected.has(idx);html+=`<button type="button" class="buildPiece ${on?'shaded '+side:''}" data-model-side="${side}" data-piece="${idx}" aria-pressed="${on}" aria-label="${side} model piece ${idx+1}"></button>`}html+='</div>'}
+  return html;
+}
+function renderModelTask(a,b,embedded=false){
+  $('workTitle').textContent=embedded?'Chosen strategy: Visual Model':'Build Fraction Models';$('taskTag').textContent=state.workComplete?'Reasoning complete':'Visual Model';
+  $('workPrompt').innerHTML=`Build <strong>${formatFrac(a)}</strong> and <strong>${formatFrac(b)}</strong> with equal-sized parts. Compare quantities only when the wholes are the same size.`;
+  $('workBody').innerHTML=`<div class="modelBuilderGrid"><div class="modelSide"><h4>Left: ${formatFrac(a)}</h4><div class="modelInstruction">Each whole has ${a.d} equal parts. Shade ${a.n}.</div><div id="leftBuilder">${modelCells(a,'left')}</div><div class="countLine" id="leftCount">Shaded: ${(state.modelSelections.left||[]).length} of ${a.n}</div></div><div class="modelSide"><h4>Right: ${formatFrac(b)}</h4><div class="modelInstruction">Each whole has ${b.d} equal parts. Shade ${b.n}.</div><div id="rightBuilder">${modelCells(b,'right')}</div><div class="countLine" id="rightCount">Shaded: ${(state.modelSelections.right||[]).length} of ${b.n}</div></div></div>${embedded?choiceJustification():''}<button class="checkWorkBtn" type="button" id="checkRequiredWork">Check My ${embedded?'Strategy':'Models'}</button>`;
+  document.querySelectorAll('[data-model-side]').forEach(btn=>btn.addEventListener('click',()=>toggleModelPiece(btn)));wireNote();$('checkRequiredWork').addEventListener('click',()=>checkModelWork(embedded));
+}
+function toggleModelPiece(btn){if(state.workComplete||state.answered)return;const side=btn.dataset.modelSide,idx=Number(btn.dataset.piece),set=new Set(state.modelSelections[side]||[]);if(set.has(idx))set.delete(idx);else set.add(idx);state.modelSelections[side]=[...set].sort((x,y)=>x-y);btn.classList.toggle('shaded',set.has(idx));btn.classList.toggle(side,set.has(idx));btn.setAttribute('aria-pressed',String(set.has(idx)));const f=side==='left'?state.pair[0]:state.pair[1];$(side+'Count').textContent=`Shaded: ${set.size} of ${f.n}`;save()}
+function noteReady(){return (state.strategyNote||'').trim().length>=8}
+function checkModelWork(requireNote=false){const [a,b]=state.pair,L=(state.modelSelections.left||[]).length,R=(state.modelSelections.right||[]).length;if(L===a.n&&R===b.n&&(!requireNote||noteReady())){completeRequiredWork('Models are correct. You represented both quantities with equal-sized parts.');return}let parts=[];if(L!==a.n)parts.push(`left model needs ${a.n} shaded`);if(R!==b.n)parts.push(`right model needs ${b.n} shaded`);if(requireNote&&!noteReady())parts.push('add a short justification');showWorkError(parts)}
+function benchmarkChoiceButtons(side,current,label){return ['<','=','>'].map(r=>`<button type="button" class="benchmarkBtn ${current===r?'selected':''}" data-bench-side="${side}" data-bench-rel="${r}">${r} ${label}</button>`).join('')}
+function renderBenchmarkTask(a,b,embedded=false){
+  const bench=pickBenchmark(a,b),w=state.benchmarkWork||{};$('workTitle').textContent=embedded?'Chosen strategy: Benchmark':'Compare to a Benchmark';$('taskTag').textContent=state.workComplete?'Reasoning complete':`Benchmark ${bench.label}`;
+  $('workPrompt').innerHTML=`First decide where each fraction is compared with <strong>${bench.label}</strong>. This can let you compare without renaming the fractions.`;
+  $('workBody').innerHTML=`<div class="benchmarkGrid"><div class="benchmarkCard"><h4>Left: ${formatFrac(a)}</h4><div class="benchmarkBtns">${benchmarkChoiceButtons('left',w.left,bench.label)}</div></div><div class="benchmarkCard"><h4>Right: ${formatFrac(b)}</h4><div class="benchmarkBtns">${benchmarkChoiceButtons('right',w.right,bench.label)}</div></div></div>${embedded?choiceJustification():''}<button class="checkWorkBtn" type="button" id="checkRequiredWork">Check My ${embedded?'Strategy':'Benchmark Reasoning'}</button>`;
+  document.querySelectorAll('[data-bench-side]').forEach(btn=>btn.addEventListener('click',()=>{state.benchmarkWork[btn.dataset.benchSide]=btn.dataset.benchRel;renderBenchmarkTask(a,b,embedded);save()}));wireNote();$('checkRequiredWork').addEventListener('click',()=>checkBenchmarkWork(embedded));
+}
+function checkBenchmarkWork(requireNote=false){const [a,b]=state.pair,bench=pickBenchmark(a,b),correctL=relation(a,bench),correctR=relation(b,bench),w=state.benchmarkWork||{};if(w.left===correctL&&w.right===correctR&&(!requireNote||noteReady())){completeRequiredWork(`Correct. ${formatFrac(a)} is ${wordRel(correctL)} ${bench.label}, and ${formatFrac(b)} is ${wordRel(correctR)} ${bench.label}.`);return}const parts=[];if(w.left!==correctL)parts.push('reconsider the left fraction');if(w.right!==correctR)parts.push('reconsider the right fraction');if(requireNote&&!noteReady())parts.push('add a short justification');showWorkError(parts)}
+function wordRel(r){return r==='<'?'less than':r==='>'?'greater than':'equal to'}
+function equivalentEquation(op){const w=state.equivWork||{},symbol=op.op==='multiply'?'×':'÷',key=op.op==='multiply'?'mult':'div';return `<div class="renameGrid"><div class="renameCard"><h4>Rename ${op.side==='left'?'left':'right'} fraction: ${formatFrac(op.f)}</h4><div class="equivTarget">Make the denominator ${op.targetD}</div><div class="equivEquation"><div class="miniFrac"><span>${op.f.n}</span><span class="bar"></span><span>${op.f.d}</span></div><div class="multiplyStack"><div class="multiplyRow">numerator ${symbol} <input class="mathInput" inputmode="numeric" pattern="[0-9]*" data-equiv="numFactor" value="${w.numFactor||''}" aria-label="numerator factor"></div><div class="multiplyRow">denominator ${symbol} <input class="mathInput" inputmode="numeric" pattern="[0-9]*" data-equiv="denFactor" value="${w.denFactor||''}" aria-label="denominator factor"></div></div><span class="equalsMark">=</span></div><div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:10px"><span>Equivalent fraction:</span><div class="targetFrac"><input class="mathInput productInput" inputmode="numeric" pattern="[0-9]*" data-equiv="resultN" value="${w.resultN||''}" aria-label="equivalent numerator"><span class="bar"></span><span>${op.targetD}</span></div></div></div><div class="operationMark">compare with</div><div class="renameCard"><h4>${formatFrac(op.other)}</h4><p>This fraction already uses ${op.targetD}ths, so it does not need to be renamed.</p></div></div>`}
+function renderEquivalentTask(a,b,requested='multiply',embedded=false){
+  const op=operationForEquivalent(a,b,requested==='divide');const symbol=op.op==='multiply'?'multiplication':'division';$('workTitle').textContent=embedded?`Chosen strategy: Equivalent Fraction (${symbol})`:`Make an Equivalent Fraction Using ${symbol[0].toUpperCase()+symbol.slice(1)}`;$('taskTag').textContent=state.workComplete?'Reasoning complete':op.op==='multiply'?'Equivalent ×':'Equivalent ÷';
+  $('workPrompt').innerHTML=op.op==='multiply'?`Rename <strong>one fraction</strong> so both fractions have the common denominator <strong>${op.targetD}</strong>. Multiply the numerator and denominator by the same factor.`:`Rename <strong>one fraction</strong> by dividing its numerator and denominator by the same factor. The goal is the common denominator <strong>${op.targetD}</strong>.`;
+  $('workBody').innerHTML=equivalentEquation(op)+(embedded?choiceJustification():'')+`<button class="checkWorkBtn" type="button" id="checkRequiredWork">Check My ${embedded?'Strategy':'Equivalent Fraction'}</button>`;
+  document.querySelectorAll('[data-equiv]').forEach(inp=>inp.addEventListener('input',()=>{state.equivWork[inp.dataset.equiv]=inp.value.replace(/[^0-9]/g,'');if(inp.value!==state.equivWork[inp.dataset.equiv])inp.value=state.equivWork[inp.dataset.equiv];save()}));wireNote();$('checkRequiredWork').addEventListener('click',()=>checkEquivalentWork(op,embedded));
+}
+function checkEquivalentWork(op,requireNote=false){const w=state.equivWork||{},ok=Number(w.numFactor)===op.factor&&Number(w.denFactor)===op.factor&&Number(w.resultN)===op.resultN;if(ok&&(!requireNote||noteReady())){completeRequiredWork(`Correct. ${formatFrac(op.f)} ${op.op==='multiply'?'×':'÷'} ${op.factor}/${op.factor} = ${op.resultN}/${op.targetD}. Now the pieces are the same size.`);return}const parts=[];if(!ok)parts.push(`use the same factor on numerator and denominator to make ${op.targetD}ths`);if(requireNote&&!noteReady())parts.push('add a short justification');showWorkError(parts)}
+function choiceJustification(){return `<button class="toolBtn" type="button" id="changeStrategy">Change Strategy</button><div class="justificationBox"><label for="strategyNote">Finish your reasoning (short sentence)</label><textarea id="strategyNote" placeholder="I used this strategy because...">${escapeHTML(state.strategyNote||'')}</textarea><div class="tiny">Explain what your model, benchmark, or equivalent fraction shows.</div></div>`}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function wireNote(){const t=$('strategyNote');if(t)t.addEventListener('input',()=>{state.strategyNote=t.value;save()})}
+function renderChoiceTask(a,b){
+  $('workTitle').textContent='Choose a Lesson 12 Strategy';$('taskTag').textContent=state.workComplete?'Reasoning complete':'You choose';
+  if(!state.chosenStrategy){$('workPrompt').innerHTML='Choose a strategy that will help you justify the comparison. Lesson 12 accepts more than one valid method.';$('workBody').innerHTML=`<div class="choiceGrid"><button class="choiceBtn" data-choice="model"><strong>Visual Model</strong><span>Build the quantities with equal-sized parts.</span></button><button class="choiceBtn" data-choice="benchmark"><strong>Benchmark</strong><span>Compare each fraction with 1/2 or 1.</span></button><button class="choiceBtn" data-choice="equivalent"><strong>Equivalent Fraction</strong><span>Rename one fraction with a common denominator.</span></button></div>`;document.querySelectorAll('[data-choice]').forEach(btn=>btn.addEventListener('click',()=>{state.chosenStrategy=btn.dataset.choice;state.modelSelections={left:[],right:[]};state.benchmarkWork={};state.equivWork={};state.strategyNote='';save();renderChoiceTask(a,b)}));return}
+  if(state.chosenStrategy==='model')renderModelTask(a,b,true);else if(state.chosenStrategy==='benchmark')renderBenchmarkTask(a,b,true);else renderEquivalentTask(a,b,'multiply',true);
+  const change=$('changeStrategy');if(change)change.addEventListener('click',()=>{state.chosenStrategy=null;state.workComplete=false;state.modelSelections={left:[],right:[]};state.benchmarkWork={};state.equivWork={};state.strategyNote='';save();renderRequiredWork()});
+}
+function showWorkError(parts){$('workFeedback').textContent='Check again: '+(parts.length?parts.join('; '):'revise your work')+'.';$('workFeedback').className='workFeedback bad'}
+function completeRequiredWork(message){state.workComplete=true;save();renderRequiredWork();$('workFeedback').textContent=message;$('workFeedback').className='workFeedback good';updateRelationGate()}
+function updateRelationGate(){const lockedOut=!state.workComplete||state.answered;relBtns.forEach(b=>{b.disabled=lockedOut;b.classList.toggle('locked',!state.workComplete&&!state.answered)})}
+function render(){
+  if(!state)return;const [a,b]=state.pair;$('leftFraction').innerHTML=fracHTML(a);$('rightFraction').innerHTML=fracHTML(b);$('leftFraction').setAttribute('aria-label',`${a.n} over ${a.d}`);$('rightFraction').setAttribute('aria-label',`${b.n} over ${b.d}`);$('leftDecimal').textContent='';$('rightDecimal').textContent='';$('roundPill').textContent=`Round ${state.round} of ${state.total}`;
+  if(state.mode==='solo'){$('leftScoreLabel').textContent='Score';$('score1').textContent=state.score1;$('rightScoreLabel').textContent='Streak';$('score2').textContent=state.streak}else{$('leftScoreLabel').textContent='Player 1';$('score1').textContent=state.score1;$('rightScoreLabel').textContent='Player 2';$('score2').textContent=state.score2}
+  renderRequiredWork();relBtns.forEach(b=>b.classList.remove('correct','wrong'));updateRelationGate();$('nextBtn').classList.toggle('hidden',!state.answered);$('feedbackText').innerHTML=state.answered?feedbackHTML():`After your reasoning is complete, choose the symbol that makes <strong>${formatFrac(a)} ? ${formatFrac(b)}</strong> true.`;$('strategyPanel').classList.add('hidden');$('strategyBody').innerHTML='';renderHistory();save()
+}
+function feedbackHTML(){const [a,b]=state.pair,correct=relation(a,b),ok=state.lastChoice===correct;return ok?`<strong class="good">Correct.</strong> ${formatFrac(a)} ${correct} ${formatFrac(b)}.`:`<strong class="bad">Not this time.</strong> The true statement is ${formatFrac(a)} ${correct} ${formatFrac(b)}.`}
+function renderHistory(){$('historyList').innerHTML=state.history.map((h,i)=>`<div class="hist ${h.ok?'ok':'no'}">R${i+1}: ${h.left} ${h.correct} ${h.right}<br><span class="tiny">${h.strategy}</span>${h.ok?' ✓':' ✕'}</div>`).join('')||'<div class="hist">No rounds yet</div>'}
+function answer(choice){if(locked||state.answered||!state.workComplete)return;locked=true;const [a,b]=state.pair,correct=relation(a,b),ok=choice===correct;state.answered=true;state.lastChoice=choice;if(state.mode==='solo'){if(ok){state.score1++;state.streak++;state.bestStreak=Math.max(state.bestStreak,state.streak)}else state.streak=0}else if(ok){if(state.currentPlayer===1)state.score1++;else state.score2++}state.history.push({left:formatFrac(a),right:formatFrac(b),choice,correct,ok,strategy:state.task==='choice'?(state.chosenStrategy||'choice'):state.task,note:state.strategyNote||''});relBtns.forEach(btn=>{btn.disabled=true;if(btn.dataset.rel===correct)btn.classList.add('correct');if(btn.dataset.rel===choice&&!ok)btn.classList.add('wrong')});$('feedbackText').innerHTML=feedbackHTML();$('nextBtn').classList.remove('hidden');if(navigator.vibrate)try{navigator.vibrate(ok?35:[30,40,30])}catch(e){}beep(ok);save();locked=false}
+function nextRound(){if(!state.answered)return;if(state.round>=state.total){finish();return}state.round++;if(state.mode==='duo')state.currentPlayer=state.currentPlayer===1?2:1;state.task=sequenceForMode(state.mode)[state.round-1];state.pair=makePair(state.task);state.workComplete=false;state.modelSelections={left:[],right:[]};state.benchmarkWork={};state.equivWork={};state.chosenStrategy=null;state.strategyNote='';state.answered=false;state.lastChoice=null;render()}
+function start(which){state=newState(which);show(gameScreen);render()}
+function resume(){const s=load();if(!s)return;state=s;mode=s.mode;show(gameScreen);render()}
+function finish(){clearSave();show(endScreen);if(state.mode==='solo'){$('endScore').textContent=`${state.score1}/${state.total}`;const pct=state.score1/state.total;$('endTitle').textContent=pct>=.9?'Fraction champion.':pct>=.7?'Strong comparison work.':'Keep building the strategy.';$('endMessage').textContent=`Best streak: ${state.bestStreak}. You practiced models, benchmarks, equivalent fractions, and strategy choice.`}else{$('endScore').textContent=`${state.score1} – ${state.score2}`;$('endTitle').textContent=state.score1===state.score2?'Tie game.':`Player ${state.score1>state.score2?1:2} wins!`;$('endMessage').textContent='You compared related fractions using multiple Lesson 12 strategies and justified your choices.'}}
+function show(el){[startScreen,gameScreen,endScreen].forEach(x=>x.classList.add('hidden'));el.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+function hint(){const [a,b]=state.pair;if(state.task==='model'||(state.task==='choice'&&state.chosenStrategy==='model')){strategy('Model Hint','<div class="strategyBlock"><div class="small">Same whole</div><div class="big">The denominator tells how many equal parts are in one whole. The numerator tells how many parts to shade. Keep both wholes the same physical size.</div></div>');return}if(state.task==='benchmark'||(state.task==='choice'&&state.chosenStrategy==='benchmark')){const bench=pickBenchmark(a,b);strategy('Benchmark Hint',`<div class="strategyBlock"><div class="small">Compare to ${bench.label}</div><div class="big">Ask whether each fraction is less than, equal to, or greater than ${bench.label}. If the fractions land on different sides of the benchmark, you can compare them immediately.</div></div>`);return}if(state.task==='divide'){strategy('Equivalent-Fraction Hint','<div class="strategyBlock"><div class="small">Divide both parts</div><div class="big">To keep the fraction equivalent, divide the numerator and denominator by the same factor.</div></div>');return}strategy('Equivalent-Fraction Hint','<div class="strategyBlock"><div class="small">Multiply both parts</div><div class="big">Rename only the fraction that needs it. Multiply its numerator and denominator by the same factor so both fractions use the same-sized pieces.</div></div>')}
+function commonDenom(){const [a,b]=state.pair,L=Math.max(a.d,b.d);strategy('Common Denominator',`<div class="strategyBlock"><div class="small">Lesson 12 vocabulary</div><div class="big">A common denominator means the fractions use the same denominator—the same-sized pieces. Here, ${L} can be the common denominator because the denominators are related.</div></div>`)}
+function modelHTML(f,cls){const whole=Math.floor(f.n/f.d),rem=f.n%f.d;let rows='';const count=Math.min(whole+(rem?1:0),3);for(let w=0;w<count;w++){let fill=w<whole?f.d:(w===whole?rem:0),pieces='';if(f.d<=20){for(let i=0;i<f.d;i++)pieces+=`<span class="piece ${i<fill?cls:''}"></span>`}else{const pct=(fill/f.d)*100;pieces=`<span class="piece ${cls}" style="flex:0 0 ${pct}%;min-width:${pct?2:0}px"></span><span class="piece" style="flex:1"></span>`}rows+=`<div class="wholeRow">${pieces}</div>`}return rows||'<div class="wholeRow"><span class="piece"></span></div>'}
+function models(){const [a,b]=state.pair;if(!state.workComplete){strategy('Model Reminder','<div class="strategyBlock"><div class="small">Reason first</div><div class="big">If you choose a model strategy, build it in the required-work area. A completed model is not revealed before your reasoning is checked.</div></div>');return}strategy('Visual Model Check',`<div class="models"><div class="modelBox"><div class="modelTitle">${formatFrac(a)}</div>${modelHTML(a,'fill1')}</div><div class="modelBox"><div class="modelTitle">${formatFrac(b)}</div>${modelHTML(b,'fill2')}</div></div>`)}
+function strategy(title,html){$('strategyTitle').textContent=title;$('strategyBody').innerHTML=html;$('strategyPanel').classList.remove('hidden');$('strategyPanel').scrollIntoView({behavior:'smooth',block:'nearest'})}
+function resetAll(){clearSave();state=null;mode='solo';document.querySelectorAll('.modeBtn').forEach((b,i)=>b.classList.toggle('selected',i===0));$('resumeBtn').classList.add('hidden');show(startScreen)}
+relBtns.forEach(b=>b.addEventListener('click',()=>answer(b.dataset.rel)));$('nextBtn').addEventListener('click',nextRound);$('hintBtn').addEventListener('click',hint);$('commonBtn').addEventListener('click',commonDenom);$('modelBtn').addEventListener('click',models);$('resetBtn').addEventListener('click',()=>{if(confirm('Reset the saved game and return to the start screen?'))resetAll()});$('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('soundBtn').textContent=`Sound: ${soundOn?'On':'Off'}`;$('soundBtn').setAttribute('aria-pressed',String(soundOn))});[...document.querySelectorAll('.modeBtn')].forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;document.querySelectorAll('.modeBtn').forEach(x=>x.classList.toggle('selected',x===b))}));$('startBtn').addEventListener('click',()=>start(mode));$('resumeBtn').addEventListener('click',resume);$('againBtn').addEventListener('click',()=>start(state?.mode||mode));$('homeBtn').addEventListener('click',()=>{state=null;show(startScreen);$('resumeBtn').classList.add('hidden')});const saved=load();if(saved)$('resumeBtn').classList.remove('hidden');
+})();
+</script>
+</body>
+</html>

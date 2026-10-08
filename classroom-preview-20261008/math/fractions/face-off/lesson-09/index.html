@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Fraction Face-Off — Unit 1 Lesson 9 — How Do You Know? (Part 2)</title>
+<style>
+:root{--bg:#09111f;--panel:#111c30;--text:#f7fbff;--muted:#a9bbd3;--accent:#79d7ff;--gold:#ffd166;--good:#54e38e;--bad:#ff6b7a;--line:#2a3d5c;--p1:#77a7ff;--p2:#ff9b70;--shadow:0 14px 40px rgba(0,0,0,.32)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -10%,#18365d 0,#09111f 43%,#060b14 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}body{min-height:100svh;overflow-x:hidden}button,input,textarea{font:inherit}button{touch-action:manipulation;cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid #fff;outline-offset:3px}.app{width:min(1100px,100%);margin:auto;padding:max(14px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}.topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:11px}.badge{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#1d8dff,#75e1ff);box-shadow:var(--shadow);font-weight:900;color:#061222;font-size:22px}.brand h1{font-size:clamp(20px,4vw,32px);margin:0;line-height:1.04}.brand p{margin:4px 0 0;color:var(--muted);font-size:14px}.topActions{display:flex;gap:8px}.ghost{border:1px solid var(--line);background:#0d1728;color:var(--text);border-radius:13px;padding:11px 14px;font-weight:800;min-height:46px}.panel{background:linear-gradient(180deg,rgba(23,38,63,.96),rgba(12,23,40,.96));border:1px solid #2b4267;border-radius:24px;box-shadow:var(--shadow);padding:clamp(16px,3vw,28px)}.hidden{display:none!important}.startGrid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.intro h2{font-size:clamp(30px,7vw,56px);line-height:1;margin:2px 0 12px}.lead{font-size:clamp(17px,2.4vw,22px);line-height:1.45;color:#d8e8fb;max-width:760px}.lessonTag{display:inline-flex;align-items:center;gap:8px;background:#0b3d5d;border:1px solid #2677a6;padding:8px 12px;border-radius:999px;font-weight:800;color:#c7f2ff}.rules{display:grid;gap:8px;margin:18px 0}.rule{display:flex;gap:10px;align-items:flex-start;color:#d5e2f3}.num{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#243b60;font-weight:900}.setup{background:#0b1526;border:1px solid var(--line);border-radius:18px;padding:16px}.setup h3{margin:0 0 12px}.modeBtns{display:grid;gap:10px}.modeBtn{border:1px solid #34517a;background:#14243c;color:white;border-radius:16px;padding:15px;text-align:left;min-height:76px}.modeBtn strong{display:block;font-size:18px}.modeBtn span{display:block;color:var(--muted);margin-top:4px}.modeBtn.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(121,215,255,.18) inset;background:#173252}.primary{width:100%;border:0;background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322;border-radius:16px;min-height:58px;padding:14px 18px;font-size:19px;font-weight:950;margin-top:14px}.resume{background:linear-gradient(135deg,#ffd166,#ffad42)}
+.gameHead{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-bottom:12px}.scoreBox{border:1px solid var(--line);border-radius:16px;padding:10px 14px;background:#0a1425}.scoreBox.right{text-align:right}.label{color:var(--muted);font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.score{font-size:25px;font-weight:950}.roundPill{background:#22395d;border:1px solid #3f5f8c;border-radius:999px;padding:10px 15px;font-weight:900;white-space:nowrap}.phasebar{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}.phase{padding:8px 6px;text-align:center;border-radius:999px;border:1px solid #365273;background:#0b1627;color:#91a7c4;font-size:12px;font-weight:900}.phase.active{background:var(--gold);border-color:var(--gold);color:#061322}.phase.done{border-color:#2f7854;color:#bff5d4}.mission{border:1px solid #365270;background:#0b1527;border-radius:20px;padding:16px}.mission h2{margin:0 0 5px;font-size:clamp(24px,5vw,36px)}.missionPrompt{font-size:18px;line-height:1.45;color:#d9e7f7}.card{background:linear-gradient(165deg,#1b3152,#101b2e);border:2px solid #3a5277;border-radius:22px;padding:16px;margin:14px 0}.equationRow{display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:clamp(22px,5vw,36px);font-weight:950}.frac{display:inline-grid;grid-template-rows:auto 3px auto;align-items:center;text-align:center;min-width:1.7em;line-height:.9}.bar{height:3px;background:currentColor;width:100%;margin:5px 0}.eqSet{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:12px 0}.eqChip{border:1px solid #416286;background:#11223a;border-radius:14px;padding:13px;font-size:20px;font-weight:900;text-align:center}.choiceGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.choice{border:2px solid #3d587f;background:#11223a;color:white;border-radius:16px;padding:14px;min-height:58px;font-weight:900}.choice.selected{border-color:var(--accent);background:#173252}.choice.good{border-color:var(--good);background:#103a2a}.choice.bad{border-color:var(--bad);background:#451b25}.modelPair{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modelBox{background:#0f1d31;border:1px solid #29415f;border-radius:16px;padding:12px}.modelTitle{color:var(--muted);font-size:13px;font-weight:850;margin-bottom:9px}.wholeRow{display:flex;gap:3px;margin:6px 0}.piece{height:34px;flex:1;border:1px solid #5a718d;background:#0a1423;border-radius:3px}.piece.fill{background:var(--p1);border-color:#9bc0ff}.piece.group{box-shadow:inset -3px 0 0 var(--gold)}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.factorBtn{border:1px solid #3f5e83;background:#10213a;color:white;border-radius:13px;padding:11px 14px;min-height:48px;font-weight:900}.factorBtn.selected{background:var(--gold);border-color:var(--gold);color:#061322}.equationBuilder{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-top:12px}.equationBox{background:#101f34;border:1px solid #2d4668;border-radius:14px;padding:12px;text-align:center}.equationBox input{width:72px;background:#081220;color:#fff;border:1px solid #416181;border-radius:10px;padding:9px;text-align:center;font-weight:900;font-size:19px}.opMark{font-size:28px;font-weight:950}.textarea{width:100%;min-height:86px;border:1px solid #416181;background:#081220;color:white;border-radius:14px;padding:12px;resize:vertical}.feedback{min-height:78px;border-radius:16px;border:1px solid var(--line);background:#081321;padding:13px;margin-top:12px;font-size:17px;line-height:1.35}.goodText{color:var(--good);font-weight:950}.badText{color:var(--bad);font-weight:950}.actions{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}.checkBtn,.nextBtn{border:0;border-radius:14px;padding:13px 17px;min-height:52px;font-weight:950}.checkBtn{background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322}.nextBtn{background:#edf7ff;color:#071321}.hintBtn{border:1px solid #35527b;background:#10213a;color:#e7f4ff;border-radius:13px;padding:11px 13px;min-height:46px;font-weight:850}.history{margin-top:14px}.historyList{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.hist{background:#0c1728;border:1px solid #263c5d;border-radius:12px;padding:8px;text-align:center;font-weight:850;font-size:13px}.hist.ok{border-color:#276b4a}.end{text-align:center}.end h2{font-size:clamp(32px,7vw,56px);margin:0 0 10px}.bigScore{font-size:clamp(54px,12vw,96px);font-weight:950;color:var(--gold);line-height:1}.endActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:580px;margin:18px auto 0}.endActions button{min-height:56px;border-radius:16px;font-weight:950;border:0}.playAgain{background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322}.homeBtn{background:#172945;color:#fff;border:1px solid #375476!important}.tiny{font-size:12px;color:var(--muted);margin-top:10px}.patternList{display:grid;gap:8px;margin-top:10px}.pattern{border:1px solid #355373;background:#0e1d31;border-radius:12px;padding:10px}.swyk{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.swyk .choice{font-size:22px}.phaseNote{display:inline-flex;border-radius:999px;background:#173252;border:1px solid #3a628d;padding:6px 9px;color:#cfeeff;font-size:12px;font-weight:900}.partnerPrompt{margin:10px 0;padding:10px;border-radius:12px;background:#2b2342;border:1px solid #6c5a93;color:#ede7ff;font-weight:800}
+@media(max-width:760px){.startGrid{grid-template-columns:1fr}.setup{order:-1}.gameHead{grid-template-columns:1fr 1fr}.roundPill{grid-column:1/-1;grid-row:2;text-align:center}.phasebar{grid-template-columns:1fr}.phase{display:none}.phase.active{display:block}.modelPair{grid-template-columns:1fr}.equationBuilder{grid-template-columns:1fr}.opMark{transform:rotate(90deg)}.historyList{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:480px){.app{padding-left:9px;padding-right:9px}.panel{border-radius:18px;padding:12px}.choiceGrid,.eqSet,.swyk{grid-template-columns:1fr}.historyList{grid-template-columns:repeat(3,1fr)}.topActions{width:100%}.topActions button{flex:1}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand"><div class="badge">½</div><div><h1>Fraction Face-Off</h1><p>Grade 4 • Unit 1 • Lesson 9 • How Do You Know? (Part 2)</p></div></div>
+  <div class="topActions"><button class="ghost" id="soundBtn">Sound: On</button><button class="ghost" id="resetBtn">Reset</button></div>
+</header>
+<main>
+<section class="panel" id="startScreen">
+  <div class="startGrid">
+    <div class="intro">
+      <span class="lessonTag">Lesson 9 • Generalizing about equivalent fractions</span>
+      <h2>See what the equation means.</h2>
+      <p class="lead">This lesson connects visual fraction models to multiplication and division. You will notice patterns, partition parts into smaller parts, combine equal groups, and then use the equations independently.</p>
+      <div class="rules">
+        <div class="rule"><span class="num">1</span><span><strong>Notice & Wonder:</strong> study equivalent-fraction equations and identify the pattern.</span></div>
+        <div class="rule"><span class="num">2</span><span><strong>Partition the Parts:</strong> multiply the numerator and denominator by the same number and connect the equation to the model.</span></div>
+        <div class="rule"><span class="num">3</span><span><strong>Combine Equal Groups:</strong> divide the numerator and denominator by the same number and connect the equation to the model.</span></div>
+      </div>
+      <p class="tiny">No student names are collected. Progress is saved only on this device.</p>
+    </div>
+    <aside class="setup">
+      <h3>Choose a route</h3>
+      <div class="modeBtns">
+        <button class="modeBtn selected" data-mode="solo"><strong>Solo Lesson Route</strong><span>10 missions • score + streak</span></button>
+        <button class="modeBtn" data-mode="partner"><strong>Partner Talk Route</strong><span>10 missions • discuss before checking</span></button>
+      </div>
+      <button class="primary" id="startBtn">Start Lesson Game</button>
+      <button class="primary resume hidden" id="resumeBtn">Resume Saved Game</button>
+    </aside>
+  </div>
+</section>
+
+<section class="panel hidden" id="gameScreen">
+  <div class="gameHead">
+    <div class="scoreBox"><div class="label">Score</div><div class="score" id="score">0</div></div>
+    <div class="roundPill" id="roundPill">Mission 1 of 10</div>
+    <div class="scoreBox right"><div class="label">Streak</div><div class="score" id="streak">0</div></div>
+  </div>
+  <div class="phasebar" id="phasebar">
+    <div class="phase" data-phase="warmup">Notice & Wonder</div>
+    <div class="phase" data-phase="multiply">Partition + Multiply</div>
+    <div class="phase" data-phase="divide">Combine + Divide</div>
+    <div class="phase" data-phase="generalize">Generalize</div>
+    <div class="phase" data-phase="swyk">Show What You Know</div>
+  </div>
+  <section class="mission">
+    <span class="phaseNote" id="phaseNote"></span>
+    <h2 id="missionTitle"></h2>
+    <div class="missionPrompt" id="missionPrompt"></div>
+    <div class="partnerPrompt hidden" id="partnerPrompt">Partner route: explain your thinking to each other before you tap Check.</div>
+    <div id="missionBody"></div>
+    <div class="feedback" id="feedback" role="status" aria-live="polite" aria-atomic="true">Complete the mission, then tap Check.</div>
+    <div class="actions">
+      <button class="checkBtn" id="checkBtn">Check</button>
+      <button class="hintBtn" id="hintBtn">Hint</button>
+      <button class="nextBtn hidden" id="nextBtn">Next Mission</button>
+    </div>
+  </section>
+  <section class="history"><h3>Mission history</h3><div class="historyList" id="historyList"></div></section>
+</section>
+
+<section class="panel end hidden" id="endScreen">
+  <div class="lessonTag">Lesson 9 complete</div>
+  <h2 id="endTitle">You connected the models and equations.</h2>
+  <div class="bigScore" id="endScore">10/10</div>
+  <p id="endMessage">Multiplication partitions parts; division combines equal groups. The value stays the same when numerator and denominator change by the same factor.</p>
+  <div class="endActions"><button class="playAgain" id="againBtn">Play Again</button><button class="homeBtn" id="homeBtn">Change Route</button></div>
+</section>
+</main>
+</div>
+<script>
+(() => {
+'use strict';
+const SAVE_KEY='fractionFaceOff_u1l09_v1';
+const $=id=>document.getElementById(id);
+let mode='solo', state=null, soundOn=true;
+
+/* L9_MATH_START */
+const L9Math=(()=>{
+  function gcd(a,b){while(b){[a,b]=[b,a%b]}return Math.abs(a)}
+  function equivalent(a,b){return a.n*b.d===b.n*a.d}
+  function multiply(f,k){return {n:f.n*k,d:f.d*k}}
+  function divide(f,k){return {n:f.n/k,d:f.d/k}}
+  function commonDivisors(f){const g=gcd(f.n,f.d),out=[];for(let k=2;k<=g;k++)if(f.n%k===0&&f.d%k===0)out.push(k);return out}
+  return {gcd,equivalent,multiply,divide,commonDivisors};
+})();
+/* L9_MATH_END */
+
+const warmupEquations=['1/3 = 2/6','2/3 = 4/6','3/3 = 6/6','4/3 = 8/6'];
+const missions=[
+  {phase:'warmup',title:'Notice & Wonder',type:'patterns'},
+  {phase:'multiply',title:'Partition the Parts',type:'partition',base:{n:1,d:3},factor:2},
+  {phase:'multiply',title:'Connect Model to Equation',type:'partition',base:{n:3,d:4},factor:2},
+  {phase:'multiply',title:'Generate Four Equivalents',type:'multi18',base:{n:1,d:8}},
+  {phase:'generalize',title:'What Always Works?',type:'multRule'},
+  {phase:'divide',title:'Combine Equal Groups',type:'combine',base:{n:6,d:8},factor:2},
+  {phase:'divide',title:'Find Every Division Path',type:'div1812',base:{n:18,d:12}},
+  {phase:'generalize',title:'Connect Division to the Model',type:'divRule'},
+  {phase:'swyk',title:'Show What You Know — 3/8',type:'swyk1'},
+  {phase:'swyk',title:'Show What You Know — 20/100',type:'swyk2'}
+];
+
+function newState(which){return {version:1,mode:which,index:0,score:0,streak:0,best:0,history:[],responses:{},complete:false}}
+function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
+function load(){try{const x=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');return x&&x.version===1?x:null}catch(e){return null}}
+function clearSave(){try{localStorage.removeItem(SAVE_KEY)}catch(e){}}
+function show(el){[$('startScreen'),$('gameScreen'),$('endScreen')].forEach(x=>x.classList.add('hidden'));el.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+function fracHTML(f){return `<span class="frac"><span>${f.n}</span><span class="bar"></span><span>${f.d}</span></span>`}
+function format(f){return `${f.n}/${f.d}`}
+let sharedAudioContext=null;function getSharedAudioContext(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;if(!sharedAudioContext||sharedAudioContext.state==='closed')sharedAudioContext=new C();if(sharedAudioContext.state==='suspended'&&sharedAudioContext.resume)sharedAudioContext.resume().catch(()=>{});return sharedAudioContext}catch(e){return null}}function beep(ok){if(!soundOn)return;try{const c=getSharedAudioContext();if(!c)return;const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?620:190;g.gain.setValueAtTime(.05,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.12);o.start();o.stop(c.currentTime+.13)}catch(e){}}
+function strip(f,partsOverride=null,groupEvery=0){const d=partsOverride||f.d;const scale=d/f.d;const fill=Math.round(f.n*scale);let pieces='';for(let i=0;i<d;i++){const g=groupEvery>0&&((i+1)%groupEvery===0)&&i<d-1?' group':'';pieces+=`<span class="piece ${i<fill?'fill':''}${g}"></span>`}return `<div class="wholeRow">${pieces}</div>`}
+function response(){return state.responses[state.index]||(state.responses[state.index]={})}
+function chooseSet(name,val,btn){const r=response();r[name]=val;document.querySelectorAll(`[data-set="${name}"]`).forEach(b=>b.classList.toggle('selected',b===btn));save()}
+function inputVal(id){const el=$(id);return el?el.value.trim():''}
+function setFeedback(ok,msg){$('feedback').innerHTML=`<span class="${ok?'goodText':'badText'}">${ok?'Correct.':'Try again.'}</span> ${msg}`;beep(ok);if(ok){$('checkBtn').classList.add('hidden');$('nextBtn').classList.remove('hidden')}else{$('checkBtn').classList.remove('hidden');$('nextBtn').classList.add('hidden')}}
+function renderPhases(){const current=missions[state.index].phase;const phaseOrder=['warmup','multiply','divide','generalize','swyk'];const ci=phaseOrder.indexOf(current);document.querySelectorAll('.phase').forEach(p=>{const i=phaseOrder.indexOf(p.dataset.phase);p.classList.toggle('active',p.dataset.phase===current);p.classList.toggle('done',i<ci)})}
+function renderHistory(){$('historyList').innerHTML=state.history.map((h,i)=>`<div class="hist ${h.ok?'ok':''}">M${i+1}: ${h.ok?'✓':'↻'}</div>`).join('')||'<div class="hist">No missions yet</div>'}
+
+function render(){const m=missions[state.index];const r=response();$('score').textContent=state.score;$('streak').textContent=state.streak;$('roundPill').textContent=`Mission ${state.index+1} of ${missions.length}`;$('phaseNote').textContent=phaseLabel(m.phase);$('missionTitle').textContent=m.title;$('partnerPrompt').classList.toggle('hidden',state.mode!=='partner');$('missionPrompt').innerHTML=promptFor(m);$('missionBody').innerHTML=bodyFor(m,r);$('feedback').textContent='Complete the mission, then tap Check.';$('checkBtn').classList.remove('hidden');$('nextBtn').classList.add('hidden');renderPhases();renderHistory();bindMission();save()}
+function phaseLabel(p){return ({warmup:'Warm-Up',multiply:'Activity 1 — Multiplication',divide:'Activity 2 — Division',generalize:'Generalize the Relationship',swyk:'Independent Check'})[p]}
+function promptFor(m){switch(m.type){
+case'patterns':return 'Study the four equivalent-fraction equations. Select every pattern that is true.';
+case'partition':return `Start with <strong>${format(m.base)}</strong>. Partition each existing part into <strong>${m.factor}</strong> smaller parts, then complete the multiplication equation.`;
+case'multi18':return 'Use multiplication to create four fractions equivalent to <strong>1/8</strong>: <strong>× 2, × 3, × 4, × 5</strong>.';
+case'multRule':return 'Choose the statement that explains why multiplying works, then finish the sentence.';
+case'combine':return `Start with <strong>${format(m.base)}</strong>. Combine equal groups of fractional parts in groups of <strong>${m.factor}</strong>, then complete the division equation.`;
+case'div1812':return 'Use division to generate as many different whole-number equivalent fractions as you can from <strong>18/12</strong>. Select all valid division factors.';
+case'divRule':return 'Connect division to the visual model: what changes, and what stays the same?';
+case'swyk1':return 'Select TWO fractions equivalent to <strong>3/8</strong>, then show the multiplication factor for each correct choice.';
+case'swyk2':return 'Select TWO fractions equivalent to <strong>20/100</strong>, then show the division factor for each correct choice.';
+}}
+function bodyFor(m,r){switch(m.type){
+case'patterns':return `<div class="eqSet">${warmupEquations.map(x=>`<div class="eqChip">${x}</div>`).join('')}</div><div class="choiceGrid">${choiceButtons('patterns',[['bothDouble','The numerator and denominator both double.'],['valueSame','The value of each fraction stays the same.'],['denOnly','Only the denominator changes.'],['plusTwo','The numerator and denominator each increase by 2.']],r.patterns||[])}</div>`;
+case'partition':{const after=L9Math.multiply(m.base,m.factor);return `<div class="modelPair"><div class="modelBox"><div class="modelTitle">Before: ${format(m.base)}</div>${strip(m.base)}</div><div class="modelBox"><div class="modelTitle">After partitioning each existing part into ${m.factor}</div>${strip(m.base,m.base.d*m.factor)}</div></div><div class="equationBuilder"><div class="equationBox">${m.base.n} × <input id="mulA" inputmode="numeric" value="${r.mulA||''}"> / ${m.base.d} × <input id="mulB" inputmode="numeric" value="${r.mulB||''}"></div><div class="opMark">=</div><div class="equationBox"><input id="mulN" inputmode="numeric" value="${r.mulN||''}"> / <input id="mulD" inputmode="numeric" value="${r.mulD||''}"></div></div><div class="patternList"><div class="pattern">When you partition each existing part into ${m.factor} smaller parts, there are <strong>more, smaller parts</strong>, but the shaded amount and total whole stay the same.</div></div>`}
+case'multi18':return `<div class="card"><div class="equationRow">${fracHTML({n:1,d:8})}<span>=</span><span>four equivalent fractions</span></div></div><div class="eqSet">${[2,3,4,5].map(k=>{const f=L9Math.multiply({n:1,d:8},k);return `<div class="eqChip">1 × ${k} / 8 × ${k} = <input id="m${k}n" inputmode="numeric" style="width:55px" value="${r['m'+k+'n']||''}"> / <input id="m${k}d" inputmode="numeric" style="width:65px" value="${r['m'+k+'d']||''}"><div class="tiny">Factor × ${k}</div></div>`}).join('')}</div>`;
+case'multRule':return `<div class="choiceGrid">${choiceButtons('multRule',[['same','Multiply the numerator and denominator by the same number.'],['numOnly','Multiply only the numerator.'],['different','Multiply numerator and denominator by different numbers.'],['add','Add the same number to numerator and denominator.']],r.multRule?[r.multRule]:[])}</div><textarea class="textarea" id="ruleText" placeholder="Complete: Partitioning each part changes the number and size of parts, but...">${r.ruleText||''}</textarea>`;
+case'combine':{const after=L9Math.divide(m.base,m.factor);return `<div class="modelPair"><div class="modelBox"><div class="modelTitle">Before: ${format(m.base)}</div>${strip(m.base)}</div><div class="modelBox"><div class="modelTitle">Group every ${m.factor} parts together</div>${strip(m.base,m.base.d,m.factor)}</div></div><div class="equationBuilder"><div class="equationBox">${m.base.n} ÷ <input id="divA" inputmode="numeric" value="${r.divA||''}"> / ${m.base.d} ÷ <input id="divB" inputmode="numeric" value="${r.divB||''}"></div><div class="opMark">=</div><div class="equationBox"><input id="divN" inputmode="numeric" value="${r.divN||''}"> / <input id="divD" inputmode="numeric" value="${r.divD||''}"></div></div><div class="patternList"><div class="pattern">Division combines equal groups of fractional parts into <strong>fewer, larger parts</strong> while preserving the same shaded amount.</div></div>`}
+case'div1812':return `<div class="card"><div class="equationRow">${fracHTML({n:18,d:12})}</div></div><div class="choiceGrid">${choiceButtons('divFactors',[['2','÷ 2'],['3','÷ 3'],['4','÷ 4'],['6','÷ 6']],r.divFactors||[])}</div><div class="patternList"><div class="pattern">18/12 ÷ 2 = 9/6</div><div class="pattern">18/12 ÷ 3 = 6/4</div><div class="pattern">18/12 ÷ 6 = 3/2</div></div>`;
+case'divRule':return `<div class="choiceGrid">${choiceButtons('divRule',[['combine','Division combines equal groups of parts into fewer, larger parts.'],['partition','Division partitions each part into more, smaller parts.'],['valueChanges','The represented amount changes.'],['sameValue','The whole and represented amount stay the same.']],r.divRule||[])}</div><textarea class="textarea" id="divRuleText" placeholder="Explain how the division equation matches the model.">${r.divRuleText||''}</textarea>`;
+case'swyk1':return swykBody('sw1',[['6/16',{n:6,d:16}],['6/12',{n:6,d:12}],['9/24',{n:9,d:24}],['9/32',{n:9,d:32}]],r.sw1||[],r,'sw1');
+case'swyk2':return swykBody('sw2',[['2/5',{n:2,d:5}],['10/50',{n:10,d:50}],['5/20',{n:5,d:20}],['2/10',{n:2,d:10}]],r.sw2||[],r,'sw2');
+}}
+function choiceButtons(name,items,selected){const set=new Set(selected);return items.map(([v,label])=>`<button class="choice ${set.has(v)?'selected':''}" data-set="${name}" data-value="${v}">${label}</button>`).join('')}
+function swykBody(name,items,selected,r,prefix){const set=new Set(selected);return `<div class="swyk">${items.map(([label,f])=>`<button class="choice ${set.has(label)?'selected':''}" data-set="${name}" data-value="${label}">${label}</button>`).join('')}</div><div class="patternList"><div class="pattern">For each fraction you selected, enter the factor used from the given fraction.</div></div><div class="equationBuilder"><div class="equationBox">First factor: <input id="${prefix}f1" inputmode="numeric" value="${r[prefix+'f1']||''}"></div><div class="opMark">and</div><div class="equationBox">Second factor: <input id="${prefix}f2" inputmode="numeric" value="${r[prefix+'f2']||''}"></div></div>`}
+function bindMission(){document.querySelectorAll('[data-set]').forEach(btn=>btn.addEventListener('click',()=>{const name=btn.dataset.set,val=btn.dataset.value,r=response();if(['patterns','divFactors','divRule','sw1','sw2'].includes(name)){const a=new Set(r[name]||[]);a.has(val)?a.delete(val):a.add(val);r[name]=[...a];btn.classList.toggle('selected',a.has(val))}else{r[name]=val;document.querySelectorAll(`[data-set="${name}"]`).forEach(b=>b.classList.toggle('selected',b===btn))}save()}))}
+function syncInputs(){const r=response();document.querySelectorAll('input,textarea').forEach(el=>{if(el.id)r[el.id]=el.value.trim()});save()}
+function check(){syncInputs();const m=missions[state.index],r=response();let ok=false,msg='';
+  if(m.type==='patterns'){const s=new Set(r.patterns||[]);ok=s.size===2&&s.has('bothDouble')&&s.has('valueSame');msg=ok?'You found the multiplicative pattern and preserved value.':'Look at what happens to both numerator and denominator, and ask whether the fraction value changes.'}
+  if(m.type==='partition'){const after=L9Math.multiply(m.base,m.factor);ok=+r.mulA===m.factor&&+r.mulB===m.factor&&+r.mulN===after.n&&+r.mulD===after.d;msg=ok?'The equation matches partitioning every existing part by the same factor.':'The numerator and denominator must use the same factor, and the result must match the partitioned model.'}
+  if(m.type==='multi18'){ok=[2,3,4,5].every(k=>+r['m'+k+'n']===k&&+r['m'+k+'d']===8*k);msg=ok?'All four equations preserve 1/8 by partitioning each eighth into the same number of smaller parts.':'Check each factor: multiply both 1 and 8 by 2, 3, 4, or 5.'}
+  if(m.type==='multRule'){const t=(r.ruleText||'').toLowerCase();ok=r.multRule==='same'&&t.length>=12&&(t.includes('same')||t.includes('value')||t.includes('amount')||t.includes('whole'));msg=ok?'Yes. More smaller parts can represent the same amount because every old part is partitioned consistently.':'Choose the same-factor rule and explain what stays the same in the model.'}
+  if(m.type==='combine'){const after=L9Math.divide(m.base,m.factor);ok=+r.divA===m.factor&&+r.divB===m.factor&&+r.divN===after.n&&+r.divD===after.d;msg=ok?'The equation matches combining equal groups of fractional parts.':'Divide numerator and denominator by the same grouping factor.'}
+  if(m.type==='div1812'){const s=new Set(r.divFactors||[]);ok=s.size===3&&s.has('2')&&s.has('3')&&s.has('6');msg=ok?'Those are all the whole-number common division factors for 18 and 12.':'Choose factors that divide both 18 and 12 evenly.'}
+  if(m.type==='divRule'){const s=new Set(r.divRule||[]),t=(r.divRuleText||'').toLowerCase();ok=s.size===2&&s.has('combine')&&s.has('sameValue')&&t.length>=12;msg=ok?'Correct: division combines equal groups, reducing the number of parts while preserving the amount.':'Select both the grouping idea and the preserved-value idea, then explain the connection.'}
+  if(m.type==='swyk1'){const s=new Set(r.sw1||[]),factors=[+r.sw1f1,+r.sw1f2].sort((a,b)=>a-b);ok=s.size===2&&s.has('6/16')&&s.has('9/24')&&factors[0]===2&&factors[1]===3;msg=ok?'6/16 is ×2 and 9/24 is ×3 from 3/8.':'Find the two fractions made by multiplying both 3 and 8 by the same factor.'}
+  if(m.type==='swyk2'){const s=new Set(r.sw2||[]),factors=[+r.sw2f1,+r.sw2f2].sort((a,b)=>a-b);ok=s.size===2&&s.has('10/50')&&s.has('2/10')&&factors[0]===2&&factors[1]===10;msg=ok?'20/100 ÷2 = 10/50 and ÷10 = 2/10.':'Find the two fractions made by dividing both 20 and 100 by the same whole-number factor.'}
+  setFeedback(ok,msg);if(ok&&!r.scored){r.scored=true;state.score++;state.streak++;state.best=Math.max(state.best,state.streak);state.history[state.index]={ok:true}}else if(!ok){state.streak=0} $('score').textContent=state.score;$('streak').textContent=state.streak;renderHistory();save();}
+function hint(){const m=missions[state.index];const hints={patterns:'Compare 1→2, 2→4, 3→6, and 4→8. Then compare 3→6 in every denominator.',partition:'Count how many new pieces replace each old piece. Use that same factor on numerator and denominator.',multi18:'For 1/8, the factor changes 1 and 8 together: ×2, ×3, ×4, ×5.',multRule:'The picture gains more pieces, but it does not gain more whole.',combine:'Group neighboring equal parts. The number of shaded groups and total groups both shrink by the same factor.',div1812:'List the factors of 18 and the factors of 12. Keep the common ones greater than 1.',divRule:'Multiplication splits; division groups. Both preserve the represented amount when the same factor is used above and below.',swyk1:'Test which options can be reached from 3/8 using one multiplication factor.',swyk2:'Test which options can be reached from 20/100 using one division factor.'};$('feedback').textContent=hints[m.type]}
+function next(){if(state.index>=missions.length-1){finish();return}state.index++;state.streak=state.streak;$('checkBtn').classList.remove('hidden');$('nextBtn').classList.add('hidden');render()}
+function finish(){state.complete=true;clearSave();show($('endScreen'));$('endScore').textContent=`${state.score}/${missions.length}`;const pct=state.score/missions.length;$('endTitle').textContent=pct>=.9?'Model-to-equation mastery.':pct>=.7?'Strong equivalent-fraction reasoning.':'Replay the visual connections.';$('endMessage').textContent=`Best streak: ${state.best}. Multiplication partitions parts; division combines equal groups. Both preserve value when numerator and denominator use the same factor.`}
+function start(which){mode=which;state=newState(which);show($('gameScreen'));render()}
+function resume(){const s=load();if(!s)return;state=s;mode=s.mode;show($('gameScreen'));render()}
+function reset(){clearSave();state=null;mode='solo';document.querySelectorAll('.modeBtn').forEach((b,i)=>b.classList.toggle('selected',i===0));$('resumeBtn').classList.add('hidden');show($('startScreen'))}
+
+document.querySelectorAll('.modeBtn').forEach(btn=>btn.addEventListener('click',()=>{mode=btn.dataset.mode;document.querySelectorAll('.modeBtn').forEach(b=>b.classList.toggle('selected',b===btn))}));
+$('startBtn').addEventListener('click',()=>start(mode));$('resumeBtn').addEventListener('click',resume);$('checkBtn').addEventListener('click',check);$('hintBtn').addEventListener('click',hint);$('nextBtn').addEventListener('click',next);$('resetBtn').addEventListener('click',()=>{if(confirm('Reset saved Lesson 9 progress?'))reset()});$('soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('soundBtn').textContent=`Sound: ${soundOn?'On':'Off'}`});$('againBtn').addEventListener('click',()=>start(state?.mode||mode));$('homeBtn').addEventListener('click',reset);
+const saved=load();if(saved&&!saved.complete)$('resumeBtn').classList.remove('hidden');
+})();
+</script>
+</body>
+</html>

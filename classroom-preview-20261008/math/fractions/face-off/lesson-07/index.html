@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Fraction Face-Off — Unit 1 Lesson 7: At the Same Point</title>
+<style>
+:root{
+  --bg:#09111f;--panel:#111c30;--panel2:#16243c;--text:#f7fbff;--muted:#a9bbd3;
+  --accent:#79d7ff;--gold:#ffd166;--good:#54e38e;--bad:#ff6b7a;--line:#2a3d5c;
+  --blue:#77a7ff;--orange:#ff9b70;--shadow:0 14px 40px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% -10%,#18365d 0,#09111f 43%,#060b14 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+body{min-height:100svh;overflow-x:hidden}
+button,input,textarea{font:inherit}button{touch-action:manipulation;cursor:pointer}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.app{width:min(1080px,100%);margin:auto;padding:max(14px,env(safe-area-inset-top)) 14px max(18px,env(safe-area-inset-bottom))}
+.topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px}.badge{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#1d8dff,#75e1ff);box-shadow:var(--shadow);font-weight:900;color:#061222;font-size:20px}
+.brand h1{font-size:clamp(20px,4vw,31px);margin:0;line-height:1.04}.brand p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.topActions{display:flex;gap:8px}.ghost{border:1px solid var(--line);background:#0d1728;color:var(--text);border-radius:13px;padding:11px 14px;font-weight:800;min-height:46px}
+.panel{background:linear-gradient(180deg,rgba(23,38,63,.96),rgba(12,23,40,.96));border:1px solid #2b4267;border-radius:24px;box-shadow:var(--shadow);padding:clamp(16px,3vw,28px)}
+.hidden{display:none!important}.lessonTag{display:inline-flex;align-items:center;gap:8px;background:#0b3d5d;border:1px solid #2677a6;padding:8px 12px;border-radius:999px;font-weight:800;color:#c7f2ff}
+.startGrid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.intro h2{font-size:clamp(31px,7vw,56px);line-height:1;margin:9px 0 12px}.intro .lead{font-size:clamp(17px,2.3vw,21px);line-height:1.48;color:#d8e8fb;max-width:720px}.rules{display:grid;gap:8px;margin:18px 0}.rule{display:flex;gap:10px;align-items:flex-start;color:#d5e2f3}.num{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#243b60;font-weight:900}
+.setup{background:#0b1526;border:1px solid var(--line);border-radius:18px;padding:16px}.setup h3{margin:0 0 12px}.modeBtns{display:grid;gap:10px}.modeBtn{border:1px solid #34517a;background:#14243c;color:white;border-radius:16px;padding:15px;text-align:left;min-height:76px}.modeBtn strong{display:block;font-size:18px}.modeBtn span{display:block;color:var(--muted);margin-top:4px}.modeBtn.selected{border-color:var(--accent);box-shadow:0 0 0 3px rgba(121,215,255,.18) inset;background:#173252}.primary{width:100%;border:0;background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322;border-radius:16px;min-height:58px;padding:14px 18px;font-size:19px;font-weight:950;margin-top:14px}.resume{background:linear-gradient(135deg,#ffd166,#ffad42)}
+.progressWrap{margin-bottom:15px}.progressTop{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}.stagePill{background:#22395d;border:1px solid #3f5f8c;border-radius:999px;padding:8px 12px;font-weight:900;white-space:nowrap}.progressBar{height:10px;background:#091421;border:1px solid #2d4260;border-radius:999px;overflow:hidden}.progressFill{height:100%;background:linear-gradient(90deg,#3da8ff,#74e0ff);width:0;transition:.25s}
+.stageHead{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}.stageHead h2{margin:2px 0 5px;font-size:clamp(26px,5vw,42px)}.stageHead p{margin:0;color:#d4e4f5;line-height:1.45}.tag{border-radius:999px;padding:7px 10px;font-size:12px;font-weight:950;letter-spacing:.04em;text-transform:uppercase;background:#18304e;border:1px solid #395e86;color:#d8f3ff}
+.taskCard{margin-top:15px;background:#0a1527;border:1px solid #365270;border-radius:20px;padding:15px}.taskCard h3{margin:0 0 7px;color:var(--accent);font-size:20px}.taskCard p{margin:6px 0;color:#d6e6f8;line-height:1.45}.callout{background:#101f35;border:1px solid #2e4b70;border-radius:16px;padding:12px 14px;margin:12px 0}.callout strong{color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.choice{border:2px solid #3d587f;background:#11223a;color:white;border-radius:16px;min-height:58px;padding:11px 13px;font-weight:900;text-align:center}.choice.selected{border-color:var(--accent);background:#173252}.choice.good{border-color:var(--good);background:#103a2a}.choice.bad{border-color:var(--bad);background:#451b25}.choice:disabled{opacity:.55;cursor:not-allowed}
+.textarea{width:100%;min-height:90px;background:#091522;color:#fff;border:1px solid #3a557a;border-radius:14px;padding:12px;resize:vertical}.shortInput{width:100%;min-height:50px;background:#091522;color:#fff;border:1px solid #3a557a;border-radius:13px;padding:10px;text-align:center;font-weight:900;font-size:19px}
+.feedback{margin-top:12px;min-height:68px;border-radius:16px;border:1px solid var(--line);background:#0b1525;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}.feedbackText{line-height:1.4}.goodText{color:var(--good);font-weight:900}.badText{color:var(--bad);font-weight:900}.nextBtn{border:0;background:#edf7ff;color:#071321;border-radius:14px;padding:13px 16px;font-weight:950;min-height:50px}.checkBtn{border:0;background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322;border-radius:14px;padding:13px 16px;font-weight:950;min-height:50px}.secondary{border:1px solid #35527b;background:#10213a;color:#e7f4ff;border-radius:13px;padding:11px 13px;min-height:46px;font-weight:850}
+.nlWrap{display:grid;gap:15px;margin:14px 0}.numberLine{position:relative;height:95px;margin:0 14px 6px}.axis{position:absolute;left:0;right:0;top:40px;height:4px;background:#d9e7f7;border-radius:2px}.ticks{position:absolute;left:0;right:0;top:27px;height:43px;display:flex;justify-content:space-between}.tick{width:2px;height:26px;background:#a9bfd9;position:relative}.tick.major{height:36px;background:white}.tickLabel{position:absolute;top:34px;left:50%;transform:translateX(-50%);font-size:12px;color:#c7d7ea;white-space:nowrap}.point{position:absolute;top:28px;width:25px;height:25px;border-radius:50%;transform:translateX(-50%);background:var(--gold);border:3px solid #fff;box-shadow:0 0 0 4px rgba(255,209,102,.20)}.target{position:absolute;top:19px;width:6px;height:43px;transform:translateX(-50%);background:#ff7b8a;border-radius:4px;box-shadow:0 0 0 4px rgba(255,107,122,.13)}.target::before{content:'TARGET';position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:950;color:#ffb8c0;letter-spacing:.05em}.hitFlash{animation:hit .45s ease}@keyframes hit{0%{box-shadow:0 0 0 0 rgba(84,227,142,.75)}100%{box-shadow:0 0 0 26px rgba(84,227,142,0)}}
+.lineLabel{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;font-weight:850;margin:0 14px}.targetGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.targetCard{background:#101f35;border:1px solid #314e73;border-radius:16px;padding:12px;text-align:center}.targetCard h4{margin:0 0 8px;font-size:20px}.fractionDisplay{font-size:24px;font-weight:950}.mini{font-size:12px;color:var(--muted)}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px}.table th{color:var(--muted);text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding:0 9px}.table td{background:#101f35;border-top:1px solid #2e4b70;border-bottom:1px solid #2e4b70;padding:10px}.table td:first-child{border-left:1px solid #2e4b70;border-radius:12px 0 0 12px}.table td:last-child{border-right:1px solid #2e4b70;border-radius:0 12px 12px 0}.table input{max-width:100px}
+.end{text-align:center}.end h2{font-size:clamp(32px,7vw,56px);margin:0 0 10px}.end p{font-size:18px;color:#d6e6f8}.endActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:580px;margin:18px auto 0}.endActions button{min-height:56px;border-radius:16px;font-weight:950;border:0}.playAgain{background:linear-gradient(135deg,#3da8ff,#74e0ff);color:#061322}.homeBtn{background:#172945;color:#fff;border:1px solid #375476!important}.tiny{font-size:12px;color:var(--muted);margin-top:10px}
+@media(max-width:760px){.startGrid{grid-template-columns:1fr}.setup{order:-1}.grid3,.grid4{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.targetGrid{grid-template-columns:1fr}.feedback{align-items:stretch;flex-direction:column}.nextBtn,.checkBtn{width:100%}}
+@media(max-width:480px){.app{padding-left:9px;padding-right:9px}.panel{border-radius:18px;padding:12px}.grid3,.grid4{grid-template-columns:1fr}.topActions{width:100%}.topActions button{flex:1}.brand p{font-size:12px}.numberLine{margin-left:7px;margin-right:7px}.lineLabel{margin-left:7px;margin-right:7px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="badge">7</div><div><h1>Fraction Face-Off</h1><p>Unit 1 • Lesson 7 • At the Same Point</p></div></div>
+    <div class="topActions"><button class="ghost" id="soundBtn">Sound: On</button><button class="ghost" id="resetBtn">Reset</button></div>
+  </header>
+
+  <main>
+    <section class="panel" id="startScreen">
+      <div class="startGrid">
+        <div class="intro">
+          <span class="lessonTag">Lesson 7 • At the Same Point</span>
+          <h2>Hit the target at the same point.</h2>
+          <p class="lead">Use aligned number lines to generate and identify equivalent fractions. Fractions are equivalent when they are the <strong>same distance from 0</strong>, even when the number lines are partitioned differently.</p>
+          <div class="rules">
+            <div class="rule"><span class="num">1</span><span><strong>Generate equivalent fractions on the number line.</strong></span></div>
+            <div class="rule"><span class="num">2</span><span>Determine whether fractions are equivalent using number-line location and other reasoning you already know.</span></div>
+            <div class="rule"><span class="num">3</span><span>Explain how the number lines show the fractions land at the same location.</span></div>
+          </div>
+          <p class="tiny">Lesson-specific design. No student names are collected. Progress is saved only on this device.</p>
+        </div>
+        <aside class="setup">
+          <h3>Choose a route</h3>
+          <div class="modeBtns">
+            <button class="modeBtn selected" data-mode="solo"><strong>Solo Target Run</strong><span>Complete the Lesson 7 sequence independently.</span></button>
+            <button class="modeBtn" data-mode="partner"><strong>Partner Talk Route</strong><span>Same math, with brief Think-Pair-Share prompts.</span></button>
+          </div>
+          <button class="primary" id="startBtn">Start Lesson 7 Game</button>
+          <button class="primary resume hidden" id="resumeBtn">Resume Saved Work</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="panel hidden" id="lessonScreen">
+      <div class="progressWrap"><div class="progressTop"><span class="lessonTag">Lesson 7 route</span><span class="stagePill" id="stagePill">Stage 1 of 8</span></div><div class="progressBar"><div class="progressFill" id="progressFill"></div></div></div>
+      <div id="stageBody"></div>
+    </section>
+
+    <section class="panel end hidden" id="endScreen">
+      <span class="lessonTag">Lesson 7 complete</span>
+      <h2>Targets aligned.</h2>
+      <p>You used number lines to generate and identify equivalent fractions and recognized when a number line becomes inefficient for very large denominators.</p>
+      <div class="callout"><strong>Lesson Takeaway:</strong> Number lines can be a useful representation for determining equivalent fractions, but they can be limiting when working with larger denominators.</div>
+      <div class="endActions"><button class="playAgain" id="againBtn">Play Again</button><button class="homeBtn" id="homeBtn">Change Route</button></div>
+    </section>
+  </main>
+</div>
+<script>
+(() => {
+'use strict';
+const SAVE_KEY='fractionFaceOff_u1l07_samePoint_v1';
+const SOURCE_FIXTURES={
+  lesson:'Lesson 7',title:'At the Same Point',subtitle:'Determining Equivalent Fractions Using Number Lines',
+  activity1:'Hit the Target',activity2:'How Many Can You Hit?',
+  oneThird:['1/3','2/6','3/9','4/12'],
+  showWhatYouKnow:{p1:'Shawn: 9/10 with denominator 5',p2:['3/12','1/4','1/6','3/6','30/100']},
+  denominatorExploration:['denominator 20','denominator 100'],
+  informalVocabulary:['tenths','hundredths']
+};
+const stages=['notice','hit','thirds','predict','many','limits','synthesis','check'];
+let mode='solo',state=null,soundOn=true;
+const $=id=>document.getElementById(id);
+const startScreen=$('startScreen'),lessonScreen=$('lessonScreen'),endScreen=$('endScreen');
+
+function gcd(a,b){while(b){[a,b]=[b,a%b]}return Math.abs(a)}
+function equiv(a,b){return a.n*b.d===b.n*a.d}
+function frac(n,d){return `${n}/${d}`}
+function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(state))}catch(e){}}
+function clearSave(){try{localStorage.removeItem(SAVE_KEY)}catch(e){}}
+function load(){try{const x=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(x&&x.version===1&&x.stage<stages.length)return x}catch(e){}return null}
+let sharedAudioContext=null;function getSharedAudioContext(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;if(!sharedAudioContext||sharedAudioContext.state==='closed')sharedAudioContext=new C();if(sharedAudioContext.state==='suspended'&&sharedAudioContext.resume)sharedAudioContext.resume().catch(()=>{});return sharedAudioContext}catch(e){return null}}function beep(ok){if(!soundOn)return;try{const c=getSharedAudioContext();if(!c)return;const o=c.createOscillator(),g=c.createGain();o.connect(g);g.connect(c.destination);o.frequency.value=ok?620:190;g.gain.setValueAtTime(.05,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.11);o.start();o.stop(c.currentTime+.12)}catch(e){}}
+function newState(m){return {version:1,mode:m,stage:0,complete:{},answers:{},score:0}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function tickHTML(d,labels=true){let out='';for(let i=0;i<=d;i++){const pos=(i/d)*100;out+=`<span class="tick ${i===0||i===d?'major':''}" style="position:absolute;left:${pos}%"><span class="tickLabel">${labels?(i===0?'0':i===d?'1':i):''}</span></span>`}return out}
+function numberLine(d,pointN=null,targetN=null,label=''){const p=pointN===null?'':`<span class="point" style="left:${pointN/d*100}%" aria-label="${frac(pointN,d)}"></span>`;const t=targetN===null?'':`<span class="target" style="left:${targetN/d*100}%"></span>`;return `<div><div class="lineLabel"><span>${esc(label||`Denominator ${d}`)}</span><span>${pointN===null?'':frac(pointN,d)}</span></div><div class="numberLine"><div class="axis"></div><div class="ticks">${tickHTML(d)}</div>${t}${p}</div></div>`}
+function partnerPrompt(text){return state.mode==='partner'?`<div class="callout"><strong>Partner Talk:</strong> ${esc(text)}</div>`:''}
+function head(tag,title,prompt){return `<div class="stageHead"><div><span class="tag">${esc(tag)}</span><h2>${esc(title)}</h2><p>${prompt}</p></div></div>`}
+function feedbackBox(){return `<div class="feedback" role="status" aria-live="polite" aria-atomic="true"><div class="feedbackText" id="feedbackText" role="status" aria-live="polite" aria-atomic="true">Complete this stage, then check your reasoning.</div><button class="checkBtn" id="checkBtn">Check Work</button><button class="nextBtn hidden" id="nextBtn">Next Stage</button></div>`}
+function setFeedback(ok,msg){beep(ok);$('feedbackText').innerHTML=`<span class="${ok?'goodText':'badText'}">${ok?'Correct.':'Keep reasoning.'}</span> ${msg}`;if(ok){$('checkBtn').classList.add('hidden');$('nextBtn').classList.remove('hidden');state.complete[state.stage]=true;save()}}
+function nextStage(){state.stage++;save();if(state.stage>=stages.length){clearSave();lessonScreen.classList.add('hidden');endScreen.classList.remove('hidden');return}render()}
+function wireNext(){const n=$('nextBtn');if(n)n.onclick=nextStage}
+
+function renderNotice(){
+  $('stageBody').innerHTML=head('Warm-Up • Notice & Wonder','Same point, different partitions','Look at the two number lines. One fraction is marked on each. What do you notice? What do you wonder?')+
+  `<div class="taskCard"><h3>Notice & Wonder</h3><div class="nlWrap">${numberLine(5,1,null,'Fifths')}${numberLine(10,2,null,'Tenths')}</div>
+  <div class="grid2"><div><label for="notice"><strong>What do you notice?</strong></label><textarea id="notice" class="textarea" placeholder="I notice..."></textarea></div><div><label for="wonder"><strong>What do you wonder?</strong></label><textarea id="wonder" class="textarea" placeholder="I wonder..."></textarea></div></div>
+  ${partnerPrompt('Compare one notice and one wonder. Which idea is about location on the number line?')}
+  <div class="callout">A useful observation for today: <strong>1/5 and 2/10 are at the same distance from 0.</strong></div></div>`+feedbackBox();
+  $('checkBtn').onclick=()=>{const n=$('notice').value.trim(),w=$('wonder').value.trim();if(n.length>=8&&w.length>=5){state.answers.notice=n;state.answers.wonder=w;setFeedback(true,'Equivalent fractions can appear on differently partitioned number lines but land at the same point.')}else setFeedback(false,'Write one complete notice and one wonder before moving on.');};wireNext();
+}
+
+function renderHit(){
+  const missions=[{top:[1,5],bottomD:10,targetN:2},{top:[1,4],bottomD:12,targetN:3},{top:[2,3],bottomD:6,targetN:4}];
+  const rows=missions.map((m,i)=>`<div class="targetCard"><h4>Target ${String.fromCharCode(65+i)}</h4><div class="mini">Top line</div><div class="fractionDisplay">${frac(...m.top)}</div><label>Bottom numerator with denominator ${m.bottomD}</label><input class="shortInput hitAns" data-i="${i}" inputmode="numeric" placeholder="?"></div>`).join('');
+  $('stageBody').innerHTML=head('Activity 1 • Hit the Target','Hit the same location','For each target, name the fraction on the bottom number line that lands at exactly the same distance from 0.')+
+  `<div class="taskCard"><h3>Hit the Target</h3><div class="callout">Example target: <strong>1/5 = 2/10</strong>. The numerators and denominators differ, but both points are at the same location.</div><div class="targetGrid">${rows}</div>${partnerPrompt('Before typing, point to where each target would sit between 0 and 1.')}<div id="hitVisuals" class="nlWrap"></div></div>`+feedbackBox();
+  $('checkBtn').onclick=()=>{const vals=[...document.querySelectorAll('.hitAns')].map(x=>Number(x.value));const exp=[2,3,4];const ok=vals.every((v,i)=>v===exp[i]);if(ok){$('hitVisuals').innerHTML=missions.map((m,i)=>numberLine(m.bottomD,exp[i],exp[i],`Bottom line • ${exp[i]}/${m.bottomD}`)).join('');state.score+=3;setFeedback(true,'Each pair names the same point on two differently partitioned number lines.')}else setFeedback(false,'A target is hit only when both fractions mark the same location. Recheck the bottom numerator.');};wireNext();
+}
+
+function renderThirds(){
+  const rows=[6,9,12].map(d=>`<tr><td><strong>1/3</strong></td><td>denominator ${d}</td><td><input class="shortInput thirdAns" data-d="${d}" inputmode="numeric" placeholder="numerator"></td></tr>`).join('');
+  $('stageBody').innerHTML=head('Activity 1 • Generate equivalents','More than one way to hit 1/3','Use number-line structure to generate several fractions that land at the same point as 1/3.')+
+  `<div class="taskCard"><h3>Equivalent family for 1/3</h3>${numberLine(3,1,1,'Reference: 1/3')}<table class="table"><thead><tr><th>Reference</th><th>New line</th><th>Numerator at the same point</th></tr></thead><tbody>${rows}</tbody></table>
+  <div class="callout">Lesson 7 examples include <strong>1/3, 2/6, 3/9, and 4/12</strong>.</div>${partnerPrompt('Explain how you can predict the numerator without drawing every tick first.')}</div>`+feedbackBox();
+  $('checkBtn').onclick=()=>{const vals={};document.querySelectorAll('.thirdAns').forEach(x=>vals[x.dataset.d]=Number(x.value));const ok=vals['6']===2&&vals['9']===3&&vals['12']===4;if(ok){state.score+=3;setFeedback(true,'2/6, 3/9, and 4/12 all land at 1/3.')}else setFeedback(false,'Keep the location fixed at one third of the distance from 0 to 1.');};wireNext();
+}
+
+function renderPredict(){
+  const targets=[{id:'A',n:1,d:2,label:'1/2'},{id:'B',n:1,d:3,label:'1/3'},{id:'C',n:2,d:3,label:'2/3'}];
+  const cards=targets.map(t=>`<button class="choice pred" data-id="${t.id}"><strong>Target ${t.id}</strong><br>${t.label}</button>`).join('');
+  $('stageBody').innerHTML=head('Activity 1 • Predict before you test','Which targets can be hit?','Two number lines are partitioned into sixths and ninths. Predict which target locations can be named by fractions on both lines.')+
+  `<div class="taskCard"><h3>Predict before you test</h3><div class="grid3">${cards}</div><div class="nlWrap">${numberLine(6,null,null,'Sixths')}${numberLine(9,null,null,'Ninths')}</div>${partnerPrompt('What denominator pattern could help before you line up all the points?')}<textarea id="predWhy" class="textarea" placeholder="Explain your prediction using the number lines or denominator structure."></textarea></div>`+feedbackBox();
+  document.querySelectorAll('.pred').forEach(b=>b.onclick=()=>b.classList.toggle('selected'));
+  $('checkBtn').onclick=()=>{const picked=[...document.querySelectorAll('.pred.selected')].map(b=>b.dataset.id).sort().join('');const why=$('predWhy').value.trim();if(picked==='BC'&&why.length>=10){state.score+=2;setFeedback(true,'Targets B and C work on both lines: 1/3 = 2/6 = 3/9 and 2/3 = 4/6 = 6/9.')}else setFeedback(false,'Choose only targets that can be named on both the sixths and ninths number lines, and explain why.');};wireNext();
+}
+
+function renderMany(){
+  const denominators=[10,20,100];const nums={10:[2,4,6,8],20:[4,8,12,16],100:[20,40,60,80]};
+  const tables=denominators.map(d=>`<div class="taskCard"><h3>Bottom number line: denominator ${d}</h3><div class="mini">Targets are at 1/5, 2/5, 3/5, 4/5.</div><div class="grid4">${[1,2,3,4].map((k,i)=>`<div><label>${k}/5 = ?/${d}</label><input class="shortInput manyAns" data-d="${d}" data-i="${i}" inputmode="numeric" placeholder="?"></div>`).join('')}</div></div>`).join('');
+  $('stageBody').innerHTML=head('Activity 2 • How Many Can You Hit?','Keep the target; change the partitions','Hit four fifth-based targets while the bottom denominator grows. Notice what changes from fifths to tenths, twentieths, and hundredths.')+
+  `<div>${tables}<div class="callout">In this lesson, <strong>tenths</strong> and <strong>hundredths</strong> are informal names for lines partitioned into 10 and 100 equal parts.</div>${partnerPrompt('What relationship do you notice as the denominator changes from 5 to 10 to 20 to 100?')}</div>`+feedbackBox();
+  $('checkBtn').onclick=()=>{let ok=true;document.querySelectorAll('.manyAns').forEach(x=>{const d=Number(x.dataset.d),i=Number(x.dataset.i);if(Number(x.value)!==nums[d][i])ok=false;});if(ok){state.score+=12;setFeedback(true,'All four target locations stayed fixed while the partition count changed.')}else setFeedback(false,'Each target must stay at the same distance from 0. Recheck how fifths line up with the new partitions.');};wireNext();
+}
+
+function renderLimits(){
+  $('stageBody').innerHTML=head('Activity 2 • Make a conjecture','When are number lines helpful?','Think about the difference between locating a point on a line partitioned into 10 parts and one partitioned into 100 parts.')+
+  `<div class="taskCard"><h3>Model efficiency</h3><div class="grid2"><button class="choice limitChoice" data-v="efficient">Number lines always become more efficient as denominators grow.</button><button class="choice limitChoice" data-v="limiting">Number lines can become limiting when there are many equal parts.</button></div><textarea id="limitWhy" class="textarea" placeholder="Explain why. What could you visualize without drawing every tick mark?"></textarea>${partnerPrompt('Share one example where a number line helps and one where another strategy might save time.')}</div>`+feedbackBox();
+  document.querySelectorAll('.limitChoice').forEach(b=>b.onclick=()=>{document.querySelectorAll('.limitChoice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
+  $('checkBtn').onclick=()=>{const s=document.querySelector('.limitChoice.selected');const why=$('limitWhy').value.trim();if(s?.dataset.v==='limiting'&&why.length>=12){state.score+=1;setFeedback(true,'Number lines can be powerful, but drawing or reading hundredths can be cumbersome. Visualizing structure can save time.')}else setFeedback(false,'Use the Lesson 7 observation about very large denominators and explain your reasoning.');};wireNext();
+}
+
+function renderSynthesis(){
+  $('stageBody').innerHTML=head('Lesson Synthesis','What makes two fractions equivalent on a number line?','Choose the statements that capture Lesson 7’s central ideas.')+
+  `<div class="taskCard"><h3>Lesson 7 synthesis</h3><div class="grid2">
+  <button class="choice syn" data-k="same">Equivalent fractions are the same distance from 0.</button>
+  <button class="choice syn" data-k="ticks">Equivalent fractions must use the same denominator.</button>
+  <button class="choice syn" data-k="useful">Number lines can help determine equivalence.</button>
+  <button class="choice syn" data-k="limit">Number lines can be limiting when denominators are very large.</button>
+  </div><div class="callout">Lesson Takeaway: <strong>Number lines can be a useful representation for determining equivalent fractions, but they can be limiting when working with larger denominators.</strong></div></div>`+feedbackBox();
+  document.querySelectorAll('.syn').forEach(b=>b.onclick=()=>b.classList.toggle('selected'));
+  $('checkBtn').onclick=()=>{const keys=[...document.querySelectorAll('.syn.selected')].map(b=>b.dataset.k).sort().join(',');if(keys==='limit,same,useful'){state.score+=3;setFeedback(true,'That captures both the power and the limitation of number-line reasoning in Lesson 7.')}else setFeedback(false,'Choose the three statements that match the lesson goals and takeaway.');};wireNext();
+}
+
+function renderCheck(){
+  $('stageBody').innerHTML=head('Show What You Know','Independent check','Use the number-line ideas from Lesson 7. Solve both problems before submitting.')+
+  `<div class="taskCard"><h3>Problem 1</h3><p>Shawn says, “There is a fraction equivalent to <strong>9/10</strong> that has <strong>denominator 5</strong>.” Do you agree or disagree with Shawn?</p>
+    <div class="grid2"><button class="choice p1" data-v="agree">Agree</button><button class="choice p1" data-v="disagree">Disagree</button></div>
+    <div class="nlWrap">${numberLine(10,9,9,'9/10')}${numberLine(5,null,4.5,'Fifths • target at 9/10')}</div>
+    <textarea id="p1why" class="textarea" placeholder="Show or explain your thinking."></textarea></div>
+  <div class="taskCard"><h3>Problem 2</h3><p>Identify a fraction equivalent to <strong>3/12</strong>. Use the number line to help with your thinking.</p>
+    <div class="grid4"><button class="choice p2" data-v="1/4">A. 1/4</button><button class="choice p2" data-v="1/6">B. 1/6</button><button class="choice p2" data-v="3/6">C. 3/6</button><button class="choice p2" data-v="30/100">D. 30/100</button></div>
+    <div class="nlWrap">${numberLine(12,3,3,'3/12')}</div></div>`+feedbackBox();
+  document.querySelectorAll('.p1').forEach(b=>b.onclick=()=>{document.querySelectorAll('.p1').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
+  document.querySelectorAll('.p2').forEach(b=>b.onclick=()=>{document.querySelectorAll('.p2').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')});
+  $('checkBtn').onclick=()=>{const a=document.querySelector('.p1.selected')?.dataset.v,b=document.querySelector('.p2.selected')?.dataset.v,why=$('p1why').value.trim();if(a==='disagree'&&b==='1/4'&&why.length>=12){state.score+=2;setFeedback(true,'9/10 cannot land on a fifths tick, and 3/12 lands at the same point as 1/4.')}else setFeedback(false,'Recheck both number-line locations. Problem 1 also needs a written justification.');};
+  $('nextBtn').textContent='Finish Lesson 7';wireNext();
+}
+
+function render(){
+  const idx=state.stage;$('stagePill').textContent=`Stage ${idx+1} of ${stages.length}`;$('progressFill').style.width=`${idx/stages.length*100}%`;
+  ({notice:renderNotice,hit:renderHit,thirds:renderThirds,predict:renderPredict,many:renderMany,limits:renderLimits,synthesis:renderSynthesis,check:renderCheck})[stages[idx]]();
+}
+function start(m){mode=m;state=newState(m);save();startScreen.classList.add('hidden');endScreen.classList.add('hidden');lessonScreen.classList.remove('hidden');render()}
+
+document.querySelectorAll('.modeBtn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.modeBtn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');mode=b.dataset.mode});
+$('startBtn').onclick=()=>start(mode);
+$('resetBtn').onclick=()=>{clearSave();location.reload()};
+$('soundBtn').onclick=()=>{soundOn=!soundOn;$('soundBtn').textContent=`Sound: ${soundOn?'On':'Off'}`};
+$('againBtn').onclick=()=>start(mode);
+$('homeBtn').onclick=()=>{clearSave();endScreen.classList.add('hidden');lessonScreen.classList.add('hidden');startScreen.classList.remove('hidden')};
+const prior=load();if(prior){$('resumeBtn').classList.remove('hidden');$('resumeBtn').onclick=()=>{state=prior;mode=state.mode;startScreen.classList.add('hidden');lessonScreen.classList.remove('hidden');render()}}
+window.__LESSON07_FIXTURES__=SOURCE_FIXTURES;
+})();
+</script>
+</body>
+</html>

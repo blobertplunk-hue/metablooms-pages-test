@@ -1,0 +1,140 @@
+{
+  "schema": "mb.classroom_activities.stage_e_import.v1",
+  "status": "PREPARED_PENDING_POSTDEPLOY_VALIDATION",
+  "created_at": "2026-10-08T17:20:55.923Z",
+  "source_baseline": "529e5bf4eebafcdd34e512f6d0ad6611c509a42a",
+  "public_baseline": "2d9d0ea0aa3d80142dc48a774b579fefc49f720a",
+  "publishedCount": 26,
+  "importCount": 22,
+  "sourceSciencePreserved": 4,
+  "breakdown": {
+    "fraction_face_off": 12,
+    "fraction_practice": 6,
+    "math_remediation": 2,
+    "fraction_battle": 1,
+    "input_output_diagnostic": 1
+  },
+  "imported": [
+    {
+      "id": "fraction-face-off-u1-lesson-01",
+      "route": "/math/fractions/face-off/lesson-01/",
+      "source_git_blob_sha": "87d5ea8ce387b1110f84a0797207b88367cf9798"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-02",
+      "route": "/math/fractions/face-off/lesson-02/",
+      "source_git_blob_sha": "e44f7972bc8f6f0139bde9215201cf7bc0100867"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-03",
+      "route": "/math/fractions/face-off/lesson-03/",
+      "source_git_blob_sha": "19c774023041aee319aa09ec4f2e588584ad6c09"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-04",
+      "route": "/math/fractions/face-off/lesson-04/",
+      "source_git_blob_sha": "a8fd2a1acdf8b5ddf45211bbf217d77adb38d33e"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-05",
+      "route": "/math/fractions/face-off/lesson-05/",
+      "source_git_blob_sha": "907509694c70f82c742369edeb0ac72cbf25ff97"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-06",
+      "route": "/math/fractions/face-off/lesson-06/",
+      "source_git_blob_sha": "9a81dc989bed1e85c5230d2965b7064432cbd0da"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-07",
+      "route": "/math/fractions/face-off/lesson-07/",
+      "source_git_blob_sha": "aa02bfb50192c70b5550e98b03bff0cb4ce08e4e"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-08",
+      "route": "/math/fractions/face-off/lesson-08/",
+      "source_git_blob_sha": "5eb6925d1329b88b3152e690d2cc5a651f594823"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-09",
+      "route": "/math/fractions/face-off/lesson-09/",
+      "source_git_blob_sha": "f1e5c347b1a7aab1a9830ec86f061bb3298d79b5"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-10",
+      "route": "/math/fractions/face-off/lesson-10/",
+      "source_git_blob_sha": "de1f64a4c63628b1dcf170d44edb9a356154670e"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-11",
+      "route": "/math/fractions/face-off/lesson-11/",
+      "source_git_blob_sha": "9a9c906ac9c3a4b26bcae4a1ca9aa88b58ff12a7"
+    },
+    {
+      "id": "fraction-face-off-u1-lesson-12",
+      "route": "/math/fractions/face-off/lesson-12/",
+      "source_git_blob_sha": "759447e0cf01686685d6d49ff378646675675c6d"
+    },
+    {
+      "id": "fraction-practice-u1-lesson-04",
+      "route": "/math/fractions/practice/lesson-04/",
+      "source_git_blob_sha": "d93ee8ad824f34ee4b7d1a8783ed6dae0ef4cbcf"
+    },
+    {
+      "id": "fraction-practice-u1-lesson-05",
+      "route": "/math/fractions/practice/lesson-05/",
+      "source_git_blob_sha": "f2e3d2fbb2c1701f974fd78b1f0f9975620e3d96"
+    },
+    {
+      "id": "fraction-practice-u1-lesson-06",
+      "route": "/math/fractions/practice/lesson-06/",
+      "source_git_blob_sha": "660f2a43a48404889d59ce9c37cb319aaf0fe8a4"
+    },
+    {
+      "id": "fraction-practice-u1-lesson-07",
+      "route": "/math/fractions/practice/lesson-07/",
+      "source_git_blob_sha": "fe8e83a42ffb9b852bf8502b4ae8525eec9a59e1"
+    },
+    {
+      "id": "fraction-practice-u1-lesson-09",
+      "route": "/math/fractions/practice/lesson-09/",
+      "source_git_blob_sha": "b55781b97439cb7db64e304f14134ab025a34dff"
+    },
+    {
+      "id": "fraction-practice-u1-lesson-10",
+      "route": "/math/fractions/practice/lesson-10/",
+      "source_git_blob_sha": "94776e530d484af1bfa8a2255b42a7ffe5dedff2"
+    },
+    {
+      "id": "math-4-1-subunit1-remediation",
+      "route": "/math/remediation/4-1-subunit-1/",
+      "source_git_blob_sha": "c219b5bddc6e974302ef410a269b6192bb5b372c"
+    },
+    {
+      "id": "math-unit1-eou-remediation",
+      "route": "/math/remediation/unit-1-eou/",
+      "source_git_blob_sha": "b181b331c725c1e4f53c7ba300f1a4b014778590"
+    },
+    {
+      "id": "math-input-output-diagnostic",
+      "route": "/math/input-output/diagnostic-4-5h/",
+      "source_git_blob_sha": "7f3d4d411aeab50fc1360aa82f5aea938e40e090"
+    },
+    {
+      "id": "math-fraction-battle",
+      "route": "/games/fraction-battle/",
+      "source_git_blob_sha": "ec30bc71754389ea27b61101455b54adfe98577c"
+    }
+  ],
+  "excluded": [
+    "unapproved multiplication hotfix",
+    "Phone Offload manual review files",
+    "private student information",
+    "superseded science versions"
+  ],
+  "pending": [
+    "private CI",
+    "live browser test",
+    "school MacBook and student device"
+  ]
+}

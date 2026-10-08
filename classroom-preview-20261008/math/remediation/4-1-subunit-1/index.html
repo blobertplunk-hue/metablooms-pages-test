@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Math 4.1 Sub-Unit 1 Remediation</title>
+<style>
+:root{
+ --bg:#10141c; --panel:#18202b; --panel2:#202a38; --text:#f5f7fb; --muted:#b8c1cf;
+ --accent:#71c4ff; --accent2:#8ee3b5; --warn:#ffd27a; --danger:#ff9a9a;
+ --line:#3b485b; --model-fill:#a8d9ff; --model-empty:#f2f4f8;
+ font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+ color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-size:18px;line-height:1.5}
+button,input{font:inherit}
+button{min-height:48px;padding:.75rem 1rem;border-radius:10px;border:1px solid transparent;cursor:pointer}
+.primary{background:var(--accent);color:#07111c;font-weight:800}
+.ghost{background:transparent;color:var(--muted);border-color:var(--line)}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 1.4rem;border-bottom:1px solid var(--line);background:#0c1118;position:sticky;top:0;z-index:3}
+h1{font-size:clamp(1.3rem,3vw,2rem);margin:.1rem 0}.eyebrow,.stage{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.progress-pill{border:1px solid var(--line);padding:.5rem .8rem;border-radius:999px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:minmax(230px,300px) 1fr;min-height:calc(100vh - 86px)}
+aside{padding:1rem;border-right:1px solid var(--line);background:#111823}
+aside h2{font-size:1rem;color:var(--muted)}
+.rail-item{display:flex;gap:.7rem;padding:.8rem;border:1px solid var(--line);border-radius:12px;margin:.7rem 0;background:var(--panel)}
+.rail-item>span{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#2b3748;font-weight:800}
+.rail-item.done>span{background:var(--accent2);color:#062014}.rail-item small{display:block;color:var(--muted);margin-top:.15rem}
+main{padding:clamp(1rem,3vw,2rem);max-width:1000px;width:100%;margin:0 auto}
+.card,.entry-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(1rem,3vw,2rem);box-shadow:0 18px 60px rgba(0,0,0,.22)}
+.entry-card{max-width:820px;margin:2rem auto}
+.construct{color:var(--muted)}
+label{display:block;margin:1rem 0;font-weight:650}
+input[type=text],input[type=number],input:not([type]){width:100%;min-height:48px;margin-top:.4rem;padding:.7rem;border:2px solid var(--line);border-radius:9px;background:#0d141d;color:var(--text)}
+fieldset{border:1px solid var(--line);border-radius:12px;margin:1rem 0;padding:1rem}.choice{display:flex;align-items:flex-start;gap:.75rem;padding:.8rem;border:1px solid var(--line);border-radius:10px;background:var(--panel2);font-weight:600}.choice input{width:22px;height:22px;flex:none}
+.question{margin:1rem 0;padding:1rem;border-radius:14px;background:#111823;border:1px solid var(--line)}.prompt{font-size:1.15rem;font-weight:800}
+.math-svg{display:block;width:100%;max-width:760px;margin:1rem auto;background:#f7f9fc;border-radius:12px}
+.math-svg .axis,.math-svg .tick{stroke:#111;stroke-width:4}.math-svg .point{fill:#111}.math-svg text{fill:#111;font-size:24px;font-weight:700}.math-svg .pointlabel{font-size:20px}.model-cell{stroke:#111;stroke-width:4}
+.response-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.answer-preview{color:var(--muted)}
+.target-fraction{font-size:2rem;font-weight:900;text-align:center;padding:1rem}
+.feedback,.hint{padding:1rem;border-radius:12px;margin:1rem 0}.warn{background:#3a2e16;border:1px solid #8a6a25}.good{background:#133526;border:1px solid #2f8f63}.hint{background:#13293b;border:1px solid #285f88}.hidden{display:none}
+.lesson{background:#111823;border-left:5px solid var(--accent);padding:.5rem 1rem;border-radius:8px}
+.controls{display:flex;gap:.7rem;align-items:center;flex-wrap:wrap;margin-top:1.2rem}.controls .ghost{margin-left:auto}
+.blocked .icon{display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--warn);color:#241600;font-size:2rem;font-weight:900}
+.grade-box{display:flex;justify-content:space-between;align-items:center;background:#102b20;border:1px solid #2f8f63;border-radius:14px;padding:1rem 1.2rem;margin:1rem 0}.grade-box strong{font-size:2.5rem;color:var(--accent2)}
+table{width:100%;border-collapse:collapse;margin:1rem 0}th,td{border-bottom:1px solid var(--line);text-align:left;padding:.7rem}dl{display:grid;grid-template-columns:max-content 1fr;gap:.4rem 1rem}dd{margin:0}code{font-size:1rem}.pass{font-size:2rem;color:var(--accent2);font-weight:900}.fail{font-size:2rem;color:var(--danger);font-weight:900}
+@media(max-width:760px){.layout{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--line)}.response-grid{grid-template-columns:1fr}.progress-pill{font-size:.8rem}body{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media print{body{background:#fff;color:#000}.layout{display:block}aside,header,.controls,.primary:not(#printBtn){display:none!important}.card{box-shadow:none;border:0;background:#fff}.receipt{padding:0}.grade-box{border:2px solid #000;background:#fff} }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>window.REMEDIATION_CONFIG = {"schemaVersion":"1.0","engineMinVersion":"1.0.0","assessment":{"id":"MATH-4.1-SU1","title":"Math 4.1 Sub-Unit 1 Remediation","subject":"Math","grade":4,"source":{"title":"Quiz: Sub-Unit 1, Unit 4.1","sourceItems":"1-2","driveId":null,"excludedOriginalConstructs":["Do not generate the original 7/10 number-line item.","Do not generate the original 8/5 two-bar model.","Do not reuse the original answer-option expressions."]}},"policy":{"eligibleRoute":"Student took the original assessment and scored below 70.","missingRoute":"Student who never took the original assessment must take the original assessment; remediation cannot issue credit.","replacementGrade":70,"mastery":{"diagnosticCanSkipReteach":true,"freshRetrievalRequired":true,"laterTransferRequired":true,"universalPercentThreshold":null}},"ui":{"studentDirections":"You will work only on skills you still need. Correct answers on the first check can skip the lesson, but every skill must be shown again later on a new problem.","completionMessage":"All required objectives were demonstrated on fresh problems. Show or print this receipt for your teacher."},"objectives":[{"id":"M41-SU1-O1","title":"Unit fractions on a number line","construct":"Interpret a fraction on a partitioned number line as repeated copies of one unit fraction.","sourceItems":[1],"generator":{"kind":"numberLineUnitFraction","params":{"denominators":[4,5,6,8,9,10,12],"exclude":["7/10"]}},"lesson":{"teach":["Count the equal spaces, not the tick marks.","The denominator tells the name/size of one equal part. If the whole is split into 8 equal spaces, one jump is 1/8.","The numerator tells how many copies of that unit fraction reach the point."],"guidedPrompt":"Name one jump first. Then count how many equal jumps reach the marked point."},"misconceptions":{"counted-ticks":{"label":"Counted tick marks","feedback":"The marks are boundaries. Count the equal spaces from 0 to the point instead."},"swapped":{"label":"Swapped numerator and denominator","feedback":"The denominator names the size of each equal part; the numerator counts how many of those parts."},"wrong-unit":{"label":"Unit fraction changed","feedback":"Keep the denominator tied to the number of equal spaces in one whole."},"wrong-count":{"label":"Wrong number of copies","feedback":"Start at 0 and count each equal jump until the marked point."}}},{"id":"M41-SU1-O2","title":"Fractions greater than one whole","construct":"Interpret a multi-whole area/strip model while preserving one consistent fractional unit.","sourceItems":[2],"generator":{"kind":"multiWholeModel","params":{"denominators":[3,4,5,6,8],"minWholes":2,"maxWholes":2,"exclude":["8/5"]}},"lesson":{"teach":["The denominator is based on how many equal parts make ONE whole, not how many boxes are drawn across all wholes.","Keep the same-size part across every whole.","Count all shaded parts to get the numerator. A numerator can be larger than the denominator."],"guidedPrompt":"First name the size of one part. Then count every shaded part across the wholes."},"misconceptions":{"all-boxes-denominator":{"label":"Used all boxes as the denominator","feedback":"The denominator describes one whole. Count the equal parts in one bar, not across both bars."},"ignored-extra-whole":{"label":"Ignored shaded parts beyond one whole","feedback":"A fraction can be greater than 1. Keep counting shaded parts after the first whole."},"swapped":{"label":"Swapped numerator and denominator","feedback":"The denominator is parts per whole; the numerator is the total shaded parts."},"wrong-model-count":{"label":"Model counted incorrectly","feedback":"Count the partitions in one whole for the denominator, then count all shaded partitions for the numerator."}}},{"id":"M41-SU1-O3","title":"Equivalent fraction decompositions","construct":"Recognize and generate sums that name the same fraction while preserving the fractional unit.","sourceItems":[1,2],"generator":{"kind":"fractionDecomposition","params":{"denominators":[3,4,5,6,8],"numeratorMin":5,"numeratorMax":10,"exclude":["8/5"]}},"lesson":{"teach":["When fractions have the same denominator, they are made from the same-size parts.","Add the numerators to find how many same-size parts the expression names; keep the denominator.","A fraction can have more than one correct decomposition."],"guidedPrompt":"Check each expression in two steps: same-size parts, then total number of parts."},"misconceptions":{"changed-unit":{"label":"Changed the fractional unit","feedback":"An expression cannot name the same amount if the addends switch to a different-sized part without an equivalence relationship."},"wrong-total":{"label":"Did not check the total","feedback":"Add the numerators of same-denominator addends and compare that total with the target numerator."},"one-answer-only":{"label":"Stopped after one valid decomposition","feedback":"More than one sum can represent the same fraction. Check every option requested."},"selection-error":{"label":"Selected an invalid decomposition","feedback":"Check both the denominator/unit and the total number of parts for every selected expression."}}}]};
+</script>
+<script>
+(() => {
+  'use strict';
+  const ENGINE_VERSION = '1.0.0';
+  const CONFIG = window.REMEDIATION_CONFIG;
+  if (!CONFIG) throw new Error('REMEDIATION_CONFIG is missing.');
+
+  const storageKey = `metablooms-remediation:${CONFIG.assessment.id}:${CONFIG.schemaVersion}`;
+  const $ = (sel) => document.querySelector(sel);
+  const app = $('#app');
+
+  function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function gcd(a,b){ while(b){ [a,b]=[b,a%b]; } return Math.abs(a); }
+  function fracText(n,d){ return `${n}/${d}`; }
+  function sample(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function shuffled(arr){ return [...arr].sort(()=>Math.random()-0.5); }
+  function intVal(id){ const v=parseInt($(id)?.value,10); return Number.isFinite(v)?v:null; }
+
+  function newState(){
+    const objectives={};
+    CONFIG.objectives.forEach(o => objectives[o.id]={
+      diagnosticDone:false, diagnosticCorrect:false, retrievalPassed:false, transferPassed:false,
+      loops:0, lastMisconception:null, seenItems:[]
+    });
+    return {
+      engineVersion:ENGINE_VERSION, schemaVersion:CONFIG.schemaVersion,
+      student:'', eligibility:'', startedAt:null, completedAt:null,
+      phase:'entry', objectiveIndex:0, step:'diagnostic', returnToTransfer:false,
+      transferOrder:[], transferIndex:0, currentItem:null, objectives, receipt:null
+    };
+  }
+  let volatileStore=null;
+  let state = load() || newState();
+
+  function save(){
+    const raw=JSON.stringify(state); volatileStore=raw;
+    try { localStorage.setItem(storageKey, raw); } catch { /* volatile fallback remains active */ }
+  }
+  function load(){
+    let raw=null;
+    try { raw=localStorage.getItem(storageKey); } catch { /* storage unavailable */ }
+    raw=raw||volatileStore;
+    try { return raw?JSON.parse(raw):null; } catch { return null; }
+  }
+  function reset(){
+    if(!confirm('Erase saved progress for this assessment on this browser?')) return;
+    try { localStorage.removeItem(storageKey); } catch { /* storage unavailable */ }
+    volatileStore=null; state=newState(); render();
+  }
+
+  function objective(){ return CONFIG.objectives[state.objectiveIndex]; }
+  function ostate(id=objective().id){ return state.objectives[id]; }
+
+  function freshKey(item){ return `${item.kind}:${item.n||''}/${item.d||''}:${item.targetN||''}/${item.targetD||''}`; }
+
+  function makeNumberLine(params){
+    let d,n,key,tries=0;
+    do {
+      d=sample(params.denominators); n=2+Math.floor(Math.random()*(d-2)); key=fracText(n,d); tries++;
+    } while((params.exclude||[]).includes(key) && tries<100);
+    return {kind:'numberLineUnitFraction', n,d, prompt:`The marked point is ${n}/${d}. Complete the unit-fraction representation.`};
+  }
+  function makeModel(params){
+    let d,n,key,tries=0;
+    do {
+      d=sample(params.denominators); n=d+1+Math.floor(Math.random()*(d-1)); key=fracText(n,d); tries++;
+    } while((params.exclude||[]).includes(key) && tries<100);
+    return {kind:'multiWholeModel',n,d,wholes:2,prompt:'Write the fraction represented by the shaded model.'};
+  }
+  function expr(parts,d){ return parts.map(x=>`${x}/${d}`).join(' + '); }
+  function makeDecomp(params){
+    let d,n,key,tries=0;
+    do {
+      d=sample(params.denominators);
+      const lo=Math.max(d+1,params.numeratorMin||d+1), hi=Math.min((params.numeratorMax||10),2*d-1);
+      n=lo+Math.floor(Math.random()*Math.max(1,hi-lo+1)); key=fracText(n,d); tries++;
+    } while((params.exclude||[]).includes(key) && tries<100);
+    let a=Math.max(1,Math.floor(n/2)), b=n-a;
+    if(b===0){b=1;a=n-1;}
+    const valid1={text:Array(n).fill(`1/${d}`).join(' + '),valid:true,tag:'unit'};
+    const valid2={text:expr([a,b],d),valid:true,tag:'split'};
+    const bad1={text:expr([a,Math.max(1,b-1)],d),valid:false,tag:'wrong-total'};
+    const bad2={text:`${a}/${d} + ${b}/${d+1}`,valid:false,tag:'changed-unit'};
+    const bad3={text:`${n}/${d*2}`,valid:false,tag:'wrong-total'};
+    const options=shuffled([valid1,valid2,bad1,bad2,bad3]);
+    return {kind:'fractionDecomposition',targetN:n,targetD:d,options,prompt:`Select exactly TWO expressions equal to ${n}/${d}.`};
+  }
+  const generators={numberLineUnitFraction:makeNumberLine,multiWholeModel:makeModel,fractionDecomposition:makeDecomp};
+
+  function generateFor(obj){
+    const fn=generators[obj.generator.kind];
+    if(!fn) throw new Error(`Unknown generator: ${obj.generator.kind}`);
+    return fn(obj.generator.params||{});
+  }
+
+  function generateFreshFor(obj){
+    const os=state.objectives[obj.id];
+    os.seenItems=os.seenItems||[];
+    let item=null,key='',tries=0;
+    do {
+      item=generateFor(obj); key=freshKey(item); tries++;
+    } while(os.seenItems.includes(key) && tries<250);
+    if(os.seenItems.includes(key)) throw new Error(`Could not generate a fresh item for ${obj.id}`);
+    os.seenItems.push(key);
+    return item;
+  }
+  function ensureItem(){
+    if(!state.currentItem){ state.currentItem=generateFreshFor(objective()); save(); }
+    return state.currentItem;
+  }
+  function nextFresh(){ state.currentItem=generateFreshFor(objective()); save(); }
+
+  function numberLineSvg(item){
+    const w=720,h=155,x0=60,x1=660,y=75,step=(x1-x0)/item.d;
+    let ticks='';
+    for(let i=0;i<=item.d;i++){ const x=x0+i*step; ticks+=`<line x1="${x}" y1="${y-18}" x2="${x}" y2="${y+18}" class="tick"/>`; }
+    const px=x0+item.n*step;
+    return `<svg class="math-svg" viewBox="0 0 ${w} ${h}" role="img" aria-label="Number line from zero to one split into ${item.d} equal parts with a point at ${item.n}/${item.d}.">
+      <line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" class="axis"/>${ticks}
+      <circle cx="${px}" cy="${y}" r="11" class="point"/><text x="${x0}" y="125">0</text><text x="${x1-5}" y="125">1</text>
+      <text x="${px-18}" y="38" class="pointlabel">${item.n}/${item.d}</text></svg>`;
+  }
+  function modelSvg(item){
+    const parts=item.d, shaded=item.n, x=35, y1=35, y2=125, bw=650, bh=58, cell=bw/parts;
+    let rects='';
+    for(let row=0;row<2;row++){
+      for(let i=0;i<parts;i++){
+        const idx=row*parts+i, fill=idx<shaded?'var(--model-fill)':'var(--model-empty)';
+        rects+=`<rect x="${x+i*cell}" y="${row?y2:y1}" width="${cell}" height="${bh}" fill="${fill}" class="model-cell"/>`;
+      }
+    }
+    return `<svg class="math-svg" viewBox="0 0 720 220" role="img" aria-label="Two equal bars, each split into ${parts} equal parts. ${shaded} parts are shaded.">${rects}</svg>`;
+  }
+  function renderResponse(item){
+    if(item.kind==='numberLineUnitFraction'){
+      return `${numberLineSvg(item)}
+      <div class="response-grid">
+        <label>Number of copies of the unit fraction<input id="copies" inputmode="numeric" type="number" min="1" autocomplete="off"></label>
+        <label>Denominator of one unit fraction<input id="unitDen" inputmode="numeric" type="number" min="2" autocomplete="off"></label>
+      </div>
+      <p class="answer-preview">You are building: <strong>[copies] × 1/[denominator]</strong></p>`;
+    }
+    if(item.kind==='multiWholeModel'){
+      return `${modelSvg(item)}
+      <div class="response-grid">
+        <label>Numerator: total shaded parts<input id="modelNum" inputmode="numeric" type="number" min="1" autocomplete="off"></label>
+        <label>Denominator: equal parts in ONE whole<input id="modelDen" inputmode="numeric" type="number" min="2" autocomplete="off"></label>
+      </div>`;
+    }
+    if(item.kind==='fractionDecomposition'){
+      return `<div class="target-fraction">${item.targetN}/${item.targetD}</div>
+      <div class="choices">${item.options.map((o,i)=>`<label class="choice"><input type="checkbox" name="decomp" value="${i}"><span>${esc(o.text)}</span></label>`).join('')}</div>`;
+    }
+    return '<p>Unsupported item.</p>';
+  }
+
+  function evaluate(item){
+    if(item.kind==='numberLineUnitFraction'){
+      const copies=intVal('#copies'), den=intVal('#unitDen');
+      const correct=copies===item.n && den===item.d;
+      if(correct) return {correct:true};
+      let branch='wrong-count';
+      if(copies===item.d && den===item.n) branch='swapped';
+      else if(copies===item.n+1) branch='counted-ticks';
+      else if(den!==item.d) branch='wrong-unit';
+      return {correct:false,branch};
+    }
+    if(item.kind==='multiWholeModel'){
+      const n=intVal('#modelNum'), d=intVal('#modelDen');
+      const correct=n===item.n && d===item.d;
+      if(correct) return {correct:true};
+      let branch='wrong-model-count';
+      if(d===item.d*2) branch='all-boxes-denominator';
+      else if(n===item.d || n===item.n-item.d) branch='ignored-extra-whole';
+      else if(n===item.d && d===item.n) branch='swapped';
+      return {correct:false,branch};
+    }
+    if(item.kind==='fractionDecomposition'){
+      const selected=[...document.querySelectorAll('input[name="decomp"]:checked')].map(x=>Number(x.value));
+      const valids=item.options.map((o,i)=>o.valid?i:null).filter(i=>i!==null);
+      const correct=selected.length===valids.length && selected.every(i=>valids.includes(i));
+      if(correct) return {correct:true};
+      if(selected.length===1 && selected.every(i=>valids.includes(i))) return {correct:false,branch:'one-answer-only'};
+      if(selected.some(i=>item.options[i]?.tag==='changed-unit')) return {correct:false,branch:'changed-unit'};
+      if(selected.some(i=>item.options[i]?.tag==='wrong-total')) return {correct:false,branch:'wrong-total'};
+      return {correct:false,branch:'selection-error'};
+    }
+    return {correct:false,branch:'selection-error'};
+  }
+
+  function header(){
+    const mastered=CONFIG.objectives.filter(o=>state.objectives[o.id].transferPassed).length;
+    return `<header><div><div class="eyebrow">Remediation · Engine ${ENGINE_VERSION}</div><h1>${esc(CONFIG.assessment.title)}</h1></div>
+      <div class="progress-pill">${mastered}/${CONFIG.objectives.length} mastered</div></header>`;
+  }
+  function objectiveRail(){
+    return `<aside><h2>Skills</h2>${CONFIG.objectives.map((o,i)=>{
+      const s=state.objectives[o.id];
+      const label=s.transferPassed?'Mastered':s.retrievalPassed?'Transfer check pending':i===state.objectiveIndex&&state.phase!=='transfer'?'Working now':'Not yet mastered';
+      return `<div class="rail-item ${s.transferPassed?'done':''}"><span>${i+1}</span><div><strong>${esc(o.title)}</strong><small>${label}</small></div></div>`;
+    }).join('')}</aside>`;
+  }
+  function shell(body){ app.innerHTML=`${header()}<div class="layout">${objectiveRail()}<main>${body}</main></div>`; bindGlobal(); }
+
+  function bindGlobal(){
+    $('#resetBtn')?.addEventListener('click',reset);
+    $('#printBtn')?.addEventListener('click',()=>window.print());
+  }
+  function controls(inner=''){ return `<div class="controls">${inner}<button id="resetBtn" class="ghost">Reset saved progress</button></div>`; }
+
+  function renderEntry(){
+    app.innerHTML=`${header()}<main class="entry-card"><h2>Start remediation</h2>
+      <p>${esc(CONFIG.ui.studentDirections)}</p>
+      <label>Your name or class identifier<input id="student" autocomplete="name" value="${esc(state.student||'')}"></label>
+      <fieldset><legend>Why are you opening this?</legend>
+        <label class="choice"><input type="radio" name="elig" value="below70"> I took the assessment and scored below 70.</label>
+        <label class="choice"><input type="radio" name="elig" value="missing"> I never took the original assessment.</label>
+      </fieldset>
+      <div id="entryMsg" class="feedback hidden"></div>
+      <button id="startBtn" class="primary">Begin</button>
+      ${controls()}</main>`;
+    $('#startBtn').onclick=()=>{
+      const student=$('#student').value.trim();
+      const elig=document.querySelector('input[name="elig"]:checked')?.value;
+      if(!student || !elig){ const m=$('#entryMsg'); m.textContent='Enter your identifier and choose one routing option.'; m.classList.remove('hidden'); return; }
+      state.student=student; state.eligibility=elig;
+      if(elig==='missing'){ state.phase='blocked'; save(); render(); return; }
+      state.startedAt=state.startedAt||new Date().toISOString(); state.phase='work'; state.step='diagnostic'; save(); render();
+    };
+    bindGlobal();
+  }
+
+  function renderBlocked(){
+    shell(`<section class="card blocked"><div class="icon">!</div><h2>Original assessment required</h2>
+      <p>This remediation cannot replace an assessment you never took.</p>
+      <p><strong>Next action:</strong> take the original assessment with your teacher.</p>
+      <p>No remediation-credit receipt will be issued from this route.</p>${controls()}</section>`);
+  }
+
+  function phaseTitle(){
+    if(state.step==='diagnostic') return 'Fresh diagnostic';
+    if(state.step==='reteach') return 'Targeted reteach';
+    if(state.step==='guided') return 'Guided correction';
+    if(state.step==='retrieval') return 'Fresh retrieval';
+    return 'Practice';
+  }
+  function renderWork(){
+    const obj=objective(), os=ostate();
+    if(state.step==='reteach'){
+      const branch=os.lastMisconception;
+      const feedback=branch && obj.misconceptions[branch] ? obj.misconceptions[branch].feedback : '';
+      shell(`<section class="card"><div class="stage">${phaseTitle()}</div><h2>${esc(obj.title)}</h2>
+        ${feedback?`<div class="feedback warn"><strong>What to fix:</strong> ${esc(feedback)}</div>`:''}
+        <div class="lesson">${obj.lesson.teach.map(t=>`<p>${esc(t)}</p>`).join('')}</div>
+        <button id="guidedBtn" class="primary">Try guided practice</button>${controls()}</section>`);
+      $('#guidedBtn').onclick=()=>{ state.step='guided'; nextFresh(); render(); }; return;
+    }
+    const item=ensureItem();
+    const guided=state.step==='guided';
+    shell(`<section class="card"><div class="stage">${phaseTitle()}</div><h2>${esc(obj.title)}</h2>
+      <p class="construct">${esc(obj.construct)}</p>
+      ${guided?`<div class="hint">${esc(obj.lesson.guidedPrompt)}</div>`:''}
+      <div class="question"><p class="prompt">${esc(item.prompt)}</p>${renderResponse(item)}</div>
+      <div id="feedback" class="feedback hidden"></div>
+      <button id="checkBtn" class="primary">Check my work</button>${controls()}</section>`);
+    $('#checkBtn').onclick=()=>handleWorkAnswer(evaluate(item));
+  }
+
+  function feedbackBox(text,good=false){
+    const f=$('#feedback'); f.innerHTML=text; f.classList.remove('hidden','good','warn'); f.classList.add(good?'good':'warn');
+  }
+  function handleWorkAnswer(result){
+    const obj=objective(), os=ostate();
+    if(result.correct){
+      if(state.step==='diagnostic'){
+        os.diagnosticDone=true; os.diagnosticCorrect=true; state.step='retrieval'; state.currentItem=null; save();
+        feedbackBox('Correct. You can skip the reteach for this skill, but you still need a fresh retrieval problem.');
+        setTimeout(render,700); return;
+      }
+      if(state.step==='guided'){
+        state.step='retrieval'; state.currentItem=null; save();
+        feedbackBox('Corrected. Next is a fresh problem without the scaffold.');
+        setTimeout(render,700); return;
+      }
+      if(state.step==='retrieval'){
+        os.retrievalPassed=true; state.currentItem=null; save();
+        const next=CONFIG.objectives.findIndex((o,i)=>i>state.objectiveIndex && !state.objectives[o.id].retrievalPassed);
+        if(next>=0){ state.objectiveIndex=next; state.step='diagnostic'; save(); feedbackBox('Retrieval passed. Moving to the next skill.',true); setTimeout(render,700); return; }
+        if(state.returnToTransfer){ state.returnToTransfer=false; state.phase='transfer'; save(); feedbackBox('Repair passed. Returning to the later transfer check.',true); setTimeout(render,700); return; }
+        startTransfer(); return;
+      }
+    } else {
+      os.lastMisconception=result.branch; os.loops++;
+      if(state.step==='guided'){
+        const msg=obj.misconceptions[result.branch]?.feedback || 'Check the model and try again.';
+        feedbackBox(`<strong>Fix this:</strong> ${esc(msg)}<br>Correct this same problem before moving on.`);
+        return;
+      }
+      state.step='reteach'; state.currentItem=null; save(); render();
+    }
+  }
+
+  function startTransfer(){
+    state.phase='transfer';
+    state.transferOrder=shuffled(CONFIG.objectives.map(o=>o.id));
+    state.transferIndex=0; state.currentItem=null; save(); render();
+  }
+  function renderTransfer(){
+    const oid=state.transferOrder[state.transferIndex];
+    if(!oid){ complete(); return; }
+    const idx=CONFIG.objectives.findIndex(o=>o.id===oid);
+    state.objectiveIndex=idx;
+    const obj=objective(), item=ensureItem();
+    shell(`<section class="card"><div class="stage">Later mixed transfer check</div><h2>${esc(obj.title)}</h2>
+      <p>This skill has returned in the mixed round. Solve it without lesson hints.</p>
+      <div class="question"><p class="prompt">${esc(item.prompt)}</p>${renderResponse(item)}</div>
+      <div id="feedback" class="feedback hidden"></div>
+      <button id="checkBtn" class="primary">Check transfer problem</button>${controls()}</section>`);
+    $('#checkBtn').onclick=()=>{
+      const result=evaluate(item), os=ostate();
+      if(result.correct){
+        os.transferPassed=true; state.transferIndex++; state.currentItem=null; save();
+        feedbackBox('Transfer verified.',true); setTimeout(render,600);
+      } else {
+        os.lastMisconception=result.branch; os.loops++; state.phase='work'; state.step='reteach';
+        state.returnToTransfer=true; state.currentItem=null; save(); render();
+      }
+    };
+  }
+
+  async function makeReceiptCode(){
+    const payload=[state.student,CONFIG.assessment.id,state.completedAt,ENGINE_VERSION,
+      ...CONFIG.objectives.map(o=>`${o.id}:${state.objectives[o.id].loops}`)].join('|');
+    if(window.crypto?.subtle){
+      const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(payload));
+      return [...new Uint8Array(hash)].map(b=>b.toString(16).padStart(2,'0')).join('').slice(0,16).toUpperCase();
+    }
+    let h=2166136261; for(let i=0;i<payload.length;i++){ h^=payload.charCodeAt(i); h=Math.imul(h,16777619); }
+    return (h>>>0).toString(16).toUpperCase().padStart(8,'0');
+  }
+  async function complete(){
+    state.phase='receipt'; state.completedAt=state.completedAt||new Date().toISOString();
+    const code=await makeReceiptCode();
+    state.receipt={code,replacementGrade:CONFIG.policy.replacementGrade}; save(); render();
+  }
+  function renderReceipt(){
+    const rows=CONFIG.objectives.map(o=>`<tr><td>${esc(o.title)}</td><td>Verified</td><td>${state.objectives[o.id].loops}</td></tr>`).join('');
+    shell(`<section class="card receipt"><div class="stage">Remediation complete</div><h2>${esc(state.student)}</h2>
+      <p>${esc(CONFIG.ui.completionMessage)}</p>
+      <div class="grade-box"><span>Replacement grade</span><strong>${CONFIG.policy.replacementGrade}</strong></div>
+      <table><thead><tr><th>Objective</th><th>Status</th><th>Corrective loops</th></tr></thead><tbody>${rows}</tbody></table>
+      <dl><dt>Assessment</dt><dd>${esc(CONFIG.assessment.title)}</dd><dt>Completed</dt><dd>${esc(new Date(state.completedAt).toLocaleString())}</dd>
+      <dt>Completion code</dt><dd><code>${esc(state.receipt?.code||'')}</code></dd><dt>Engine</dt><dd>${ENGINE_VERSION} / schema ${esc(CONFIG.schemaVersion)}</dd></dl>
+      <button id="printBtn" class="primary">Print receipt</button>${controls()}</section>`);
+  }
+
+  function runtimeValidate(){
+    const errors=[];
+    if(!CONFIG?.assessment?.id) errors.push('assessment.id missing');
+    if(!Array.isArray(CONFIG.objectives)||!CONFIG.objectives.length) errors.push('objectives missing');
+    const ids=CONFIG.objectives.map(o=>o.id);
+    if(new Set(ids).size!==ids.length) errors.push('objective ids not unique');
+    CONFIG.objectives.forEach(o=>{ if(!generators[o.generator.kind]) errors.push(`unknown generator ${o.generator.kind}`); });
+    return errors;
+  }
+  function selfTest(){
+    const errors=runtimeValidate();
+    let cases=0;
+    for(const o of CONFIG.objectives){
+      for(let i=0;i<100;i++){
+        const it=generateFor(o); cases++;
+        if(it.kind==='numberLineUnitFraction'){
+          if(it.n===7&&it.d===10) errors.push('generated excluded 7/10');
+          if(!(it.n>0&&it.n<it.d)) errors.push('bad number-line fraction');
+        }
+        if(it.kind==='multiWholeModel'){
+          if(it.n===8&&it.d===5) errors.push('generated excluded 8/5');
+          if(!(it.n>it.d&&it.n<2*it.d)) errors.push('bad multi-whole model');
+        }
+        if(it.kind==='fractionDecomposition'){
+          const valid=it.options.filter(x=>x.valid);
+          if(valid.length!==2) errors.push('decomposition does not have exactly two valid options');
+          if(it.targetN===8&&it.targetD===5) errors.push('generated excluded 8/5 decomposition target');
+        }
+      }
+    }
+    CONFIG.objectives.forEach(o=>{
+      const saved=state.objectives[o.id]?.seenItems;
+      state.objectives[o.id].seenItems=[];
+      const keys=new Set();
+      const desired=Math.min(3, o.generator.params?.denominators?.length || 3);
+      for(let i=0;i<desired;i++){
+        const it=generateFreshFor(o), k=freshKey(it);
+        if(keys.has(k)) errors.push(`fresh-item repeat for ${o.id}`);
+        keys.add(k);
+      }
+      state.objectives[o.id].seenItems=saved||[];
+    });
+    return {ok:errors.length===0,cases,errors:[...new Set(errors)]};
+  }
+
+  function render(){
+    const errors=runtimeValidate();
+    if(errors.length){ app.innerHTML=`<main class="entry-card"><h1>Configuration error</h1><pre>${esc(errors.join('\n'))}</pre></main>`; return; }
+    if(new URLSearchParams(location.search).has('selftest')){
+      const r=selfTest();
+      app.innerHTML=`<main class="entry-card"><h1>Engine self-test</h1><p class="${r.ok?'pass':'fail'}">${r.ok?'PASS':'FAIL'}</p><p>${r.cases} generated cases checked.</p><pre>${esc(r.errors.join('\n')||'No errors.')}</pre></main>`;
+      return;
+    }
+    if(state.phase==='entry') return renderEntry();
+    if(state.phase==='blocked') return renderBlocked();
+    if(state.phase==='work') return renderWork();
+    if(state.phase==='transfer') return renderTransfer();
+    if(state.phase==='receipt') return renderReceipt();
+    state=newState(); save(); renderEntry();
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
